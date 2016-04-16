@@ -20,6 +20,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-sleuth'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'majutsushi/tagbar' 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
