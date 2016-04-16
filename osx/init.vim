@@ -11,6 +11,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-sleuth'
+Plug 'jiangmiao/auto-pairs'
+Plug 'majutsushi/tagbar' 
+Plug 'scrooloose/nerdcommenter'
 
 " Add plugins to &runtimepath
 call plug#end()
