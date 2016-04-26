@@ -14,6 +14,12 @@ Plug 'tpope/vim-sleuth'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar' 
 Plug 'scrooloose/nerdcommenter'
+Plug 'edkolev/tmuxline.vim'
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -60,24 +66,38 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+" color scheme
+" colorscheme Tomorrow-Night-Eighties
+set background=dark
+colorscheme solarized
+
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
   set t_Co=16
 endif
 
-" color scheme
-colorscheme Tomorrow-Night-Eighties
-
 " airline setting
 let g:airline_powerline_fonts = 1
-let g:airline_theme='bubblegum'
+let g:airline_theme='solarized'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 " no arrows
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
+
+" tmuxline settings
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+        \ 'a': '#S',
+        \ 'win': '#I:#W',
+        \ 'cwin': '#I:#W',
+        \ 'x': '%H:%M %d-%b-%y',
+        \ 'z': '#h',
+        \ 'options': {
+        \'status-justify': 'left'}
+        \}
 
 " nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
@@ -93,3 +113,9 @@ map <C-n> :NERDTreeToggle<CR>
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 
+" deoplete
+let g:deoplete#enable_at_startup = 1
+
+" python3 support
+let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.0/bin/python3'
+"
