@@ -22,6 +22,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-sleuth'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar' 
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'edkolev/tmuxline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,18 +80,32 @@ if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
 endif
 
 " color scheme
-colorscheme Tomorrow-Night-Eighties
+" colorscheme Tomorrow-Night-Eighties
+set background=dark
+colorscheme solarized
 
 " airline setting
 set laststatus=2
-let g:airline_theme='bubblegum'
+let g:airline_theme='solarized'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 " no arrows
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
+
+" tmuxline settings
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+        \ 'a': '#S',
+        \ 'win': '#I:#W',
+        \ 'cwin': '#I:#W',
+        \ 'x': '%H:%M %d-%b-%y',
+        \ 'z': '#h',
+        \ 'options': {
+        \'status-justify': 'left'}
+        \}
 
 " nerdtree settings
 map <C-n> :NERDTreeToggle<CR>
