@@ -21,7 +21,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-sleuth'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'majutsushi/tagbar' 
+Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'edkolev/tmuxline.vim'
 
@@ -29,8 +29,8 @@ Plugin 'edkolev/tmuxline.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" NeoVim settings
-syntax enable	
+" Vim settings
+syntax enable
 set number
 set showmatch
 set visualbell
@@ -56,6 +56,9 @@ set noshowmode
 
 " escape delay
 set timeoutlen=0 ttimeoutlen=0
+
+" remove trailing white spaces on :w (save)
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Use ctrl-[hjkl] to navigate splits
 " nnoremap <C-h> <C-w>h
@@ -91,7 +94,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " let g:airline#extensions#tabline#enabled = 1
 " no arrows
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 
@@ -108,7 +111,7 @@ let g:tmuxline_preset = {
         \}
 
 " nerdtree settings
-map <C-n> :NERDTreeToggle<CR>
+map <C-i> :NERDTreeToggle<CR>
 " start with nerdtree open
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -120,6 +123,9 @@ map <C-n> :NERDTreeToggle<CR>
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
+
+" tagbar toggle
+nmap <C-o> :TagbarToggle<CR>
 
 " fix tmux background color bug
 if &term =~ '256color'
