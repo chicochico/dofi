@@ -7,14 +7,15 @@ Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-sleuth'
 Plug 'jiangmiao/auto-pairs'
-Plug 'majutsushi/tagbar' 
+Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'edkolev/tmuxline.vim'
+Plug 'mattn/emmet-vim'
 
 function! DoRemote(arg)
   UpdateRemotePlugins
@@ -25,7 +26,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 call plug#end()
 
 " NeoVim settings
-syntax enable	
+syntax enable
 set number
 set showmatch
 set visualbell
@@ -45,9 +46,13 @@ set mouse=a
 set lazyredraw
 set cursorline
 set ttyfast
+"set list lcs=space:·,tab:▸·
 
 " hide default mode indicaator
 set noshowmode
+
+" remove trailing white spaces on :w (save)
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Use ctrl-[hjkl] to navigate splits
 " nnoremap <C-h> <C-w>h
@@ -100,15 +105,21 @@ let g:tmuxline_preset = {
         \}
 
 " nerdtree settings
-map <C-n> :NERDTreeToggle<CR>
+map <C-i> :NERDTreeToggle<CR>
 " start with nerdtree open
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " close all if nerdtree is last window open
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Tagbar
+nmap <C-o> :TagbarToggle<CR>
+
 " nerdtree-tabs
 " let g:nerdtree_tabs_open_on_console_startup=1
+
+" emmet-vim
+let g:user_emmet_leader_key='<leader>'
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
@@ -118,4 +129,4 @@ let g:deoplete#enable_at_startup = 1
 
 " python3 support
 let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.0/bin/python3'
-"
+
