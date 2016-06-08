@@ -91,7 +91,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
 # docker daemon
-eval "$(docker-machine env default)"
+# eval "$(docker-machine env default)"
 
 # aliases
 alias source-edit="nvim ~/.zshrc"
@@ -101,3 +101,5 @@ alias vim="nvim"
 # docker clear all stopped containers
 #alias docker-rmc='docker rm "$(docker ps -aq)"'
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
