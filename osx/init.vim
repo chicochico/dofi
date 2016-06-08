@@ -13,8 +13,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/syntastic'
 Plug 'edkolev/tmuxline.vim'
+Plug 'neomake/neomake'
 Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -73,10 +73,8 @@ nnoremap ; :
 " Map leader from / to ,
 let mapleader = "\<Space>"
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+" Use <C-c> to clear the highlighting of :set hlsearch.
+nnoremap <silent> <leader>s :nohlsearch<CR>
 
 " Map <C-q> to quit :q
 nnoremap <C-q> :q<CR>
@@ -88,6 +86,8 @@ nnoremap K <C-y>
 " Map save and quit
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
+nnoremap <leader>W :wq<CR>
 
 " Color scheme
 " colorscheme Tomorrow-Night-Eighties
@@ -102,7 +102,6 @@ endif
 
 " Airline setting
 let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " let g:airline#extensions#tabline#enabled = 1
@@ -144,6 +143,21 @@ let g:tagbar_left = 1
 " let g:nerdtree_tabs_open_on_console_startup=1
 
 
+" Neomake
+let g:neomake_error_sign = {
+        \ 'text': '•',
+        \ 'texthl': 'DiffDelete',
+        \ }
+
+let g:neomake_warning_sign = {
+        \ 'text': '•',
+        \ 'texthl': 'DiffChange',
+        \ }
+
+" Run Neomake on write and on entering a buffer
+autocmd! BufWritePost,BufEnter * Neomake
+
+
 " Emmet-vim
 let g:user_emmet_leader_key='<C-p>'
 let g:user_emmet_mode='n'
@@ -155,17 +169,6 @@ let g:user_emmet_mode='n'
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
 
 
 " EasyMotion
@@ -200,3 +203,4 @@ vmap <Leader>l <Plug>(easymotion-lineforward)
 " FZF
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
+
