@@ -5,7 +5,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -20,10 +21,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+"function! DoRemote(arg)
+  "UpdateRemotePlugins
+"endfunction
+"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -90,9 +91,10 @@ nnoremap <leader>Q :q!<CR>
 nnoremap <leader>W :wq<CR>
 
 " Color scheme
-" colorscheme Tomorrow-Night-Eighties
 set background=dark
-colorscheme solarized
+"colorscheme solarized
+"colorscheme Tomorrow-Night-Eighties
+colorscheme base16-eighties
 
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
@@ -101,12 +103,11 @@ endif
 
 
 " Airline setting
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " let g:airline#extensions#tabline#enabled = 1
 " no arrows
-let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 
@@ -125,7 +126,7 @@ let g:tmuxline_preset = {
 
 
 " Nerdtree settings
-map <C-i> :NERDTreeToggle<CR>
+nnoremap <leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 " start with nerdtree open
 " autocmd StdinReadPre * let s:std_in=1
@@ -135,8 +136,8 @@ let NERDTreeShowHidden=1
 
 
 " Tagbar
-nmap <C-o> :TagbarToggle<CR>
-let g:tagbar_left = 1
+nnoremap <leader>; :TagbarToggle<CR>
+"let g:tagbar_left = 1
 
 
 " Nerdtree-tabs
@@ -168,7 +169,7 @@ let g:user_emmet_mode='n'
 
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 
 " EasyMotion
@@ -177,7 +178,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
 nmap f <Plug>(easymotion-overwin-f)
-vmap f <Plug>(easymotion-overwin-f)
+vmap f <Plug>(easymotion-bd-f)
 " or
 " `s{char}{char}{label}`
 " Need one more keystroke, but on average, it may be more comfortable.
@@ -187,20 +188,17 @@ vmap f <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1
 
 " JK motions: Line motions
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+let g:EasyMotion_startofline = 1 " keep cursor column when JK motion
 " Normal mode
-nmap <Leader>h <Plug>(easymotion-linebackward)
-nmap <Leader>j <Plug>(easymotion-j)
-nmap <Leader>k <Plug>(easymotion-k)
-nmap <Leader>l <Plug>(easymotion-lineforward)
-" Visual mode
-vmap <Leader>h <Plug>(easymotion-linebackward)
-vmap <Leader>j <Plug>(easymotion-j)
-vmap <Leader>k <Plug>(easymotion-k)
-vmap <Leader>l <Plug>(easymotion-lineforward)
+"nmap <leader>h <Plug>(easymotion-linebackward)
+nmap <leader>j <Plug>(easymotion-j)
+nmap <leader>k <Plug>(easymotion-k)
+"nmap <leader>l <Plug>(easymotion-lineforward)
 
 
 " FZF
+let g:fzf_buffers_jump = 1
+
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
 
