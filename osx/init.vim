@@ -91,15 +91,16 @@ nnoremap <leader>Q :q!<CR>
 nnoremap <leader>W :wq<CR>
 
 " Color scheme
+let base16colorspace=256
 set background=dark
 "colorscheme solarized
 "colorscheme Tomorrow-Night-Eighties
-colorscheme base16-eighties
+colorscheme base16-default
 
 " Allow color schemes to do bright colors without forcing bold.
-if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  set t_Co=16
-endif
+"if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  "set t_Co=16
+"endif
 
 
 " Airline setting
