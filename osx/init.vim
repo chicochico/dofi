@@ -10,7 +10,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tpope/vim-sleuth'
+Plug 'Shougo/deoplete.nvim'
+"Plug 'tpope/vim-sleuth'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
@@ -44,11 +45,11 @@ set hlsearch
 set smartcase
 set ignorecase
 set incsearch
-" set autoindent
 set shiftwidth=4
-" set smartindent
-" set smarttab
 set expandtab
+set autoindent
+set smartindent
+set smarttab
 " set softtabstop=4
 set ruler
 set clipboard=unnamed
@@ -104,10 +105,11 @@ colorscheme base16-default
 
 
 " Airline setting
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 0
 " no arrows
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -170,7 +172,7 @@ let g:user_emmet_mode='n'
 
 
 " Deoplete
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
 
 " EasyMotion
