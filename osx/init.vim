@@ -59,6 +59,7 @@ set cursorline
 set ttyfast
 "set list lcs=space:·,tab:▸·
 set noshowmode "hide default mode indicaator
+set hidden "allows hidden modified buffers
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -91,12 +92,17 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
 nnoremap <leader>W :wq<CR>
 
+" Map buffer switching
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
+
 " Color scheme
-let base16colorspace=256
+"let base16colorspace=256
 set background=dark
+colorscheme base16-eighties
 "colorscheme solarized
 "colorscheme Tomorrow-Night-Eighties
-colorscheme base16-default
+"colorscheme base16-default
 
 " Allow color schemes to do bright colors without forcing bold.
 "if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
@@ -105,11 +111,12 @@ colorscheme base16-default
 
 
 " Airline setting
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+" if setting airline theme manually
+" let g:airline#extensions#tmuxline#enabled = 0
 " no arrows
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -140,6 +147,9 @@ let NERDTreeShowHidden=1
 
 " Tagbar
 nnoremap <leader>; :TagbarToggle<CR>
+let g:tagbar_sort = 0
+let g:tagbar_autofocus = 1
+let g:tagbar_compact = 1
 "let g:tagbar_left = 1
 
 
@@ -180,7 +190,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-nmap f <Plug>(easymotion-overwin-f)
+nmap f <Plug>(easymotion-overwin-f2)
 vmap f <Plug>(easymotion-bd-f)
 " or
 " `s{char}{char}{label}`
@@ -201,7 +211,6 @@ nmap <leader>k <Plug>(easymotion-k)
 
 " FZF
 let g:fzf_buffers_jump = 1
-
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
 
