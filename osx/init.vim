@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Shougo/deoplete.nvim'
-"Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
@@ -45,7 +45,7 @@ set hlsearch
 set smartcase
 set ignorecase
 set incsearch
-set shiftwidth=4
+"set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
@@ -76,11 +76,8 @@ nnoremap ; :
 " Map leader from / to ,
 let mapleader = "\<Space>"
 
-" Use <C-c> to clear the highlighting of :set hlsearch.
+" Use <leader> s to clear the highlighting of :set hlsearch.
 nnoremap <silent> <leader>s :nohlsearch<CR>
-
-" Map <C-q> to quit :q
-nnoremap <C-q> :q<CR>
 
 " Map J and K for scrolling
 nnoremap J <C-e>
@@ -98,41 +95,52 @@ nnoremap <leader>p :bp<CR>
 
 " Color scheme
 "let base16colorspace=256
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
-colorscheme base16-eighties
+"colorscheme base16-eighties
+colorscheme base16-ocean
 "colorscheme solarized
-"colorscheme Tomorrow-Night-Eighties
 "colorscheme base16-default
 
-" Allow color schemes to do bright colors without forcing bold.
-"if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
-  "set t_Co=16
-"endif
-
-
-" Airline setting
+" Airline settings
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline#extensions#tabline#enabled = 1
 " if setting airline theme manually
-" let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tmuxline#enabled = 0
 " no arrows
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
+" bufferline show open buffers and their number
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 
 " Tmuxline settings
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = {
         \ 'a': '#S',
+        \ 'b': '',
+        \ 'c': '',
+        \ 'x': '',
+        \ 'y': '%d-%b-%y %H:%M',
+        \ 'z': '#h',
         \ 'win': '#I:#W',
         \ 'cwin': '#I:#W',
-        \ 'x': '%H:%M %d-%b-%y',
-        \ 'z': '#h',
-        \ 'options': {
-        \'status-justify': 'left'}
         \}
+
+let g:tmuxline_theme = {
+    \   'a'    : [ 243, 0 ],
+    \   'b'    : [ 243, 0 ],
+    \   'c'    : [ 243, 0 ],
+    \   'x'    : [ 243, 0 ],
+    \   'y'    : [ 243, 0 ],
+    \   'z'    : [ 243, 0 ],
+    \   'win'  : [ 243, 0 ],
+    \   'cwin' : [ 255, 0 ],
+    \   'bg'   : [ 243, 0 ],
+    \ }
 
 
 " Nerdtree settings
@@ -153,10 +161,6 @@ let g:tagbar_compact = 1
 "let g:tagbar_left = 1
 
 
-" Nerdtree-tabs
-" let g:nerdtree_tabs_open_on_console_startup=1
-
-
 " Neomake
 let g:neomake_error_sign = {
         \ 'text': '•',
@@ -168,6 +172,7 @@ let g:neomake_warning_sign = {
         \ 'texthl': 'DiffChange',
         \ }
 
+
 " Run Neomake on write and on entering a buffer
 autocmd! BufWritePost,BufEnter * Neomake
 
@@ -177,24 +182,16 @@ let g:user_emmet_leader_key='<C-p>'
 let g:user_emmet_mode='n'
 
 
-" ctrlp
-" let g:ctrlp_map = '<c-p>'
-
-
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-nmap f <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-overwin-f)
 vmap f <Plug>(easymotion-bd-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
 " nmap f <Plug>(easymotion-overwin-f2)
 
 " Turn on case insensitive feature
@@ -203,10 +200,8 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 let g:EasyMotion_startofline = 1 " keep cursor column when JK motion
 " Normal mode
-"nmap <leader>h <Plug>(easymotion-linebackward)
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
-"nmap <leader>l <Plug>(easymotion-lineforward)
 
 
 " FZF
