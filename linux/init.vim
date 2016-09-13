@@ -60,6 +60,7 @@ set ttyfast
 "set list lcs=space:·,tab:▸·
 set noshowmode "hide default mode indicaator
 set hidden "allows hidden modified buffers
+set termguicolors
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -98,7 +99,8 @@ nnoremap <leader>p :bp<CR>
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 "colorscheme base16-eighties
-colorscheme base16-ocean
+"colorscheme base16-ocean
+colorscheme base16-tomorrow-night
 "colorscheme solarized
 "colorscheme base16-default
 
@@ -125,7 +127,7 @@ let g:tmuxline_preset = {
         \ 'c': '',
         \ 'x': '',
         \ 'y': '%d-%b-%y %H:%M',
-        \ 'z': '#h',
+        \ 'z': '',
         \ 'win': '#I:#W',
         \ 'cwin': '#I:#W',
         \}
@@ -138,9 +140,11 @@ let g:tmuxline_theme = {
     \   'y'    : [ 249, 0 ],
     \   'z'    : [ 249, 0 ],
     \   'win'  : [ 249, 0 ],
-    \   'cwin' : [ 255, 0, 'bold' ],
+    \   'cwin' : [ 255, 0 ],
     \   'bg'   : [ 249, 0 ],
     \ }
+
+
 
 
 " Nerdtree settings
