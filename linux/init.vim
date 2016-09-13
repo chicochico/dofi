@@ -34,7 +34,10 @@ call plug#end()
 autocmd! bufwritepost init.vim source %
 
 " Python3 support
-let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.0/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
+
+" pipe cursor on insert and box on normal
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " NeoVim settings
 syntax enable
@@ -52,7 +55,7 @@ set smartindent
 set smarttab
 " set softtabstop=4
 set ruler
-set clipboard=unnamed
+set clipboard=unnamedplus
 set mouse=a
 set lazyredraw
 set cursorline
@@ -60,7 +63,6 @@ set ttyfast
 "set list lcs=space:·,tab:▸·
 set noshowmode "hide default mode indicaator
 set hidden "allows hidden modified buffers
-set termguicolors
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -96,6 +98,7 @@ nnoremap <leader>p :bp<CR>
 
 " Color scheme
 "let base16colorspace=256
+set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 "colorscheme base16-eighties
@@ -133,15 +136,15 @@ let g:tmuxline_preset = {
         \}
 
 let g:tmuxline_theme = {
-    \   'a'    : [ 249, 0 ],
-    \   'b'    : [ 249, 0 ],
-    \   'c'    : [ 249, 0 ],
-    \   'x'    : [ 249, 0 ],
-    \   'y'    : [ 249, 0 ],
-    \   'z'    : [ 249, 0 ],
-    \   'win'  : [ 249, 0 ],
+    \   'a'    : [ 243, 0 ],
+    \   'b'    : [ 243, 0 ],
+    \   'c'    : [ 243, 0 ],
+    \   'x'    : [ 243, 0 ],
+    \   'y'    : [ 243, 0 ],
+    \   'z'    : [ 243, 0 ],
+    \   'win'  : [ 243, 0 ],
     \   'cwin' : [ 255, 0 ],
-    \   'bg'   : [ 249, 0 ],
+    \   'bg'   : [ 243, 0 ],
     \ }
 
 

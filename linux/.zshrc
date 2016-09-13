@@ -53,6 +53,9 @@ plugins=(git docker meteor)
 
 # User configuration
 
+# for windows clipboard
+export DISPLAY=:0
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
