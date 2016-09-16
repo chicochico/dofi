@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-obsession'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
@@ -92,9 +93,10 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
 nnoremap <leader>W :wq<CR>
 
-" Map buffer switching
+" buffer commands
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
+nnoremap <leader>x :bd<CR>
 
 " Color scheme
 "let base16colorspace=256
@@ -118,7 +120,17 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 " bufferline show open buffers and their number
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 
@@ -185,8 +197,8 @@ autocmd! BufWritePost,BufEnter * Neomake
 
 
 " Emmet-vim
-let g:user_emmet_leader_key='<C-p>'
-let g:user_emmet_mode='n'
+let g:user_emmet_leader_key='<leader>'
+let g:user_emmet_mode='n'  " enable only in normal mode
 
 
 " Deoplete

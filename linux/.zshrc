@@ -49,7 +49,7 @@ ZSH_THEME="chico"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker meteor)
+plugins=(git meteor)
 
 # User configuration
 
@@ -86,24 +86,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# load custom dircolors
+eval $(dircolors ~/.dircolors)
 
 # Virtualenvwrapper
-#export WORKON_HOME=$HOME/.virtualenvs
-#export PROJECT_HOME=$HOME/.dev
-#export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-#source /usr/local/bin/virtualenvwrapper.sh
-
-# docker daemon
-# eval "$(docker-machine env default)"
+export WORKON_HOME=$HOME/venvs
+export PROJECT_HOME=$HOME/dev
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
 
 # aliases
 alias source-edit="nvim ~/.zshrc"
 alias source-apply="source ~/.zshrc"
 alias vim="nvim"
-
-# docker clear all stopped containers
-#alias docker-rmc='docker rm "$(docker ps -aq)"'
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
