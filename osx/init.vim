@@ -9,9 +9,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Shougo/deoplete.nvim'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
+Plug 'Shougo/deoplete.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
@@ -56,7 +56,6 @@ set clipboard=unnamed
 set mouse=a
 set lazyredraw
 set cursorline
-set ttyfast
 "set list lcs=space:·,tab:▸·
 set noshowmode "hide default mode indicaator
 set hidden "allows hidden modified buffers
@@ -72,6 +71,9 @@ nnoremap <C-l> <C-w>l
 
 " Map : to ;
 nnoremap ; :
+
+" Change cursor to pipe when in insert mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " Map leader from / to ,
 let mapleader = "\<Space>"
@@ -89,6 +91,8 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :q!<CR>
 nnoremap <leader>W :wq<CR>
 
+nnoremap <leader>x :bd<CR>  " buffer delete
+
 " Map buffer switching
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
@@ -98,7 +102,8 @@ nnoremap <leader>p :bp<CR>
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 "colorscheme base16-eighties
-colorscheme base16-ocean
+"colorscheme base16-ocean
+colorscheme base16-tomorrow-night
 "colorscheme solarized
 "colorscheme base16-default
 
@@ -113,8 +118,19 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 " bufferline show open buffers and their number
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 
 
 " Tmuxline settings
@@ -125,7 +141,7 @@ let g:tmuxline_preset = {
         \ 'c': '',
         \ 'x': '',
         \ 'y': '%d-%b-%y %H:%M',
-        \ 'z': '#h',
+        \ 'z': '',
         \ 'win': '#I:#W',
         \ 'cwin': '#I:#W',
         \}
