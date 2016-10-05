@@ -34,7 +34,7 @@ call plug#end()
 autocmd! bufwritepost init.vim source %
 
 " Python3 support
-let g:python3_host_prog = '/usr/local/Cellar/python3/3.5.0/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " NeoVim settings
 syntax enable
@@ -52,7 +52,7 @@ set smartindent
 set smarttab
 " set softtabstop=4
 set ruler
-set clipboard=unnamed
+set clipboard+=unnamedplus
 set mouse=a
 set lazyredraw
 set cursorline
@@ -98,14 +98,8 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
 " Color scheme
-"let base16colorspace=256
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=dark
-"colorscheme base16-eighties
-"colorscheme base16-ocean
-colorscheme base16-tomorrow-night
-"colorscheme solarized
-"colorscheme base16-default
+set termguicolors
+colorscheme base16-mexico-light
 
 " Airline settings
 let g:airline_powerline_fonts = 0
@@ -140,7 +134,7 @@ let g:tmuxline_preset = {
         \ 'b': '',
         \ 'c': '',
         \ 'x': '',
-        \ 'y': '%d-%b-%y %H:%M',
+        \ 'y': '%d/%b/%y %H:%M',
         \ 'z': '',
         \ 'win': '#I:#W',
         \ 'cwin': '#I:#W',
@@ -154,7 +148,7 @@ let g:tmuxline_theme = {
     \   'y'    : [ 243, 0 ],
     \   'z'    : [ 243, 0 ],
     \   'win'  : [ 243, 0 ],
-    \   'cwin' : [ 255, 0 ],
+    \   'cwin' : [ 243, 0, 'bold' ],
     \   'bg'   : [ 243, 0 ],
     \ }
 

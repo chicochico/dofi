@@ -85,24 +85,19 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/.dev
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/.dev
+#export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # docker daemon
 # eval "$(docker-machine env default)"
 
 # aliases
-alias source-edit="nvim ~/.zshrc"
-alias source-apply="source ~/.zshrc"
+#alias source-edit="nvim ~/.zshrc"
 alias vim="nvim"
 
-# docker clear all stopped containers
-#alias docker-rmc='docker rm "$(docker ps -aq)"'
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Base16 Shell
 BASE16_SHELL=$HOME/.config/base16-shell/
