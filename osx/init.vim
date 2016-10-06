@@ -52,8 +52,6 @@ set smartindent
 set smarttab
 " set softtabstop=4
 set ruler
-set clipboard+=unnamedplus
-set mouse=a
 set lazyredraw
 set cursorline
 "set list lcs=space:·,tab:▸·

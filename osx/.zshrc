@@ -97,7 +97,7 @@ source $ZSH/oh-my-zsh.sh
 #alias source-edit="nvim ~/.zshrc"
 alias vim="nvim"
 
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Base16 Shell
 BASE16_SHELL=$HOME/.config/base16-shell/
