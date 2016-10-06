@@ -9,7 +9,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-obsession'
@@ -101,13 +100,7 @@ nnoremap <leader>x :bd<CR>
 " Color scheme
 "let base16colorspace=256
 set termguicolors
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set background=dark
-"colorscheme base16-eighties
-"colorscheme base16-ocean
-colorscheme base16-tomorrow-night
-"colorscheme solarized
-"colorscheme base16-default
+colorscheme base16-mexico-light
 
 " Airline settings
 let g:airline_powerline_fonts = 0
@@ -155,7 +148,7 @@ let g:tmuxline_theme = {
     \   'y'    : [ 243, 0 ],
     \   'z'    : [ 243, 0 ],
     \   'win'  : [ 243, 0 ],
-    \   'cwin' : [ 255, 0 ],
+    \   'cwin' : [ 243, 0, 'bold' ],
     \   'bg'   : [ 243, 0 ],
     \ }
 
