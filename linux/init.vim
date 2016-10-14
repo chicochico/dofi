@@ -100,7 +100,7 @@ nnoremap <leader>x :bd<CR>
 " Color scheme
 "let base16colorspace=256
 set termguicolors
-colorscheme base16-mexico-light
+colorscheme base16-tomorrow-night
 
 " Airline settings
 let g:airline_powerline_fonts = 0
