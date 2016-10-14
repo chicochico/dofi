@@ -97,7 +97,7 @@ nnoremap <leader>p :bp<CR>
 
 " Color scheme
 set termguicolors
-colorscheme base16-mexico-light
+colorscheme base16-tomorrow-night
 
 " Airline settings
 let g:airline_powerline_fonts = 0
@@ -132,10 +132,10 @@ let g:tmuxline_preset = {
         \ 'b': '',
         \ 'c': '',
         \ 'x': '',
-        \ 'y': '%d/%b/%y %H:%M',
+        \ 'y': '%d-%b-%y %H:%M',
         \ 'z': '',
-        \ 'win': '#I:#W',
-        \ 'cwin': '#I:#W',
+        \ 'win': '#I›#W',
+        \ 'cwin': '#I›#W',
         \}
 
 let g:tmuxline_theme = {
@@ -146,7 +146,7 @@ let g:tmuxline_theme = {
     \   'y'    : [ 243, 0 ],
     \   'z'    : [ 243, 0 ],
     \   'win'  : [ 243, 0 ],
-    \   'cwin' : [ 243, 0, 'bold' ],
+    \   'cwin' : [ 253, 0 ],
     \   'bg'   : [ 243, 0 ],
     \ }
 
