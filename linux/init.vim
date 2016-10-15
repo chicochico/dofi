@@ -200,18 +200,14 @@ let g:deoplete#enable_at_startup = 1
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+let g:EasyMotion_startofline = 1 " keep cursor column when JK motion
+
 nmap f <Plug>(easymotion-overwin-f)
 vmap f <Plug>(easymotion-bd-f)
 " nmap f <Plug>(easymotion-overwin-f2)
-
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-let g:EasyMotion_startofline = 1 " keep cursor column when JK motion
-" Normal mode
 nmap <leader>j <Plug>(easymotion-j)
 nmap <leader>k <Plug>(easymotion-k)
 
