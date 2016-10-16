@@ -33,8 +33,16 @@ call plug#end()
 " Autosource this file when changed
 autocmd! bufwritepost init.vim source %
 
-" Python3 support
-let g:python3_host_prog = '/usr/local/bin/python3'
+let os= substitute(system('uname'), "\n", "", "")
+" osx specific settings
+if os == "Darwin"
+  " Python3 support
+  let g:python3_host_prog = '/usr/local/bin/python3'
+" linux specific settings
+elseif os == "Linux"
+  " Python3 support
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
 " NeoVim settings
 syntax enable
@@ -54,7 +62,6 @@ set smarttab
 set ruler
 set lazyredraw
 set cursorline
-"set list lcs=space:·,tab:▸·
 set noshowmode "hide default mode indicaator
 set hidden "allows hidden modified buffers
 
