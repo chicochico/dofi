@@ -68,15 +68,6 @@ set hidden "allows hidden modified buffers
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Use ctrl-[hjkl] to navigate splits
-nnoremap <BS> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Map : to ;
-nnoremap ; :
-
 " Change cursor to pipe when in insert mode
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
