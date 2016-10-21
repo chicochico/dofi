@@ -95,7 +95,7 @@ nnoremap <leader>p :bp<CR>
 
 " Color scheme
 set termguicolors
-colorscheme base16-tomorrow-night
+colorscheme base16-solarized-dark
 
 " Airline settings
 let g:airline_powerline_fonts = 0
