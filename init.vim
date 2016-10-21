@@ -196,9 +196,9 @@ let g:deoplete#enable_at_startup = 1
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-nmap f <Plug>(easymotion-overwin-f)
+"nmap f <Plug>(easymotion-overwin-f)
 vmap f <Plug>(easymotion-bd-f)
-" nmap f <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-overwin-f2)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
