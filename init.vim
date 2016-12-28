@@ -77,17 +77,15 @@ let mapleader = "\<Space>"
 " Use <leader> s to clear the highlighting of :set hlsearch.
 nnoremap <silent> <leader>s :nohlsearch<CR>
 
+" Save current buffer
+nnoremap <leader> :w<CR>
+
 " Map J and K for scrolling
-nnoremap J <C-e>
-nnoremap K <C-y>
+nnoremap J }
+nnoremap K {
 
-" Map save and quit
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :q!<CR>
-nnoremap <leader>W :wq<CR>
-
-nnoremap <leader>x :bd<CR>  " buffer delete
+" Delete current buffer
+nnoremap X :bd<CR>
 
 " Map buffer switching
 nnoremap <leader>n :bn<CR>
@@ -95,7 +93,7 @@ nnoremap <leader>p :bp<CR>
 
 " Color scheme
 set termguicolors
-colorscheme base16-solarized-dark
+colorscheme base16-tomorrow-night
 
 " Airline settings
 let g:airline_powerline_fonts = 0
@@ -198,7 +196,7 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " `s{char}{label}`
 "nmap f <Plug>(easymotion-overwin-f)
 vmap f <Plug>(easymotion-bd-f)
-nmap f <Plug>(easymotion-overwin-f2)
+nmap f <Plug>(easymotion-overwin-f)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
