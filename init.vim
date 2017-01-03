@@ -21,6 +21,7 @@ Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 "function! DoRemote(arg)
   "UpdateRemotePlugins
