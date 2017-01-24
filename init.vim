@@ -79,7 +79,10 @@ let mapleader = "\<Space>"
 nnoremap <silent> <leader>s :nohlsearch<CR>
 
 " Save current buffer
-nnoremap <leader> :w<CR>
+nnoremap <leader>w :w<CR>
+
+" Quit
+nnoremap <leader>q :q<CR>
 
 " Map J and K for scrolling
 nnoremap J }
@@ -195,22 +198,24 @@ let g:deoplete#enable_at_startup = 1
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
-"nmap f <Plug>(easymotion-overwin-f)
-vmap f <Plug>(easymotion-bd-f)
-nmap f <Plug>(easymotion-overwin-f)
+vmap f <plug>(easymotion-bd-f2)
+nmap f <plug>(easymotion-overwin-f2)
 
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
+" turn on case insensitive feature
+let g:easymotion_smartcase = 1
 
-" JK motions: Line motions
-let g:EasyMotion_startofline = 1 " keep cursor column when JK motion
-" Normal mode
-nmap <leader>j <Plug>(easymotion-j)
-nmap <leader>k <Plug>(easymotion-k)
+" jk motions: line motions
+"let g:easymotion_startofline = 1 " keep cursor column when jk motion
+" normal mode
+nmap <leader>j <plug>(easymotion-j)
+nmap <leader>k <plug>(easymotion-k)
+" visual mode
+vmap <leader>j <plug>(easymotion-j)
+vmap <leader>k <plug>(easymotion-k)
 
 
-" FZF
+" fzf
 let g:fzf_buffers_jump = 1
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :fzf<cr>
 nnoremap <leader>d :Buffers<CR>
 
