@@ -1,6 +1,5 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
@@ -20,12 +19,6 @@ Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-"function! DoRemote(arg)
-  "UpdateRemotePlugins
-"endfunction
-"Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -45,6 +38,7 @@ endif
 
 " NeoVim settings
 syntax enable
+set clipboard+=unnamedplus
 set number
 set showmatch
 set smartcase
@@ -69,6 +63,9 @@ autocmd BufWritePre * :%s/\s\+$//e
 " remap leader key
 let mapleader = "\<Space>"
 
+" remap command mode
+nnoremap ; :
+
 " Use <leader> s to clear the highlighting of :set hlsearch.
 nnoremap <silent> <leader>s :nohlsearch<CR>
 
@@ -92,6 +89,9 @@ nnoremap <leader>p :bp<CR>
 " scrolling
 nnoremap <c-j> 4<c-e>
 nnoremap <c-k> 4<c-y>
+
+" NerdCommenter
+map <leader>, <plug>NERDCommenterToggle
 
 " Color scheme
 set termguicolors
@@ -156,6 +156,9 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " jump anywere
 vmap f <plug>(easymotion-bd-f2)
 nmap f <plug>(easymotion-overwin-f2)
+" jump in line
+nmap l <Plug>(easymotion-lineanywhere)
+vmap l <Plug>(easymotion-lineanywhere)
 " turn on case insensitive feature
 let g:easymotion_smartcase = 1
 " jk motions: line motions
