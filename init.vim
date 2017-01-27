@@ -15,13 +15,11 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
-Plug 'edkolev/tmuxline.vim'
 Plug 'neomake/neomake'
 Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'christoomey/vim-tmux-navigator'
 
 "function! DoRemote(arg)
   "UpdateRemotePlugins
@@ -49,30 +47,26 @@ endif
 syntax enable
 set number
 set showmatch
-set visualbell
-set hlsearch
 set smartcase
-set ignorecase
 set incsearch
-"set shiftwidth=4
+set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
 set smarttab
-" set softtabstop=4
 set ruler
-set lazyredraw
 set cursorline
-set noshowmode "hide default mode indicaator
-set hidden "allows hidden modified buffers
+set noshowmode " hide default mode indicaator
+set hidden " allows hidden modified buffers
+set autoread " reload file if changed outside vim
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Change cursor to pipe when in insert mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" Map leader from / to ,
+" remap leader key
 let mapleader = "\<Space>"
 
 " Use <leader> s to clear the highlighting of :set hlsearch.
@@ -84,7 +78,7 @@ nnoremap <leader>w :w<CR>
 " Quit
 nnoremap <leader>q :q<CR>
 
-" Map J and K for scrolling
+" Map J and K for moving in paragraphs
 nnoremap J }
 nnoremap K {
 
@@ -94,6 +88,10 @@ nnoremap X :bd<CR>
 " Map buffer switching
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
+
+" scrolling
+nnoremap <c-j> 4<c-e>
+nnoremap <c-k> 4<c-y>
 
 " Color scheme
 set termguicolors
@@ -105,15 +103,14 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " if setting airline theme manually
 let g:airline#extensions#tmuxline#enabled = 0
-" no arrows
+" no separators
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 " bufferline show open buffers and their number
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-
+" quickly jump to buffer
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -124,42 +121,9 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-
-" Tmuxline settings
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-        \ 'a': '#S',
-        \ 'b': '',
-        \ 'c': '',
-        \ 'x': '',
-        \ 'y': '%d-%b-%y %H:%M',
-        \ 'z': '',
-        \ 'win': '#I›#W',
-        \ 'cwin': '#I›#W',
-        \}
-
-let g:tmuxline_theme = {
-    \   'a'    : [ 243, 0 ],
-    \   'b'    : [ 243, 0 ],
-    \   'c'    : [ 243, 0 ],
-    \   'x'    : [ 243, 0 ],
-    \   'y'    : [ 243, 0 ],
-    \   'z'    : [ 243, 0 ],
-    \   'win'  : [ 243, 0 ],
-    \   'cwin' : [ 253, 0 ],
-    \   'bg'   : [ 243, 0 ],
-    \ }
-
-
 " Nerdtree settings
 nnoremap <leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
-" start with nerdtree open
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" close all if nerdtree is last window open
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 
 " Tagbar
 nnoremap <leader>; :TagbarToggle<CR>
@@ -168,44 +132,34 @@ let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
 "let g:tagbar_left = 1
 
-
 " Neomake
 let g:neomake_error_sign = {
         \ 'text': '•',
         \ 'texthl': 'DiffDelete',
         \ }
-
 let g:neomake_warning_sign = {
         \ 'text': '•',
         \ 'texthl': 'DiffChange',
         \ }
-
-
 " Run Neomake on write and on entering a buffer
 autocmd! BufWritePost,BufEnter * Neomake
-
 
 " Emmet-vim
 let g:user_emmet_leader_key='<C-p>'
 let g:user_emmet_mode='n'
 
-
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
-
 " EasyMotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
+" jump anywere
 vmap f <plug>(easymotion-bd-f2)
 nmap f <plug>(easymotion-overwin-f2)
-
 " turn on case insensitive feature
 let g:easymotion_smartcase = 1
-
 " jk motions: line motions
-"let g:easymotion_startofline = 1 " keep cursor column when jk motion
+let g:easymotion_startofline = 1 " keep cursor column when jk motion
 " normal mode
 nmap <leader>j <plug>(easymotion-j)
 nmap <leader>k <plug>(easymotion-k)
@@ -213,9 +167,8 @@ nmap <leader>k <plug>(easymotion-k)
 vmap <leader>j <plug>(easymotion-j)
 vmap <leader>k <plug>(easymotion-k)
 
-
 " fzf
 let g:fzf_buffers_jump = 1
-nnoremap <leader>f :fzf<cr>
+nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
 

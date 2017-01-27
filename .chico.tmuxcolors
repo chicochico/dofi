@@ -1,4 +1,5 @@
 # This tmux statusbar config was created by tmuxline.vim
+# And modified by chico
 # on Fri, 14 Oct 2016
 
 set -g status-bg "colour0"
@@ -22,7 +23,7 @@ setw -g window-status-activity-attr "underscore"
 setw -g window-status-activity-fg "colour243"
 setw -g window-status-separator ""
 setw -g window-status-bg "colour0"
-set -g status-left "#[fg=colour243,bg=colour0] #S #[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]#[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]#[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]"
-set -g status-right "#[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]#[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]#[fg=colour243,bg=colour0] %d-%b-%y %H:%M #[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]"
-setw -g window-status-format "#[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]#[default] #I›#W #[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]"
-setw -g window-status-current-format "#[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]#[fg=colour253,bg=colour0] #I›#W #[fg=colour0,bg=colour0,nobold,nounderscore,noitalics]"
+set -g status-left "#[fg=colour243]#S"
+set -g status-right "#[fg=colour243]%d-%b-%y %H:%M"
+setw -g window-status-format "#[bold]#(~/dev/n2s/num2sup.py #I)#[nobold]#W "
+setw -g window-status-current-format "#[fg=colour253,bold]#(~/dev/n2s/num2sup.py #I)#[nobold]#W "
