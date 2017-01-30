@@ -33,7 +33,7 @@ if os == "Darwin"
 " linux specific settings
 elseif os == "Linux"
   " Python3 support
-  let g:python3_host_prog = '/usr/bin/python3'
+  let g:python3_host_prog = '/home/chico/.pyenv/shims/python'
 endif
 
 " NeoVim settings
@@ -75,10 +75,6 @@ nnoremap <leader>w :w<CR>
 " Quit
 nnoremap <leader>q :q<CR>
 
-" Map J and K for moving in paragraphs
-nnoremap J }
-nnoremap K {
-
 " Delete current buffer
 nnoremap X :bd<CR>
 
@@ -87,8 +83,11 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 
 " scrolling
-nnoremap <c-j> 4<c-e>
-nnoremap <c-k> 4<c-y>
+nnoremap J 4<C-e>
+nnoremap K 4<C-y>
+vnoremap J 4<C-e>
+vnoremap K 4<C-y>
+
 
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle
