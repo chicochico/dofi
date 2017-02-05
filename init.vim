@@ -19,6 +19,7 @@ Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'aklt/plantuml-syntax'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -41,6 +42,7 @@ syntax enable
 set clipboard+=unnamedplus
 set number
 set showmatch
+set ignorecase
 set smartcase
 set incsearch
 set shiftwidth=4
@@ -63,11 +65,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 " remap leader key
 let mapleader = "\<Space>"
 
-" remap command mode
-nnoremap ; :
-
 " Use <leader> s to clear the highlighting of :set hlsearch.
-nnoremap <silent> <leader>s :nohlsearch<CR>
+nnoremap <esc> :noh<CR>
 
 " Save current buffer
 nnoremap <leader>w :w<CR>
