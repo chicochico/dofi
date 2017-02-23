@@ -66,7 +66,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 let mapleader = "\<Space>"
 
 " Use <leader> s to clear the highlighting of :set hlsearch.
-nnoremap <esc> :noh<CR>
+nnoremap <silent><esc> :noh<CR>
 
 " Save current buffer
 nnoremap <leader>w :w<CR>
