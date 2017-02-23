@@ -155,5 +155,7 @@ nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
 
 " EasyMotion
-map m <Plug>(easymotion-prefix)
+let g:EasyMotion_do_mapping = 0
 map f <Plug>(easymotion-s)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
