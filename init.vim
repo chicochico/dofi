@@ -149,27 +149,11 @@ let g:user_emmet_mode='n'
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
-" EasyMotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" jump anywere
-vmap f <plug>(easymotion-bd-f2)
-nmap f <plug>(easymotion-overwin-f2)
-" jump in line
-nmap l <Plug>(easymotion-lineanywhere)
-vmap l <Plug>(easymotion-lineanywhere)
-" turn on case insensitive feature
-let g:easymotion_smartcase = 1
-" jk motions: line motions
-let g:easymotion_startofline = 1 " keep cursor column when jk motion
-" normal mode
-nmap <leader>j <plug>(easymotion-j)
-nmap <leader>k <plug>(easymotion-k)
-" visual mode
-vmap <leader>j <plug>(easymotion-j)
-vmap <leader>k <plug>(easymotion-k)
-
 " fzf
 let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
 
+" EasyMotion
+map m <Plug>(easymotion-prefix)
+map f <Plug>(easymotion-s)
