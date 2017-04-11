@@ -14,12 +14,13 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'aklt/plantuml-syntax'
+Plug 'nathanaelkane/vim-indent-guides'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -94,6 +95,8 @@ map <leader>, <plug>NERDCommenterToggle
 " Color scheme
 set termguicolors
 colorscheme base16-tomorrow-night
+hi Search guifg=#1d1f21
+hi EndOfBuffer guifg=#1d1f21
 
 " Airline settings
 let g:airline_powerline_fonts = 0
@@ -131,16 +134,16 @@ let g:tagbar_compact = 1
 "let g:tagbar_left = 1
 
 " Neomake
-let g:neomake_error_sign = {
-        \ 'text': '•',
-        \ 'texthl': 'DiffDelete',
-        \ }
-let g:neomake_warning_sign = {
-        \ 'text': '•',
-        \ 'texthl': 'DiffChange',
-        \ }
-" Run Neomake on write and on entering a buffer
-autocmd! BufWritePost,BufEnter * Neomake
+"let g:neomake_error_sign = {
+        "\ 'text': '•',
+        "\ 'texthl': 'DiffDelete',
+        "\ }
+"let g:neomake_warning_sign = {
+        "\ 'text': '•',
+        "\ 'texthl': 'DiffChange',
+        "\ }
+"" Run Neomake on write and on entering a buffer
+"autocmd! BufWritePost,BufEnter * Neomake
 
 " Emmet-vim
 let g:user_emmet_leader_key='<C-p>'
@@ -159,3 +162,8 @@ let g:EasyMotion_do_mapping = 0
 map f <Plug>(easymotion-s)
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
+
+" Vim indent guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+"let g:indent_guides_enable_on_vim_startup = 1
