@@ -94,7 +94,12 @@ map <leader>, <plug>NERDCommenterToggle
 
 " Color scheme
 set termguicolors
-colorscheme base16-tomorrow-night
+
+" Source file with theme setting
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
+
 hi Search guifg=#1d1f21
 hi EndOfBuffer guifg=#1d1f21
 
