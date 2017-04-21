@@ -79,15 +79,18 @@ nnoremap <leader>q :q<CR>
 nnoremap X :bd<CR>
 
 " Map buffer switching
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
+nnoremap <silent><c-l> :bn<CR>
+nnoremap <silent><c-h> :bp<CR>
 
 " scrolling
-nnoremap J 4<C-e>
-nnoremap K 4<C-y>
-vnoremap J 4<C-e>
-vnoremap K 4<C-y>
-
+nnoremap J 5<C-e>
+nnoremap K 5<C-y>
+vnoremap J 5<C-e>
+vnoremap K 5<C-y>
+nnoremap <c-j> 5<C-e>
+nnoremap <c-k> 5<C-y>
+vnoremap <c-j> 5<C-e>
+vnoremap <c-k> 5<C-y>
 
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle

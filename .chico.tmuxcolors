@@ -1,6 +1,5 @@
 # This tmux statusbar config was created by tmuxline.vim
 # And modified by chico
-# on Fri, 14 Oct 2016
 
 set -g message-command-bg "colour0"
 set -g message-command-fg "colour21"
@@ -25,7 +24,7 @@ set -g status-left ""
 set -g status-right ""
 
 setw -g window-status-bg "colour0"
-setw -g window-status-fg "colour19"
+setw -g window-status-fg "colour20"
 setw -g window-status-attr "none"
 setw -g window-status-activity-bg "colour0"
 setw -g window-status-activity-attr "underscore"
