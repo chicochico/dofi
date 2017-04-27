@@ -1,11 +1,11 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
+" Themes and addons
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
@@ -14,13 +14,16 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'neomake/neomake'
+Plug 'neomake/neomake'
 Plug 'mattn/emmet-vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+" Language specific
 Plug 'aklt/plantuml-syntax'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'keith/swift.vim'
+Plug 'mitsuse/autocomplete-swift'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -41,7 +44,7 @@ endif
 " NeoVim settings
 syntax enable
 set clipboard+=unnamedplus
-set number
+"set number
 set showmatch
 set ignorecase
 set smartcase
@@ -103,13 +106,35 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
-hi Search guifg=#1d1f21
-hi EndOfBuffer guifg=#1d1f21
+hi EndOfBuffer guifg=bg ctermbg=bg
+hi SignColumn guibg=bg ctermbg=bg
+
+" GitGutter
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_sign_column_always = 1
+hi GitGutterAdd guibg=bg ctermbg=bg
+hi GitGutterChange guibg=bg ctermbg=bg
+hi GitGutterDelete guibg=bg ctermbg=bg
+hi GitGutterChangeDelete guibg=bg ctermbg=bg
 
 " Airline settings
+let g:airline_theme='chico_airline'
 let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
 " if setting airline theme manually
 let g:airline#extensions#tmuxline#enabled = 0
 " no separators
@@ -142,16 +167,16 @@ let g:tagbar_compact = 1
 "let g:tagbar_left = 1
 
 " Neomake
-"let g:neomake_error_sign = {
-        "\ 'text': '•',
-        "\ 'texthl': 'DiffDelete',
-        "\ }
-"let g:neomake_warning_sign = {
-        "\ 'text': '•',
-        "\ 'texthl': 'DiffChange',
-        "\ }
-"" Run Neomake on write and on entering a buffer
-"autocmd! BufWritePost,BufEnter * Neomake
+let g:neomake_error_sign = {
+        \ 'text': '•',
+        \ 'texthl': 'WarningMsg',
+        \ }
+let g:neomake_warning_sign = {
+        \ 'text': '•',
+        \ 'texthl': 'Tag',
+        \ }
+" Run Neomake on write and on entering a buffer
+autocmd! BufWritePost,BufEnter * Neomake
 
 " Emmet-vim
 let g:user_emmet_leader_key='<C-p>'
