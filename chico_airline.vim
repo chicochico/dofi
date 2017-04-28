@@ -7,15 +7,22 @@ let g:airline#themes#chico_airline#palette = {}
 
 let s:Error = airline#themes#get_highlight('WarningMsg')
 let s:Warning = airline#themes#get_highlight('PreProc')
+let s:Comment = airline#themes#get_highlight('Comment')
 
 let s:N1   = airline#themes#get_highlight('Directory')
-let s:N2   = airline#themes#get_highlight('Comment')
+let s:N2   = airline#themes#get_highlight('TermCursorNC')
 let s:N3   = s:N2
 let g:airline#themes#chico_airline#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 
 let g:airline#themes#chico_airline#palette.normal.airline_z = s:N2
 let g:airline#themes#chico_airline#palette.normal.airline_error = s:Error
 let g:airline#themes#chico_airline#palette.normal.airline_warning = s:Warning
+let g:airline#themes#chico_airline#palette.normal.airline_tabtype = s:Comment
+let g:airline#themes#chico_airline#palette.normal.airline_tab= s:Comment
+let g:airline#themes#chico_airline#palette.normal.airline_tabhid = s:Comment
+"let g:airline#themes#chico_airline#palette.normal.airline_tabsel = s:N2
+"let g:airline#themes#chico_airline#palette.normal.airline_tabmod = s:Error
+let g:airline#themes#chico_airline#palette.normal.airline_tabmod_unsel = s:Comment
 
 "let g:airline#themes#chico_airline#palette.normal_modified = {
       "\ 'airline_c': s:N2 ,

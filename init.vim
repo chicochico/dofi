@@ -55,7 +55,7 @@ set autoindent
 set smartindent
 set smarttab
 set ruler
-set cursorline
+"set cursorline
 set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
@@ -120,8 +120,6 @@ hi GitGutterChangeDelete guibg=bg ctermbg=bg
 " Airline settings
 let g:airline_theme='chico_airline'
 let g:airline_powerline_fonts = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -135,9 +133,12 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
-" if setting airline theme manually
+" format the z section
+let g:airline_section_z = '%3p%% %l:%c'
 let g:airline#extensions#tmuxline#enabled = 0
-" no separators
+" remove separators
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 " bufferline show open buffers and their number
