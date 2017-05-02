@@ -59,12 +59,13 @@ set ruler
 set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
+set fillchars=vert:\│  " vertical split character
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Change cursor to pipe when in insert mode
-"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " remap leader key
 let mapleader = "\<Space>"
@@ -86,14 +87,14 @@ nnoremap <silent><c-l> :bn<CR>
 nnoremap <silent><c-h> :bp<CR>
 
 " scrolling
-nnoremap J 5<C-e>
-nnoremap K 5<C-y>
-vnoremap J 5<C-e>
-vnoremap K 5<C-y>
-nnoremap <c-j> 5<C-e>
-nnoremap <c-k> 5<C-y>
-vnoremap <c-j> 5<C-e>
-vnoremap <c-k> 5<C-y>
+nnoremap J 4<C-e>
+nnoremap K 4<C-y>
+vnoremap J 4<C-e>
+vnoremap K 4<C-y>
+nnoremap <c-j> 4<C-e>
+nnoremap <c-k> 4<C-y>
+vnoremap <c-j> 4<C-e>
+vnoremap <c-k> 4<C-y>
 
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle
@@ -108,6 +109,7 @@ endif
 
 hi EndOfBuffer guifg=bg ctermbg=bg
 hi SignColumn guibg=bg ctermbg=bg
+hi VertSplit guibg=bg guifg=#585858
 
 " GitGutter
 let g:gitgutter_override_sign_column_highlight = 0
@@ -134,8 +136,11 @@ let g:airline_mode_map = {
       \ '' : 'S',
       \ }
 " format the z section
-let g:airline_section_z = '%3p%% %l:%c'
+let g:airline_section_y = ''
+let g:airline_section_z = '%3p%% %l,%c'
 let g:airline#extensions#tmuxline#enabled = 0
+" remove git hunk
+let g:airline#extensions#hunks#enabled = 0
 " remove separators
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -193,6 +198,8 @@ nnoremap <leader>d :Buffers<CR>
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_verbose = 0
+let g:EasyMotion_off_screen_search = 0
 map f <Plug>(easymotion-s)
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)

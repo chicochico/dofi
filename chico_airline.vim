@@ -65,9 +65,9 @@ let g:airline#themes#chico_airline#palette.visual.airline_warning = s:Warning
       "\ }
 
 
-let s:IA1 = s:N2
-let s:IA2 = s:N2
-let s:IA3 = s:N2
+let s:IA1 = s:Comment
+let s:IA2 = s:Comment
+let s:IA3 = s:Comment
 let g:airline#themes#chico_airline#palette.inactive = airline#themes#generate_color_map(s:IA1, s:IA2, s:IA3)
 let g:airline#themes#chico_airline#palette.inactive_modified = {
       \ 'airline_c': s:N2 ,
