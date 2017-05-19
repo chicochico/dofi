@@ -24,6 +24,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'aklt/plantuml-syntax'
 Plug 'keith/swift.vim'
 Plug 'mitsuse/autocomplete-swift'
+Plug 'bfredl/nvim-ipy'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -55,7 +56,7 @@ set autoindent
 set smartindent
 set smarttab
 set ruler
-"set cursorline
+set cursorline
 set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
@@ -112,16 +113,18 @@ hi SignColumn guibg=bg ctermbg=bg
 hi VertSplit guibg=bg guifg=#585858
 
 " GitGutter
+let g:gitgutter_enabled = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_sign_column_always = 1
 hi GitGutterAdd guibg=bg ctermbg=bg
 hi GitGutterChange guibg=bg ctermbg=bg
 hi GitGutterDelete guibg=bg ctermbg=bg
 hi GitGutterChangeDelete guibg=bg ctermbg=bg
+hi Search guifg=bg ctermfg=bg
 
 " Airline settings
 let g:airline_theme='chico_airline'
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline_mode_map = {
       \ '__' : '-',
       \ 'n'  : 'N',
@@ -143,7 +146,9 @@ let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
 " remove separators
 let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 " bufferline show open buffers and their number
@@ -208,3 +213,6 @@ map <leader>k <Plug>(easymotion-k)
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 "let g:indent_guides_enable_on_vim_startup = 1
+
+" Vim Sleuth
+let g:sleuth_automatic = 1

@@ -5,76 +5,52 @@
 
 let g:airline#themes#chico_airline#palette = {}
 
-let s:Error = airline#themes#get_highlight('WarningMsg')
-let s:Warning = airline#themes#get_highlight('PreProc')
-let s:Comment = airline#themes#get_highlight('Comment')
+" g:terminal_color_0 to 15 defined by base16
+let s:SbDefault = [g:terminal_color_12, g:terminal_color_10, 12, 10]
+let s:TabActive = [g:terminal_color_15, g:terminal_color_10, 15, 10]
+let s:SbError = [g:terminal_color_1, g:terminal_color_10, 01, 10]
+let s:SbWarning = [g:terminal_color_3, g:terminal_color_10, 03, 10]
+let s:SbInactive = [g:terminal_color_8, g:terminal_color_10, 08, 10]
+let s:SbNormal = [g:terminal_color_6, g:terminal_color_10, 6, 10]
+let s:SbInsert = [g:terminal_color_2, g:terminal_color_10, 02, 10]
+let s:SbVisual = [g:terminal_color_5, g:terminal_color_10, 05, 10]
 
-let s:N1   = airline#themes#get_highlight('Directory')
-let s:N2   = airline#themes#get_highlight('TermCursorNC')
-let s:N3   = s:N2
+let s:N1 = s:SbNormal
+let s:N2 = s:SbDefault
+let s:N3 = s:SbDefault
 let g:airline#themes#chico_airline#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
 
-let g:airline#themes#chico_airline#palette.normal.airline_z = s:N2
-let g:airline#themes#chico_airline#palette.normal.airline_error = s:Error
-let g:airline#themes#chico_airline#palette.normal.airline_warning = s:Warning
-let g:airline#themes#chico_airline#palette.normal.airline_tabtype = s:Comment
-let g:airline#themes#chico_airline#palette.normal.airline_tab= s:Comment
-let g:airline#themes#chico_airline#palette.normal.airline_tabhid = s:Comment
-"let g:airline#themes#chico_airline#palette.normal.airline_tabsel = s:N2
-"let g:airline#themes#chico_airline#palette.normal.airline_tabmod = s:Error
-let g:airline#themes#chico_airline#palette.normal.airline_tabmod_unsel = s:Comment
-
-"let g:airline#themes#chico_airline#palette.normal_modified = {
-      "\ 'airline_c': s:N2 ,
-      "\ }
-
-
-let s:I1 = airline#themes#get_highlight('String')
-let s:I2 = s:N2
-let s:I3 = s:N2
+let s:I1 = s:SbInsert
+let s:I2 = s:SbDefault
+let s:I3 = s:SbDefault
 let g:airline#themes#chico_airline#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 
-let g:airline#themes#chico_airline#palette.insert.airline_z = s:N2
-let g:airline#themes#chico_airline#palette.insert.airline_error = s:Error
-let g:airline#themes#chico_airline#palette.insert.airline_warning = s:Warning
+let s:R1 = s:SbDefault
+let s:R2 = s:SbDefault
+let s:R3 = s:SbDefault
+let g:airline#themes#chico_airline#palette.replace = airline#themes#generate_color_map(s:R1, s:R2, s:R3)
 
-"let g:airline#themes#chico_airline#palette.insert_modified = {
-      "\ 'airline_c': s:N2 ,
-      "\ }
-let g:airline#themes#chico_airline#palette.insert_paste = {
-      \ 'airline_a': [ s:I1[0]   , '#d78700' , s:I1[2] , 172     , ''     ] ,
-      \ }
-
-
-let g:airline#themes#chico_airline#palette.replace = copy(g:airline#themes#chico_airline#palette.insert)
-let g:airline#themes#chico_airline#palette.replace.airline_a = [ s:I2[0]   , '#af0000' , s:I2[2] , 124     , ''     ]
-"let g:airline#themes#chico_airline#palette.replace_modified = g:airline#themes#chico_airline#palette.insert_modified
-
-
-let s:V1 = airline#themes#get_highlight('Conditional')
-let s:V2 = s:N2
-let s:V3 = s:N2
+let s:V1 = s:SbVisual
+let s:V2 = s:SbDefault
+let s:V3 = s:SbDefault
 let g:airline#themes#chico_airline#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
 
-let g:airline#themes#chico_airline#palette.visual.airline_z = s:N2
-let g:airline#themes#chico_airline#palette.visual.airline_error = s:Error
-let g:airline#themes#chico_airline#palette.visual.airline_warning = s:Warning
-
-"let g:airline#themes#chico_airline#palette.visual_modified = {
-      "\ 'airline_c': s:N2 ,
-      "\ }
-
-
-let s:IA1 = s:Comment
-let s:IA2 = s:Comment
-let s:IA3 = s:Comment
+let s:IA1 = s:SbInactive
+let s:IA2 = s:SbInactive
+let s:IA3 = s:SbInactive
 let g:airline#themes#chico_airline#palette.inactive = airline#themes#generate_color_map(s:IA1, s:IA2, s:IA3)
-let g:airline#themes#chico_airline#palette.inactive_modified = {
-      \ 'airline_c': s:N2 ,
-      \ }
 
+let g:airline#themes#chico_airline#palette.normal.airline_z = s:SbDefault
+let g:airline#themes#chico_airline#palette.normal.airline_error = s:SbError
+let g:airline#themes#chico_airline#palette.normal.airline_warning = s:SbWarning
+let g:airline#themes#chico_airline#palette.normal.airline_tabtype = s:SbInactive
+let g:airline#themes#chico_airline#palette.normal.airline_tab= s:SbInactive
+let g:airline#themes#chico_airline#palette.normal.airline_tabhid = s:SbInactive
+let g:airline#themes#chico_airline#palette.normal.airline_tabsel = s:TabActive
+let g:airline#themes#chico_airline#palette.normal.airline_tabmod_unsel = s:SbInactive
 
-let g:airline#themes#chico_airline#palette.accents = {
-      \ 'red': [ '#ffffff' , '' , 160 , ''  ]
-      \ }
+let g:airline#themes#chico_airline#palette.insert.airline_error = s:SbError
+let g:airline#themes#chico_airline#palette.insert.airline_warning = s:SbWarning
 
+let g:airline#themes#chico_airline#palette.visual.airline_error = s:SbError
+let g:airline#themes#chico_airline#palette.visual.airline_warning = s:SbWarning
