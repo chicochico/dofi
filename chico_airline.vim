@@ -6,14 +6,14 @@
 let g:airline#themes#chico_airline#palette = {}
 
 " g:terminal_color_0 to 15 defined by base16
-let s:SbDefault = [g:terminal_color_12, g:terminal_color_10, 12, 10]
-let s:TabActive = [g:terminal_color_15, g:terminal_color_10, 15, 10]
-let s:SbError = [g:terminal_color_1, g:terminal_color_10, 01, 10]
-let s:SbWarning = [g:terminal_color_3, g:terminal_color_10, 03, 10]
-let s:SbInactive = [g:terminal_color_8, g:terminal_color_10, 08, 10]
-let s:SbNormal = [g:terminal_color_6, g:terminal_color_10, 6, 10]
-let s:SbInsert = [g:terminal_color_2, g:terminal_color_10, 02, 10]
-let s:SbVisual = [g:terminal_color_5, g:terminal_color_10, 05, 10]
+let s:SbDefault = [g:terminal_color_12, g:terminal_color_0, 12, 10]
+let s:TabActive = [g:terminal_color_15, g:terminal_color_0, 15, 10]
+let s:SbError = [g:terminal_color_1, g:terminal_color_0, 01, 10]
+let s:SbWarning = [g:terminal_color_3, g:terminal_color_0, 03, 10]
+let s:SbInactive = [g:terminal_color_8, g:terminal_color_0, 08, 10]
+let s:SbNormal = [g:terminal_color_6, g:terminal_color_0, 6, 10]
+let s:SbInsert = [g:terminal_color_2, g:terminal_color_0, 02, 10]
+let s:SbVisual = [g:terminal_color_5, g:terminal_color_0, 05, 10]
 
 let s:N1 = s:SbNormal
 let s:N2 = s:SbDefault

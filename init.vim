@@ -86,7 +86,8 @@ nnoremap X :bd<CR>
 " Map buffer switching
 nnoremap <silent><c-l> :bn<CR>
 nnoremap <silent><c-h> :bp<CR>
-
+nnoremap <silent>L :bn<CR>
+nnoremap <silent>H :bp<CR>
 " scrolling
 nnoremap J 4<C-e>
 nnoremap K 4<C-y>

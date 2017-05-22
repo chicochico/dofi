@@ -1,34 +1,26 @@
 # This tmux statusbar config was created by tmuxline.vim
 # And modified by chico
 
-set -g message-command-bg "colour0"
-set -g message-command-fg "colour20"
-set -g message-bg "colour0"
-set -g message-fg "colour20"
+set -g message-command-bg colour0
+set -g message-command-fg colour20
+set -g message-bg colour0
+set -g message-fg colour20
 
-set -g pane-border-fg "colour19"
-set -g pane-active-border-fg "colour19"
+set -g pane-border-fg colour18
+set -g pane-active-border-fg colour18
 
-set -g status "on"
-#set -g status-justify "centre"
-set -g status-left-length "100"
-set -g status-right-attr "none"
-set -g status-right-length "100"
-set -g status-bg "colour0"
-set -g status-fg "colour19"
-set -g status-attr "none"
-set -g status-left-attr "none"
-#set -g status-left "#S"
+set -g status-justify left
+set -g status-bg colour0
+set -g status-fg colour8
+#set -g status-left "#S "
 #set -g status-right "%d-%b-%y %H:%M"
-set -g status-left ""
-set -g status-right ""
+set -g status-left "#[fg=colour4]#S "
+set -g status-right "%d-%m-%y %H:%M"
 
-setw -g window-status-bg "colour0"
-setw -g window-status-fg "colour19"
-setw -g window-status-attr "none"
-setw -g window-status-activity-bg "colour0"
-setw -g window-status-activity-attr "underscore"
-setw -g window-status-activity-fg "colour20"
+setw -g window-status-bg colour0
+setw -g window-status-fg colour8
+setw -g window-status-activity-bg colour0
+setw -g window-status-activity-fg colour20
 setw -g window-status-separator ""
 setw -g window-status-format "#W "
-setw -g window-status-current-format "#[fg=colour20]#W "
+setw -g window-status-current-format "#[fg=colour21]#W "
