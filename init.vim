@@ -71,14 +71,14 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 " remap leader key
 let mapleader = "\<Space>"
 
-" Use <leader> s to clear the highlighting of :set hlsearch.
+" clear search hi when ecaping in normal mode
 nnoremap <silent><esc> :noh<CR>
 
-" Save current buffer
-nnoremap <leader>w :w<CR>
-
 " Quit
-nnoremap <leader>q :q<CR>
+nnoremap Q :q<CR>
+
+" Save buffer
+nnoremap S :w<CR>
 
 " Delete current buffer
 nnoremap X :bd<CR>
@@ -111,7 +111,7 @@ endif
 
 hi EndOfBuffer guifg=bg ctermbg=bg
 hi SignColumn guibg=bg ctermbg=bg
-hi VertSplit guibg=bg guifg=#585858
+hi VertSplit guibg=bg guifg=#383838
 
 " GitGutter
 let g:gitgutter_enabled = 0
@@ -139,8 +139,7 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
-" format the z section
-let g:airline_section_y = ''
+let g:airline_section_y = '%{ObsessionStatus()}'
 let g:airline_section_z = '%3p%% %l,%c'
 let g:airline#extensions#tmuxline#enabled = 0
 " remove git hunk
@@ -150,12 +149,13 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
 " bufferline show open buffers and their number
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_min_count = 2
 " quickly jump to buffer
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
