@@ -28,9 +28,6 @@ Plug 'bfredl/nvim-ipy'
 " Add plugins to &runtimepath
 call plug#end()
 
-" Autosource this file when changed
-autocmd! bufwritepost init.vim source %
-
 let os= substitute(system('uname'), "\n", "", "")
 " osx specific settings
 if os == "Darwin"
@@ -61,6 +58,7 @@ set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
 set fillchars=vert:\│  " vertical split character
+set nosol
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -70,6 +68,10 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " remap leader key
 let mapleader = "\<Space>"
+
+" remap command mode
+nnoremap ; :
+nnoremap : ;
 
 " clear search hi when ecaping in normal mode
 nnoremap <silent><esc> :noh<CR>
@@ -139,6 +141,10 @@ let g:airline_mode_map = {
       \ 'S'  : 'S',
       \ '' : 'S',
       \ }
+let g:airline#extensions#default#layout = [
+      \ [ 'a', 'b', 'c' ],
+      \ ['error', 'warning', 'x', 'y', 'z']
+      \ ]
 let g:airline_section_y = '%{ObsessionStatus()}'
 let g:airline_section_z = '%3p%% %l,%c'
 let g:airline#extensions#tmuxline#enabled = 0
