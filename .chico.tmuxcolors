@@ -1,6 +1,3 @@
-# This tmux statusbar config was created by tmuxline.vim
-# And modified by chico
-
 set -g message-command-bg colour0
 set -g message-command-fg colour20
 set -g message-bg colour0
@@ -12,10 +9,10 @@ set -g pane-active-border-fg colour19
 set -g status-justify left
 set -g status-bg colour0
 set -g status-fg colour8
-#set -g status-left "#S "
-#set -g status-right "%d-%b-%y %H:%M"
-set -g status-left "#[fg=colour4]#S "
-set -g status-right "%d-%m-%y %H:%M"
+#set -g status-left "#[fg=colour4]#S "
+#set -g status-right "%d-%m-%y %H:%M"
+set -g status-left ""
+set -g status-right "#S"
 
 setw -g window-status-bg colour0
 setw -g window-status-fg colour8

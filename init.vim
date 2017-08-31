@@ -25,6 +25,7 @@ Plug 'aklt/plantuml-syntax'
 Plug 'keith/swift.vim'
 Plug 'mitsuse/autocomplete-swift'
 Plug 'bfredl/nvim-ipy'
+Plug 'elixir-lang/vim-elixir'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -114,6 +115,7 @@ endif
 hi EndOfBuffer guifg=bg ctermbg=bg
 hi SignColumn guibg=bg ctermbg=bg
 hi VertSplit guibg=bg guifg=#383838
+hi LineNr guibg=bg ctermbg=bg
 
 " GitGutter
 let g:gitgutter_enabled = 0
@@ -223,3 +225,6 @@ let g:indent_guides_start_level = 2
 
 " Vim Sleuth
 let g:sleuth_automatic = 1
+
+" AutoPairs
+let g:AutoPairsFlyMode = 1
