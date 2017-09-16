@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -13,11 +13,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'Shougo/deoplete.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdcommenter'
 Plug 'neomake/neomake'
-Plug 'mattn/emmet-vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Language specific
@@ -26,6 +22,7 @@ Plug 'keith/swift.vim'
 Plug 'mitsuse/autocomplete-swift'
 Plug 'bfredl/nvim-ipy'
 Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -43,7 +40,8 @@ endif
 " NeoVim settings
 syntax enable
 set clipboard+=unnamedplus
-"set number
+set number
+set relativenumber
 set showmatch
 set ignorecase
 set smartcase
@@ -58,8 +56,9 @@ set cursorline
 set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
-set fillchars=vert:\│  " vertical split character
+set fillchars=vert:\│ " vertical split character
 set nosol
+set path+=**
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -71,8 +70,8 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let mapleader = "\<Space>"
 
 " remap command mode
-nnoremap ; :
-nnoremap : ;
+"nnoremap ; :
+"nnoremap : ;
 
 " clear search hi when ecaping in normal mode
 nnoremap <silent><esc> :noh<CR>
@@ -117,16 +116,6 @@ hi SignColumn guibg=bg ctermbg=bg
 hi VertSplit guibg=bg guifg=#383838
 hi LineNr guibg=bg ctermbg=bg
 
-" GitGutter
-let g:gitgutter_enabled = 0
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_column_always = 1
-hi GitGutterAdd guibg=bg ctermbg=bg
-hi GitGutterChange guibg=bg ctermbg=bg
-hi GitGutterDelete guibg=bg ctermbg=bg
-hi GitGutterChangeDelete guibg=bg ctermbg=bg
-hi Search guifg=bg ctermfg=bg
-
 " Airline settings
 let g:airline_theme='chico_airline'
 let g:airline_powerline_fonts = 1
@@ -149,31 +138,15 @@ let g:airline#extensions#default#layout = [
       \ ]
 let g:airline_section_y = '%{ObsessionStatus()}'
 let g:airline_section_z = '%3p%% %l,%c'
+" disable some airline extensions
 let g:airline#extensions#tmuxline#enabled = 0
-" remove git hunk
 let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
 " remove separators
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-" bufferline show open buffers and their number
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#buffer_min_count = 2
-" quickly jump to buffer
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
 
 " Nerdtree settings
 nnoremap <leader>a :NERDTreeToggle<CR>
@@ -195,12 +168,15 @@ let g:neomake_warning_sign = {
         \ 'text': '•',
         \ 'texthl': 'Tag',
         \ }
-" Run Neomake on write and on entering a buffer
-autocmd! BufWritePost,BufEnter * Neomake
 
-" Emmet-vim
-let g:user_emmet_leader_key='<C-p>'
-let g:user_emmet_mode='n'
+call neomake#configure#automake({
+  \ 'TextChanged': {},
+  \ 'InsertLeave': {},
+  \ 'BufWritePost': {'delay': 0},
+  \ 'BufWinEnter': {},
+  \ }, 500)
+
+let g:neomake_elixir_enabled_makers = ['credo']
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -210,21 +186,8 @@ let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
 
-" EasyMotion
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_verbose = 0
-let g:EasyMotion_off_screen_search = 0
-map f <Plug>(easymotion-s)
-map <leader>j <Plug>(easymotion-j)
-map <leader>k <Plug>(easymotion-k)
-
-" Vim indent guides
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-"let g:indent_guides_enable_on_vim_startup = 1
-
 " Vim Sleuth
 let g:sleuth_automatic = 1
 
-" AutoPairs
-let g:AutoPairsFlyMode = 1
+" Alchemist
+let g:alchemist_mappings_disable = 1
