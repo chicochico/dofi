@@ -16,6 +16,8 @@ Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'christoomey/vim-tmux-navigator'
 " Language specific
 Plug 'aklt/plantuml-syntax'
 Plug 'keith/swift.vim'
@@ -41,6 +43,7 @@ endif
 syntax enable
 set clipboard+=unnamedplus
 set number
+set lazyredraw
 set relativenumber
 set showmatch
 set ignorecase
@@ -90,15 +93,16 @@ nnoremap <silent><c-l> :bn<CR>
 nnoremap <silent><c-h> :bp<CR>
 nnoremap <silent>L :bn<CR>
 nnoremap <silent>H :bp<CR>
+
 " scrolling
-nnoremap J 4<C-e>
-nnoremap K 4<C-y>
-vnoremap J 4<C-e>
-vnoremap K 4<C-y>
-nnoremap <c-j> 4<C-e>
-nnoremap <c-k> 4<C-y>
-vnoremap <c-j> 4<C-e>
-vnoremap <c-k> 4<C-y>
+nnoremap J 5<C-e>
+nnoremap K 5<C-y>
+vnoremap J 5<C-e>
+vnoremap K 5<C-y>
+
+" go to tag definition
+nnoremap t <C-]>
+nnoremap T <C-t>
 
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle
@@ -113,8 +117,10 @@ endif
 
 hi EndOfBuffer guifg=bg ctermbg=bg
 hi SignColumn guibg=bg ctermbg=bg
-hi VertSplit guibg=bg guifg=#383838
-hi LineNr guibg=bg ctermbg=bg
+hi VertSplit guibg=bg
+exec 'hi LineNr guibg=bg ctermbg=bg guifg=' . g:terminal_color_11
+exec 'hi CursorLine guibg=' . g:terminal_color_10
+exec 'hi CursorLineNr gui=none guibg=' . g:terminal_color_10 . ' guifg=' . g:terminal_color_11
 
 " Airline settings
 let g:airline_theme='chico_airline'
@@ -149,15 +155,36 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
 " Nerdtree settings
-nnoremap <leader>a :NERDTreeToggle<CR>
+nnoremap <silent><leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
+let NERDTreeMinimalUI=1
 
 " Tagbar
-nnoremap <leader>; :TagbarToggle<CR>
+nnoremap <silent><leader>; :TagbarToggle<CR>
 let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
-"let g:tagbar_left = 1
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records',
+        \ 't:tests'
+    \ ]
+\ }
+
+" GutenTags
+let g:gutentags_cache_dir = '~/dev/.tags/'
+let g:gutentags_project_root = ['mix.exs']
 
 " Neomake
 let g:neomake_error_sign = {
@@ -170,8 +197,6 @@ let g:neomake_warning_sign = {
         \ }
 
 call neomake#configure#automake({
-  \ 'TextChanged': {},
-  \ 'InsertLeave': {},
   \ 'BufWritePost': {'delay': 0},
   \ 'BufWinEnter': {},
   \ }, 500)
@@ -182,9 +207,11 @@ let g:neomake_elixir_enabled_makers = ['credo']
 let g:deoplete#enable_at_startup = 1
 
 " fzf
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>d :Buffers<CR>
+nnoremap <leader>t :Tags<CR>
 
 " Vim Sleuth
 let g:sleuth_automatic = 1

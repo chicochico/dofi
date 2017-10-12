@@ -115,6 +115,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 # aliases
 #alias source-edit="nvim ~/.zshrc"
 alias vim="nvim"
+alias c="clear"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
