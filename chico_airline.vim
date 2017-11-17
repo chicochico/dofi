@@ -7,7 +7,7 @@ let g:airline#themes#chico_airline#palette = {}
 
 " g:terminal_color_0 to 15 defined by base16
 let s:SbDefault = [g:terminal_color_8, g:terminal_color_0, 8, 0]
-let s:TabActive = [g:terminal_color_15, g:terminal_color_0, 15, 0]
+let s:TabActive = [g:terminal_color_7, g:terminal_color_0, 7, 0]
 let s:SbError = [g:terminal_color_1, g:terminal_color_0, 01, 0]
 let s:SbWarning = [g:terminal_color_3, g:terminal_color_0, 03, 0]
 let s:SbInactive = [g:terminal_color_8, g:terminal_color_0, 08, 0]
@@ -47,6 +47,7 @@ let g:airline#themes#chico_airline#palette.normal.airline_tabtype = s:SbInactive
 let g:airline#themes#chico_airline#palette.normal.airline_tab= s:SbInactive
 let g:airline#themes#chico_airline#palette.normal.airline_tabhid = s:SbInactive
 let g:airline#themes#chico_airline#palette.normal.airline_tabsel = s:TabActive
+let g:airline#themes#chico_airline#palette.normal.airline_tabmod = s:TabActive
 let g:airline#themes#chico_airline#palette.normal.airline_tabmod_unsel = s:SbInactive
 
 let g:airline#themes#chico_airline#palette.insert.airline_error = s:SbError
