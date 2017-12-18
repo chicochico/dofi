@@ -17,23 +17,15 @@ alias vim="nvim"
 alias c="clear"
 
 case `uname` in
-  Darwin) # osx specifics settings
-    # Virtualenvwrapper
-    export VIRTUALENVWRAPPER_PYTHON=/Users/chico/.pyenv/shims/python
-  ;;
   Linux) # linux specifics settings
-    # Virtualenvwrapper
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-
-    # load custom dircolors
     eval $(dircolors ~/.dircolors)
-
     # for windows clipboard
     export DISPLAY=:0
   ;;
 esac
 
 # Virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
 export WORKON_HOME=$HOME/.venvs
 export PROJECT_HOME=$HOME/dev
 

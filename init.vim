@@ -100,6 +100,9 @@ nnoremap T <C-t>
 " escape terminal mode
 autocmd BufEnter term://* startinsert
 
+" Auto source config file on save
+autocmd! bufwritepost init.vim source %
+
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle
 
@@ -112,12 +115,11 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 " Change some hilight colors
-hi EndOfBuffer guifg=bg ctermbg=bg
-hi SignColumn guibg=bg ctermbg=bg
-hi VertSplit guibg=bg
-exec 'hi LineNr guibg=bg ctermbg=bg guifg=' . g:terminal_color_11
-exec 'hi CursorLine guibg=' . g:terminal_color_10
-exec 'hi CursorLineNr gui=none guibg=' . g:terminal_color_10 . ' guifg=' . g:terminal_color_11
+hi EndOfBuffer guifg=bg
+hi SignColumn guibg=bg
+exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui02
+exec 'hi CursorLine guibg=#' . g:base16_gui01
+exec 'hi CursorLineNr gui=none guibg=#' . g:base16_gui01 . ' guifg=#' . g:base16_gui04
 
 
 " Airline settings
