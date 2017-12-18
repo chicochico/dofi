@@ -7,10 +7,11 @@ function my_git_prompt_info() {
   fi
 }
 
-PROMPT='%c$(my_git_prompt_info)%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="  "
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%F{red}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%F{green}"
+
+PROMPT='%c$(my_git_prompt_info)%{$reset_color%} '
 

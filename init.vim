@@ -11,6 +11,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
 Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
@@ -18,12 +19,8 @@ Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'rhysd/devdocs.vim'
+Plug 'JamshedVesuna/vim-markdown-preview'
 " Language specific
-Plug 'aklt/plantuml-syntax'
-Plug 'keith/swift.vim'
-Plug 'mitsuse/autocomplete-swift'
-Plug 'bfredl/nvim-ipy'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 " Add plugins to &runtimepath
@@ -33,7 +30,7 @@ let os= substitute(system('uname'), "\n", "", "")
 " osx specific settings
 if os == "Darwin"
   " Python3 support
-  let g:python3_host_prog = '/usr/local/bin/python3'
+  let g:python3_host_prog = '/Users/chico/.pyenv/versions/nvim/bin/python'
 " linux specific settings
 elseif os == "Linux"
   " Python3 support
@@ -67,15 +64,8 @@ set path+=**
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Change cursor to pipe when in insert mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 " remap leader key
 let mapleader = "\<Space>"
-
-" remap command mode
-"nnoremap ; :
-"nnoremap : ;
 
 " clear search hi when ecaping in normal mode
 nnoremap <silent><esc> :noh<CR>
@@ -87,7 +77,7 @@ nnoremap Q :q<CR>
 nnoremap S :w<CR>
 
 " Delete current buffer
-nnoremap X :bd<CR>
+nnoremap <silent>X :bd<CR>
 
 " Map buffer switching
 nnoremap <silent>L :silent :bn<CR>
@@ -231,6 +221,7 @@ let g:gutentags_project_root = ['mix.exs']
 
 
 " Neomake
+nnoremap <silent>M :silent :Neomake<CR>
 let g:neomake_error_sign = {
         \ 'text': '•',
         \ 'texthl': 'WarningMsg',
@@ -239,12 +230,9 @@ let g:neomake_warning_sign = {
         \ 'text': '•',
         \ 'texthl': 'Tag',
         \ }
-
 call neomake#configure#automake({
   \ 'BufWritePost': {'delay': 0},
-  \ 'BufWinEnter': {},
   \ }, 500)
-
 let g:neomake_elixir_enabled_makers = ['credo']
 
 
@@ -266,3 +254,9 @@ let g:sleuth_automatic = 1
 
 " Alchemist
 let g:alchemist_mappings_disable = 1
+
+
+" markdown preview:
+let vim_markdown_preview_github=1
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Google Chrome'
