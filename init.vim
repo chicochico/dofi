@@ -117,6 +117,7 @@ endif
 " Change some hilight colors
 hi EndOfBuffer guifg=bg
 hi SignColumn guibg=bg
+hi VertSplit guibg=bg
 exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui02
 exec 'hi CursorLine guibg=#' . g:base16_gui01
 exec 'hi CursorLineNr gui=none guibg=#' . g:base16_gui01 . ' guifg=#' . g:base16_gui04

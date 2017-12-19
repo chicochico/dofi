@@ -8,7 +8,7 @@ function git_prompt_info() {
 }
 
 
-PROMPT='%{$fg[blue]%}%c %{$reset_color%}'
+PROMPT='%{$fg[white]%}%c %{$reset_color%}'
 RPROMPT='%p$(git_prompt_info)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" "
