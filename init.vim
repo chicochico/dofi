@@ -10,6 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-repeat'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'jiangmiao/auto-pairs'
@@ -60,6 +61,8 @@ set autoread " reload file if changed outside vim
 set fillchars=vert:\│ " vertical split character
 set nosol
 set path+=**
+set completeopt-=preview
+set mouse=a
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -84,10 +87,6 @@ nnoremap <silent>L :silent :bn<CR>
 nnoremap <silent>H :silent :bp<CR>
 
 " scrolling
-nnoremap J 5<C-e>
-nnoremap K 5<C-y>
-vnoremap J 5<C-e>
-vnoremap K 5<C-y>
 nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
 vnoremap <C-e> 5<C-e>
@@ -98,7 +97,8 @@ nnoremap t <C-]>
 nnoremap T <C-t>
 
 " escape terminal mode
-autocmd BufEnter term://* startinsert
+"tnoremap <Esc> <C-\><C-n>
+"autocmd BufEnter term://* startinsert
 
 " Auto source config file on save
 autocmd! bufwritepost init.vim source %
@@ -241,6 +241,7 @@ let g:neomake_elixir_enabled_makers = ['credo']
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 0
 
 
 " fzf
@@ -249,6 +250,21 @@ let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
+
+let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 
 " Vim Sleuth

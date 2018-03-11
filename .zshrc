@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # Theme
-ZSH_THEME="chico2"
+ZSH_THEME="chico3"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git docker)
