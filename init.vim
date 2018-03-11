@@ -35,7 +35,7 @@ if os == "Darwin"
 " linux specific settings
 elseif os == "Linux"
   " Python3 support
-  let g:python3_host_prog = '/home/chico/.pyenv/shims/python'
+  let g:python3_host_prog = '/home/chico/.pyenv/versions/nvim/bin/python'
 endif
 
 " NeoVim settings

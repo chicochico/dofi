@@ -8,7 +8,6 @@ ZSH_THEME="chico3"
 plugins=(git docker)
 
 # User configuration
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 source $ZSH/oh-my-zsh.sh
 
 # aliases
@@ -32,8 +31,7 @@ export PROJECT_HOME=$HOME/dev
 # Pyenv Virtualenv
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "pyenv virtualenvwrapper"
+eval "pyenv virtualenvwrapper_lazy"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
