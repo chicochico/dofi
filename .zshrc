@@ -23,15 +23,8 @@ case `uname` in
   ;;
 esac
 
-# Virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
-export WORKON_HOME=$HOME/.venvs
-export PROJECT_HOME=$HOME/dev
-
 # Pyenv Virtualenv
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 eval "$(pyenv init -)"
-eval "pyenv virtualenvwrapper_lazy"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

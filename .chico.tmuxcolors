@@ -6,7 +6,7 @@ set -g message-fg colour20
 set -g pane-border-fg colour19
 set -g pane-active-border-fg colour19
 
-set -g status-justify left
+set -g status-justify centre
 set -g status-bg colour0
 set -g status-fg colour8
 #set -g status-left "#[fg=colour4]#S "
@@ -20,4 +20,4 @@ setw -g window-status-activity-bg colour0
 setw -g window-status-activity-fg colour20
 setw -g window-status-separator ""
 setw -g window-status-format "#W "
-setw -g window-status-current-format "#[fg=colour21]#W "
+setw -g window-status-current-format "#[fg=colour03]#W "

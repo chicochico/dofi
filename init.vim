@@ -54,7 +54,7 @@ set autoindent
 set smartindent
 set smarttab
 set ruler
-set cursorline
+"set cursorline
 set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
@@ -87,10 +87,10 @@ nnoremap <silent>L :silent :bn<CR>
 nnoremap <silent>H :silent :bp<CR>
 
 " scrolling
-nnoremap <C-e> 5<C-e>
-nnoremap <C-y> 5<C-y>
-vnoremap <C-e> 5<C-e>
-vnoremap <C-y> 5<C-y>
+nnoremap <C-e> 4<C-e>
+nnoremap <C-y> 4<C-y>
+vnoremap <C-e> 4<C-e>
+vnoremap <C-y> 4<C-y>
 
 " go to tag definition
 nnoremap t <C-]>
@@ -119,8 +119,9 @@ hi EndOfBuffer guifg=bg
 hi SignColumn guibg=bg
 hi VertSplit guibg=bg
 exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui02
-exec 'hi CursorLine guibg=#' . g:base16_gui01
-exec 'hi CursorLineNr gui=none guibg=#' . g:base16_gui01 . ' guifg=#' . g:base16_gui04
+"exec 'hi CursorLine guibg=#' . g:base16_gui01
+"exec 'hi CursorLineNr gui=none guibg=#' . g:base16_gui01 . ' guifg=#' . g:base16_gui04
+exec 'hi CursorLineNr gui=none guibg=bg guifg=#' . g:base16_gui04
 
 
 " Airline settings
@@ -191,7 +192,7 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 nnoremap <silent><leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
-let NERDTreeShowLineNumbers=1
+"let NERDTreeShowLineNumbers=1
 
 
 " Tagbar
