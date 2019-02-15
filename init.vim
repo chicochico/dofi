@@ -11,19 +11,22 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-repeat'
+Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
-Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'easymotion/vim-easymotion'
 " Language specific
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+"Plug 'elixir-lang/vim-elixir'
+"Plug 'slashmili/alchemist.vim'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -31,19 +34,19 @@ let os= substitute(system('uname'), "\n", "", "")
 " osx specific settings
 if os == "Darwin"
   " Python3 support
-  let g:python3_host_prog = '/Users/chico/.pyenv/versions/nvim/bin/python'
+  let g:python3_host_prog = '/Users/fchiang/.pyenv/versions/nvim/bin/python'
 " linux specific settings
 elseif os == "Linux"
   " Python3 support
-  let g:python3_host_prog = '/home/chico/.pyenv/versions/nvim/bin/python'
+  let g:python3_host_prog = '/home/fchiang/.pyenv/versions/nvim/bin/python'
 endif
 
 " NeoVim settings
 syntax enable
 set clipboard+=unnamedplus
-set number
+"set number
 set lazyredraw
-set relativenumber
+"set relativenumber
 set showmatch
 set ignorecase
 set smartcase
@@ -54,7 +57,7 @@ set autoindent
 set smartindent
 set smarttab
 set ruler
-"set cursorline
+set cursorline
 set noshowmode " hide default mode indicaator
 set hidden " allows hidden modified buffers
 set autoread " reload file if changed outside vim
@@ -63,6 +66,7 @@ set nosol
 set path+=**
 set completeopt-=preview
 set mouse=a
+set signcolumn=yes " always show sign column
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
@@ -73,18 +77,15 @@ let mapleader = "\<Space>"
 " clear search hi when ecaping in normal mode
 nnoremap <silent><esc> :noh<CR>
 
-" Quit
-nnoremap Q :q<CR>
-
-" Save buffer
-nnoremap S :w<CR>
-
 " Delete current buffer
 nnoremap <silent>X :bd<CR>
 
 " Map buffer switching
 nnoremap <silent>L :silent :bn<CR>
 nnoremap <silent>H :silent :bp<CR>
+
+" Open marks
+nnoremap <silent><leader>m :marks<CR>
 
 " scrolling
 nnoremap <C-e> 4<C-e>
@@ -100,6 +101,9 @@ nnoremap T <C-t>
 "tnoremap <Esc> <C-\><C-n>
 "autocmd BufEnter term://* startinsert
 
+" writing buffer
+nnoremap s :w <CR>
+
 " Auto source config file on save
 autocmd! bufwritepost init.vim source %
 
@@ -114,6 +118,7 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 
+
 " Change some hilight colors
 hi EndOfBuffer guifg=bg
 hi SignColumn guibg=bg
@@ -122,6 +127,15 @@ exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui02
 "exec 'hi CursorLine guibg=#' . g:base16_gui01
 "exec 'hi CursorLineNr gui=none guibg=#' . g:base16_gui01 . ' guifg=#' . g:base16_gui04
 exec 'hi CursorLineNr gui=none guibg=bg guifg=#' . g:base16_gui04
+
+
+" Gitgutter
+set updatetime=100
+let g:gitgutter_override_sign_column_highlight = 0
+highlight GitGutterAdd guibg=bg
+highlight GitGutterChange guibg=bg
+highlight GitGutterDelete guibg=bg
+highlight GitGutterChangeDelete guibg=bg
 
 
 " Airline settings
@@ -161,18 +175,18 @@ let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#buffer_idx_format = {
-        \ '0': '',
-        \ '1': '',
-        \ '2': '',
-        \ '3': '',
-        \ '4': '',
-        \ '5': '',
-        \ '6': '',
-        \ '7': '',
-        \ '8': '',
-        \ '9': ''
-        \}
+"let g:airline#extensions#tabline#buffer_idx_format = {
+        "\ '0': '',
+        "\ '1': '',
+        "\ '2': '',
+        "\ '3': '',
+        "\ '4': '',
+        "\ '5': '',
+        "\ '6': '',
+        "\ '7': '',
+        "\ '8': '',
+        "\ '9': ''
+        "\}
 " switch buffers maps
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -193,6 +207,8 @@ nnoremap <silent><leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 "let NERDTreeShowLineNumbers=1
+let g:NERDTreeMapJumpPrevSibling=""
+let g:NERDTreeMapJumpNextSibling=""
 
 
 " Tagbar
@@ -237,16 +253,22 @@ let g:neomake_warning_sign = {
 call neomake#configure#automake({
   \ 'BufWritePost': {'delay': 0},
   \ }, 500)
-let g:neomake_elixir_enabled_makers = ['credo']
+"let g:neomake_elixir_enabled_makers = ['credo']
 
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 0
+let g:deoplete#sources#jedi#show_docstring = 1
+
+
+" Jedi vim
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#documentation_command = ""
 
 
 " fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -279,4 +301,15 @@ let g:alchemist_mappings_disable = 1
 " markdown preview:
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_browser='Firefox'
+
+
+" Easymotion
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_verbose = 0
+let g:EasyMotion_do_mapping = 0
+map f <Plug>(easymotion-f)
+map F <Plug>(easymotion-F)
+map K <Plug>(easymotion-k)
+map J <Plug>(easymotion-j)

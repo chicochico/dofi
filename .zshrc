@@ -34,3 +34,10 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # added by travis gem
 [ -f /Users/chico/.travis/travis.sh ] && source /Users/chico/.travis/travis.sh
+
+# thefuck
+eval $(thefuck --alias)
+
+# Print blank line after prompt is rendered
+precmd() { print "" }
+
