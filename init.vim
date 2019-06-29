@@ -1,6 +1,5 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
-" Themes and addons
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
@@ -20,33 +19,26 @@ Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'easymotion/vim-easymotion'
-" Language specific
-"Plug 'elixir-lang/vim-elixir'
-"Plug 'slashmili/alchemist.vim'
 " Add plugins to &runtimepath
 call plug#end()
 
-let os= substitute(system('uname'), "\n", "", "")
-" osx specific settings
-if os == "Darwin"
-  " Python3 support
-  let g:python3_host_prog = '/Users/fchiang/.pyenv/versions/nvim/bin/python'
-" linux specific settings
-elseif os == "Linux"
-  " Python3 support
-  let g:python3_host_prog = '/home/fchiang/.pyenv/versions/nvim/bin/python'
-endif
+
+" Python support
+let home=$HOME
+let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
+
 
 " NeoVim settings
 syntax enable
+set termguicolors  " Color scheme
 set clipboard+=unnamedplus
-"set number
+set number
 set lazyredraw
-"set relativenumber
+set relativenumber
 set showmatch
 set ignorecase
 set smartcase
@@ -57,63 +49,73 @@ set autoindent
 set smartindent
 set smarttab
 set ruler
-set cursorline
-set noshowmode " hide default mode indicaator
-set hidden " allows hidden modified buffers
-set autoread " reload file if changed outside vim
-set fillchars=vert:\│ " vertical split character
+"set cursorline
+set noshowmode  " Hide default mode indicaator
+set hidden  " Allows hidden modified buffers
+set autoread  " Reload file if changed outside vim
+set fillchars=vert:\│  " Vertical split character
 set nosol
 set path+=**
 set completeopt-=preview
 set mouse=a
-set signcolumn=yes " always show sign column
+set signcolumn=yes  " Always show sign column
+"set guicursor=
+
 
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
 
-" remap leader key
+
+" Remap leader key
 let mapleader = "\<Space>"
 
-" clear search hi when ecaping in normal mode
-nnoremap <silent><esc> :noh<CR>
+
+" Buffers, panes and widows keymaps
+"
+" Zoom
+nnoremap <leader>o <C-w>o
+
+" Quit
+nnoremap Q <C-w>q
 
 " Delete current buffer
 nnoremap <silent>X :bd<CR>
 
-" Map buffer switching
+" Buffer switching
 nnoremap <silent>L :silent :bn<CR>
 nnoremap <silent>H :silent :bp<CR>
+
+" Clear search highlights when ecaping in normal mode
+nnoremap <silent><esc> :noh<CR>
+
+" Writing buffer
+nnoremap s :w <CR>
 
 " Open marks
 nnoremap <silent><leader>m :marks<CR>
 
-" scrolling
+
+" Scroll in higher steps
 nnoremap <C-e> 4<C-e>
 nnoremap <C-y> 4<C-y>
 vnoremap <C-e> 4<C-e>
 vnoremap <C-y> 4<C-y>
 
-" go to tag definition
+
+" Go to tag definition
 nnoremap t <C-]>
 nnoremap T <C-t>
 
-" escape terminal mode
-"tnoremap <Esc> <C-\><C-n>
-"autocmd BufEnter term://* startinsert
-
-" writing buffer
-nnoremap s :w <CR>
 
 " Auto source config file on save
 autocmd! bufwritepost init.vim source %
 
+
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle
 
-" Color scheme
-set termguicolors
 
-" Source file with theme setting
+" Source base16 file with theme setting
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
@@ -123,10 +125,8 @@ endif
 hi EndOfBuffer guifg=bg
 hi SignColumn guibg=bg
 hi VertSplit guibg=bg
-exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui02
-"exec 'hi CursorLine guibg=#' . g:base16_gui01
-"exec 'hi CursorLineNr gui=none guibg=#' . g:base16_gui01 . ' guifg=#' . g:base16_gui04
-exec 'hi CursorLineNr gui=none guibg=bg guifg=#' . g:base16_gui04
+exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui03
+exec 'hi CursorLineNr gui=none guibg=bg guifg=#' . g:base16_gui03
 
 
 " Gitgutter
@@ -139,38 +139,44 @@ highlight GitGutterChangeDelete guibg=bg
 
 
 " Airline settings
-let g:airline_theme='chico_airline'
+let g:airline_theme='base16_chico'
 let g:airline_powerline_fonts = 1
 let g:airline_mode_map = {
       \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
       \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
+      \ 'i'  : 'I',
+      \ 'ic' : 'I',
+      \ 'ix' : 'I',
+      \ 'n'  : 'N',
+      \ 'ni' : 'N',
+      \ 'no' : 'N',
+      \ 'R'  : 'R',
+      \ 'Rv' : 'R',
       \ 's'  : 'S',
       \ 'S'  : 'S',
       \ '' : 'S',
-      \ }
+      \ 't'  : 'T',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+\ }
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ ['error', 'warning', 'x', 'y', 'z']
       \ ]
 let g:airline_section_y = '%{ObsessionStatus()}'
-let g:airline_section_z = '%3p%% %l,%c'
-" disable some airline extensions
+let g:airline_section_z = '%l:%c %3p%%'
+" Disable some airline extensions
 let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
-" remove separators
+" Vemove separators
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-" tabline
-let g:airline#extensions#tabline#enabled = 1
+" Tabline
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_min_count = 2
@@ -187,7 +193,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
         "\ '8': '',
         "\ '9': ''
         "\}
-" switch buffers maps
+" Switch buffers maps
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -267,7 +273,7 @@ let g:jedi#completions_enabled = 0
 let g:jedi#documentation_command = ""
 
 
-" fzf
+" FZF
 "let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
@@ -294,10 +300,6 @@ let g:fzf_colors =
 let g:sleuth_automatic = 1
 
 
-" Alchemist
-let g:alchemist_mappings_disable = 1
-
-
 " markdown preview:
 let vim_markdown_preview_github=1
 let vim_markdown_preview_hotkey='<C-m>'
@@ -305,11 +307,10 @@ let vim_markdown_preview_browser='Firefox'
 
 
 " Easymotion
-let g:EasyMotion_use_upper = 1
-let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-let g:EasyMotion_verbose = 0
-let g:EasyMotion_do_mapping = 0
-map f <Plug>(easymotion-f)
-map F <Plug>(easymotion-F)
-map K <Plug>(easymotion-k)
-map J <Plug>(easymotion-j)
+"let g:EasyMotion_use_upper = 1
+"let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+"let g:EasyMotion_verbose = 0
+"let g:EasyMotion_do_mapping = 0
+"map f <Plug>(easymotion-f)
+"map F <Plug>(easymotion-F)
+"map L <Plug>(easymotion-bd-jk)
