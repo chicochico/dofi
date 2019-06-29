@@ -1,16 +1,28 @@
-set -g message-style bg=colour0,fg=colour20
+# messages style
 
-set -g pane-border-style fg=colour19
-set -g pane-active-border-style fg=colour19
+set -g message-style bg=colour0,fg=colour21
+
+
+# pane border styles
+
+set -g pane-border-style fg=colour08
+set -g pane-active-border-style fg=colour08
 set -g pane-border-status off
+
+
+# status
 
 set -g status-justify centre
 set -g status-style bg=colour0,fg=colour8
 set -g status-left ""
 set -g status-right ""
 
-setw -g window-status-style bg=colour0,fg=colour8
-setw -g window-status-activity-style bg=colour0,fg=colour20
-setw -g window-status-separator ""
-setw -g window-status-format "#W "
-setw -g window-status-current-format "#[fg=colour03]#W "
+
+# window
+
+set -g window-status-current-style bg=colour0,fg=colour01
+set -g window-status-activity-style bg=colour0,fg=colour03
+set -g window-status-style bg=colour0,fg=colour8
+set -g window-status-separator " "
+set -g window-status-format "#W"
+set -g window-status-current-format "#W"
