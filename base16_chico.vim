@@ -94,10 +94,10 @@ function! airline#themes#base16_chico#refresh()
   endif
 
   " Common colors
-  let s:Default = [s:gui03, s:gui01, s:base03, s:base01]
+  let s:Default = [s:gui04, s:gui01, s:base04, s:base01]
 
   " Normal mode
-  let s:N1 = [s:gui0B, s:gui01, s:base0B, s:base01] " a
+  let s:N1 = [s:gui05, s:gui01, s:base05, s:base01] " a
   let s:N2 = s:Default                              " b
   let s:N3 = s:Default " c
   let s:N4 = s:Default " x
@@ -121,7 +121,7 @@ function! airline#themes#base16_chico#refresh()
         \ }
 
   " Insert mode
-  let s:I1 = [s:gui0D, s:gui01, s:base0D, s:base01]
+  let s:I1 = [s:gui05, s:gui01, s:base05, s:base01]
   let s:I2 = s:Default
   let s:I3 = s:Default
   let s:I4 = s:Default
@@ -140,7 +140,7 @@ function! airline#themes#base16_chico#refresh()
         \ = copy(g:airline#themes#base16_chico#palette.normal_modified)
 
   " Replace mode
-  let s:R1 = [s:gui08, s:gui01, s:base08, s:base01]
+  let s:R1 = [s:gui05, s:gui01, s:base05, s:base01]
   let s:R2 = s:Default
   let s:R3 = s:Default
   let s:R4 = s:Default
@@ -159,7 +159,7 @@ function! airline#themes#base16_chico#refresh()
         \ = copy(g:airline#themes#base16_chico#palette.normal_modified)
 
   " Visual mode
-  let s:V1 = [s:gui0E, s:gui01, s:base0E, s:base01]
+  let s:V1 = [s:gui05, s:gui01, s:base05, s:base01]
   let s:V2 = s:Default
   let s:V3 = s:Default
   let s:V4 = s:Default
