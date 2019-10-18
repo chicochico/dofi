@@ -7,11 +7,13 @@ function git_prompt_info() {
   fi
 }
 
-PROMPT='%{$FG[245]%}${PWD/#$HOME/~}%{$reset_color%}%p$(git_prompt_info)
-%{$FG[245]%}>%{$reset_color%} '
+PS1='%{$FG[245]%}${PWD/#$HOME/~}%{$reset_color%}%p$(git_prompt_info)
+%{$FG[245]%}$%{$reset_color%} '
 
-ZSH_THEME_GIT_PROMPT_PREFIX=""
+PS2='%{$FG[245]%}>%{$reset_color%} '
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" "
+#ZSH_THEME_GIT_PROMPT_PREFIX=""
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG[003]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$FG_BOLD[003]%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$FG[002]%}"
-

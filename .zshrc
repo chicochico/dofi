@@ -40,4 +40,3 @@ eval $(thefuck --alias)
 
 # Print blank line after prompt is rendered
 precmd() { print "" }
-

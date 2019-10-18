@@ -22,7 +22,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -60,6 +61,7 @@ set completeopt-=preview
 set mouse=a
 set signcolumn=yes  " Always show sign column
 "set guicursor=
+set foldmethod=syntax
 
 
 " Remove trailing white spaces on :w (save)
@@ -300,12 +302,6 @@ let g:fzf_colors =
 let g:sleuth_automatic = 1
 
 
-" markdown preview:
-let vim_markdown_preview_github=1
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Firefox'
-
-
 " Easymotion
 "let g:EasyMotion_use_upper = 1
 "let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
@@ -314,3 +310,9 @@ let vim_markdown_preview_browser='Firefox'
 "map f <Plug>(easymotion-f)
 "map F <Plug>(easymotion-F)
 "map L <Plug>(easymotion-bd-jk)
+
+
+" SimpylFold
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+let g:SimpylFold_fold_import = 0

@@ -20,7 +20,7 @@ set -g status-right ""
 
 # window
 
-set -g window-status-current-style bg=colour0,fg=colour01
+set -g window-status-current-style bg=colour0,fg=colour07
 set -g window-status-activity-style bg=colour0,fg=colour03
 set -g window-status-style bg=colour0,fg=colour8
 set -g window-status-separator " "
