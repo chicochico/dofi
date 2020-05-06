@@ -16,14 +16,15 @@ Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmhedberg/SimpylFold'
-Plug 'Konfekt/FastFold'
+"Plug 'easymotion/vim-easymotion'
+" Clojure specific
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -38,8 +39,8 @@ syntax enable
 set termguicolors  " Color scheme
 set clipboard+=unnamedplus
 set number
-set lazyredraw
 set relativenumber
+set lazyredraw
 set showmatch
 set ignorecase
 set smartcase
@@ -50,7 +51,7 @@ set autoindent
 set smartindent
 set smarttab
 set ruler
-"set cursorline
+set cursorline
 set noshowmode  " Hide default mode indicaator
 set hidden  " Allows hidden modified buffers
 set autoread  " Reload file if changed outside vim
@@ -61,7 +62,8 @@ set completeopt-=preview
 set mouse=a
 set signcolumn=yes  " Always show sign column
 "set guicursor=
-set foldmethod=syntax
+"set foldmethod=syntax
+filetype plugin indent on
 
 
 " Remove trailing white spaces on :w (save)
@@ -170,7 +172,7 @@ let g:airline_section_y = '%{ObsessionStatus()}'
 let g:airline_section_z = '%l:%c %3p%%'
 " Disable some airline extensions
 let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 " Vemove separators
 let g:airline_left_sep = ''
@@ -178,23 +180,11 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 " Tabline
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#fnamemod = ':t'
-"let g:airline#extensions#tabline#buffer_idx_format = {
-        "\ '0': '',
-        "\ '1': '',
-        "\ '2': '',
-        "\ '3': '',
-        "\ '4': '',
-        "\ '5': '',
-        "\ '6': '',
-        "\ '7': '',
-        "\ '8': '',
-        "\ '9': ''
-        "\}
 " Switch buffers maps
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -214,7 +204,7 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 nnoremap <silent><leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
-"let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=0
 let g:NERDTreeMapJumpPrevSibling=""
 let g:NERDTreeMapJumpNextSibling=""
 
@@ -249,18 +239,18 @@ let g:gutentags_project_root = ['mix.exs']
 
 
 " Neomake
-nnoremap <silent>M :silent :Neomake<CR>
-let g:neomake_error_sign = {
-        \ 'text': '•',
-        \ 'texthl': 'WarningMsg',
-        \ }
-let g:neomake_warning_sign = {
-        \ 'text': '•',
-        \ 'texthl': 'Tag',
-        \ }
-call neomake#configure#automake({
-  \ 'BufWritePost': {'delay': 0},
-  \ }, 500)
+"nnoremap <silent>M :silent :Neomake<CR>
+"let g:neomake_error_sign = {
+        "\ 'text': '•',
+        "\ 'texthl': 'WarningMsg',
+        "\ }
+"let g:neomake_warning_sign = {
+        "\ 'text': '•',
+        "\ 'texthl': 'Tag',
+        "\ }
+"call neomake#configure#automake({
+  "\ 'BufWritePost': {'delay': 0},
+  "\ }, 500)
 "let g:neomake_elixir_enabled_makers = ['credo']
 
 
@@ -281,6 +271,7 @@ let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
+nnoremap <leader>/ :Ag<CR>
 
 let g:fzf_colors =
     \ { 'fg':      ['fg', 'Normal'],
@@ -303,16 +294,12 @@ let g:sleuth_automatic = 1
 
 
 " Easymotion
-"let g:EasyMotion_use_upper = 1
-"let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+"let g:EasyMotion_keys = 'arsdheiqwfpgjluy;zxcvbkmtno'
 "let g:EasyMotion_verbose = 0
 "let g:EasyMotion_do_mapping = 0
-"map f <Plug>(easymotion-f)
-"map F <Plug>(easymotion-F)
+"let g:EasyMotion_smartcase = 1
+"map f <Plug>(easymotion-bd-f)
+""map F <Plug>(easymotion-F)
 "map L <Plug>(easymotion-bd-jk)
-
-
-" SimpylFold
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring = 0
-let g:SimpylFold_fold_import = 0
+"nmap ; <Plug>(easymotion-next)
+"nmap , <Plug>(easymotion-prev)

@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [user]
-	name = chico
+	name = Francisco Chiang
 	email = fxchiang@gmail.com
 [alias]
 	co = checkout

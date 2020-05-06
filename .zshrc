@@ -13,6 +13,7 @@ source $ZSH/oh-my-zsh.sh
 # aliases
 #alias source-edit="nvim ~/.zshrc"
 alias vim="nvim"
+alias vimr="vimr --cur-env"
 alias c="clear"
 
 case `uname` in
@@ -40,3 +41,5 @@ eval $(thefuck --alias)
 
 # Print blank line after prompt is rendered
 precmd() { print "" }
+export PATH="/usr/local/opt/helm@2/bin:$PATH"
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
