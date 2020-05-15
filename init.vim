@@ -10,28 +10,24 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dadbod'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
-"Plug 'neomake/neomake'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/gv.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'easymotion/vim-easymotion'
+Plug 'gioele/vim-autoswap'
 " Clojure specific
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 " Add plugins to &runtimepath
 call plug#end()
-
-
-" Python support
-let home=$HOME
-let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
 
 
 " NeoVim settings
@@ -66,6 +62,45 @@ set signcolumn=yes  " Always show sign column
 filetype plugin indent on
 
 
+" Colors
+" Source base16 file with theme setting
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
+
+
+function! s:base16_customize() abort
+  "g:Base16hi(group, guifg, guibg, ctermfg, ctermbg, ...)
+  " use empty string for default values
+  call Base16hi("EndOfBuffer", g:base16_gui00, g:base16_gui00, g:base16_cterm00, g:base16_cterm00)
+  call Base16hi("SignColumn", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
+  call Base16hi("VertSplit", g:base16_gui01, g:base16_gui01, g:base16_cterm01, g:base16_cterm01)
+  call Base16hi("LineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
+  call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01)
+  " Gitgutter
+  call Base16hi("GitGutterAdd", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("GitGutterChange", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("GitGutterDelete", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("GitGutterChangeDelete", "", g:base16_gui00, "", g:base16_cterm00)
+   "Search
+  "call Base16hi("Search", g:base16_gui00, g:base16_gui02, g:base16_cterm00, g:base16_cterm02)
+  " Tabline
+  "call Base16hi("airline_tab", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01)
+  "call Base16hi("airline_tabsel", g:base16_gui06, g:base16_gui02, g:base16_cterm06, g:base16_cterm02)
+endfunction
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
+call s:base16_customize()
+
+
+" Python support
+let home=$HOME
+let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
+
+
 " Remove trailing white spaces on :w (save)
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -85,9 +120,9 @@ nnoremap Q <C-w>q
 " Delete current buffer
 nnoremap <silent>X :bd<CR>
 
-" Buffer switching
-nnoremap <silent>L :silent :bn<CR>
-nnoremap <silent>H :silent :bp<CR>
+" Tab switching
+nnoremap L gt<CR>
+nnoremap H gT<CR>
 
 " Clear search highlights when ecaping in normal mode
 nnoremap <silent><esc> :noh<CR>
@@ -99,7 +134,7 @@ nnoremap s :w <CR>
 nnoremap <silent><leader>m :marks<CR>
 
 
-" Scroll in higher steps
+" Scroll in bigger steps
 nnoremap <C-e> 4<C-e>
 nnoremap <C-y> 4<C-y>
 vnoremap <C-e> 4<C-e>
@@ -112,34 +147,16 @@ nnoremap T <C-t>
 
 
 " Auto source config file on save
-autocmd! bufwritepost init.vim source %
+autocmd! bufwritepost init.vim source % | AirlineRefresh
 
 
 " NerdCommenter
 map <leader>, <plug>NERDCommenterToggle
 
 
-" Source base16 file with theme setting
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-endif
-
-
-" Change some hilight colors
-hi EndOfBuffer guifg=bg
-hi SignColumn guibg=bg
-hi VertSplit guibg=bg
-exec 'hi LineNr guibg=bg guifg=#' . g:base16_gui03
-exec 'hi CursorLineNr gui=none guibg=bg guifg=#' . g:base16_gui03
-
-
 " Gitgutter
 set updatetime=100
 let g:gitgutter_override_sign_column_highlight = 0
-highlight GitGutterAdd guibg=bg
-highlight GitGutterChange guibg=bg
-highlight GitGutterDelete guibg=bg
-highlight GitGutterChangeDelete guibg=bg
 
 
 " Airline settings
@@ -151,7 +168,7 @@ let g:airline_mode_map = {
       \ 'i'  : 'I',
       \ 'ic' : 'I',
       \ 'ix' : 'I',
-      \ 'n'  : 'N',
+      \ 'n'  : ' ',
       \ 'ni' : 'N',
       \ 'no' : 'N',
       \ 'R'  : 'R',
@@ -181,11 +198,24 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 " Tabline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline#extensions#tabline#fnamemod = ':t'
-" Switch buffers maps
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_count = 0
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+"Formatters
+"default
+"jsformatter
+"short_path
+"tabnr
+"unique_tail
+"unique_tail_improved
+let g:airline#extensions#tabline#tabnr_formatter = 'tabnr'
+let g:airline#extensions#tabline#tab_min_count = 0
+let g:airline#extensions#tabline#show_close_button = 0
+" Switch tabs maps
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -235,23 +265,7 @@ let g:tagbar_type_elixir = {
 
 " GutenTags
 let g:gutentags_cache_dir = '~/dev/.tags/'
-let g:gutentags_project_root = ['mix.exs']
-
-
-" Neomake
-"nnoremap <silent>M :silent :Neomake<CR>
-"let g:neomake_error_sign = {
-        "\ 'text': '•',
-        "\ 'texthl': 'WarningMsg',
-        "\ }
-"let g:neomake_warning_sign = {
-        "\ 'text': '•',
-        "\ 'texthl': 'Tag',
-        "\ }
-"call neomake#configure#automake({
-  "\ 'BufWritePost': {'delay': 0},
-  "\ }, 500)
-"let g:neomake_elixir_enabled_makers = ['credo']
+"let g:gutentags_project_root = ['mix.exs']
 
 
 " Deoplete
@@ -273,33 +287,11 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>/ :Ag<CR>
 
-let g:fzf_colors =
-    \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
-
 
 " Vim Sleuth
 let g:sleuth_automatic = 1
 
 
-" Easymotion
-"let g:EasyMotion_keys = 'arsdheiqwfpgjluy;zxcvbkmtno'
-"let g:EasyMotion_verbose = 0
-"let g:EasyMotion_do_mapping = 0
-"let g:EasyMotion_smartcase = 1
-"map f <Plug>(easymotion-bd-f)
-""map F <Plug>(easymotion-F)
-"map L <Plug>(easymotion-bd-jk)
-"nmap ; <Plug>(easymotion-next)
-"nmap , <Plug>(easymotion-prev)
+" Dadbod
+nnoremap <leader>r :DB<CR>
+vnoremap <leader>r :'<,'>DB<CR>
