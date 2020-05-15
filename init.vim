@@ -68,10 +68,6 @@ let home=$HOME
 let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
 
 
-" Remove trailing white spaces on :w (save)
-autocmd BufWritePre * :%s/\s\+$//e
-
-
 " Remap leader key
 let mapleader = "\<Space>"
 
@@ -272,10 +268,10 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \'python': ['black'],
+    \'python': ['isort', 'black'],
 \ }
 
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '▲'
 
