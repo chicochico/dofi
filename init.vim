@@ -171,7 +171,8 @@ let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_count = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+ "let g:airline#extensions#tabline#fnamemod = ':t'
 "Formatters
 "default
 "jsformatter
@@ -277,6 +278,9 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 0
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '▲'
+
+" Python
+let g:ale_python_flake8_options = '--ignore=E501,E303'
 
 
 " Colors
