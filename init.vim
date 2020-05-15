@@ -23,6 +23,7 @@ Plug 'junegunn/gv.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gioele/vim-autoswap'
+Plug 'dense-analysis/ale'
 " Clojure specific
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
@@ -60,40 +61,6 @@ set signcolumn=yes  " Always show sign column
 "set guicursor=
 "set foldmethod=syntax
 filetype plugin indent on
-
-
-" Colors
-" Source base16 file with theme setting
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-endif
-
-
-function! s:base16_customize() abort
-  "g:Base16hi(group, guifg, guibg, ctermfg, ctermbg, ...)
-  " use empty string for default values
-  call Base16hi("EndOfBuffer", g:base16_gui00, g:base16_gui00, g:base16_cterm00, g:base16_cterm00)
-  call Base16hi("SignColumn", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
-  call Base16hi("VertSplit", g:base16_gui01, g:base16_gui01, g:base16_cterm01, g:base16_cterm01)
-  call Base16hi("LineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
-  call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01)
-  " Gitgutter
-  call Base16hi("GitGutterAdd", "", g:base16_gui00, "", g:base16_cterm00)
-  call Base16hi("GitGutterChange", "", g:base16_gui00, "", g:base16_cterm00)
-  call Base16hi("GitGutterDelete", "", g:base16_gui00, "", g:base16_cterm00)
-  call Base16hi("GitGutterChangeDelete", "", g:base16_gui00, "", g:base16_cterm00)
-   "Search
-  "call Base16hi("Search", g:base16_gui00, g:base16_gui02, g:base16_cterm00, g:base16_cterm02)
-  " Tabline
-  "call Base16hi("airline_tab", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01)
-  "call Base16hi("airline_tabsel", g:base16_gui06, g:base16_gui02, g:base16_cterm06, g:base16_cterm02)
-endfunction
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call s:base16_customize()
-augroup END
-
-call s:base16_customize()
 
 
 " Python support
@@ -160,26 +127,26 @@ let g:gitgutter_override_sign_column_highlight = 0
 
 
 " Airline settings
-let g:airline_theme='base16_chico'
+let g:airline_theme='base16_airline'
 let g:airline_powerline_fonts = 1
 let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'c'  : 'C',
-      \ 'i'  : 'I',
-      \ 'ic' : 'I',
-      \ 'ix' : 'I',
-      \ 'n'  : ' ',
-      \ 'ni' : 'N',
-      \ 'no' : 'N',
-      \ 'R'  : 'R',
-      \ 'Rv' : 'R',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ 't'  : 'T',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
+     \ '__' : '-',
+     \ 'c'  : 'C',
+     \ 'i'  : 'I',
+     \ 'ic' : 'I',
+     \ 'ix' : 'I',
+     \ 'n'  : ' ',
+     \ 'ni' : 'N',
+     \ 'no' : 'N',
+     \ 'R'  : 'R',
+     \ 'Rv' : 'R',
+     \ 's'  : 'S',
+     \ 'S'  : 'S',
+     \ '' : 'S',
+     \ 't'  : 'T',
+     \ 'v'  : 'V',
+     \ 'V'  : 'V',
+     \ '' : 'V',
 \ }
 let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
@@ -295,3 +262,48 @@ let g:sleuth_automatic = 1
 " Dadbod
 nnoremap <leader>r :DB<CR>
 vnoremap <leader>r :'<,'>DB<CR>
+
+
+" ALE
+let g:ale_linters = {
+    \ 'python': ['flake8'],
+\ }
+
+let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \'python': ['black'],
+\ }
+
+let g:ale_fix_on_save = 0
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '▲'
+
+
+" Colors
+" Source base16 file with theme setting
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+endif
+
+function! s:base16_customize() abort
+  "g:Base16hi(group, guifg, guibg, ctermfg, ctermbg, ...)
+  call Base16hi("EndOfBuffer", g:base16_gui00, g:base16_gui00, g:base16_cterm00, g:base16_cterm00)
+  call Base16hi("SignColumn", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
+  call Base16hi("VertSplit", g:base16_gui01, g:base16_gui01, g:base16_cterm01, g:base16_cterm01)
+  call Base16hi("LineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
+  call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01)
+  " Gitgutter
+  call Base16hi("GitGutterAdd", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("GitGutterChange", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("GitGutterDelete", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("GitGutterChangeDelete", "", g:base16_gui00, "", g:base16_cterm00)
+  " ALE
+  call Base16hi("ALEErrorSign", g:base16_gui08, g:base16_gui00, g:base16_cterm08, g:base16_cterm00)
+  call Base16hi("ALEWarningSign", g:base16_gui0A, g:base16_gui00, g:base16_cterm0A, g:base16_cterm00)
+endfunction
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+
+call s:base16_customize()
