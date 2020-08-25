@@ -1,0 +1,9 @@
+{
+  "diagnostic.enable": false,
+  "python.jediEnabled": true,
+  "python.jediPath": "~/.pyenv/versions/lsp/lib/python3.7/site-packages",
+  "python.analysis.diagnosticEnabled": false,
+  "python.linting.enabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": false
+}
