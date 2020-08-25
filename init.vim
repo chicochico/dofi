@@ -3,18 +3,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -24,9 +22,9 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gioele/vim-autoswap'
 Plug 'dense-analysis/ale'
-" Clojure specific
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'xolox/vim-session'
+" Plug 'xolox/vim-misc'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -113,8 +111,12 @@ nnoremap T <C-t>
 autocmd! bufwritepost init.vim source % | AirlineRefresh
 
 
-" NerdCommenter
-map <leader>, <plug>NERDCommenterToggle
+" Cursorline
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
 
 
 " Gitgutter
@@ -148,7 +150,7 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ ['error', 'warning', 'x', 'y', 'z']
       \ ]
-let g:airline_section_y = '%{ObsessionStatus()}'
+" let g:airline_section_y = '%{ObsessionStatus()}'
 let g:airline_section_z = '%l:%c %3p%%'
 " Disable some airline extensions
 let g:airline#extensions#tmuxline#enabled = 0
@@ -205,6 +207,7 @@ let g:NERDTreeMapJumpNextSibling=""
 
 " Tagbar
 nnoremap <silent><leader>; :TagbarToggle<CR>
+let g:tagbar_left = 0
 let g:tagbar_sort = 0
 let g:tagbar_autofocus = 1
 let g:tagbar_compact = 1
@@ -232,15 +235,8 @@ let g:gutentags_cache_dir = '~/dev/.tags/'
 "let g:gutentags_project_root = ['mix.exs']
 
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
-
-
-" Jedi vim
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled = 0
-let g:jedi#documentation_command = ""
+" " Deoplete
+" let g:deoplete#enable_at_startup = 1
 
 
 " FZF
@@ -256,14 +252,15 @@ nnoremap <leader>/ :Ag<CR>
 let g:sleuth_automatic = 1
 
 
-" Dadbod
-nnoremap <leader>r :DB<CR>
-vnoremap <leader>r :'<,'>DB<CR>
-
+" DBUI
+nnoremap <leader>d :DBUIToggle<CR>
+map <leader>r <Plug>(DBUI_ExecuteQuery)
 
 " ALE
+let g:ale_completion_enabled = 0
+
 let g:ale_linters = {
-    \ 'python': ['flake8'],
+    \ 'python': ['pyls'],
 \ }
 
 let g:ale_fixers = {
@@ -275,8 +272,13 @@ let g:ale_fix_on_save = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '▲'
 
-" Python
-let g:ale_python_flake8_options = '--ignore=E501,E303'
+
+" COC
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 
 " Colors
@@ -291,7 +293,7 @@ function! s:base16_customize() abort
   call Base16hi("SignColumn", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
   call Base16hi("VertSplit", g:base16_gui01, g:base16_gui01, g:base16_cterm01, g:base16_cterm01)
   call Base16hi("LineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
-  call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui01, g:base16_cterm03, g:base16_cterm01)
+  call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
   " Gitgutter
   call Base16hi("GitGutterAdd", "", g:base16_gui00, "", g:base16_cterm00)
   call Base16hi("GitGutterChange", "", g:base16_gui00, "", g:base16_cterm00)

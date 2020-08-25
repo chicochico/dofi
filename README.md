@@ -1,4 +1,2 @@
 # dotfiles
 config files
-
-hey

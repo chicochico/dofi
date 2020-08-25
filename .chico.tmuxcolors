@@ -1,6 +1,6 @@
 # pane border styles
-set -g pane-border-style fg=colour19
-set -g pane-active-border-style bg=colour0,fg=colour07
+set -g pane-border-style fg=colour19,bg=colour00
+set -g pane-active-border-style fg=colour19,bg=colour00
 set -g pane-border-format ""
 set -g pane-border-status off
 
@@ -24,6 +24,6 @@ set -g message-style bg=colour18,fg=colour21
 set -g window-status-style fg=colour08
 set -g window-status-current-style bg=colour18,fg=colour21
 set -g window-status-activity-style fg=colour03
-set -g window-status-separator " "
-set -g window-status-format "#{window_index}:#{window_name} "
-set -g window-status-current-format "#{window_index}:#{window_name} "
+set -g window-status-separator "  "
+set -g window-status-format "#{window_name}"
+set -g window-status-current-format "#{window_name}"
