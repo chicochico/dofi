@@ -15,6 +15,7 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias vimr="vimr --cur-env"
 alias c="clear"
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 case `uname` in
   Linux) # linux specifics settings
