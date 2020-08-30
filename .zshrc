@@ -1,11 +1,12 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export ZSH_DISABLE_COMPFIX=true
 
 # Theme
 ZSH_THEME="chico3"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git docker)
+plugins=(git docker colorize colored-man-pages)
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
@@ -17,33 +18,13 @@ alias vimr="vimr --cur-env"
 alias c="clear"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-case `uname` in
-  Linux) # linux specifics settings
-    eval $(dircolors ~/.dircolors)
-    # for windows clipboard
-    export DISPLAY=:0
-  ;;
-esac
-
-# Pyenv Virtualenv
-eval "$(pyenv init -)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Base16 Shell
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# added by travis gem
-[ -f /Users/chico/.travis/travis.sh ] && source /Users/chico/.travis/travis.sh
-
-# thefuck
-eval $(thefuck --alias)
-
 # Print blank line after prompt is rendered
 precmd() { print "" }
 
-export PATH="/usr/local/opt/helm@2/bin:$PATH"
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

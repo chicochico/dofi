@@ -115,7 +115,7 @@ font:
     style: Retina
 
   # Point size
-  size: 13.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -158,9 +158,9 @@ colors:
     foreground: '0x586e75'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x181818'
-    cursor: '0xe8e8e8'
+  # cursor:
+  #   text: '0x181818'
+  #   cursor: '0xe8e8e8'
 
   # Normal colors
   normal:
@@ -205,7 +205,7 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
@@ -275,7 +275,7 @@ selection:
   save_to_clipboard: true
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window.dynamic_title: true
 
 cursor:
   # Cursor style
@@ -289,6 +289,7 @@ cursor:
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   unfocused_hollow: true
+  
 
 # Live config reload (changes require restart)
 live_config_reload: true
