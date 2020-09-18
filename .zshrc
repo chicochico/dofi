@@ -16,7 +16,7 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias vimr="vimr --cur-env"
 alias c="clear"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -26,5 +26,18 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # Print blank line after prompt is rendered
 precmd() { print "" }
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+
+# Pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

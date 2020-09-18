@@ -1,4 +1,4 @@
-let g:airline#themes#base16_airline#palette = {}
+let g:airline#themes#base16_chico#palette = {}
 let s:gui00 = "#" . g:base16_gui00
 let s:gui01 = "#" . g:base16_gui01
 let s:gui02 = "#" . g:base16_gui02
@@ -47,7 +47,7 @@ let s:N3   = s:Default
 let s:N4   = s:Default
 let s:N5   = s:Default
 let s:N6   = s:Default
-let g:airline#themes#base16_airline#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3, s:N4, s:N5, s:N6)
+let g:airline#themes#base16_chico#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3, s:N4, s:N5, s:N6)
 
 let s:I1   = s:Standard
 let s:I2   = s:Default
@@ -55,7 +55,7 @@ let s:I3   = s:Default
 let s:I4   = s:Default
 let s:I5   = s:Default
 let s:I6   = s:Default
-let g:airline#themes#base16_airline#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3, s:I4, s:I5, s:I6)
+let g:airline#themes#base16_chico#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3, s:I4, s:I5, s:I6)
 
 let s:R1   = s:Standard
 let s:R2   = s:Default
@@ -63,7 +63,7 @@ let s:R3   = s:Default
 let s:R4   = s:Default
 let s:R5   = s:Default
 let s:R6   = s:Default
-let g:airline#themes#base16_airline#palette.replace = airline#themes#generate_color_map(s:R1, s:R2, s:R3, s:R4, s:R5, s:R6)
+let g:airline#themes#base16_chico#palette.replace = airline#themes#generate_color_map(s:R1, s:R2, s:R3, s:R4, s:R5, s:R6)
 
 let s:V1   = s:Standard
 let s:V2   = s:Default
@@ -71,22 +71,22 @@ let s:V3   = s:Default
 let s:V4   = s:Default
 let s:V5   = s:Default
 let s:V6   = s:Default
-let g:airline#themes#base16_airline#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3, s:V4, s:V5, s:V6)
+let g:airline#themes#base16_chico#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3, s:V4, s:V5, s:V6)
 
 let s:IA1   = s:Inactive
 let s:IA2   = s:Inactive
 let s:IA3   = s:Inactive
-let g:airline#themes#base16_airline#palette.inactive = airline#themes#generate_color_map(s:IA1, s:IA2, s:IA3)
+let g:airline#themes#base16_chico#palette.inactive = airline#themes#generate_color_map(s:IA1, s:IA2, s:IA3)
 
 " Airline
-let g:airline#themes#base16_airline#palette.normal.airline_error = s:Error
-let g:airline#themes#base16_airline#palette.normal.airline_warning = s:Warning
+let g:airline#themes#base16_chico#palette.normal.airline_error = s:Error
+let g:airline#themes#base16_chico#palette.normal.airline_warning = s:Warning
 
-let g:airline#themes#base16_airline#palette.visual.airline_error = s:Error
-let g:airline#themes#base16_airline#palette.visual.airline_warning = s:Warning
+let g:airline#themes#base16_chico#palette.visual.airline_error = s:Error
+let g:airline#themes#base16_chico#palette.visual.airline_warning = s:Warning
 
-let g:airline#themes#base16_airline#palette.insert.airline_error = s:Error
-let g:airline#themes#base16_airline#palette.insert.airline_warning = s:Warning
+let g:airline#themes#base16_chico#palette.insert.airline_error = s:Error
+let g:airline#themes#base16_chico#palette.insert.airline_warning = s:Warning
 
-let g:airline#themes#base16_airline#palette.replace.airline_error = s:Error
-let g:airline#themes#base16_airline#palette.replace.airline_warning = s:Warning
+let g:airline#themes#base16_chico#palette.replace.airline_error = s:Error
+let g:airline#themes#base16_chico#palette.replace.airline_warning = s:Warning
