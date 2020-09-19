@@ -37,8 +37,8 @@ let s:cterm0F = g:base16_cterm0F
 let s:Default  = [s:gui04, s:gui01, s:cterm04, s:cterm01]
 let s:Error    = [s:gui08, s:gui01, s:cterm08, s:cterm01]
 let s:Warning  = [s:gui0A, s:gui01, s:cterm0A, s:cterm01]
-let s:Standard = [s:gui07, s:gui01, s:cterm07, s:cterm01]
-let s:Inactive = [s:gui00, s:gui01, s:cterm00, s:cterm01]
+let s:Standard = [s:gui04, s:gui01, s:cterm04, s:cterm01]
+let s:Inactive = [s:gui03, s:gui01, s:cterm03, s:cterm01]
 
 " Modes
 let s:N1   = s:Standard
