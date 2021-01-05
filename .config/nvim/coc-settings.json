@@ -1,7 +1,7 @@
 {
   "diagnostic.enable": false,
   "python.jediEnabled": true,
-  "python.jediPath": "$HOME/.pyenv/versions/lsp/lib/python3.7/site-packages",
+  "python.jediPath": "$HOME/.pyenv/versions/nvim/lib/python3.8/site-packages",
   "python.analysis.diagnosticEnabled": false,
   "python.linting.enabled": false,
   "python.linting.pylintEnabled": false,

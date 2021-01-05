@@ -2,16 +2,16 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'tpope/vim-commentary'
+Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'airblade/vim-gitgutter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
@@ -22,10 +22,9 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gioele/vim-autoswap'
 Plug 'tpope/vim-commentary'
-" Plug 'dense-analysis/ale'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'xolox/vim-session'
-" Plug 'xolox/vim-misc'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'https://github.com/alok/notational-fzf-vim'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -126,7 +125,7 @@ let g:gitgutter_override_sign_column_highlight = 0
 
 
 " Airline settings
-let g:airline_theme='base16_airline'
+let g:airline_theme='base16_chico'
 let g:airline_powerline_fonts = 1
 let g:airline_mode_map = {
      \ '__' : '-',
@@ -151,7 +150,7 @@ let g:airline#extensions#default#layout = [
       \ [ 'a', 'b', 'c' ],
       \ ['error', 'warning', 'x', 'y', 'z']
       \ ]
-" let g:airline_section_y = '%{ObsessionStatus()}'
+let g:airline_section_y = '%{ObsessionStatus()}'
 let g:airline_section_z = '%l:%c %3p%%'
 " Disable some airline extensions
 let g:airline#extensions#tmuxline#enabled = 0
@@ -236,10 +235,6 @@ let g:gutentags_cache_dir = '~/dev/.tags/'
 "let g:gutentags_project_root = ['mix.exs']
 
 
-" " Deoplete
-" let g:deoplete#enable_at_startup = 1
-
-
 " FZF
 "let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_buffers_jump = 1
@@ -261,7 +256,7 @@ map <leader>r <Plug>(DBUI_ExecuteQuery)
 let g:ale_completion_enabled = 0
 
 let g:ale_linters = {
-    \ 'python': ['pyls'],
+    \ 'python': ['pyflakes'],
 \ }
 
 let g:ale_fixers = {
@@ -281,6 +276,13 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+
+" autoswap
+let g:autoswap_detect_tmux = 1
+
+"Notational Velocity
+let g:nv_search_paths = ['~/notes']
+nnoremap <leader>n :NV<CR>
 
 " Colors
 " Source base16 file with theme setting
