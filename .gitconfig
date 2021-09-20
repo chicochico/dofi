@@ -1,10 +1,13 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Francisco Chiang
-	email = fxchiang@gmail.com
+    name = Francisco Chiang
+    email = fxchiang@gmail.com
+    signingkey = fxchiang@gmail.com
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+[init]
+    defaultBranch = master

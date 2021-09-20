@@ -8,6 +8,10 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_DISABLE_COMPFIX=true
+# gpg
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 # Theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -24,6 +28,7 @@ alias vim="nvim"
 alias vimr="vimr --cur-env"
 alias c="clear"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -45,7 +50,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)" > /dev/null
 fi
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
