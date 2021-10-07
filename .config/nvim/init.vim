@@ -25,6 +25,7 @@ Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/alok/notational-fzf-vim'
+Plug 'https://github.com/hashivim/vim-terraform'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -168,7 +169,7 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_count = 0
-let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#tab_nr_type = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
  "let g:airline#extensions#tabline#fnamemod = ':t'
 "Formatters
@@ -203,6 +204,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeShowLineNumbers=0
 let g:NERDTreeMapJumpPrevSibling=""
 let g:NERDTreeMapJumpNextSibling=""
+let g:NERDTreeIgnore = ['^__pycache__$']
 
 
 " Tagbar
@@ -262,6 +264,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \'python': ['isort', 'black'],
+    \'terraform': []
 \ }
 
 let g:ale_fix_on_save = 1
