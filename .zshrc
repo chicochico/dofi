@@ -23,12 +23,16 @@ plugins=(git docker colorize colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 
 # aliases
-#alias source-edit="nvim ~/.zshrc"
+alias conf-vim="nvim ~/.config/nvim/init.vim"
+alias conf-zsh="nvim ~/.zshrc"
+alias conf-tmux="nvim ~/.tmux.conf"
+alias conf="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias vim="nvim"
 alias vimr="vimr --cur-env"
 alias c="clear"
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
+alias d="docker"
+alias k="kubectl"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
