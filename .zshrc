@@ -22,6 +22,11 @@ plugins=(git docker colorize colored-man-pages)
 # User configuration
 source $ZSH/oh-my-zsh.sh
 
+# helper funcs
+function load_env() {
+  export $(cat $1 | xargs)
+}
+
 # aliases
 alias conf-vim="nvim ~/.config/nvim/init.vim"
 alias conf-zsh="nvim ~/.zshrc"
@@ -33,6 +38,7 @@ alias c="clear"
 alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias d="docker"
 alias k="kubectl"
+alias lenv=load_env
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
