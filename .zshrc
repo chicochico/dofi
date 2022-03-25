@@ -8,10 +8,9 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_DISABLE_COMPFIX=true
+
 # gpg
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+export GPG_TTY=$TTY
 
 # Theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -33,12 +32,14 @@ alias conf-zsh="nvim ~/.zshrc"
 alias conf-tmux="nvim ~/.tmux.conf"
 alias conf="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias vim="nvim"
+alias v="nvim"
 alias vimr="vimr --cur-env"
 alias c="clear"
 alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias d="docker"
 alias k="kubectl"
 alias lenv=load_env
+alias g=gpg
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

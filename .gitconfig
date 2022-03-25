@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
     name = Francisco Chiang
-    email = fxchiang@gmail.com
-    signingkey = fxchiang@gmail.com
+    email = mail@fchiang.com
+    signingkey = mail@fchiang.com
 [alias]
     co = checkout
     br = branch

@@ -21,11 +21,16 @@ Plug 'junegunn/gv.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'gioele/vim-autoswap'
-Plug 'tpope/vim-commentary'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/alok/notational-fzf-vim'
 Plug 'https://github.com/hashivim/vim-terraform'
+" Markdown
+Plug 'junegunn/goyo.vim'
+Plug 'https://github.com/preservim/vim-pencil'
+" Clojure
+Plug 'https://github.com/guns/vim-clojure-static'
+Plug 'https://github.com/tpope/vim-fireplace'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -60,6 +65,12 @@ set signcolumn=yes  " Always show sign column
 "set guicursor=
 "set foldmethod=syntax
 filetype plugin indent on
+
+
+" Abbreviation shortcuts
+" insert current date
+inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>
 
 
 " Python support
@@ -245,6 +256,18 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>/ :Ag<CR>
 
+" Goyo
+let g:goyo_width = 60  " (default: 80)
+let g:goyo_height = 100 " (default: 85%)
+let g:goyo_linenr = 0   " (default: 0)
+nnoremap <leader>g :Goyo<CR>
+
+" Pencil
+augroup pencil
+  autocmd!
+  autocmd FileType md,markdown call pencil#init({'wrap': 'soft'})
+  autocmd FileType text,txt    call pencil#init()
+augroup END
 
 " Vim Sleuth
 let g:sleuth_automatic = 1
@@ -259,6 +282,7 @@ let g:ale_completion_enabled = 0
 
 let g:ale_linters = {
     \ 'python': ['pyflakes'],
+    \ 'clojure': ['clj-kondo']
 \ }
 
 let g:ale_fixers = {
@@ -273,6 +297,8 @@ let g:ale_sign_warning = '▲'
 
 
 " COC
+" extensions
+let g:coc_global_extensions = ['coc-json', 'coc-git']
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -284,7 +310,7 @@ nmap <silent> gr <Plug>(coc-references)
 let g:autoswap_detect_tmux = 1
 
 "Notational Velocity
-let g:nv_search_paths = ['~/notes']
+let g:nv_search_paths = ['~/notes/']
 nnoremap <leader>n :NV<CR>
 
 " Colors
@@ -305,6 +331,10 @@ function! s:base16_customize() abort
   call Base16hi("GitGutterChange", "", g:base16_gui00, "", g:base16_cterm00)
   call Base16hi("GitGutterDelete", "", g:base16_gui00, "", g:base16_cterm00)
   call Base16hi("GitGutterChangeDelete", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("DiffAdd", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("DiffChange", "", g:base16_gui00, "", g:base16_cterm00)
+  call Base16hi("DiffDelete", "", g:base16_gui00, "", g:base16_cterm00)
+
   " ALE
   call Base16hi("ALEErrorSign", g:base16_gui08, g:base16_gui00, g:base16_cterm08, g:base16_cterm00)
   call Base16hi("ALEWarningSign", g:base16_gui0A, g:base16_gui00, g:base16_cterm0A, g:base16_cterm00)

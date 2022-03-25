@@ -1,9 +1,21 @@
 {
   "diagnostic.enable": false,
   "python.jediEnabled": true,
-  "python.jediPath": "$HOME/.pyenv/versions/nvim/lib/python3.8/site-packages",
+  "python.jediPath": "$HOME/.pyenv/versions/nvim/lib/python3.9/site-packages",
   "python.analysis.diagnosticEnabled": false,
   "python.linting.enabled": false,
   "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": false
+  "python.linting.flake8Enabled": false,
+  "languageserver": {
+    "clojure-lsp": {
+      "command": "bash",
+      "args": ["-c", "clojure-lsp"],
+      "filetypes": ["clojure"],
+      "rootPatterns": ["project.clj"],
+      "additionalSchemes": ["jar", "zipfile"],
+      "trace.server": "verbose",
+      "initializationOptions": {
+      }
+    }
+  }
 }
