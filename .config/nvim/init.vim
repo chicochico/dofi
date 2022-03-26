@@ -1,4 +1,5 @@
 " Plugins
+" ------
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,7 +21,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/gv.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'gioele/vim-autoswap'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/alok/notational-fzf-vim'
@@ -36,8 +36,9 @@ call plug#end()
 
 
 " NeoVim settings
+" ---------------
 syntax enable
-set termguicolors  " Color scheme
+set termguicolors      " Color scheme
 set clipboard+=unnamedplus
 set number
 set relativenumber
@@ -53,90 +54,73 @@ set smartindent
 set smarttab
 set ruler
 set cursorline
-set noshowmode  " Hide default mode indicaator
-set hidden  " Allows hidden modified buffers
-set autoread  " Reload file if changed outside vim
+set noshowmode         " Hide default mode indicaator
+set hidden             " Allows hidden modified buffers
+set autoread           " Reload file if changed outside vim
 set fillchars=vert:\│  " Vertical split character
 set nosol
 set path+=**
 set completeopt-=preview
 set mouse=a
-set signcolumn=yes  " Always show sign column
-"set guicursor=
-"set foldmethod=syntax
+set signcolumn=yes     " Always show sign column
 filetype plugin indent on
 
 
 " Abbreviation shortcuts
-" insert current date
-inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
-inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>
+" ----------------------
+inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>           " insert current date
+inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>  " same but different formating
 
 
 " Python support
+" --------------
 let home=$HOME
 let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
 
 
-" Remap leader key
-let mapleader = "\<Space>"
-
-
-" Buffers, panes and widows keymaps
-"
-" Zoom
-nnoremap <leader>o <C-w>o
-
-" Quit
-nnoremap Q <C-w>q
-
-" Delete current buffer
-nnoremap <silent>X :bd<CR>
-
-" Tab switching
-nnoremap L gt<CR>
-nnoremap H gT<CR>
-
-" Clear search highlights when ecaping in normal mode
-nnoremap <silent><esc> :noh<CR>
-
-" Writing buffer
-nnoremap s :w <CR>
-
-" Open marks
-nnoremap <silent><leader>m :marks<CR>
-
-
+" Keymaps
+" -------
+let mapleader = "\<Space>"             " Space as leader
+nnoremap <leader>o <C-w>o              " Zoom
+nnoremap Q <C-w>q                      " Quit window
+nnoremap <silent>X :bd<CR>             " Delete current buffer
+nnoremap L gt<CR>                      " Tab right
+nnoremap H gT<CR>                      " Tab left
+nnoremap <silent><esc> :noh<CR>        " Clear searh highlight when escaping normal mode
+nnoremap s :w <CR>                     " Write buffer
+nnoremap <silent><leader>m :marks<CR>  " Open marks
 " Scroll in bigger steps
 nnoremap <C-e> 4<C-e>
 nnoremap <C-y> 4<C-y>
 vnoremap <C-e> 4<C-e>
 vnoremap <C-y> 4<C-y>
-
-
 " Go to tag definition
 nnoremap t <C-]>
 nnoremap T <C-t>
 
 
-" Auto source config file on save
-autocmd! bufwritepost init.vim source % | AirlineRefresh
-
-
 " Cursorline
+" ----------
+"
 augroup CursorLineOnlyInActiveWindow
+  " shows cursorline only in active window
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
 
+" Plugin settings
+" ---------------
+
 " Gitgutter
+" ---------
 set updatetime=100
 let g:gitgutter_override_sign_column_highlight = 0
 
 
-" Airline settings
+" Airline
+" -------
 let g:airline_theme='base16_chico'
 let g:airline_powerline_fonts = 1
 let g:airline_mode_map = {
@@ -168,12 +152,15 @@ let g:airline_section_z = '%l:%c %3p%%'
 let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
-" Vemove separators
+" Remove separators
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+
+
 " Tabline
+" -------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_buffers = 0
@@ -182,18 +169,11 @@ let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_count = 0
 let g:airline#extensions#tabline#tab_nr_type = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
- "let g:airline#extensions#tabline#fnamemod = ':t'
-"Formatters
-"default
-"jsformatter
-"short_path
-"tabnr
-"unique_tail
-"unique_tail_improved
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tabnr_formatter = 'tabnr'
 let g:airline#extensions#tabline#tab_min_count = 0
 let g:airline#extensions#tabline#show_close_button = 0
-" Switch tabs maps
+" Switch tabs key maps
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -208,7 +188,8 @@ nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
 
 
-" Nerdtree settings
+" Nerdtree
+" --------
 nnoremap <silent><leader>a :NERDTreeToggle<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
@@ -219,6 +200,7 @@ let g:NERDTreeIgnore = ['^__pycache__$']
 
 
 " Tagbar
+" ------
 nnoremap <silent><leader>; :TagbarToggle<CR>
 let g:tagbar_left = 0
 let g:tagbar_sort = 0
@@ -244,11 +226,12 @@ let g:tagbar_type_elixir = {
 
 
 " GutenTags
+" ---------
 let g:gutentags_cache_dir = '~/dev/.tags/'
-"let g:gutentags_project_root = ['mix.exs']
 
 
 " FZF
+" ---
 "let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
@@ -256,64 +239,72 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>/ :Ag<CR>
 
+
 " Goyo
-let g:goyo_width = 60  " (default: 80)
-let g:goyo_height = 100 " (default: 85%)
-let g:goyo_linenr = 0   " (default: 0)
+" ----
+let g:goyo_width = 60         " (default: 80)
+let g:goyo_height = 100       " (default: 85%)
+let g:goyo_linenr = 0         " (default: 0)
 nnoremap <leader>g :Goyo<CR>
 
+
 " Pencil
+" ------
 augroup pencil
   autocmd!
   autocmd FileType md,markdown call pencil#init({'wrap': 'soft'})
   autocmd FileType text,txt    call pencil#init()
 augroup END
 
+
 " Vim Sleuth
+" ----------
 let g:sleuth_automatic = 1
 
 
 " DBUI
+" ----
 nnoremap <leader>d :DBUIToggle<CR>
 map <leader>r <Plug>(DBUI_ExecuteQuery)
 
-" ALE
-let g:ale_completion_enabled = 0
 
+" ALE
+" ---
+let g:ale_completion_enabled = 0
 let g:ale_linters = {
     \ 'python': ['pyflakes'],
     \ 'clojure': ['clj-kondo']
 \ }
-
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \'python': ['isort', 'black'],
     \'terraform': []
 \ }
-
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '▲'
 
 
 " COC
+" ---
 " extensions
 let g:coc_global_extensions = ['coc-json', 'coc-git']
 " GoTo code navigation.
+" --------------------
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 
-" autoswap
-let g:autoswap_detect_tmux = 1
-
-"Notational Velocity
+" Notational Velocity
+" ------------------
 let g:nv_search_paths = ['~/notes/']
 nnoremap <leader>n :NV<CR>
 
-" Colors
+
+" Vim colors customizations
+" -------------------------
 " Source base16 file with theme setting
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
@@ -334,11 +325,11 @@ function! s:base16_customize() abort
   call Base16hi("DiffAdd", "", g:base16_gui00, "", g:base16_cterm00)
   call Base16hi("DiffChange", "", g:base16_gui00, "", g:base16_cterm00)
   call Base16hi("DiffDelete", "", g:base16_gui00, "", g:base16_cterm00)
-
   " ALE
   call Base16hi("ALEErrorSign", g:base16_gui08, g:base16_gui00, g:base16_cterm08, g:base16_cterm00)
   call Base16hi("ALEWarningSign", g:base16_gui0A, g:base16_gui00, g:base16_cterm0A, g:base16_cterm00)
 endfunction
+
 augroup on_change_colorschema
   autocmd!
   autocmd ColorScheme * call s:base16_customize()
