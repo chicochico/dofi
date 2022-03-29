@@ -23,14 +23,16 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/alok/notational-fzf-vim'
-Plug 'https://github.com/hashivim/vim-terraform'
+Plug 'alok/notational-fzf-vim'
+Plug 'hashivim/vim-terraform'
+Plug 'jamessan/vim-gnupg'
 " Markdown
 Plug 'junegunn/goyo.vim'
-Plug 'https://github.com/preservim/vim-pencil'
+Plug 'preservim/vim-pencil'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 " Clojure
-Plug 'https://github.com/guns/vim-clojure-static'
-Plug 'https://github.com/tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -63,13 +65,15 @@ set path+=**
 set completeopt-=preview
 set mouse=a
 set signcolumn=yes     " Always show sign column
+set shm+=I             " Don't show intro message
 filetype plugin indent on
 
 
 " Abbreviation shortcuts
 " ----------------------
-inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>           " insert current date
-inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>  " same but different formating
+" insert current date
+inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
+inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>
 
 
 " Python support
@@ -302,6 +306,10 @@ nmap <silent> gr <Plug>(coc-references)
 let g:nv_search_paths = ['~/notes/']
 nnoremap <leader>n :NV<CR>
 
+
+" Markdown preview
+" ----------------
+nmap <leader>p <Plug>MarkdownPreviewToggle
 
 " Vim colors customizations
 " -------------------------
