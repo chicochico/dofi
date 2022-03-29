@@ -265,15 +265,16 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 function! s:base16_customize() abort
-  " Status line
-  call Base16hi("StatusLine", g:base16_gui04, g:base16_gui01, g:base16_cterm04, g:base16_cterm01)
-  call Base16hi("StatusLineNC", g:base16_gui02, g:base16_gui01, g:base16_cterm02, g:base16_cterm01)
-
   call Base16hi("EndOfBuffer", g:base16_gui00, g:base16_gui00, g:base16_cterm00, g:base16_cterm00)
   call Base16hi("SignColumn", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
   call Base16hi("VertSplit", g:base16_gui01, g:base16_gui01, g:base16_cterm01, g:base16_cterm01)
   call Base16hi("LineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
   call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
+  " Statusline and Tabline
+  call Base16hi("StatusLine", g:base16_gui04, g:base16_gui01, g:base16_cterm04, g:base16_cterm01)
+  call Base16hi("StatusLineNC", g:base16_gui02, g:base16_gui01, g:base16_cterm02, g:base16_cterm01)
+  call Base16hi("TabLine", g:base16_gui02, g:base16_gui01, g:base16_cterm02, g:base16_cterm01)
+  call Base16hi("TabLineSel", g:base16_gui04, g:base16_gui01, g:base16_cterm04, g:base16_cterm01)
   " Gitgutter
   call Base16hi("GitGutterAdd", "", g:base16_gui00, "", g:base16_cterm00)
   call Base16hi("GitGutterChange", "", g:base16_gui00, "", g:base16_cterm00)
