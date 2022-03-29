@@ -16,7 +16,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/gv.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
@@ -63,7 +62,7 @@ set path+=**
 set completeopt-=preview
 set mouse=a
 set signcolumn=yes     " Always show sign column
-set shm+=I             " Don't show intro message
+set shm+=Ia            " Don't show intro message see h: shm
 filetype plugin indent on
 
 " Autoload config on save
@@ -73,10 +72,15 @@ autocmd! bufwritepost init.vim source %
 " Status Line
 " -----------
 " see :h statusline
+function! GitStatus()
+    let l:branch = fugitive#Head()
+    return strlen(l:branch)>0 ? l:branch.' - ' : ''
+endfunction
+
 set stl=
 set stl+=%{'\ '}                " margin space at the left
-set stl+=%{fugitive#Head()}\ -  "git branch
-set stl+=\ %f                   " file path
+set stl+=%{GitStatus()}         " git branch
+set stl+=%f                     " file path
 set stl+=%(\ [%M%R]%)           " flags
 set stl+=%=                     " right align
 set stl+=\ %{&filetype}         " file type
@@ -182,7 +186,7 @@ let g:gutentags_cache_dir = '~/dev/.tags/'
 
 " FZF
 " ---
-"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+"let $FZF_DEFAULT_COMMAND = 'ag -g'
 let g:fzf_buffers_jump = 1
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>b :Buffers<CR>
