@@ -1,8 +1,6 @@
 " Plugins
 " ------
 call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-fugitive'
@@ -68,6 +66,23 @@ set signcolumn=yes     " Always show sign column
 set shm+=I             " Don't show intro message
 filetype plugin indent on
 
+" Autoload config on save
+autocmd! bufwritepost init.vim source %
+
+
+" Status Line
+" -----------
+" see :h statusline
+set stl=
+set stl+=%{'\ '}                " margin space at the left
+set stl+=%{fugitive#Head()}\ -  "git branch
+set stl+=\ %f                   " file path
+set stl+=%(\ [%M%R]%)           " flags
+set stl+=%=                     " right align
+set stl+=\ %{&filetype}         " file type
+set stl+=\ \ %l,%c%V\ %P        " ruler
+set stl+=%{'\ '}                " margin space at the right
+
 
 " Abbreviation shortcuts
 " ----------------------
@@ -91,7 +106,7 @@ nnoremap <silent>X :bd<CR>             " Delete current buffer
 nnoremap L gt<CR>                      " Tab right
 nnoremap H gT<CR>                      " Tab left
 nnoremap <silent><esc> :noh<CR>        " Clear searh highlight when escaping normal mode
-nnoremap s :w <CR>                     " Write buffer
+nnoremap s :w<CR>                      " Write buffer
 nnoremap <silent><leader>m :marks<CR>  " Open marks
 " Scroll in bigger steps
 nnoremap <C-e> 4<C-e>
@@ -121,75 +136,6 @@ augroup END
 " ---------
 set updatetime=100
 let g:gitgutter_override_sign_column_highlight = 0
-
-
-" Airline
-" -------
-let g:airline_theme='base16_chico'
-let g:airline_powerline_fonts = 1
-let g:airline_mode_map = {
-     \ '__' : '-',
-     \ 'c'  : 'C',
-     \ 'i'  : 'I',
-     \ 'ic' : 'I',
-     \ 'ix' : 'I',
-     \ 'n'  : ' ',
-     \ 'ni' : 'N',
-     \ 'no' : 'N',
-     \ 'R'  : 'R',
-     \ 'Rv' : 'R',
-     \ 's'  : 'S',
-     \ 'S'  : 'S',
-     \ '' : 'S',
-     \ 't'  : 'T',
-     \ 'v'  : 'V',
-     \ 'V'  : 'V',
-     \ '' : 'V',
-\ }
-let g:airline#extensions#default#layout = [
-      \ [ 'a', 'b', 'c' ],
-      \ ['error', 'warning', 'x', 'y', 'z']
-      \ ]
-let g:airline_section_y = '%{ObsessionStatus()}'
-let g:airline_section_z = '%l:%c %3p%%'
-" Disable some airline extensions
-let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#whitespace#enabled = 0
-" Remove separators
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
-
-" Tabline
-" -------
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_tab_count = 0
-let g:airline#extensions#tabline#tab_nr_type = 0
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#tabnr_formatter = 'tabnr'
-let g:airline#extensions#tabline#tab_min_count = 0
-let g:airline#extensions#tabline#show_close_button = 0
-" Switch tabs key maps
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
 
 
 " Nerdtree
@@ -319,7 +265,10 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 
 function! s:base16_customize() abort
-  "g:Base16hi(group, guifg, guibg, ctermfg, ctermbg, ...)
+  " Status line
+  call Base16hi("StatusLine", g:base16_gui04, g:base16_gui01, g:base16_cterm04, g:base16_cterm01)
+  call Base16hi("StatusLineNC", g:base16_gui02, g:base16_gui01, g:base16_cterm02, g:base16_cterm01)
+
   call Base16hi("EndOfBuffer", g:base16_gui00, g:base16_gui00, g:base16_cterm00, g:base16_cterm00)
   call Base16hi("SignColumn", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
   call Base16hi("VertSplit", g:base16_gui01, g:base16_gui01, g:base16_cterm01, g:base16_cterm01)
