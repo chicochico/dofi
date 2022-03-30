@@ -51,7 +51,6 @@ set expandtab
 set autoindent
 set smartindent
 set smarttab
-set ruler
 set cursorline
 set noshowmode         " Hide default mode indicaator
 set hidden             " Allows hidden modified buffers
@@ -59,7 +58,6 @@ set autoread           " Reload file if changed outside vim
 set fillchars=vert:\│  " Vertical split character
 set nosol
 set path+=**
-set completeopt-=preview
 set mouse=a
 set signcolumn=yes     " Always show sign column
 set shm+=Ia            " Don't show intro message see h: shm
@@ -74,18 +72,20 @@ autocmd! bufwritepost init.vim source %
 " see :h statusline
 function! GitStatus()
     let l:branch = fugitive#Head()
-    return strlen(l:branch)>0 ? l:branch.' - ' : ''
+    return strlen(l:branch)>0 ? l:branch.' • ' : ''
 endfunction
 
 set stl=
-set stl+=%{'\ '}                " margin space at the left
-set stl+=%{GitStatus()}         " git branch
-set stl+=%f                     " file path
-set stl+=%(\ [%M%R]%)           " flags
-set stl+=%=                     " right align
-set stl+=\ %{&filetype}         " file type
-set stl+=\ \ %l,%c%V\ %P        " ruler
-set stl+=%{'\ '}                " margin space at the right
+set stl+=%{'\ '}                                     " margin space at the left
+set stl+=%{GitStatus()}                              " git branch
+set stl+=%f                                          " file path
+set stl+=%(\ [%M%R]%)                                " flags
+set stl+=%=                                          " right align
+set stl+=%{&filetype}                                " file type
+set stl+=\ %{&fileencoding?&fileencoding:&encoding}  " file encoding
+set stl+=\ %{&fileformat}                            " file format
+set stl+=\ \ \ %l,%c%V\ %P                           " ruler
+set stl+=%{'\ '}                                     " margin space at the right
 
 
 " Abbreviation shortcuts
@@ -103,21 +103,25 @@ let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
 
 " Keymaps
 " -------
-let mapleader = "\<Space>"             " Space as leader
-nnoremap <leader>o <C-w>o              " Zoom
-nnoremap Q <C-w>q                      " Quit window
-nnoremap <silent>X :bd<CR>             " Delete current buffer
-nnoremap L gt<CR>                      " Tab right
-nnoremap H gT<CR>                      " Tab left
-nnoremap <silent><esc> :noh<CR>        " Clear searh highlight when escaping normal mode
-nnoremap s :w<CR>                      " Write buffer
-nnoremap <silent><leader>m :marks<CR>  " Open marks
-" Scroll in bigger steps
+" leader
+nmap <space> <leader>
+" close window
+nnoremap Q <C-w>q
+" delete buffer
+nnoremap X :bd<CR>
+" move tabs
+nnoremap L gt
+nnoremap H gT
+" clear hilight
+nnoremap <silent><esc> :noh<CR>
+" write buffer
+nnoremap s :w<CR>
+" scroll steps
 nnoremap <C-e> 4<C-e>
 nnoremap <C-y> 4<C-y>
 vnoremap <C-e> 4<C-e>
 vnoremap <C-y> 4<C-y>
-" Go to tag definition
+" tags
 nnoremap t <C-]>
 nnoremap T <C-t>
 
