@@ -13,7 +13,7 @@ export ZSH_DISABLE_COMPFIX=true
 export GPG_TTY=$TTY
 
 # Theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git docker colorize colored-man-pages)
