@@ -16,7 +16,12 @@ export GPG_TTY=$TTY
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git docker colorize colored-man-pages)
+plugins=(
+  git
+  docker
+  aws
+  colored-man-pages
+)
 
 # User configuration
 source $ZSH/oh-my-zsh.sh
