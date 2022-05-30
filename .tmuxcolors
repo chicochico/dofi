@@ -1,5 +1,5 @@
 # pane border styles
-set -g pane-border-style fg=colour19,bg=colour00
+set -g pane-border-style fg=colour18,bg=colour00
 set -g pane-active-border-style fg=colour19,bg=colour00
 set -g pane-border-format ""
 set -g pane-border-status off
