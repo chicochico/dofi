@@ -137,6 +137,12 @@ augroup CursorLineOnlyInActiveWindow
 augroup END
 
 
+" Netrw
+" -----
+nnoremap <leader>e :Explore<CR>
+let g:netrw_banner = 0
+
+
 " Plugin settings
 " ---------------
 
@@ -231,7 +237,8 @@ map <leader>r <Plug>(DBUI_ExecuteQuery)
 let g:ale_completion_enabled = 0
 let g:ale_linters = {
     \ 'python': ['pyflakes'],
-    \ 'clojure': ['clj-kondo']
+    \ 'clojure': ['clj-kondo'],
+    \ 'markdown': ['vale']
 \ }
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
