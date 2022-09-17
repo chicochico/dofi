@@ -63,9 +63,6 @@ set signcolumn=yes     " Always show sign column
 set shm+=Ia            " Don't show intro message see h: shm
 filetype plugin indent on
 
-" Autoload config on save
-autocmd! bufwritepost init.vim source %
-
 
 " Status Line
 " -----------
@@ -109,9 +106,9 @@ nmap <space> <leader>
 nnoremap Q <C-w>q
 " delete buffer
 nnoremap X :bd<CR>
-" move tabs
-nnoremap L gt
-nnoremap H gT
+" move buffers
+nnoremap L :bn<CR>
+nnoremap H :bp<CR>
 " clear hilight
 nnoremap <silent><esc> :noh<CR>
 " write buffer
