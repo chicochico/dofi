@@ -37,7 +37,6 @@ call plug#end()
 " NeoVim settings
 " ---------------
 syntax enable
-set termguicolors      " Color scheme
 set clipboard+=unnamedplus
 set number
 set relativenumber
