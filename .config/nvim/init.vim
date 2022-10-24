@@ -234,12 +234,14 @@ let g:ale_completion_enabled = 0
 let g:ale_linters = {
     \ 'python': ['pyflakes'],
     \ 'clojure': ['clj-kondo'],
-    \ 'markdown': ['vale']
+    \ 'markdown': ['vale'],
+    \ 'terraform': ['tflint']
 \ }
 let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \'python': ['isort', 'black'],
-    \'terraform': []
+    \'terraform': ['terraform'],
+    \'json': ['jq']
 \ }
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '✖'
@@ -283,6 +285,7 @@ function! s:base16_customize() abort
   call Base16hi("VertSplit", g:base16_gui01, g:base16_gui00, g:base16_cterm01, g:base16_cterm00)
   call Base16hi("LineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
   call Base16hi("CursorLineNr", g:base16_gui03, g:base16_gui00, g:base16_cterm03, g:base16_cterm00)
+  hi CursorLineNr cterm=NONE
   " Statusline and Tabline
   call Base16hi("StatusLine", g:base16_gui04, g:base16_gui00, g:base16_cterm04, g:base16_cterm00)
   call Base16hi("StatusLineNC", g:base16_gui02, g:base16_gui00, g:base16_cterm02, g:base16_cterm00)
