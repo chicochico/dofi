@@ -16,6 +16,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/gv.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
@@ -230,6 +231,7 @@ map <leader>r <Plug>(DBUI_ExecuteQuery)
 
 " ALE
 " ---
+let g:ale_python_isort_options = '--profile black'
 let g:ale_completion_enabled = 0
 let g:ale_linters = {
     \ 'python': ['pyflakes'],
