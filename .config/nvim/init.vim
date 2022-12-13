@@ -1,6 +1,7 @@
 " Plugins
 " ------
 call plug#begin('~/.vim/plugged')
+Plug 'gioele/vim-autoswap'
 Plug 'preservim/nerdtree'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-fugitive'
@@ -268,9 +269,15 @@ let g:nv_search_paths = ['~/notes/']
 nnoremap <leader>n :NV<CR>
 
 
+" Autoswap
+" --------
+let g:autoswap_detect_tmux = 1
+
+
 " Markdown preview
 " ----------------
 nmap <leader>p <Plug>MarkdownPreviewToggle
+
 
 " Vim colors customizations
 " -------------------------
