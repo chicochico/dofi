@@ -1,39 +1,68 @@
 " Plugins
 " ------
-call plug#begin('~/.vim/plugged')
-Plug 'gioele/vim-autoswap'
-Plug 'preservim/nerdtree'
-Plug 'chriskempson/base16-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-commentary'
-Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'airblade/vim-gitgutter'
-Plug 'jiangmiao/auto-pairs'
-Plug 'majutsushi/tagbar'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/gv.vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'alok/notational-fzf-vim'
-Plug 'hashivim/vim-terraform'
-Plug 'jamessan/vim-gnupg'
-" Markdown
-Plug 'junegunn/goyo.vim'
-Plug 'preservim/vim-pencil'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-" Clojure
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
-" Add plugins to &runtimepath
-call plug#end()
+
+" Lua
+lua <<EOF
+return require('packer').startup(function(use)
+  use "wbthomason/packer.nvim"
+  use "gioele/vim-autoswap"
+  use "chriskempson/base16-vim"
+  use "tpope/vim-fugitive"
+  use "tpope/vim-surround"
+  use "tpope/vim-obsession"
+  use "tpope/vim-sleuth"
+  use "tpope/vim-repeat"
+  use "tpope/vim-dadbod"
+  use "tpope/vim-commentary"
+  use "kristijanhusak/vim-dadbod-ui"
+  use "airblade/vim-gitgutter"
+  use "jiangmiao/auto-pairs"
+  use "majutsushi/tagbar"
+  use { "junegunn/fzf", run = ":call fzf#install()" }
+  use "junegunn/fzf.vim"
+  use "junegunn/gv.vim"
+  use "ludovicchabant/vim-gutentags"
+  use "christoomey/vim-tmux-navigator"
+  use "dense-analysis/ale"
+  use { "neoclide/coc.nvim", branch = "release" }
+  use "alok/notational-fzf-vim"
+  use "hashivim/vim-terraform"
+  use "jamessan/vim-gnupg"
+  use "junegunn/goyo.vim"
+  use "preservim/vim-pencil"
+  use "guns/vim-clojure-static"
+  use "tpope/vim-fireplace"
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end
+  }
+
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function ()
+    end,
+    require("neo-tree").setup({
+      enable_git_status = false,
+      enable_diagnostics = false,
+      enable_modified_markers = true, -- Show markers for files with unsaved changes.
+      enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
+      default_component_configs = {
+        icon = {
+          folder_closed = "▸",
+          folder_open = "▾",
+          folder_empty = " ",
+          default = "*",
+        }
+      }
+    })
+  }
+end)
+EOF
 
 
 " NeoVim settings
@@ -150,16 +179,9 @@ set updatetime=100
 let g:gitgutter_override_sign_column_highlight = 0
 
 
-" Nerdtree
-" --------
-nnoremap <silent><leader>a :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
-let NERDTreeShowLineNumbers=0
-let g:NERDTreeMapJumpPrevSibling=""
-let g:NERDTreeMapJumpNextSibling=""
-let g:NERDTreeIgnore = ['^__pycache__$']
-
+" Neotree
+nnoremap <silent><leader>a :Neotree<CR>
+let g:neo_tree_remove_legacy_commands = 1
 
 " Tagbar
 " ------
