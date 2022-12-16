@@ -1,97 +1,13 @@
 " Plugins
 " ------
-
 " Lua
-lua <<EOF
-return require('packer').startup(function(use)
-  use "wbthomason/packer.nvim"
-  use "gioele/vim-autoswap"
-  use "chriskempson/base16-vim"
-  use "tpope/vim-fugitive"
-  use "tpope/vim-surround"
-  use "tpope/vim-obsession"
-  use "tpope/vim-sleuth"
-  use "tpope/vim-repeat"
-  use "tpope/vim-dadbod"
-  use "tpope/vim-commentary"
-  use "kristijanhusak/vim-dadbod-ui"
-  use "airblade/vim-gitgutter"
-  use "jiangmiao/auto-pairs"
-  use "majutsushi/tagbar"
-  use { "junegunn/fzf", run = ":call fzf#install()" }
-  use "junegunn/fzf.vim"
-  use "junegunn/gv.vim"
-  use "ludovicchabant/vim-gutentags"
-  use "christoomey/vim-tmux-navigator"
-  use "dense-analysis/ale"
-  use { "neoclide/coc.nvim", branch = "release" }
-  use "alok/notational-fzf-vim"
-  use "hashivim/vim-terraform"
-  use "jamessan/vim-gnupg"
-  use "junegunn/goyo.vim"
-  use "preservim/vim-pencil"
-  use "guns/vim-clojure-static"
-  use "tpope/vim-fireplace"
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end
-  }
-
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function ()
-    end,
-    require("neo-tree").setup({
-      enable_git_status = false,
-      enable_diagnostics = false,
-      enable_modified_markers = true, -- Show markers for files with unsaved changes.
-      enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
-      default_component_configs = {
-        icon = {
-          folder_closed = "▸",
-          folder_open = "▾",
-          folder_empty = " ",
-          default = "*",
-        }
-      }
-    })
-  }
-end)
-EOF
+lua require('init')
 
 
-" NeoVim settings
-" ---------------
-syntax enable
-set clipboard+=unnamedplus
-set number
-set relativenumber
-set lazyredraw
-set showmatch
-set ignorecase
-set smartcase
-set incsearch
-set shiftwidth=4
-set expandtab
-set autoindent
-set smartindent
-set smarttab
-set cursorline
+" Neovim Settings
+" --------
 set noshowmode         " Hide default mode indicaator
-set hidden             " Allows hidden modified buffers
-set autoread           " Reload file if changed outside vim
-set fillchars=vert:\┃  " Vertical split character
 set nosol
-set path+=**
-set mouse=a
-set signcolumn=yes     " Always show sign column
-set shm+=Ia            " Don't show intro message see h: shm
-filetype plugin indent on
 
 
 " Status Line
@@ -114,60 +30,6 @@ set stl+=\ %{&fileformat}                            " file format
 set stl+=\ \ \ %l,%c%V\ %P                           " ruler
 set stl+=%{'\ '}                                     " margin space at the right
 
-
-" Abbreviation shortcuts
-" ----------------------
-" insert current date
-inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
-inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>
-
-
-" Python support
-" --------------
-let home=$HOME
-let g:python3_host_prog = home . '/.pyenv/versions/nvim/bin/python'
-
-
-" Keymaps
-" -------
-" leader
-nmap <space> <leader>
-" close window
-nnoremap Q <C-w>q
-" delete buffer
-nnoremap X :bd<CR>
-" move buffers
-nnoremap L :bn<CR>
-nnoremap H :bp<CR>
-" clear hilight
-nnoremap <silent><esc> :noh<CR>
-" write buffer
-nnoremap s :w<CR>
-" scroll steps
-nnoremap <C-e> 4<C-e>
-nnoremap <C-y> 4<C-y>
-vnoremap <C-e> 4<C-e>
-vnoremap <C-y> 4<C-y>
-" tags
-nnoremap t <C-]>
-nnoremap T <C-t>
-
-
-" Cursorline
-" ----------
-"
-augroup CursorLineOnlyInActiveWindow
-  " shows cursorline only in active window
-  autocmd!
-  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-augroup END
-
-
-" Netrw
-" -----
-nnoremap <leader>e :Explore<CR>
-let g:netrw_banner = 0
 
 
 " Plugin settings
