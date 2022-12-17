@@ -17,7 +17,6 @@ require('packer').startup(function(use)
   use "ludovicchabant/vim-gutentags"
   use "christoomey/vim-tmux-navigator"
   use "dense-analysis/ale"
-  use { "neoclide/coc.nvim", branch = "release" }
   use "alok/notational-fzf-vim"
   use "hashivim/vim-terraform"
   use "junegunn/goyo.vim"
@@ -32,6 +31,16 @@ require('packer').startup(function(use)
     requires = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
+    },
+  }
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      -- Useful status updates for LSP
+      'j-hui/fidget.nvim',
     },
   }
 end)
@@ -67,13 +76,6 @@ vim.cmd([[
 ]])
 
 
--- Abbreviation shortcuts
--- ----------------------
--- insert current date
-vim.cmd([[inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>]])
-vim.cmd([[inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>]])
-
-
 -- statusline
 -- ----------
 vim.cmd([[
@@ -99,11 +101,17 @@ local stl = {
 vim.o.statusline = table.concat(stl)
 
 
+-- Abbreviation shortcuts
+-- ----------------------
+-- insert current date
+vim.cmd([[inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>]])
+vim.cmd([[inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>]])
+
+
 -- Python support
 -- --------------
 local home = os.getenv('HOME')
 vim.g.python3_host_prog = home .. '/.pyenv/versions/nvim/bin/python'
-
 
 
 -- Keymaps
@@ -122,7 +130,6 @@ vim.keymap.set('v', '<C-e>', '4<C-e>', {noremap = true})
 vim.keymap.set('v', '<C-y>', '4<C-y>', {noremap = true})
 vim.keymap.set('n', 't', '<C-]>', {noremap = true})                        -- tags
 vim.keymap.set('n', 'T', '<C-t>', {noremap = true})
-
 
 
 -- Cursorline
@@ -230,12 +237,6 @@ vim.cmd([[
 vim.api.nvim_set_var('sleuth_automatic', 1)
 
 
--- DBUI
--- ----
-vim.api.nvim_set_keymap('n', '<leader>d', ':DBUIToggle<CR>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>r', '<Plug>(DBUI_ExecuteQuery)', {noremap = true})
-
-
 -- ALE
 -- ---
 vim.api.nvim_set_var('ale_python_isort_options', '--profile black')
@@ -257,16 +258,10 @@ vim.api.nvim_set_var('ale_sign_error', '✖')
 vim.api.nvim_set_var('ale_sign_warning', '▲')
 
 
--- COC
--- ---
--- extensions
-vim.api.nvim_set_var('coc_global_extensions', {'coc-json', 'coc-git'})
--- GoTo code navigation.
--- --------------------
-vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
-vim.keymap.set('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
-vim.keymap.set('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
-vim.keymap.set('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
+-- vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
+-- vim.keymap.set('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
+-- vim.keymap.set('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
+-- vim.keymap.set('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
 
 
 -- Notational Velocity
@@ -288,32 +283,34 @@ vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>MarkdownPreviewToggle', {norema
 -- Source base16 file from env var
 local function color_customize()
   local theme = os.getenv('BASE16_THEME')
-
+  local hl = vim.api.nvim_set_hl
   if theme
       and (not vim.g.colors_name or vim.g.colors_name ~= 'base16-' .. theme) then
-    vim.api.nvim_command('let base16colorspace=256')
-    vim.api.nvim_command('colorscheme base16-solarized-dark')
+    vim.cmd([[
+      let base16colorspace=256
+      colorscheme base16-solarized-dark
+    ]])
   end
 
-  vim.api.nvim_set_hl(0, 'EndOfBuffer', {ctermfg = 0, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'SignColumn', {ctermfg = 8, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'VertSplit', {ctermfg = 18, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'LineNr', {ctermfg = 8, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'CursorLineNr', {ctermfg = 8, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 20, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'StatusLineNC', {ctermfg = 19, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'TabLine', {ctermfg = 19, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'TabLineSel', {ctermfg = 20, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'TabLineFill', {ctermfg = 20, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'GitGutterAdd', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'GitGutterChange', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'GitGutterDelete', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'GitGutterChangeDelete', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'DiffAdd', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'DiffChange', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'DiffDelete', {ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'ALEErrorSign', {ctermfg = 1, ctermbg = 0})
-  vim.api.nvim_set_hl(0, 'ALEWarningSign', {ctermfg = 3, ctermbg = 0})
+  hl(0, 'EndOfBuffer', {ctermfg = 0, ctermbg = 0})
+  hl(0, 'SignColumn', {ctermfg = 8, ctermbg = 0})
+  hl(0, 'VertSplit', {ctermfg = 18, ctermbg = 0})
+  hl(0, 'LineNr', {ctermfg = 8, ctermbg = 0})
+  hl(0, 'CursorLineNr', {ctermfg = 8, ctermbg = 0})
+  hl(0, 'StatusLine', {ctermfg = 20, ctermbg = 0})
+  hl(0, 'StatusLineNC', {ctermfg = 19, ctermbg = 0})
+  hl(0, 'TabLine', {ctermfg = 19, ctermbg = 0})
+  hl(0, 'TabLineSel', {ctermfg = 20, ctermbg = 0})
+  hl(0, 'TabLineFill', {ctermfg = 20, ctermbg = 0})
+  hl(0, 'GitGutterAdd', {ctermbg = 0})
+  hl(0, 'GitGutterChange', {ctermbg = 0})
+  hl(0, 'GitGutterDelete', {ctermbg = 0})
+  hl(0, 'GitGutterChangeDelete', {ctermbg = 0})
+  hl(0, 'DiffAdd', {ctermbg = 0})
+  hl(0, 'DiffChange', {ctermbg = 0})
+  hl(0, 'DiffDelete', {ctermbg = 0})
+  hl(0, 'ALEErrorSign', {ctermfg = 1, ctermbg = 0})
+  hl(0, 'ALEWarningSign', {ctermfg = 3, ctermbg = 0})
 end
 
 color_customize()
