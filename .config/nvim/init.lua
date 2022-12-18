@@ -8,23 +8,22 @@ require('packer').startup(function(use)
   use "tpope/vim-sleuth"
   use "tpope/vim-repeat"
   use "tpope/vim-commentary"
-  use "airblade/vim-gitgutter"
-  use "jiangmiao/auto-pairs"
+  use 'lewis6991/gitsigns.nvim'
   use "majutsushi/tagbar"
   use { "junegunn/fzf", run = ":call fzf#install()" }
   use "junegunn/fzf.vim"
   use "junegunn/gv.vim"
   use "ludovicchabant/vim-gutentags"
   use "christoomey/vim-tmux-navigator"
-  use "dense-analysis/ale"
   use "alok/notational-fzf-vim"
-  use "hashivim/vim-terraform"
   use "junegunn/goyo.vim"
   use "preservim/vim-pencil"
+
   use {
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end
   }
+
   use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
@@ -33,6 +32,7 @@ require('packer').startup(function(use)
       "MunifTanjim/nui.nvim",
     },
   }
+
   use {
     'neovim/nvim-lspconfig',
     requires = {
@@ -43,12 +43,24 @@ require('packer').startup(function(use)
       'j-hui/fidget.nvim',
     },
   }
+
+  use { -- Autocompletion
+    'hrsh7th/nvim-cmp',
+    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  }
+
+  use { -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      pcall(require('nvim-treesitter.install').update { with_sync = true })
+    end,
+  }
 end)
 
 
 -- Neovim Settings
 ------------------
-vim.o.syntax = 'enable'
+-- vim.o.syntax = 'enable'
 vim.o.clipboard = 'unnamedplus'
 vim.o.number = true
 vim.o.relativenumber = true
@@ -147,9 +159,17 @@ vim.cmd([[
 -- Plugin settings
 -- ---------------
 
--- Gitgutter
--- ---------
-vim.api.nvim_set_var('gitgutter_override_sign_column_highlight', 0)
+-- Gitsigns
+-- See `:help gitsigns.txt`
+require('gitsigns').setup {
+  signs = {
+    add = { text = '+' },
+    change = { text = '~' },
+    delete = { text = '_' },
+    topdelete = { text = '‾' },
+    changedelete = { text = '~' },
+  },
+}
 
 
 -- Neo-tree
@@ -237,33 +257,6 @@ vim.cmd([[
 vim.api.nvim_set_var('sleuth_automatic', 1)
 
 
--- ALE
--- ---
-vim.api.nvim_set_var('ale_python_isort_options', '--profile black')
-vim.api.nvim_set_var('ale_completion_enabled', 0)
-vim.api.nvim_set_var('ale_linters', {
-    python = {'pyflakes'},
-    clojure = {'clj-kondo'},
-    markdown = {'vale'},
-    terraform = {'tflint'}
-})
-vim.api.nvim_set_var('ale_fixers', {
-    ['*'] = {'remove_trailing_lines', 'trim_whitespace'},
-    python = {'isort', 'black'},
-    terraform = {'terraform'},
-    json = {'jq'}
-})
-vim.api.nvim_set_var('ale_fix_on_save', 1)
-vim.api.nvim_set_var('ale_sign_error', '✖')
-vim.api.nvim_set_var('ale_sign_warning', '▲')
-
-
--- vim.keymap.set('n', 'gd', '<Plug>(coc-definition)', {noremap = true, silent = true})
--- vim.keymap.set('n', 'gy', '<Plug>(coc-type-definition)', {noremap = true, silent = true})
--- vim.keymap.set('n', 'gi', '<Plug>(coc-implementation)', {noremap = true, silent = true})
--- vim.keymap.set('n', 'gr', '<Plug>(coc-references)', {noremap = true, silent = true})
-
-
 -- Notational Velocity
 -- ------------------
 vim.api.nvim_set_var('nv_search_paths', {'~/notes/'})
@@ -280,37 +273,59 @@ vim.api.nvim_set_var('autoswap_detect_tmux', 1)
 vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>MarkdownPreviewToggle', {noremap = true})
 
 
+-- Treesitter
+-- See `:help nvim-treesitter`
+require('nvim-treesitter.configs').setup {
+  -- Add languages to be installed here that you want installed for treesitter
+  ensure_installed = {
+    'c',
+    'cpp',
+    'lua',
+    'python',
+    'typescript',
+    'help' ,
+    'dockerfile'
+  },
+  highlight = { enable = true },
+  indent = { enable = true },
+}
+
+
+-- Gitsigns
+vim.api.nvim_set_keymap('n', '<leader>hu', ':Gitsigns reset_hunk<CR>', {noremap = true})
+
+
+-- LSP
+require('plugins.lsp')
+
+
+-- Customize some highlight colors
 -- Source base16 file from env var
 local function color_customize()
-  local theme = os.getenv('BASE16_THEME')
   local hl = vim.api.nvim_set_hl
+
+  local theme = os.getenv('BASE16_THEME')
   if theme
       and (not vim.g.colors_name or vim.g.colors_name ~= 'base16-' .. theme) then
     vim.cmd([[
       let base16colorspace=256
-      colorscheme base16-solarized-dark
+      colorscheme base16-$BASE16_THEME
     ]])
   end
 
-  hl(0, 'EndOfBuffer', {ctermfg = 0, ctermbg = 0})
-  hl(0, 'SignColumn', {ctermfg = 8, ctermbg = 0})
-  hl(0, 'VertSplit', {ctermfg = 18, ctermbg = 0})
-  hl(0, 'LineNr', {ctermfg = 8, ctermbg = 0})
-  hl(0, 'CursorLineNr', {ctermfg = 8, ctermbg = 0})
-  hl(0, 'StatusLine', {ctermfg = 20, ctermbg = 0})
-  hl(0, 'StatusLineNC', {ctermfg = 19, ctermbg = 0})
-  hl(0, 'TabLine', {ctermfg = 19, ctermbg = 0})
-  hl(0, 'TabLineSel', {ctermfg = 20, ctermbg = 0})
-  hl(0, 'TabLineFill', {ctermfg = 20, ctermbg = 0})
-  hl(0, 'GitGutterAdd', {ctermbg = 0})
-  hl(0, 'GitGutterChange', {ctermbg = 0})
-  hl(0, 'GitGutterDelete', {ctermbg = 0})
-  hl(0, 'GitGutterChangeDelete', {ctermbg = 0})
-  hl(0, 'DiffAdd', {ctermbg = 0})
-  hl(0, 'DiffChange', {ctermbg = 0})
-  hl(0, 'DiffDelete', {ctermbg = 0})
-  hl(0, 'ALEErrorSign', {ctermfg = 1, ctermbg = 0})
-  hl(0, 'ALEWarningSign', {ctermfg = 3, ctermbg = 0})
+  hl(0, 'EndOfBuffer',           {ctermfg = 0, ctermbg = 0})
+  hl(0, 'SignColumn',            {ctermfg = 8, ctermbg = 0})
+  hl(0, 'VertSplit',             {ctermfg = 18, ctermbg = 0})
+  hl(0, 'LineNr',                {ctermfg = 8, ctermbg = 0})
+  hl(0, 'CursorLineNr',          {ctermfg = 8, ctermbg = 0})
+  hl(0, 'StatusLine',            {ctermfg = 20, ctermbg = 0})
+  hl(0, 'StatusLineNC',          {ctermfg = 19, ctermbg = 0})
+  hl(0, 'TabLine',               {ctermfg = 19, ctermbg = 0})
+  hl(0, 'TabLineSel',            {ctermfg = 20, ctermbg = 0})
+  hl(0, 'TabLineFill',           {ctermfg = 20, ctermbg = 0})
+  hl(0, 'GitSignsAdd',           {ctermfg = 2, ctermbg = 0})
+  hl(0, 'GitSignsChange',        {ctermfg = 4, ctermbg = 0})
+  hl(0, 'GitSignsDelete',        {ctermfg = 1, ctermbg = 0})
 end
 
 color_customize()
