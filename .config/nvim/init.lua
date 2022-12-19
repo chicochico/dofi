@@ -18,6 +18,7 @@ require('packer').startup(function(use)
   use "alok/notational-fzf-vim"
   use "junegunn/goyo.vim"
   use "preservim/vim-pencil"
+  use "jose-elias-alvarez/null-ls.nvim"
 
   use {
     "iamcco/markdown-preview.nvim",
@@ -36,10 +37,12 @@ require('packer').startup(function(use)
   use {
     'neovim/nvim-lspconfig',
     requires = {
-      -- Automatically install LSPs to stdpath for neovim
+      -- automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      -- Useful status updates for LSP
+      -- for installing non lsp tools
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      -- useful status updates for LSP
       'j-hui/fidget.nvim',
     },
   }
@@ -60,7 +63,6 @@ end)
 
 -- Neovim Settings
 ------------------
--- vim.o.syntax = 'enable'
 vim.o.clipboard = 'unnamedplus'
 vim.o.number = true
 vim.o.relativenumber = true
@@ -120,10 +122,12 @@ vim.cmd([[inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>]])
 vim.cmd([[inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>]])
 
 
--- Python support
+-- Providers support
 -- --------------
-local home = os.getenv('HOME')
-vim.g.python3_host_prog = home .. '/.pyenv/versions/nvim/bin/python'
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
 
 
 -- Keymaps
@@ -284,10 +288,11 @@ require('nvim-treesitter.configs').setup {
     'python',
     'typescript',
     'help' ,
-    'dockerfile'
+    'dockerfile',
+    'hcl',
   },
-  highlight = { enable = true },
-  indent = { enable = true },
+  highlight = { enable = true , disable = {'terraform'}},
+  indent = { enable = true, disable = {'python'}},
 }
 
 

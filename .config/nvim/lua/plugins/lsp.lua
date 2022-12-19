@@ -1,4 +1,3 @@
--- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
@@ -19,6 +18,8 @@ local on_attach = function(_, bufnr)
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- auto format
+  vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -35,6 +36,8 @@ require('mason').setup()
 
 local servers = {
     'pyright',
+    'terraformls',
+    'tflint',
 }
 
 -- Ensure the servers above are installed
@@ -42,7 +45,39 @@ require('mason-lspconfig').setup {
   ensure_installed = servers,
 }
 
--- nvim-cmp supports additional completion capabilities
+require('mason-tool-installer').setup {
+  -- a list of all tools you want to ensure are installed upon
+  -- start; they should be the names Mason uses for each tool
+  ensure_installed = {
+    'isort',
+    'black',
+    'jq',
+    'stylua',
+  },
+  auto_update = false,
+  run_on_start = false,
+  start_delay = 3000, -- 3 second delay
+}
+
+
+-- Null-ls
+-- -------
+local null_ls = require("null-ls")
+
+-- register any number of sources simultaneously
+local sources = {
+            null_ls.builtins.formatting.black,
+  null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.jq,
+    null_ls.builtins.formatting.terraform_fmt,
+    null_ls.builtins.formatting.stylua,
+}
+
+null_ls.setup({ sources = sources })
+
+
+-- nvim-cmp
+-- --------
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
