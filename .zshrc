@@ -22,14 +22,14 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.nix-profile/share/oh-my-zsh
 export ZSH_DISABLE_COMPFIX=true
 
 # gpg
 export GPG_TTY=$TTY
 
 # Theme
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
@@ -48,7 +48,7 @@ function load_env() {
 }
 
 # aliases
-alias conf-vim="nvim ~/.config/nvim/init.vim"
+alias conf-vim="nvim ~/.config/nvim/init.lua"
 alias conf-zsh="nvim ~/.zshrc"
 alias conf-tmux="nvim ~/.tmux.conf"
 alias conf-alacritty="nvim ~/.alacritty.yml"
@@ -64,8 +64,6 @@ alias k="kubectl"
 alias lenv=load_env
 alias g=gpg
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -76,10 +74,9 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"

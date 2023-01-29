@@ -10,7 +10,7 @@ require('packer').startup(function(use)
   use "tpope/vim-commentary"
   use 'lewis6991/gitsigns.nvim'
   use "majutsushi/tagbar"
-  use { "junegunn/fzf", run = ":call fzf#install()" }
+  use "junegunn/fzf" 
   use "junegunn/fzf.vim"
   use "junegunn/gv.vim"
   use "ludovicchabant/vim-gutentags"
