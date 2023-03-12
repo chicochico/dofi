@@ -7,17 +7,28 @@
   home.homeDirectory = builtins.getEnv "HOME";
 
   home.packages = with pkgs; [
-    fzf
-    gh
-    gnupg
-    neovim
-    nodejs
+    zsh
     oh-my-zsh
     zsh-powerlevel10k
+    tmux
+    neovim
+    fzf
+    gnupg
     ripgrep
     silver-searcher
-    tmux
+    nodejs
+    gh
   ];
+
+  programs.tmux = {
+    enable = true;
+    plugins = with pkgs.tmuxPlugins; [
+      vim-tmux-navigator
+    ];
+    extraConfig = ''
+      source $HOME/.tmux.conf
+    '';
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
