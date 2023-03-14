@@ -17,6 +17,7 @@
     tree
     nodejs
     gh
+    universal-ctags
   ];
 
   programs.tmux = {
