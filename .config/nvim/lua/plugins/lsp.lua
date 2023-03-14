@@ -31,6 +31,7 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+-- Install lsps and fixers in home.nix
 local servers = {
     'pyright',
     'terraformls',
