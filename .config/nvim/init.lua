@@ -279,22 +279,11 @@ vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>MarkdownPreviewToggle', {norema
 
 -- Treesitter
 -- See `:help nvim-treesitter`
--- require('nvim-treesitter.configs').setup {
---   -- Add languages to be installed here that you want installed for treesitter
---   ensure_installed = {
---     'c',
---     'cpp',
---     'lua',
---     'python',
---     'typescript',
---     'help' ,
---     'dockerfile',
---     'hcl',
---     'nix',
---   },
---   highlight = { enable = true , disable = {'terraform'}},
---   indent = { enable = true, disable = {'python'}},
--- }
+require('nvim-treesitter.configs').setup {
+  -- install new syntax with home.nix
+  highlight = { enable = true , disable = {'terraform'}},
+  indent = { enable = true, disable = {'python'}},
+}
 
 
 -- Gitsigns
@@ -333,6 +322,4 @@ local function color_customize()
   hl(0, 'GitSignsChange',        {ctermfg = 4, ctermbg = 0})
   hl(0, 'GitSignsDelete',        {ctermfg = 1, ctermbg = 0})
 end
-
 color_customize()
--- vim.o.termguicolors = false

@@ -35,7 +35,7 @@
       neo-tree-nvim
       nvim-lspconfig
       vim-autoswap
-      nvim-base16
+      base16-vim
       vim-fugitive
       vim-surround
       vim-obsession
