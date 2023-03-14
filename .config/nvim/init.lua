@@ -1,64 +1,64 @@
-require('packer').startup(function(use)
-  use "wbthomason/packer.nvim"
-  use "gioele/vim-autoswap"
-  use "chriskempson/base16-vim"
-  use "tpope/vim-fugitive"
-  use "tpope/vim-surround"
-  use "tpope/vim-obsession"
-  use "tpope/vim-sleuth"
-  use "tpope/vim-repeat"
-  use "tpope/vim-commentary"
-  use 'lewis6991/gitsigns.nvim'
-  use "majutsushi/tagbar"
-  use "junegunn/fzf" 
-  use "junegunn/fzf.vim"
-  use "junegunn/gv.vim"
-  use "ludovicchabant/vim-gutentags"
-  use "christoomey/vim-tmux-navigator"
-  use "alok/notational-fzf-vim"
-  use "junegunn/goyo.vim"
-  use "preservim/vim-pencil"
-  use "jose-elias-alvarez/null-ls.nvim"
+-- require('packer').startup(function(use)
+--   use "wbthomason/packer.nvim"
+--   use "gioele/vim-autoswap"
+--   use "chriskempson/base16-vim"
+--   use "tpope/vim-fugitive"
+--   use "tpope/vim-surround"
+--   use "tpope/vim-obsession"
+--   use "tpope/vim-sleuth"
+--   use "tpope/vim-repeat"
+--   use "tpope/vim-commentary"
+--   use 'lewis6991/gitsigns.nvim'
+--   use "majutsushi/tagbar"
+--   use "junegunn/fzf" 
+--   use "junegunn/fzf.vim"
+--   use "junegunn/gv.vim"
+--   use "ludovicchabant/vim-gutentags"
+--   use "christoomey/vim-tmux-navigator"
+--   use "alok/notational-fzf-vim"
+--   use "junegunn/goyo.vim"
+--   use "preservim/vim-pencil"
+--   use "jose-elias-alvarez/null-ls.nvim"
 
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end
-  }
+--   use {
+--     "iamcco/markdown-preview.nvim",
+--     run = function() vim.fn["mkdp#util#install"]() end
+--   }
 
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-  }
+--   use {
+--     "nvim-neo-tree/neo-tree.nvim",
+--     branch = "v2.x",
+--     requires = {
+--       "nvim-lua/plenary.nvim",
+--       "MunifTanjim/nui.nvim",
+--     },
+--   }
 
-  use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      -- automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      -- for installing non lsp tools
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-      -- useful status updates for LSP
-      'j-hui/fidget.nvim',
-    },
-  }
+--   use {
+--     'neovim/nvim-lspconfig',
+--     requires = {
+--       -- automatically install LSPs to stdpath for neovim
+--       'williamboman/mason.nvim',
+--       'williamboman/mason-lspconfig.nvim',
+--       -- for installing non lsp tools
+--       'WhoIsSethDaniel/mason-tool-installer.nvim',
+--       -- useful status updates for LSP
+--       'j-hui/fidget.nvim',
+--     },
+--   }
 
-  use { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  }
+--   use { -- Autocompletion
+--     'hrsh7th/nvim-cmp',
+--     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+--   }
 
-  use { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  }
-end)
+--   use { -- Highlight, edit, and navigate code
+--     'nvim-treesitter/nvim-treesitter',
+--     run = function()
+--       pcall(require('nvim-treesitter.install').update { with_sync = true })
+--     end,
+--   }
+-- end)
 
 
 -- Neovim Settings
@@ -279,21 +279,22 @@ vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>MarkdownPreviewToggle', {norema
 
 -- Treesitter
 -- See `:help nvim-treesitter`
-require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = {
-    'c',
-    'cpp',
-    'lua',
-    'python',
-    'typescript',
-    'help' ,
-    'dockerfile',
-    'hcl',
-  },
-  highlight = { enable = true , disable = {'terraform'}},
-  indent = { enable = true, disable = {'python'}},
-}
+-- require('nvim-treesitter.configs').setup {
+--   -- Add languages to be installed here that you want installed for treesitter
+--   ensure_installed = {
+--     'c',
+--     'cpp',
+--     'lua',
+--     'python',
+--     'typescript',
+--     'help' ,
+--     'dockerfile',
+--     'hcl',
+--     'nix',
+--   },
+--   highlight = { enable = true , disable = {'terraform'}},
+--   indent = { enable = true, disable = {'python'}},
+-- }
 
 
 -- Gitsigns
@@ -301,7 +302,7 @@ vim.api.nvim_set_keymap('n', '<leader>hu', ':Gitsigns reset_hunk<CR>', {noremap 
 
 
 -- LSP
-require('plugins.lsp')
+-- require('plugins.lsp')
 
 
 -- Customize some highlight colors
@@ -334,3 +335,4 @@ local function color_customize()
 end
 
 color_customize()
+-- vim.o.termguicolors = false

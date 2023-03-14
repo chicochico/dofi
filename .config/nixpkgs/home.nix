@@ -10,12 +10,11 @@
     zsh
     oh-my-zsh
     zsh-powerlevel10k
-    tmux
-    neovim
     fzf
     gnupg
     ripgrep
     silver-searcher
+    tree
     nodejs
     gh
   ];
@@ -28,6 +27,44 @@
     extraConfig = ''
       source $HOME/.tmux.conf
     '';
+  };
+
+  programs.neovim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      neo-tree-nvim
+      nvim-lspconfig
+      vim-autoswap
+      nvim-base16
+      vim-fugitive
+      vim-surround
+      vim-obsession
+      vim-sleuth
+      vim-repeat
+      vim-commentary
+      gitsigns-nvim
+      tagbar
+      fzf-vim
+      gv-vim
+      goyo-vim
+      vim-gutentags
+      vim-tmux-navigator
+      vim-pencil
+      null-ls-nvim
+      markdown-preview-nvim
+      nvim-cmp
+      (nvim-treesitter.withPlugins (_: with pkgs.tree-sitter-grammars; [
+        tree-sitter-python
+        tree-sitter-lua
+        tree-sitter-c
+        tree-sitter-dockerfile
+        tree-sitter-hcl
+        tree-sitter-nix
+      ]))
+    ];
+
+    extraPackages = with pkgs; [
+    ];
   };
 
   # This value determines the Home Manager release that your
