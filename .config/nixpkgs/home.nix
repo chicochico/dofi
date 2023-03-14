@@ -33,7 +33,15 @@
     enable = true;
     plugins = with pkgs.vimPlugins; [
       neo-tree-nvim
+
       nvim-lspconfig
+      fidget-nvim
+
+      nvim-cmp
+      cmp-nvim-lsp
+      luasnip
+      cmp_luasnip
+
       vim-autoswap
       base16-vim
       vim-fugitive
@@ -64,6 +72,14 @@
     ];
 
     extraPackages = with pkgs; [
+      # language servers and fixers
+      # terraform
+      terraform-ls
+      tflint
+      # python
+      nodePackages.pyright
+      isort
+      black
     ];
   };
 

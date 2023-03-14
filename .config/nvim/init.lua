@@ -291,7 +291,7 @@ vim.api.nvim_set_keymap('n', '<leader>hu', ':Gitsigns reset_hunk<CR>', {noremap 
 
 
 -- LSP
--- require('plugins.lsp')
+require('plugins.lsp')
 
 
 -- Customize some highlight colors

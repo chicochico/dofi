@@ -31,34 +31,11 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Setup mason so it can manage external tooling
-require('mason').setup()
-
 local servers = {
     'pyright',
     'terraformls',
     'tflint',
 }
-
--- Ensure the servers above are installed
-require('mason-lspconfig').setup {
-  ensure_installed = servers,
-}
-
-require('mason-tool-installer').setup {
-  -- a list of all tools you want to ensure are installed upon
-  -- start; they should be the names Mason uses for each tool
-  ensure_installed = {
-    'isort',
-    'black',
-    'jq',
-    'stylua',
-  },
-  auto_update = false,
-  run_on_start = false,
-  start_delay = 3000, -- 3 second delay
-}
-
 
 -- Null-ls
 -- -------
@@ -66,8 +43,8 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-            null_ls.builtins.formatting.black,
-  null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.stylua,
