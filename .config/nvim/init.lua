@@ -181,8 +181,11 @@ vim.api.nvim_set_keymap('n', '<leader>/', ':Ag<CR>', {noremap = true})
 vim.api.nvim_set_var('goyo_width', 80)         -- (default: 80)
 vim.api.nvim_set_var('goyo_height', 100)       -- (default: 85%)
 vim.api.nvim_set_var('goyo_linenr', 0)         -- (default: 0)
-vim.api.nvim_set_keymap('n', '<leader>g', ':Goyo<CR>', {noremap = true})
 
+
+-- Fugitive
+-- --------
+vim.api.nvim_set_keymap('n', '<leader>g', ':Git<CR>', {noremap = true})
 
 -- Pencil
 -- ------
@@ -227,6 +230,7 @@ require('nvim-treesitter.configs').setup {
 
 -- Gitsigns
 vim.api.nvim_set_keymap('n', '<leader>hu', ':Gitsigns reset_hunk<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap = true})
 
 
 -- LSP

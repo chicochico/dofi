@@ -5,11 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
+# Theme
+export SHARE=$HOME/.conf/result/home-path/share
+source $SHARE/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
 # ZSH options
 HISTFILE="$HOME/.zsh_history"
@@ -27,26 +25,8 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.nix-profile/share/oh-my-zsh
-export ZSH_DISABLE_COMPFIX=true
-
 # gpg
 export GPG_TTY=$TTY
-
-# Theme
-source $HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(
-  git
-  docker
-  aws
-  colored-man-pages
-)
-
-# User configuration
-source $ZSH/oh-my-zsh.sh
 
 # helper funcs
 function load_env() {
@@ -54,6 +34,7 @@ function load_env() {
 }
 
 # aliases
+alias l="ls -lah --color=auto"
 alias conf-vim="nvim ~/.config/nvim/init.lua"
 alias conf-zsh="nvim ~/.zshrc"
 alias conf-tmux="nvim ~/.tmux.conf"
@@ -84,5 +65,3 @@ if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
 fi
-
-autoload -U +X bashcompinit && bashcompinit
