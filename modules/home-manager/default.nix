@@ -1,14 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
-
   home.packages = with pkgs; [
     zsh
-    oh-my-zsh
     zsh-powerlevel10k
     fzf
     gnupg
@@ -96,4 +90,16 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.file = {
+    alacritty = { source = ./dotfiles/.alacritty.yml; target = ".alacritty.yml"; };
+    gitconfig = { source = ./dotfiles/.gitconfig; target = ".gitconfig"; };
+    karabiner = { source = ./dotfiles/.config/karabiner; target = ".config/karabiner"; };
+    nvim = { source = ./dotfiles/.config/nvim; target = ".config/nvim/"; };
+    p10k = { source = ./dotfiles/.p10k.zsh; target = ".p10k.zsh"; };
+    tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
+    tmuxconf = { source = ./dotfiles/.tmux.conf; target = ".tmux.conf"; };
+    vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
+    zshrc = { source = ./dotfiles/.zshrc; target = ".zshrc"; };
+  };
 }

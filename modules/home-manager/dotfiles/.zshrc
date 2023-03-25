@@ -6,8 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Theme
-export SHARE=$HOME/.conf/result/home-path/share
-source $SHARE/zsh-powerlevel10k/powerlevel10k.zsh-theme
+# $NIX_USER_PROFILE_DIR is created by nix-darwin
+source $NIX_USER_PROFILE_DIR/home-manager/home-path/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 
 # ZSH options
 HISTFILE="$HOME/.zsh_history"
