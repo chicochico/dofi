@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -21,6 +21,17 @@
     ];
     extraConfig = ''
       source $HOME/.tmux.conf
+    '';
+  };
+
+  programs.zsh = {
+    enable = true;
+    initExtraFirst = builtins.readFile dotfiles/.zshrc;
+    initExtra = ''
+      BASE16_THEME_DEFAULT="base16_default-dark"
+      [ -n "$PS1" ] && \
+        [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
+          source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
     '';
   };
 
@@ -92,7 +103,7 @@
   programs.home-manager.enable = true;
 
   home.file = {
-    alacritty = { source = ./dotfiles/.alacritty.yml; target = ".alacritty.yml"; };
+    alacritty = { source = ./dotfiles/.config/alacritty; target = ".config/alacritty/"; };
     gitconfig = { source = ./dotfiles/.gitconfig; target = ".gitconfig"; };
     karabiner = { source = ./dotfiles/.config/karabiner; target = ".config/karabiner"; };
     nvim = { source = ./dotfiles/.config/nvim; target = ".config/nvim/"; };
@@ -100,6 +111,6 @@
     tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
     tmuxconf = { source = ./dotfiles/.tmux.conf; target = ".tmux.conf"; };
     vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
-    zshrc = { source = ./dotfiles/.zshrc; target = ".zshrc"; };
+    /* zshrc = { source = ./dotfiles/.zshrc; target = ".zshrc"; }; */
   };
 }

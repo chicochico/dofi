@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    base16-shell = {
+      url = "github:chriskempson/base16-shell/master";
+      flake = false;
+    };
+
   };
   outputs = inputs@{ nixpkgs, home-manager, darwin, ... }:
     let
@@ -31,6 +36,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.${user} = import ./modules/home-manager;
+              extraSpecialArgs = { inherit inputs; };
             };
           }
         ];
