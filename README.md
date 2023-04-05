@@ -3,9 +3,12 @@
 Configurations files are tracked in this repository.
 
 ## Deployment
-Install zsh and oh-my-zsh first to prevent `.zshrc` from being overriden. Then run:
-```
-git clone --bare git@github.com:chicochico/dotfiles.git $HOME/.cfg \
-&& git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout --force
-```
-Restart the terminal or `source ~/.zshrc`.
+0. `git clone git@github.com:chicochico/dotfiles.git $HOME/dotfiles`
+1. [install nix](https://nixos.org/download.html)
+2. [install nix-darwin](https://github.com/LnL7/nix-darwin#install)
+
+
+TODO:
+- document how to bootstrap this configuration
+- CTRL+X CTRL+E for editing commands is not working
+- base16 theme is not applied when starting a new terminal window
