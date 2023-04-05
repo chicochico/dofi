@@ -12,6 +12,7 @@
     nodejs
     gh
     universal-ctags
+    jq
   ];
 
   programs.tmux = {
@@ -81,6 +82,8 @@
       # nix
       rnix-lsp
       nixpkgs-fmt
+      # lua
+      stylua
     ];
   };
 
