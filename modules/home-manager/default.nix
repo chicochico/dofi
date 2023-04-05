@@ -19,20 +19,12 @@
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
     ];
-    extraConfig = ''
-      source $HOME/.tmux.conf
-    '';
+    sensibleOnTop = false;
+    extraConfig = builtins.readFile dotfiles/.tmux.conf;
   };
 
   programs.zsh = {
-    enable = true;
-    initExtraFirst = builtins.readFile dotfiles/.zshrc;
-    initExtra = ''
-      BASE16_THEME_DEFAULT="base16_default-dark"
-      [ -n "$PS1" ] && \
-        [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
-          source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
-    '';
+    enable = false;
   };
 
   programs.neovim = {
@@ -109,8 +101,19 @@
     nvim = { source = ./dotfiles/.config/nvim; target = ".config/nvim/"; };
     p10k = { source = ./dotfiles/.p10k.zsh; target = ".p10k.zsh"; };
     tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
-    tmuxconf = { source = ./dotfiles/.tmux.conf; target = ".tmux.conf"; };
     vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
-    /* zshrc = { source = ./dotfiles/.zshrc; target = ".zshrc"; }; */
+    zshrc = { 
+      text = builtins.concatStringsSep "\n" ([
+        (builtins.readFile dotfiles/.zshrc)
+
+        ''
+        BASE16_THEME_DEFAULT="base16_default-dark"
+        [ -n "$PS1" ] && \
+          [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
+            source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
+        ''
+      ]);
+      target = ".zshrc"; 
+    };
   };
 }
