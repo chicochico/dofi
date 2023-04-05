@@ -60,7 +60,7 @@
       markdown-preview-nvim
       nvim-cmp
       (nvim-treesitter.withPlugins (_: with pkgs.tree-sitter-grammars; [
-        tree-sitter-python
+        # tree-sitter-python
         tree-sitter-lua
         tree-sitter-c
         tree-sitter-dockerfile
@@ -69,8 +69,8 @@
       ]))
     ];
 
+    # language servers and fixers
     extraPackages = with pkgs; [
-      # language servers and fixers
       # terraform
       terraform-ls
       tflint
@@ -78,6 +78,9 @@
       nodePackages.pyright
       isort
       black
+      # nix
+      rnix-lsp
+      nixpkgs-fmt
     ];
   };
 
@@ -102,18 +105,18 @@
     p10k = { source = ./dotfiles/.p10k.zsh; target = ".p10k.zsh"; };
     tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
-    zshrc = { 
+    zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/.zshrc)
 
         ''
-        BASE16_THEME_DEFAULT="base16_default-dark"
-        [ -n "$PS1" ] && \
-          [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
-            source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
+          BASE16_THEME_DEFAULT="base16_default-dark"
+          [ -n "$PS1" ] && \
+            [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
+              source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
         ''
       ]);
-      target = ".zshrc"; 
+      target = ".zshrc";
     };
   };
 }

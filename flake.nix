@@ -25,7 +25,8 @@
     let
       user = "fchiang";
       system = "aarch64-darwin";
-    in {
+    in
+    {
       darwinConfigurations.mac = darwin.lib.darwinSystem {
         pkgs = import nixpkgs { system = "${system}"; };
         modules = [
