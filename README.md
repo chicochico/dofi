@@ -10,5 +10,4 @@ Configurations files are tracked in this repository.
 
 TODO:
 - document how to bootstrap this configuration
-- CTRL+X CTRL+E for editing commands is not working
 - base16 theme is not applied when starting a new terminal window
