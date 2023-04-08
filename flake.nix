@@ -22,25 +22,25 @@
 
   };
   outputs = inputs@{ nixpkgs, home-manager, darwin, ... }:
-    let
-      user = "fchiang";
-      system = "aarch64-darwin";
-    in
     {
-      darwinConfigurations.mac = darwin.lib.darwinSystem {
-        pkgs = import nixpkgs { system = "${system}"; };
-        modules = [
-          ./modules/darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${user} = import ./modules/home-manager;
-              extraSpecialArgs = { inherit inputs; };
-            };
-          }
-        ];
+      darwinConfigurations = {
+        mbp14 = darwin.lib.darwinSystem {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            ./modules/darwin
+          ];
+        };
+      };
+      homeConfigurations = {
+        mbp14 = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            ./modules/home-manager
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
       };
     };
 }

@@ -1,19 +1,24 @@
 { config, pkgs, inputs, ... }:
 
 {
-  home.packages = with pkgs; [
-    zsh
-    zsh-powerlevel10k
-    fzf
-    gnupg
-    ripgrep
-    silver-searcher
-    tree
-    nodejs
-    gh
-    universal-ctags
-    jq
-  ];
+  home = {
+    username = "fchiang";
+    homeDirectory = "/Users/${config.home.username}";
+    packages = with pkgs; [
+      zsh
+      zsh-powerlevel10k
+      fzf
+      gnupg
+      ripgrep
+      silver-searcher
+      tree
+      nodejs
+      gh
+      universal-ctags
+      jq
+    ];
+
+  };
 
   programs.tmux = {
     enable = true;
