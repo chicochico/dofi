@@ -2,10 +2,6 @@
 
 My system and home configurations files are tracked in this repository.
 
-Links:
-- [home-manager](https://github.com/nix-community/home-manager)
-- [nix-darwin](https://github.com/LnL7/nix-darwin)
-
 ## Bootstrapping
 1. [install nix](https://nixos.org/download.html)
 2. `git clone git@github.com:chicochico/dotfiles.git $HOME/dotfiles`
@@ -15,18 +11,20 @@ Links:
 
 Restarting the computer is a good idea.
 
-## Usage
-#### System
-After updating system configurations rebuild with:
+To update **system** configurations, rebuild with:
 ```
  darwin-rebuild switch --flake .#hostname
  ```
 
-#### Home
-After updating home configurations rebuild with:
+To update **home** configurations rebuild with:
 ```
 home-manager switch --flake .#username
 ```
 
 TODO:
 - figure out why base16 theme is not applied when starting a new terminal window
+
+## Links
+- [home-manager](https://github.com/nix-community/home-manager)
+- [nix-darwin](https://github.com/LnL7/nix-darwin)
+
