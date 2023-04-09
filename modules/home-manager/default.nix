@@ -123,16 +123,19 @@
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/.zshrc)
         ''
-          BASE16_THEME_DEFAULT="base16_default-dark"
-          [ -n "$PS1" ] && \
-            [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
-              source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
-        ''
-        ''
+          # add direnv hook
           eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
         ''
       ]);
       target = ".zshrc";
+    };
+    zshenv = {
+      text = ''
+        # load base16
+        source "${inputs.base16-shell}/profile_helper.sh"
+      ''
+      ;
+      target = ".zshenv";
     };
   };
 }
