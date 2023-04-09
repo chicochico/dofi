@@ -20,6 +20,12 @@
 
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.tmux = {
     enable = true;
     plugins = with pkgs.tmuxPlugins; [
@@ -116,12 +122,14 @@
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/.zshrc)
-
         ''
           BASE16_THEME_DEFAULT="base16_default-dark"
           [ -n "$PS1" ] && \
             [ -s "${inputs.base16-shell}/profile_helper.sh" ] && \
               source "${inputs.base16-shell}/profile_helper.sh" > /dev/null
+        ''
+        ''
+          eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
         ''
       ]);
       target = ".zshrc";
