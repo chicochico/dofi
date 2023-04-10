@@ -5,6 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Theme
+# $NIX_USER_PROFILE_DIR is created by nix-darwin
+source $NIX_USER_PROFILE_DIR/home-manager/home-path/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source ~/.p10k.zsh
+
 # ZSH options
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
@@ -21,26 +27,18 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_DISABLE_COMPFIX=true
+# Autocompletion
+autoload -U compinit && compinit
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' menu select
+
+# Command editing
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
 
 # gpg
 export GPG_TTY=$TTY
-
-# Theme
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(
-  git
-  docker
-  aws
-  colored-man-pages
-)
-
-# User configuration
-source $ZSH/oh-my-zsh.sh
 
 # helper funcs
 function load_env() {
@@ -48,7 +46,8 @@ function load_env() {
 }
 
 # aliases
-alias conf-vim="nvim ~/.config/nvim/init.vim"
+alias l="ls -lah --color=auto"
+alias conf-vim="nvim ~/.config/nvim/init.lua"
 alias conf-zsh="nvim ~/.zshrc"
 alias conf-tmux="nvim ~/.tmux.conf"
 alias conf-alacritty="nvim ~/.alacritty.yml"
@@ -64,8 +63,6 @@ alias k="kubectl"
 alias lenv=load_env
 alias g=gpg
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -73,13 +70,7 @@ else
   export EDITOR='nvim'
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi

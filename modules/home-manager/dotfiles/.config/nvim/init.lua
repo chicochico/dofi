@@ -1,65 +1,4 @@
-require('packer').startup(function(use)
-  use "wbthomason/packer.nvim"
-  use "gioele/vim-autoswap"
-  use "chriskempson/base16-vim"
-  use "tpope/vim-fugitive"
-  use "tpope/vim-surround"
-  use "tpope/vim-obsession"
-  use "tpope/vim-sleuth"
-  use "tpope/vim-repeat"
-  use "tpope/vim-commentary"
-  use 'lewis6991/gitsigns.nvim'
-  use "majutsushi/tagbar"
-  use { "junegunn/fzf", run = ":call fzf#install()" }
-  use "junegunn/fzf.vim"
-  use "junegunn/gv.vim"
-  use "ludovicchabant/vim-gutentags"
-  use "christoomey/vim-tmux-navigator"
-  use "alok/notational-fzf-vim"
-  use "junegunn/goyo.vim"
-  use "preservim/vim-pencil"
-  use "jose-elias-alvarez/null-ls.nvim"
-
-  use {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end
-  }
-
-  use {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-  }
-
-  use {
-    'neovim/nvim-lspconfig',
-    requires = {
-      -- automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      -- for installing non lsp tools
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-      -- useful status updates for LSP
-      'j-hui/fidget.nvim',
-    },
-  }
-
-  use { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  }
-
-  use { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  }
-end)
-
+-- use "alok/notational-fzf-vim"
 
 -- Neovim Settings
 ------------------
@@ -242,8 +181,11 @@ vim.api.nvim_set_keymap('n', '<leader>/', ':Ag<CR>', {noremap = true})
 vim.api.nvim_set_var('goyo_width', 80)         -- (default: 80)
 vim.api.nvim_set_var('goyo_height', 100)       -- (default: 85%)
 vim.api.nvim_set_var('goyo_linenr', 0)         -- (default: 0)
-vim.api.nvim_set_keymap('n', '<leader>g', ':Goyo<CR>', {noremap = true})
 
+
+-- Fugitive
+-- --------
+vim.api.nvim_set_keymap('n', '<leader>g', ':Git<CR>', {noremap = true})
 
 -- Pencil
 -- ------
@@ -280,17 +222,7 @@ vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>MarkdownPreviewToggle', {norema
 -- Treesitter
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = {
-    'c',
-    'cpp',
-    'lua',
-    'python',
-    'typescript',
-    'help' ,
-    'dockerfile',
-    'hcl',
-  },
+  -- install new syntax with home.nix
   highlight = { enable = true , disable = {'terraform'}},
   indent = { enable = true, disable = {'python'}},
 }
@@ -298,6 +230,7 @@ require('nvim-treesitter.configs').setup {
 
 -- Gitsigns
 vim.api.nvim_set_keymap('n', '<leader>hu', ':Gitsigns reset_hunk<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap = true})
 
 
 -- LSP
@@ -323,8 +256,8 @@ local function color_customize()
   hl(0, 'VertSplit',             {ctermfg = 18, ctermbg = 0})
   hl(0, 'LineNr',                {ctermfg = 8, ctermbg = 0})
   hl(0, 'CursorLineNr',          {ctermfg = 8, ctermbg = 0})
-  hl(0, 'StatusLine',            {ctermfg = 20, ctermbg = 0})
-  hl(0, 'StatusLineNC',          {ctermfg = 19, ctermbg = 0})
+  hl(0, 'StatusLine',            {ctermfg = 7, ctermbg = 18})
+  hl(0, 'StatusLineNC',          {ctermfg = 19, ctermbg = 18})
   hl(0, 'TabLine',               {ctermfg = 19, ctermbg = 0})
   hl(0, 'TabLineSel',            {ctermfg = 20, ctermbg = 0})
   hl(0, 'TabLineFill',           {ctermfg = 20, ctermbg = 0})
@@ -332,5 +265,4 @@ local function color_customize()
   hl(0, 'GitSignsChange',        {ctermfg = 4, ctermbg = 0})
   hl(0, 'GitSignsDelete',        {ctermfg = 1, ctermbg = 0})
 end
-
 color_customize()

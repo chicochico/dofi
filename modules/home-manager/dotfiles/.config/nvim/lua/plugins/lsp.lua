@@ -20,6 +20,7 @@ local on_attach = function(_, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
   -- auto format
   vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -31,34 +32,13 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Setup mason so it can manage external tooling
-require('mason').setup()
-
+-- Install lsps and fixers in home.nix
 local servers = {
     'pyright',
     'terraformls',
     'tflint',
+    'rnix',
 }
-
--- Ensure the servers above are installed
-require('mason-lspconfig').setup {
-  ensure_installed = servers,
-}
-
-require('mason-tool-installer').setup {
-  -- a list of all tools you want to ensure are installed upon
-  -- start; they should be the names Mason uses for each tool
-  ensure_installed = {
-    'isort',
-    'black',
-    'jq',
-    'stylua',
-  },
-  auto_update = false,
-  run_on_start = false,
-  start_delay = 3000, -- 3 second delay
-}
-
 
 -- Null-ls
 -- -------
@@ -66,11 +46,12 @@ local null_ls = require("null-ls")
 
 -- register any number of sources simultaneously
 local sources = {
-            null_ls.builtins.formatting.black,
-  null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.nixpkgs_fmt
 }
 
 null_ls.setup({ sources = sources })
