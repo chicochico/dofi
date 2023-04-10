@@ -79,10 +79,10 @@ vim.keymap.set('n', 'L', ':bn<CR>', {noremap = true})                      -- mo
 vim.keymap.set('n', 'H', ':bp<CR>', {noremap = true})
 vim.keymap.set('n', '<esc>', ':noh<CR>', {noremap = true, silent = true})  -- clear highlighting
 vim.keymap.set('n', 's', ':w<CR>', {noremap = true})                       -- write buffer
-vim.keymap.set('n', '<C-e>', '4<C-e>', {noremap = true})                   -- scroll steps
-vim.keymap.set('n', '<C-y>', '4<C-y>', {noremap = true})
-vim.keymap.set('v', '<C-e>', '4<C-e>', {noremap = true})
-vim.keymap.set('v', '<C-y>', '4<C-y>', {noremap = true})
+vim.keymap.set('n', '<C-e>', '3<C-e>', {noremap = true})                   -- scroll steps
+vim.keymap.set('n', '<C-y>', '3<C-y>', {noremap = true})
+vim.keymap.set('v', '<C-e>', '3<C-e>', {noremap = true})
+vim.keymap.set('v', '<C-y>', '3<C-y>', {noremap = true})
 vim.keymap.set('n', 't', '<C-]>', {noremap = true})                        -- tags
 vim.keymap.set('n', 'T', '<C-t>', {noremap = true})
 
@@ -256,10 +256,10 @@ local function color_customize()
   hl(0, 'VertSplit',             {ctermfg = 18, ctermbg = 0})
   hl(0, 'LineNr',                {ctermfg = 8, ctermbg = 0})
   hl(0, 'CursorLineNr',          {ctermfg = 8, ctermbg = 0})
-  hl(0, 'StatusLine',            {ctermfg = 7, ctermbg = 18})
+  hl(0, 'StatusLine',            {ctermfg = 21, ctermbg = 18})
   hl(0, 'StatusLineNC',          {ctermfg = 19, ctermbg = 18})
   hl(0, 'TabLine',               {ctermfg = 19, ctermbg = 0})
-  hl(0, 'TabLineSel',            {ctermfg = 20, ctermbg = 0})
+  hl(0, 'TabLineSel',            {ctermfg = 21, ctermbg = 0})
   hl(0, 'TabLineFill',           {ctermfg = 20, ctermbg = 0})
   hl(0, 'GitSignsAdd',           {ctermfg = 2, ctermbg = 0})
   hl(0, 'GitSignsChange',        {ctermfg = 4, ctermbg = 0})
