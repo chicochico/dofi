@@ -8,6 +8,8 @@ fi
 # Theme
 # $NIX_USER_PROFILE_DIR is created by nix-darwin
 source $NIX_USER_PROFILE_DIR/home-manager/home-path/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source ~/.p10k.zsh
 
 # ZSH options
 HISTFILE="$HOME/.zsh_history"
@@ -24,6 +26,11 @@ setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+
+# Autocompletion
+autoload -U compinit && compinit
+zstyle ':completion:*' completer _extensions _complete _approximate
+zstyle ':completion:*' menu select
 
 # Command editing
 autoload -U edit-command-line
@@ -62,9 +69,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
