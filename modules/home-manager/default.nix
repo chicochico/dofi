@@ -71,14 +71,24 @@
       null-ls-nvim
       markdown-preview-nvim
       nvim-cmp
-      (nvim-treesitter.withPlugins (_: with pkgs.tree-sitter-grammars; [
-        # tree-sitter-python
-        tree-sitter-lua
-        tree-sitter-c
-        tree-sitter-dockerfile
-        tree-sitter-hcl
-        tree-sitter-nix
-      ]))
+      (pkgs.neovim.override {
+        configure = {
+          packages.myPlugins = with pkgs.vimPlugins; {
+            start = [
+              (nvim-treesitter.withPlugins (
+                plugins: with plugins; [
+                  python
+                  lua
+                  c
+                  dockerfile
+                  hcl
+                  nix
+                ]
+              ))
+            ];
+          };
+        };
+      })
     ];
 
     # language servers and fixers
