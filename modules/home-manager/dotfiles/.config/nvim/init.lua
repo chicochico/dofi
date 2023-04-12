@@ -222,7 +222,7 @@ vim.api.nvim_set_keymap('n', '<leader>p', '<Plug>MarkdownPreviewToggle', {norema
 -- Treesitter
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
-  -- install new syntax with home.nix
+  -- install new syntaxes with home.nix
   highlight = { enable = true , disable = {'terraform'}},
   indent = { enable = true, disable = {'python'}},
 }
