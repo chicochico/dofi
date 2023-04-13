@@ -20,7 +20,7 @@ local on_attach = function(_, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
   -- Auto format
   vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
-  vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+  vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
 
   -- Diagnostics
   vim.diagnostic.config({
@@ -127,12 +127,3 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
-vim.diagnostic.config({
-    virtual_text = false,
-    float = {
-      scope = 'cursor',
-    },
-})
-
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

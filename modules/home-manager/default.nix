@@ -71,24 +71,21 @@
       null-ls-nvim
       markdown-preview-nvim
       nvim-cmp
-      (pkgs.neovim.override {
-        configure = {
-          packages.myPlugins = with pkgs.vimPlugins; {
-            start = [
-              (nvim-treesitter.withPlugins (
-                plugins: with plugins; [
-                  python
-                  lua
-                  c
-                  dockerfile
-                  hcl
-                  nix
-                ]
-              ))
-            ];
-          };
-        };
-      })
+      (nvim-treesitter.withPlugins (
+        plugins: with plugins; [
+          bash
+          c
+          clojure
+          diff
+          dockerfile
+          gitignore
+          hcl
+          kotlin
+          lua
+          nix
+          python
+        ]
+      ))
     ];
 
     # language servers and fixers
