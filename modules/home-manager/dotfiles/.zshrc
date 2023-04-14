@@ -47,11 +47,6 @@ function load_env() {
 
 # aliases
 alias l="ls -lah --color=auto"
-alias conf-vim="nvim ~/.config/nvim/init.lua"
-alias conf-zsh="nvim ~/.zshrc"
-alias conf-tmux="nvim ~/.tmux.conf"
-alias conf-alacritty="nvim ~/.alacritty.yml"
-alias conf="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias vim="nvim"
 alias v="nvim"
 alias vimr="vimr --cur-env"
@@ -61,7 +56,7 @@ alias yk="ykman"
 alias d="docker"
 alias k="kubectl"
 alias lenv=load_env
-alias g=gpg
+alias g=git
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
