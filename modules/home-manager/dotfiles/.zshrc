@@ -49,6 +49,7 @@ function load_env() {
 alias l="ls -lah --color=auto"
 alias vim="nvim"
 alias v="nvim"
+alias vimdiff="nvim -d"
 alias vimr="vimr --cur-env"
 alias c="clear"
 alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
