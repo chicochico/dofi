@@ -17,6 +17,7 @@
       universal-ctags
       jq
       awscli2
+      aws-vault
     ];
 
   };
