@@ -16,6 +16,7 @@
       gh
       universal-ctags
       jq
+      awscli2
     ];
 
   };

@@ -17,7 +17,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
   -- Auto format
   vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
   vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=true})]]
