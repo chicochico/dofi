@@ -86,6 +86,7 @@
           lua
           nix
           python
+          terraform
         ]
       ))
     ];
