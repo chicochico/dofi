@@ -97,6 +97,8 @@
       terraform-ls
       tflint
       # python
+      python311Packages.pyflakes
+      python311Packages.python-lsp-server
       isort
       black
       # nix
