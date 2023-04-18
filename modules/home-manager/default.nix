@@ -97,7 +97,6 @@
       terraform-ls
       tflint
       # python
-      nodePackages.pyright
       isort
       black
       # nix

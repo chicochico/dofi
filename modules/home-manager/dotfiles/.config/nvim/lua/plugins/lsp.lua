@@ -38,14 +38,6 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Install lsps and fixers in home.nix
-local servers = {
-    'pyright',
-    'terraformls',
-    'tflint',
-    'rnix',
-}
-
 -- Null-ls
 -- -------
 local null_ls = require("null-ls")
@@ -67,6 +59,14 @@ null_ls.setup({ sources = sources })
 -- --------
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Install lsps and fixers in home.nix
+local servers = {
+    'pylsp',
+    'terraformls',
+    'tflint',
+    'rnix',
+}
 
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
