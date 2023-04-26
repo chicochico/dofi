@@ -31,7 +31,9 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 autoload -U compinit && compinit
 zstyle ':completion:*' completer _extensions _complete _approximate
 zstyle ':completion:*' menu select
-
+zstyle ':completion:*' matcher-list 'r:|?=** m:{a-z\-}={A-Z\_}'  # fuzzy autocomplete
+setopt auto_menu
+   
 # Command editing
 autoload -U edit-command-line
 zle -N edit-command-line
