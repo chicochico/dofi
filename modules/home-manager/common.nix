@@ -22,6 +22,47 @@
 
   };
 
+  # This value determines the Home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new Home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update Home Manager without changing this value. See
+  # the Home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "22.11";
+
+  home.file = {
+    alacritty = { source = ./dotfiles/.config/alacritty; target = ".config/alacritty/"; };
+    gitconfig = { source = ./dotfiles/.gitconfig; target = ".gitconfig"; };
+    karabiner = { source = ./dotfiles/.config/karabiner; target = ".config/karabiner"; };
+    nvim = { source = ./dotfiles/.config/nvim; target = ".config/nvim/"; };
+    p10k = { source = ./dotfiles/.p10k.zsh; target = ".p10k.zsh"; };
+    tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
+    vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
+    zshrc = {
+      text = builtins.concatStringsSep "\n" ([
+        (builtins.readFile dotfiles/.zshrc)
+        ''
+          # add direnv hook
+          eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+        ''
+      ]);
+      target = ".zshrc";
+    };
+    zshenv = {
+      text = ''
+        # load base16
+        source "${inputs.base16-shell}/profile_helper.sh"
+      ''
+      ;
+      target = ".zshenv";
+    };
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
@@ -109,44 +150,4 @@
     ];
   };
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.11";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  home.file = {
-    alacritty = { source = ./dotfiles/.config/alacritty; target = ".config/alacritty/"; };
-    gitconfig = { source = ./dotfiles/.gitconfig; target = ".gitconfig"; };
-    karabiner = { source = ./dotfiles/.config/karabiner; target = ".config/karabiner"; };
-    nvim = { source = ./dotfiles/.config/nvim; target = ".config/nvim/"; };
-    p10k = { source = ./dotfiles/.p10k.zsh; target = ".p10k.zsh"; };
-    tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
-    vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
-    zshrc = {
-      text = builtins.concatStringsSep "\n" ([
-        (builtins.readFile dotfiles/.zshrc)
-        ''
-          # add direnv hook
-          eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
-        ''
-      ]);
-      target = ".zshrc";
-    };
-    zshenv = {
-      text = ''
-        # load base16
-        source "${inputs.base16-shell}/profile_helper.sh"
-      ''
-      ;
-      target = ".zshenv";
-    };
-  };
 }

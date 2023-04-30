@@ -36,7 +36,16 @@
         mbp14 = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
-            ./modules/home-manager
+            ./modules/home-manager/mbp14.nix
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+        };
+        mbp13 = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            ./modules/home-manager/mbp13.nix
           ];
           extraSpecialArgs = {
             inherit inputs;
