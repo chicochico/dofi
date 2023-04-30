@@ -37,15 +37,14 @@
     global.brewfile = true;
     masApps = { };
     casks = [
-      "mos"
       "alacritty"
-      "karabiner-elements"
-      "mullvadvpn"
       "firefox"
-      "monitorcontrol"
-      "signal"
       "flux"
+      "karabiner-elements"
+      "monitorcontrol"
       "mos"
+      "mullvadvpn"
+      "signal"
       "spotify"
     ];
   };
