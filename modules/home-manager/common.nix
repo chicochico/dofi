@@ -5,19 +5,20 @@
     username = "fchiang";
     homeDirectory = "/Users/${config.home.username}";
     packages = with pkgs; [
-      zsh
-      zsh-powerlevel10k
+      aws-vault
+      awscli2
       fzf
+      gh
       gnupg
+      jq
+      nodejs
       ripgrep
       silver-searcher
       tree
-      nodejs
-      gh
       universal-ctags
-      jq
-      awscli2
-      aws-vault
+      yubikey-manager
+      zsh
+      zsh-powerlevel10k
     ];
 
   };

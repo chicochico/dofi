@@ -42,11 +42,6 @@ bindkey '\C-x\C-e' edit-command-line
 # gpg
 export GPG_TTY=$TTY
 
-# helper funcs
-function load_env() {
-  export $(cat $1 | xargs)
-}
-
 # aliases
 alias l="ls -lah --color=auto"
 alias vim="nvim"
@@ -58,7 +53,6 @@ alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias yk="ykman"
 alias d="docker"
 alias k="kubectl"
-alias lenv=load_env
 alias g=git
 
 # Changing/making/removing directory
