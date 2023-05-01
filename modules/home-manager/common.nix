@@ -1,5 +1,16 @@
 { config, pkgs, inputs, ... }:
 
+let
+  notational-fzf-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "notational-fzf-vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "Alok";
+      repo = "notational-fzf-vim";
+      rev = "75c2c31e7cd77397018c5777804666d648557537";
+      hash = "sha256-10IVgfdk8gaz4kHUjExtrnntsiFJry2/KRvuHYccqG4=";
+    };
+  };
+in
 {
   home = {
     username = "fchiang";
@@ -115,6 +126,7 @@
       null-ls-nvim
       markdown-preview-nvim
       nvim-cmp
+      notational-fzf-vim
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
           bash
