@@ -7,6 +7,10 @@ in
   inherit (common) programs;
   home = {
     inherit (common.home) username homeDirectory stateVersion file;
-    packages = with pkgs; common.home.packages ++ [ terraform ];
+    packages = with pkgs; common.home.packages ++ [ 
+      kubectl 
+      teleport 
+      argocd 
+    ];
   };
 }

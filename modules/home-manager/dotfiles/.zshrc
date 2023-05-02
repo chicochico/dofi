@@ -7,7 +7,7 @@ fi
 
 # Theme
 # $NIX_USER_PROFILE_DIR is created by nix-darwin
-source $NIX_USER_PROFILE_DIR/home-manager/home-path/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+source $NIX_USER_PROFILE_DIR/profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
 
