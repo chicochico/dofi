@@ -22,6 +22,7 @@ in
       gh
       gnupg
       jq
+      kitty
       nodejs
       ripgrep
       silver-searcher
@@ -45,16 +46,16 @@ in
   home.stateVersion = "22.11";
 
   home.file = {
-    alacritty = { source = ./dotfiles/.config/alacritty; target = ".config/alacritty/"; };
-    gitconfig = { source = ./dotfiles/.gitconfig; target = ".gitconfig"; };
-    karabiner = { source = ./dotfiles/.config/karabiner; target = ".config/karabiner"; };
-    nvim = { source = ./dotfiles/.config/nvim; target = ".config/nvim/"; };
-    p10k = { source = ./dotfiles/.p10k.zsh; target = ".p10k.zsh"; };
-    tmuxcolors = { source = ./dotfiles/.tmuxcolors; target = ".tmuxcolors"; };
-    vale = { source = ./dotfiles/.vale.ini; target = ".vale.ini"; };
+    alacritty = { source = ./dotfiles/config/alacritty; target = ".config/alacritty/"; };
+    gitconfig = { source = ./dotfiles/gitconfig; target = ".gitconfig"; };
+    karabiner = { source = ./dotfiles/config/karabiner; target = ".config/karabiner"; };
+    nvim = { source = ./dotfiles/config/nvim; target = ".config/nvim/"; };
+    p10k = { source = ./dotfiles/p10k.zsh; target = ".p10k.zsh"; };
+    tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
+    vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
-        (builtins.readFile dotfiles/.zshrc)
+        (builtins.readFile dotfiles/zshrc)
         ''
           # add direnv hook
           eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
@@ -87,7 +88,7 @@ in
       vim-tmux-navigator
     ];
     sensibleOnTop = false;
-    extraConfig = builtins.readFile dotfiles/.tmux.conf;
+    extraConfig = builtins.readFile dotfiles/tmux.conf;
   };
 
   programs.zsh = {
