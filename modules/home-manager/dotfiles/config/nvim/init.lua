@@ -253,7 +253,7 @@ local function color_customize()
 
   hl(0, 'EndOfBuffer',           {ctermfg = 0, ctermbg = 0})
   hl(0, 'SignColumn',            {ctermfg = 8, ctermbg = 0})
-  hl(0, 'VertSplit',             {ctermfg = 18, ctermbg = 0})
+  hl(0, 'VertSplit',             {ctermfg = 19, ctermbg = 0})
   hl(0, 'LineNr',                {ctermfg = 8, ctermbg = 0})
   hl(0, 'CursorLineNr',          {ctermfg = 8, ctermbg = 0})
   hl(0, 'StatusLine',            {ctermfg = 7, ctermbg = 18})
