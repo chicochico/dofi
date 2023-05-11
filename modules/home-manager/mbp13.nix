@@ -8,10 +8,11 @@ in
   home = {
     inherit (common.home) username homeDirectory stateVersion file;
     packages = with pkgs; common.home.packages ++ [
-      kubectl
-      teleport
       argocd
+      inetutils
+      kubectl
       kubeseal
+      teleport
     ];
   };
 }

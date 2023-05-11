@@ -161,6 +161,9 @@ in
       nixpkgs-fmt
       # lua
       stylua
+      # yaml
+      nodePackages.yaml-language-server
+      yamlfmt
     ];
   };
 

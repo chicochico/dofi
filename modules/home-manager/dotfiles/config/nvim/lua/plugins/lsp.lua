@@ -49,7 +49,8 @@ local sources = {
     null_ls.builtins.formatting.jq,
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.nixpkgs_fmt
+    null_ls.builtins.formatting.nixpkgs_fmt,
+    null_ls.builtins.formatting.yamlfmt,
 }
 
 null_ls.setup({ sources = sources })
@@ -60,12 +61,13 @@ null_ls.setup({ sources = sources })
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Install lsps and fixers in home.nix
+-- Install lsps and fixers in common.nix
 local servers = {
     'pylsp',
     'terraformls',
     'tflint',
     'rnix',
+    'yamlls',
 }
 
 for _, lsp in ipairs(servers) do
