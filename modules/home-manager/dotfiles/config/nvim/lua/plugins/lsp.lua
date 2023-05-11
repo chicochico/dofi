@@ -67,7 +67,6 @@ local servers = {
     'terraformls',
     'tflint',
     'rnix',
-    'yamlls',
 }
 
 for _, lsp in ipairs(servers) do
@@ -76,6 +75,18 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+require('lspconfig').yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      format = { enable = true },
+      keyOrdering = false,
+    }
+  },
+}
+
 
 -- Turn on lsp status information
 require('fidget').setup()
