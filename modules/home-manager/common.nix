@@ -126,7 +126,6 @@ in
       vim-pencil
       null-ls-nvim
       markdown-preview-nvim
-      nvim-cmp
       notational-fzf-vim
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
