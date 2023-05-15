@@ -104,6 +104,7 @@ in
       fidget-nvim
 
       nvim-cmp
+      nvim-autopairs
       cmp-nvim-lsp
       luasnip
       cmp_luasnip
