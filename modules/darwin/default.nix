@@ -46,6 +46,7 @@
       "mullvadvpn"
       "signal"
       "spotify"
+      "vlc"
     ];
   };
 }
