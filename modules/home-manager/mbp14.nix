@@ -7,6 +7,9 @@ in
   inherit (common) programs;
   home = {
     inherit (common.home) username homeDirectory stateVersion file;
-    packages = with pkgs; common.home.packages ++ [ ];
+    packages = with pkgs; common.home.packages ++ [ 
+      kubectl
+      kustomize
+    ];
   };
 }

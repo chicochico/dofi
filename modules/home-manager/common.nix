@@ -28,6 +28,7 @@ in
       silver-searcher
       tree
       universal-ctags
+      unixtools.watch
       yubikey-manager
       zsh
       zsh-powerlevel10k
