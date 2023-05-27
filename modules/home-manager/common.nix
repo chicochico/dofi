@@ -48,7 +48,6 @@ in
 
   home.file = {
     alacritty = { source = ./dotfiles/config/alacritty; target = ".config/alacritty/"; };
-    gitconfig = { source = ./dotfiles/gitconfig; target = ".gitconfig"; };
     karabiner = { source = ./dotfiles/config/karabiner; target = ".config/karabiner"; };
     nvim = { source = ./dotfiles/config/nvim; target = ".config/nvim/"; };
     p10k = { source = ./dotfiles/p10k.zsh; target = ".p10k.zsh"; };

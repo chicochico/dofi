@@ -83,6 +83,9 @@ require('lspconfig').yamlls.setup {
     yaml = {
       format = { enable = true },
       keyOrdering = false,
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+      },
     }
   },
 }
