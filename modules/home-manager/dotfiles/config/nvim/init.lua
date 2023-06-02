@@ -31,24 +31,18 @@ vim.cmd([[
 
 -- statusline
 -- ----------
-vim.cmd([[
-function! GetGitHead()
-    let l:branch = fugitive#Head()
-    return strlen(l:branch)>0 ? l:branch.' • ' : ''
-endfunction
-]])
-
 local stl = {
-  "%{' '}",
-  "%{GetGitHead()}",
-  "%f",
+  "%#StatusLineGitHead#%{fugitive#Head()}%#StatusLine#",
+  "%#StatusLineSeparator#%{fugitive#Head() != '' ? '  • ' : ''}%#StatusLine#",
+  "%#StatusLineFilePath#%f%#StatusLine#",
   "%( [%M%R]%)",
   "%=",
   "%{&filetype}",
-  " %{&fileencoding?&fileencoding:&encoding}",
-  " %{&fileformat}",
-  "   %l,%c%V %P",
-  "%{' '}",
+  "%#StatusLineSeparator#%{&filetype != '' ? '  • ' : ''}%#StatusLine#",
+  "%{&fileencoding?&fileencoding:&encoding}",
+  "%{&fileformat}",
+  "%#StatusLineSeparator# • %#StatusLine#",
+  "%l:%c%V %P",
 }
 
 vim.o.statusline = table.concat(stl)
@@ -251,18 +245,21 @@ local function color_customize()
     ]])
   end
 
-  hl(0, 'EndOfBuffer',           {ctermfg = 0, ctermbg = 0})
-  hl(0, 'SignColumn',            {ctermfg = 8, ctermbg = 0})
-  hl(0, 'VertSplit',             {ctermfg = 19, ctermbg = 0})
-  hl(0, 'LineNr',                {ctermfg = 8, ctermbg = 0})
-  hl(0, 'CursorLineNr',          {ctermfg = 8, ctermbg = 0})
-  hl(0, 'StatusLine',            {ctermfg = 7, ctermbg = 18})
-  hl(0, 'StatusLineNC',          {ctermfg = 8, ctermbg = 18})
-  hl(0, 'TabLineSel',            {ctermfg = 7, ctermbg = 0})
-  hl(0, 'TabLine',               {ctermfg = 8, ctermbg = 0})
-  hl(0, 'TabLineFill',           {ctermfg = 20, ctermbg = 0})
-  hl(0, 'GitSignsAdd',           {ctermfg = 2, ctermbg = 0})
-  hl(0, 'GitSignsChange',        {ctermfg = 4, ctermbg = 0})
-  hl(0, 'GitSignsDelete',        {ctermfg = 1, ctermbg = 0})
+  hl(0, 'EndOfBuffer',         {ctermfg = 0,  ctermbg = 0})
+  hl(0, 'SignColumn',          {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'VertSplit',           {ctermfg = 19, ctermbg = 0})
+  hl(0, 'LineNr',              {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'CursorLineNr',        {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'StatusLine',          {ctermfg = 20, ctermbg = 18})
+  hl(0, 'StatusLineNC',        {ctermfg = 8,  ctermbg = 18})
+  hl(0, 'StatusLineGitHead',   {ctermfg = 2,  ctermbg = 18, bold=true})
+  hl(0, 'StatusLineFilePath',  {ctermfg = 4,  ctermbg = 18})
+  hl(0, 'StatusLineSeparator', {ctermfg = 8,  ctermbg = 18})
+  hl(0, 'TabLineSel',          {ctermfg = 7,  ctermbg = 0})
+  hl(0, 'TabLine',             {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'TabLineFill',         {ctermfg = 20, ctermbg = 0})
+  hl(0, 'GitSignsAdd',         {ctermfg = 2,  ctermbg = 0})
+  hl(0, 'GitSignsChange',      {ctermfg = 4,  ctermbg = 0})
+  hl(0, 'GitSignsDelete',      {ctermfg = 1,  ctermbg = 0})
 end
 color_customize()
