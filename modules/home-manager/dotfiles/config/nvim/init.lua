@@ -66,10 +66,11 @@ vim.cmd([[
 vim.cmd([[
   augroup statusline_focus
     autocmd!
-    autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 20, ctermbg = 18})
-    autocmd FocusLost * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 8,  ctermbg = 18, nocombine=true})
+    autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 7, ctermbg = 18})
+    autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 8,  ctermbg = 18, nocombine = true})
   augroup END
 ]])
+
 
 -- Abbreviation shortcuts
 -- ----------------------
@@ -204,6 +205,7 @@ vim.api.nvim_set_var('goyo_linenr', 0)         -- (default: 0)
 -- --------
 vim.api.nvim_set_keymap('n', '<leader>g', ':Git<CR>', {noremap = true})
 
+
 -- Pencil
 -- ------
 vim.cmd([[
@@ -272,7 +274,7 @@ local function color_customize()
   hl(0, 'VertSplit',           {ctermfg = 19, ctermbg = 0})
   hl(0, 'LineNr',              {ctermfg = 8,  ctermbg = 0})
   hl(0, 'CursorLineNr',        {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'StatusLine',          {ctermfg = 20, ctermbg = 18})
+  hl(0, 'StatusLine',          {ctermfg = 7,  ctermbg = 18})
   hl(0, 'StatusLineNC',        {ctermfg = 8,  ctermbg = 18})
   hl(0, 'StatusLineGitHead',   {ctermfg = 20, ctermbg = 18, bold=true})
   hl(0, 'StatusLineFilePath',  {ctermfg = 4,  ctermbg = 18})
