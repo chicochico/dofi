@@ -36,9 +36,8 @@ function GetStatusLine(is_active)
   local separator = "%#StatusLineSeparator# • %*"
   local git_head_name = vim.api.nvim_eval('fugitive#Head()')
   local filetype_name = vim.api.nvim_eval('&filetype')
-  local in_git_repo = (git_head_name ~= '')
-  local section_git_head = (in_git_repo and ' ' or '') .. (git_head_name or '') .. (in_git_repo and separator or '')
-  local section_filetype = (filetype_name or '') .. ((filetype_name ~= '') and separator or '')
+  local section_git_head = (git_head_name ~= '') and (' ' .. git_head_name .. separator) or ''
+  local section_filetype = (filetype_name ~= '') and (filetype_name .. separator) or ''
 
   return table.concat({
     section_git_head,
