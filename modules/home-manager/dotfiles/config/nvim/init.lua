@@ -31,22 +31,61 @@ vim.cmd([[
 
 -- statusline
 -- ----------
-local stl = {
-  "%#StatusLineGitHead#%{fugitive#Head()}%#StatusLine#",
-  "%#StatusLineSeparator#%{fugitive#Head() != '' ? '  • ' : ''}%#StatusLine#",
-  "%#StatusLineFilePath#%f%#StatusLine#",
-  "%( [%M%R]%)",
-  "%=",
-  "%{&filetype}",
-  "%#StatusLineSeparator#%{&filetype != '' ? '  • ' : ''}%#StatusLine#",
-  "%{&fileencoding?&fileencoding:&encoding}",
-  "%{&fileformat}",
-  "%#StatusLineSeparator# • %#StatusLine#",
-  "%l:%c%V %P",
-}
+-- Define new Lua functions for the active and inactive status lines
+function ActiveStatusLine()
+  local git_head = vim.api.nvim_eval('fugitive#Head()')
+  local filetype = vim.api.nvim_eval('&filetype')
 
-vim.o.statusline = table.concat(stl)
+  return table.concat({
+    "%#StatusLineGitHead#",
+    git_head,
+    "%*",
+    "%#StatusLineSeparator#",
+    (git_head ~= '') and ' • ' or '',
+    "%*",
+    "%f",
+    "%( [%M%R]%)",
+    "%=",
+    filetype,
+    "%#StatusLineSeparator#",
+    (filetype ~= '') and ' • ' or '',
+    "%*",
+    "%{&fileencoding?&fileencoding:&encoding}",
+    "%{&fileformat}",
+    "%#StatusLineSeparator#",
+    " • ",
+    "%*",
+    "%l:%c%V %P",
+  })
+end
 
+function InactiveStatusLine()
+  local git_head = vim.api.nvim_eval('fugitive#Head()')
+  local filetype = vim.api.nvim_eval('&filetype')
+
+  return table.concat({
+    git_head,
+    (git_head ~= '') and ' • ' or '',
+    "%f",
+    "%( [%M%R]%)",
+    "%=",
+    filetype,
+    (filetype ~= '') and ' • ' or '',
+    "%{&fileencoding?&fileencoding:&encoding}",
+    "%{&fileformat}",
+    " • ",
+    "%l:%c%V %P",
+  })
+end
+
+-- Define an autocommand group for setting the statusline
+vim.cmd([[
+  augroup statusline
+    autocmd!
+    autocmd WinEnter,BufEnter * lua vim.wo.statusline=ActiveStatusLine()
+    autocmd WinLeave,BufLeave * lua vim.wo.statusline=InactiveStatusLine()
+  augroup END
+]])
 
 -- Abbreviation shortcuts
 -- ----------------------
