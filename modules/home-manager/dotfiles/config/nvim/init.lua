@@ -64,7 +64,7 @@ vim.cmd([[
 
 -- Dim statusbar when focus is lost
 vim.cmd([[
-  augroup statusline
+  augroup statusline_focus
     autocmd!
     autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 20, ctermbg = 18})
     autocmd FocusLost * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 8,  ctermbg = 18, nocombine=true})
