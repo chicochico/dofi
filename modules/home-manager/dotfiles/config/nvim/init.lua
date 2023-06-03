@@ -226,7 +226,6 @@ vim.cmd([[
   augroup pencil
     autocmd!
     autocmd FileType md,markdown call pencil#init({'wrap': 'soft'})
-    autocmd FileType text,txt    call pencil#init()
   augroup END
 ]])
 
