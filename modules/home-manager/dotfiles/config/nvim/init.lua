@@ -49,7 +49,7 @@ function GetStatusLine(is_active)
     "%{&fileencoding?&fileencoding:&encoding}",
     "%{&fileformat}",
     separator,
-    "%l:%c%V %P",
+    "%l,%c %P",
   })
 end
 
