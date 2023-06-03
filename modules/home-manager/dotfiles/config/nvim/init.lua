@@ -32,48 +32,24 @@ vim.cmd([[
 -- statusline
 -- ----------
 -- Define new Lua functions for the active and inactive status lines
-function ActiveStatusLine()
-  local git_head = vim.api.nvim_eval('fugitive#Head()')
-  local filetype = vim.api.nvim_eval('&filetype')
+function GetStatusLine(is_active)
+  local separator = "%#StatusLineSeparator# • %*"
+  local git_head_name = vim.api.nvim_eval('fugitive#Head()')
+  local filetype_name = vim.api.nvim_eval('&filetype')
+  local git_head = (git_head_name or '') .. ((git_head_name ~= '') and separator or '')
+
+  local section_git_head = is_active and "%#StatusLineGitHead#" .. git_head .. "%*" or git_head
+  local section_filetype = (filetype_name or '') .. ((filetype_name ~= '') and separator or '')
 
   return table.concat({
-    "%#StatusLineGitHead#",
-    git_head,
-    "%*",
-    "%#StatusLineSeparator#",
-    (git_head ~= '') and ' • ' or '',
-    "%*",
+    section_git_head,
     "%f",
     "%( [%M%R]%)",
     "%=",
-    filetype,
-    "%#StatusLineSeparator#",
-    (filetype ~= '') and ' • ' or '',
-    "%*",
+    section_filetype,
     "%{&fileencoding?&fileencoding:&encoding}",
     "%{&fileformat}",
-    "%#StatusLineSeparator#",
-    " • ",
-    "%*",
-    "%l:%c%V %P",
-  })
-end
-
-function InactiveStatusLine()
-  local git_head = vim.api.nvim_eval('fugitive#Head()')
-  local filetype = vim.api.nvim_eval('&filetype')
-
-  return table.concat({
-    git_head,
-    (git_head ~= '') and ' • ' or '',
-    "%f",
-    "%( [%M%R]%)",
-    "%=",
-    filetype,
-    (filetype ~= '') and ' • ' or '',
-    "%{&fileencoding?&fileencoding:&encoding}",
-    "%{&fileformat}",
-    " • ",
+    separator,
     "%l:%c%V %P",
   })
 end
@@ -82,8 +58,8 @@ end
 vim.cmd([[
   augroup statusline
     autocmd!
-    autocmd WinEnter,BufEnter * lua vim.wo.statusline=ActiveStatusLine()
-    autocmd WinLeave,BufLeave * lua vim.wo.statusline=InactiveStatusLine()
+    autocmd WinEnter,BufEnter * lua vim.wo.statusline=GetStatusLine(true)
+    autocmd WinLeave,BufLeave * lua vim.wo.statusline=GetStatusLine(false)
   augroup END
 ]])
 
