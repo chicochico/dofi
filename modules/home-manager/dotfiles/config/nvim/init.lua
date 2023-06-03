@@ -34,9 +34,10 @@ vim.cmd([[
 -- Define new Lua functions for the active and inactive status lines
 function GetStatusLine(is_active)
   local separator = "%#StatusLineSeparator# • %*"
+  local git_separator = "%#StatusLineSeparator#  %*"
   local git_head_name = vim.api.nvim_eval('fugitive#Head()')
   local filetype_name = vim.api.nvim_eval('&filetype')
-  local section_git_head = (git_head_name ~= '') and (' ' .. git_head_name .. separator) or ''
+  local section_git_head = (git_head_name ~= '') and (git_head_name .. git_separator) or ''
   local section_filetype = (filetype_name ~= '') and (filetype_name .. separator) or ''
 
   return table.concat({
