@@ -9,3 +9,7 @@ font:
   normal:
     family: Fira Code
   size: 11.0
+# \x13 is the escape sequence for control+s (my tmux prefix) 
+key_bindings:
+  - {key: Tab, mods: Control, chars: "\x13n"} # tmux next window
+  - {key: Tab, mods: Control|Shift, chars: "\x13p"} # tmux prev window
