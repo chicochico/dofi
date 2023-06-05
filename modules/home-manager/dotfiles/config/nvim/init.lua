@@ -66,8 +66,8 @@ vim.cmd([[
 vim.cmd([[
   augroup statusline_focus
     autocmd!
-    autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 7, ctermbg = 18})
-    autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 8,  ctermbg = 18, nocombine = true})
+    autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 7, ctermbg = 0})
+    autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 8,  ctermbg = 0, nocombine = true})
   augroup END
 ]])
 
@@ -274,11 +274,11 @@ local function color_customize()
   hl(0, 'VertSplit',           {ctermfg = 19, ctermbg = 0})
   hl(0, 'LineNr',              {ctermfg = 8,  ctermbg = 0})
   hl(0, 'CursorLineNr',        {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'StatusLine',          {ctermfg = 7,  ctermbg = 18})
-  hl(0, 'StatusLineNC',        {ctermfg = 8,  ctermbg = 18})
+  hl(0, 'StatusLine',          {ctermfg = 7,  ctermbg = 0})
+  hl(0, 'StatusLineNC',        {ctermfg = 8,  ctermbg = 0})
   hl(0, 'StatusLineGitHead',   {ctermfg = 20, ctermbg = 18, bold=true})
   hl(0, 'StatusLineFilePath',  {ctermfg = 4,  ctermbg = 18})
-  hl(0, 'StatusLineSeparator', {ctermfg = 8,  ctermbg = 18})
+  hl(0, 'StatusLineSeparator', {ctermfg = 8,  ctermbg = 0})
   hl(0, 'TabLineSel',          {ctermfg = 7,  ctermbg = 0})
   hl(0, 'TabLine',             {ctermfg = 8,  ctermbg = 0})
   hl(0, 'TabLineFill',         {ctermfg = 20, ctermbg = 0})
