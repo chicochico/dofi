@@ -98,35 +98,33 @@ in
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      neo-tree-nvim
-
-      nvim-lspconfig
-      fidget-nvim
-
-      nvim-cmp
-      cmp-nvim-lsp
-      luasnip
-      cmp_luasnip
-
-      vim-autoswap
       base16-vim
-      vim-fugitive
-      vim-surround
-      vim-obsession
-      vim-sleuth
-      vim-repeat
-      vim-commentary
-      gitsigns-nvim
-      tagbar
+      cmp-nvim-lsp
+      cmp_luasnip
+      fidget-nvim
       fzf-vim
-      gv-vim
+      gitsigns-nvim
       goyo-vim
-      vim-gutentags
-      vim-tmux-navigator
-      vim-pencil
-      null-ls-nvim
+      gv-vim
+      luasnip
       markdown-preview-nvim
+      neo-tree-nvim
       notational-fzf-vim
+      null-ls-nvim
+      nvim-autopairs
+      nvim-cmp
+      nvim-lspconfig
+      tagbar
+      vim-autoswap
+      vim-commentary
+      vim-fugitive
+      vim-gutentags
+      vim-obsession
+      vim-pencil
+      vim-repeat
+      vim-sleuth
+      vim-surround
+      vim-tmux-navigator
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
           bash

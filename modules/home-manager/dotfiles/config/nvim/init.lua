@@ -243,6 +243,10 @@ vim.api.nvim_set_keymap('n', '<leader>hs', ':Gitsigns stage_hunk<CR>', {noremap 
 require('plugins.lsp')
 
 
+-- Nvim Autopairs
+require("nvim-autopairs").setup {}
+
+
 -- Customize some highlight colors
 -- Source base16 file from env var
 local function color_customize()
