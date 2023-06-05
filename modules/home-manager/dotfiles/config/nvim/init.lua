@@ -15,7 +15,7 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.smarttab = true
-vim.o.cursorline = true
+vim.o.cursorline = false
 vim.o.hidden = true             -- Allows hidden modified buffers
 vim.o.autoread = true           -- Reload file if changed outside vim
 vim.o.fillchars = 'vert:┃'      -- Vertical split character
@@ -103,18 +103,6 @@ vim.keymap.set('v', '<C-e>', '3<C-e>', {noremap = true})
 vim.keymap.set('v', '<C-y>', '3<C-y>', {noremap = true})
 vim.keymap.set('n', 't', '<C-]>', {noremap = true})                        -- tags
 vim.keymap.set('n', 'T', '<C-t>', {noremap = true})
-
-
--- Cursorline
--- ----------
-vim.cmd([[
-  " shows cursorline only in the active window
-  augroup CursorLineOnlyInActiveWindow
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
-  augroup END
-]])
 
 
 -- Plugin settings
