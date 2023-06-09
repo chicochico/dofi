@@ -249,18 +249,8 @@ require("nvim-autopairs").setup {}
 
 -- Customize some highlight colors
 -- Source base16 file from env var
-local function color_customize()
+function color_customize()
   local hl = vim.api.nvim_set_hl
-
-  local theme = os.getenv('BASE16_THEME')
-  if theme
-      and (not vim.g.colors_name or vim.g.colors_name ~= 'base16-' .. theme) then
-    vim.cmd([[
-      let base16colorspace=256
-      colorscheme base16-$BASE16_THEME
-    ]])
-  end
-
   hl(0, 'EndOfBuffer',         {ctermfg = 0,  ctermbg = 0})
   hl(0, 'SignColumn',          {ctermfg = 8,  ctermbg = 0})
   hl(0, 'VertSplit',           {ctermfg = 19, ctermbg = 0})
@@ -278,4 +268,12 @@ local function color_customize()
   hl(0, 'GitSignsChange',      {ctermfg = 4,  ctermbg = 0})
   hl(0, 'GitSignsDelete',      {ctermfg = 1,  ctermbg = 0})
 end
-color_customize()
+
+local theme = os.getenv('BASE16_THEME')
+if theme then
+  vim.cmd([[
+    let base16colorspace=256
+    autocmd ColorScheme * lua color_customize()
+    colorscheme base16-$BASE16_THEME
+  ]])
+end
