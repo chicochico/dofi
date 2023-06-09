@@ -59,17 +59,12 @@ in
         ''
           # add direnv hook
           eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
+
+          # load base16
+          source "${inputs.base16-shell}/profile_helper.sh"
         ''
       ]);
       target = ".zshrc";
-    };
-    zshenv = {
-      text = ''
-        # load base16
-        source "${inputs.base16-shell}/profile_helper.sh"
-      ''
-      ;
-      target = ".zshenv";
     };
   };
 
