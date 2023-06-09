@@ -110,7 +110,6 @@ in
       nvim-cmp
       nvim-lspconfig
       tagbar
-      vim-autoswap
       vim-commentary
       vim-fugitive
       vim-gutentags
