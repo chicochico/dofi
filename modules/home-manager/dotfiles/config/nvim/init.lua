@@ -31,44 +31,43 @@ vim.cmd([[
 
 -- statusline
 -- ----------
--- Define new Lua functions for the active and inactive status lines
-function GetStatusLine(is_active)
-  local separator = "%#StatusLineSeparator# • %*"
-  local git_separator = "%#StatusLineSeparator#  %*"
-  local git_head_name = vim.api.nvim_eval('fugitive#Head()')
-  local filetype_name = vim.api.nvim_eval('&filetype')
-  local section_git_head = (git_head_name ~= '') and (git_head_name .. git_separator) or ''
-  local section_filetype = (filetype_name ~= '') and (filetype_name .. separator) or ''
-
-  return table.concat({
-    section_git_head,
-    "%f",
-    "%( [%M%R]%)",
-    "%=",
-    section_filetype,
-    "%{&fileencoding?&fileencoding:&encoding}",
-    "%{&fileformat}",
-    separator,
-    "%l,%c %P",
-  })
+local function separator(str)
+  return "%#StatusLineSeparator#" .. str .. "%*"
 end
 
--- Define an autocommand group for setting the statusline
-vim.cmd([[
-  augroup statusline
-    autocmd!
-    autocmd WinEnter,BufEnter * lua vim.wo.statusline=GetStatusLine(true)
-    autocmd WinLeave,BufLeave * lua vim.wo.statusline=GetStatusLine(false)
-  augroup END
-]])
+local stl = {
+  "%{fugitive#Head()}",
+  separator("%{fugitive#Head() != '' ? '   ' : ''}"),
+  "%f",
+  "%( [%M%R]%)",
+  "%=",
+  "%{&filetype}",
+  separator("%{&filetype != '' ? '  • ' : ''}"),
+  "%{&fileencoding?&fileencoding:&encoding} ",
+  "%{&fileformat}",
+  separator(" • "),
+  "%l,%c %P",
+}
+ 
+vim.o.statusline = table.concat(stl)
 
 -- Dim statusbar when focus is lost
 vim.cmd([[
-  augroup statusline_focus
-    autocmd!
-    autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 7, ctermbg = 18})
-    autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {ctermfg = 8,  ctermbg = 18, nocombine = true})
-  augroup END
+  function! ToggleSatuslineFocusAugroup()
+    if !exists('#StatusLineFocus#FocusGained')
+      augroup StatusLineFocus
+        autocmd!
+        autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'StatusLineDefault'})
+        autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'StatusLineNoFocus'})
+      augroup END
+    else
+      augroup StatusLineFocus
+        autocmd!
+      augroup END
+    endif
+  endfunction
+
+  call ToggleSatuslineFocusAugroup()
 ]])
 
 
@@ -188,6 +187,14 @@ vim.api.nvim_set_var('goyo_width', 80)         -- (default: 80)
 vim.api.nvim_set_var('goyo_height', 100)       -- (default: 85%)
 vim.api.nvim_set_var('goyo_linenr', 0)         -- (default: 0)
 
+-- disable statusline focus color change when inside Goyo 
+-- this makes sure that when vim loses focust the status bar
+-- remains hidden
+vim.cmd([[
+  autocmd! User GoyoEnter nested call ToggleSatuslineFocusAugroup()
+  autocmd! User GoyoLeave nested call ToggleSatuslineFocusAugroup()
+]])
+
 
 -- Fugitive
 -- --------
@@ -197,7 +204,7 @@ vim.api.nvim_set_keymap('n', '<leader>g', ':Git<CR>', {noremap = true})
 -- Pencil
 -- ------
 vim.cmd([[
-  augroup pencil
+  augroup Pencil
     autocmd!
     autocmd FileType md,markdown call pencil#init({'wrap': 'soft'})
   augroup END
@@ -256,9 +263,11 @@ function color_customize()
   hl(0, 'VertSplit',           {ctermfg = 19, ctermbg = 0})
   hl(0, 'LineNr',              {ctermfg = 8,  ctermbg = 0})
   hl(0, 'CursorLineNr',        {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'StatusLine',          {ctermfg = 7,  ctermbg = 18})
+  hl(0, 'StatusLine',          {link = 'StatusLineDefault'})
+  hl(0, 'StatusLineDefault',   {ctermfg = 7,  ctermbg = 18})
   hl(0, 'StatusLineNC',        {ctermfg = 8,  ctermbg = 18})
-  hl(0, 'StatusLineGitHead',   {ctermfg = 20, ctermbg = 18, bold=true})
+  hl(0, 'StatusLineNoFocus',   {ctermfg = 8,  ctermbg = 18, nocombine = true})
+  hl(0, 'StatusLineGitHead',   {ctermfg = 20, ctermbg = 18, bold = true})
   hl(0, 'StatusLineFilePath',  {ctermfg = 4,  ctermbg = 18})
   hl(0, 'StatusLineSeparator', {ctermfg = 8,  ctermbg = 18})
   hl(0, 'TabLineSel',          {ctermfg = 7,  ctermbg = 0})
