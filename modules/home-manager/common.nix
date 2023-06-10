@@ -29,6 +29,7 @@ in
       tree
       universal-ctags
       unixtools.watch
+      vale
       yubikey-manager
       zsh
       zsh-powerlevel10k
