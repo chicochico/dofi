@@ -185,7 +185,7 @@ vim.api.nvim_set_keymap('n', '<leader>/', ':Ag<CR>', {noremap = true})
 -- ----
 vim.api.nvim_set_var('goyo_width', 80)         -- (default: 80)
 vim.api.nvim_set_var('goyo_height', 85)        -- (default: 85%)
-vim.api.nvim_set_var('goyo_linenr', 0)         -- (default: 0)
+vim.api.nvim_set_var('goyo_linenr', 1)         -- (default: 0)
 vim.api.nvim_set_keymap('n', '<leader>G', ':Goyo<CR>', {noremap = true})
 
 -- disable statusline focus color change when inside Goyo 
