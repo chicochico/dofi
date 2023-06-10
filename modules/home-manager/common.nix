@@ -113,6 +113,7 @@ in
       tagbar
       vim-commentary
       vim-fugitive
+      vim-gnupg
       vim-gutentags
       vim-obsession
       vim-pencil
