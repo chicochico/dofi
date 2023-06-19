@@ -13,7 +13,9 @@
   '';
   fonts = {
     fontDir.enable = true;
-    fonts = [ pkgs.fira-code ];
+    fonts = with pkgs; [
+      fira-code
+    ];
   };
   services.nix-daemon.enable = true;
   system.defaults = {

@@ -132,8 +132,8 @@ require("neo-tree").setup {
   enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
   default_component_configs = {
     icon = {
-      folder_closed = "▸",
-      folder_open = "▾",
+      folder_closed = "+",
+      folder_open = "-",
       folder_empty = " ",
       default = " ",
     },
@@ -259,24 +259,29 @@ require("nvim-autopairs").setup {}
 -- Source base16 file from env var
 function color_customize()
   local hl = vim.api.nvim_set_hl
-  hl(0, 'EndOfBuffer',         {ctermfg = 0,  ctermbg = 0})
-  hl(0, 'SignColumn',          {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'VertSplit',           {ctermfg = 19, ctermbg = 0})
-  hl(0, 'LineNr',              {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'CursorLineNr',        {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'StatusLine',          {link = 'StatusLineDefault'})
-  hl(0, 'StatusLineDefault',   {ctermfg = 7,  ctermbg = 18})
-  hl(0, 'StatusLineNC',        {ctermfg = 8,  ctermbg = 18})
-  hl(0, 'StatusLineNoFocus',   {ctermfg = 8,  ctermbg = 18, nocombine = true})
-  hl(0, 'StatusLineGitHead',   {ctermfg = 20, ctermbg = 18, bold = true})
-  hl(0, 'StatusLineFilePath',  {ctermfg = 4,  ctermbg = 18})
-  hl(0, 'StatusLineSeparator', {ctermfg = 8,  ctermbg = 18})
-  hl(0, 'TabLineSel',          {ctermfg = 7,  ctermbg = 0})
-  hl(0, 'TabLine',             {ctermfg = 8,  ctermbg = 0})
-  hl(0, 'TabLineFill',         {ctermfg = 20, ctermbg = 0})
-  hl(0, 'GitSignsAdd',         {ctermfg = 2,  ctermbg = 0})
-  hl(0, 'GitSignsChange',      {ctermfg = 4,  ctermbg = 0})
-  hl(0, 'GitSignsDelete',      {ctermfg = 1,  ctermbg = 0})
+  hl(0, 'EndOfBuffer',           {ctermfg = 0,  ctermbg = 0})
+  hl(0, 'SignColumn',            {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'VertSplit',             {ctermfg = 19, ctermbg = 0})
+  hl(0, 'LineNr',                {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'CursorLineNr',          {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'StatusLine',            {link = 'StatusLineDefault'})
+  hl(0, 'StatusLineDefault',     {ctermfg = 7,  ctermbg = 18})
+  hl(0, 'StatusLineNC',          {ctermfg = 8,  ctermbg = 18})
+  hl(0, 'StatusLineNoFocus',     {ctermfg = 8,  ctermbg = 18, nocombine = true})
+  hl(0, 'StatusLineGitHead',     {ctermfg = 20, ctermbg = 18, bold = true})
+  hl(0, 'StatusLineFilePath',    {ctermfg = 4,  ctermbg = 18})
+  hl(0, 'StatusLineSeparator',   {ctermfg = 8,  ctermbg = 18})
+  hl(0, 'TabLineSel',            {ctermfg = 7,  ctermbg = 0})
+  hl(0, 'TabLine',               {ctermfg = 8,  ctermbg = 0})
+  hl(0, 'TabLineFill',           {ctermfg = 20, ctermbg = 0})
+  hl(0, 'GitSignsAdd',           {ctermfg = 2,  ctermbg = 0})
+  hl(0, 'GitSignsChange',        {ctermfg = 4,  ctermbg = 0})
+  hl(0, 'GitSignsDelete',        {ctermfg = 1,  ctermbg = 0})
+  hl(0, 'NeoTreeIndentMarker',   {ctermfg = 8})
+  hl(0, 'NeoTreeDirectoryIcon',  {ctermfg = 8})
+  hl(0, 'NeoTreeDirectoryName',  {ctermfg = 4})
+  hl(0, 'NeoTreeFileName',       {ctermfg = 20})
+  hl(0, 'NeoTreeDotfile',        {ctermfg = 17})
 end
 
 local theme = os.getenv('BASE16_THEME')
