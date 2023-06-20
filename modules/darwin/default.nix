@@ -23,6 +23,7 @@
       autohide = true;
       autohide-delay = 0.0;
       autohide-time-modifier = 0.15;
+      appswitcher-all-displays = true;
     };
     NSGlobalDomain = {
       "com.apple.trackpad.scaling" = 3.0;
