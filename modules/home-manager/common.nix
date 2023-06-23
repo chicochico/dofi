@@ -144,6 +144,7 @@ in
       # terraform
       terraform-ls
       tflint
+      terraform
       # python
       python311Packages.pyflakes
       python311Packages.python-lsp-server

@@ -53,7 +53,8 @@ alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias yk="ykman"
 alias d="docker"
 alias k="kubectl"
-alias g=git
+alias g="git"
+alias t="terraform"
 
 # Changing/making/removing directory
 setopt auto_cd
