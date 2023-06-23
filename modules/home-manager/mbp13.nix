@@ -6,13 +6,19 @@ in
 {
   inherit (common) programs;
   home = {
-    inherit (common.home) username homeDirectory stateVersion file;
+    inherit (common.home) username homeDirectory stateVersion;
     packages = with pkgs; common.home.packages ++ [
       argocd
       inetutils
       kubectl
       kubeseal
+      kustomize
       teleport
+      yq
     ];
+
+    file = common.home.file // {
+      gitconfig = { source = ./dotfiles/gitconfig-tr; target = ".gitconfig"; };
+    };
   };
 }
