@@ -24,6 +24,7 @@ in
       jq
       kitty
       nodejs
+      openssl
       ripgrep
       silver-searcher
       tree
@@ -84,6 +85,8 @@ in
       vim-tmux-navigator
     ];
     sensibleOnTop = false;
+    historyLimit = 5000;
+    clock24 = true;
     extraConfig = builtins.readFile dotfiles/tmux.conf;
   };
 
