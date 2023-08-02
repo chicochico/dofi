@@ -15,6 +15,7 @@ in
       kustomize
       teleport
       yq
+      terragrunt
     ];
 
     file = common.home.file // {
