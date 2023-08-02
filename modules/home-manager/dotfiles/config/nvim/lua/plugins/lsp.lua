@@ -51,7 +51,12 @@ local sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.nixpkgs_fmt,
     null_ls.builtins.formatting.yamlfmt,
-    null_ls.builtins.diagnostics.vale,
+    null_ls.builtins.diagnostics.vale.with({
+        diagnostic_config = {
+            virtual_text = false,
+            signs = true,
+        },
+    }),
 }
 
 null_ls.setup({ sources = sources })
