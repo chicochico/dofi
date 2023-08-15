@@ -27,6 +27,7 @@ in
       openssl
       ripgrep
       silver-searcher
+      sqlfluff
       tree
       universal-ctags
       unixtools.watch
@@ -35,7 +36,6 @@ in
       zsh
       zsh-powerlevel10k
     ];
-
   };
 
   # This value determines the Home Manager release that your

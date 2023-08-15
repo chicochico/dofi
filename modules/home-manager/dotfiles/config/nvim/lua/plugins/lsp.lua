@@ -57,9 +57,15 @@ local sources = {
             signs = true,
         },
     }),
+    null_ls.builtins.formatting.sqlfluff.with({
+        extra_args = { "--dialect", "snowflake" },
+    }),
 }
 
-null_ls.setup({ sources = sources })
+null_ls.setup({
+  sources = sources, 
+  on_attach = on_attach  
+})
 
 
 -- nvim-cmp
