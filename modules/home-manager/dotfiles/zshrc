@@ -55,7 +55,6 @@ alias d="docker"
 alias k="kubectl"
 alias g="git"
 alias t="terraform"
-alias cdev="cd $HOME/dev"
 
 # Changing/making/removing directory
 setopt auto_cd
