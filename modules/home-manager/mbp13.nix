@@ -14,12 +14,16 @@ in
       kubeseal
       kustomize
       teleport
-      yq
       terragrunt
+      yq
     ];
 
     file = common.home.file // {
       gitconfig = { source = ./dotfiles/gitconfig-tr; target = ".gitconfig"; };
+      airflow_open = {
+        source = ./dotfiles/scripts/airflow-open.sh;
+        target = ".scripts/airflow-open";
+      };
     };
   };
 }
