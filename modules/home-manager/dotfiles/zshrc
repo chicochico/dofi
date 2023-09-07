@@ -80,4 +80,4 @@ if [ -n "${commands[fzf-share]}" ]; then
 fi
 
 #custom executable scripts
-export PATH=$PATH:$HOME/.scripts
+export PATH=$PATH:$HOME/bin
