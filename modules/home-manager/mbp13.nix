@@ -11,6 +11,7 @@ in
       argocd
       inetutils
       kubectl
+      kubernetes-helm
       kubeseal
       kustomize
       teleport
