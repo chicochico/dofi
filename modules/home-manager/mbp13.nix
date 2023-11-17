@@ -14,6 +14,7 @@ in
       kubernetes-helm
       kubeseal
       kustomize
+      pgcli
       teleport
       terragrunt
       yq
