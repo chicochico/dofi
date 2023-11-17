@@ -25,6 +25,7 @@ in
       kitty
       nodejs
       openssl
+      pgcli
       ripgrep
       silver-searcher
       sqlfluff
