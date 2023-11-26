@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   # here go the darwin preferences and config items
+  # run darwin-help to see the available options
   programs.zsh.enable = true;
   environment = {
     shells = with pkgs; [ bash zsh ];
