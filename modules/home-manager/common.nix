@@ -162,6 +162,8 @@ in
       # yaml
       nodePackages.yaml-language-server
       yamlfmt
+      # github actions
+      actionlint
     ];
   };
 

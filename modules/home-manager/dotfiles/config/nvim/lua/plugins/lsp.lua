@@ -64,6 +64,7 @@ local sources = {
 	null_ls.builtins.formatting.sqlfluff.with({
 		extra_args = { "--dialect", "snowflake" },
 	}),
+	null_ls.builtins.diagnostics.actionlint,
 }
 
 null_ls.setup({
@@ -84,14 +85,16 @@ local servers = {
 	"rnix",
 }
 
+lspconfig = require("lspconfig")
+
 for _, lsp in ipairs(servers) do
-	require("lspconfig")[lsp].setup({
+	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
 
-require("lspconfig").yamlls.setup({
+lspconfig.yamlls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
