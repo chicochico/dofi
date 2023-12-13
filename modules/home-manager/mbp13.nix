@@ -17,7 +17,7 @@ in
       pgcli
       teleport
       terragrunt
-      yq
+      yq-go
     ];
 
     file = common.home.file // {
