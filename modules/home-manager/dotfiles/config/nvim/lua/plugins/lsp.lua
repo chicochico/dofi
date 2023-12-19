@@ -22,7 +22,7 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set("n", "<space>F", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
-	vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async = false})]])
+	vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async = true})]])
 
 	-- Diagnostics
 	vim.diagnostic.config({
@@ -81,7 +81,6 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 local servers = {
 	"pylsp",
 	"terraformls",
-	"tflint",
 	"rnix",
 }
 

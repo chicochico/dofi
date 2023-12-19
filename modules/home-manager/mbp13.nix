@@ -18,6 +18,7 @@ in
       teleport
       terragrunt
       yq-go
+      actionlint
     ];
 
     file = common.home.file // {

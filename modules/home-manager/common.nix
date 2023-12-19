@@ -147,7 +147,6 @@ in
     extraPackages = with pkgs; [
       # terraform
       terraform-ls
-      tflint
       terraform
       # python
       python311Packages.pyflakes
