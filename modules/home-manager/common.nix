@@ -55,6 +55,7 @@ in
     p10k = { source = ./dotfiles/p10k.zsh; target = ".p10k.zsh"; };
     tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
+    yamlfmt = { source = ./dotfiles/config/yamlfmt; target = ".config/.yamlfmt"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)
@@ -159,7 +160,6 @@ in
       # lua
       stylua
       # yaml
-      nodePackages.yaml-language-server
       yamlfmt
       # github actions
       actionlint

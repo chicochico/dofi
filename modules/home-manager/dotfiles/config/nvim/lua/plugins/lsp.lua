@@ -45,6 +45,7 @@ end
 -- Null-ls
 -- -------
 local null_ls = require("null-ls")
+local home = os.getenv("HOME")
 
 -- register any number of sources simultaneously
 local sources = {
@@ -54,7 +55,10 @@ local sources = {
 	null_ls.builtins.formatting.terraform_fmt,
 	null_ls.builtins.formatting.stylua,
 	null_ls.builtins.formatting.nixpkgs_fmt,
-	null_ls.builtins.formatting.yamlfmt,
+	-- set custom yaml formatting settings
+	null_ls.builtins.formatting.yamlfmt.with({
+		extra_args = { "--conf", home .. "/.config/.yamlfmt" },
+	}),
 	null_ls.builtins.diagnostics.vale.with({
 		diagnostic_config = {
 			virtual_text = false,
@@ -92,20 +96,6 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
-
-lspconfig.yamlls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		yaml = {
-			format = { enable = true },
-			keyOrdering = false,
-			schemas = {
-				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-			},
-		},
-	},
-})
 
 -- Turn on lsp status information
 require("fidget").setup()
