@@ -28,7 +28,7 @@
     };
     NSGlobalDomain = {
       "com.apple.trackpad.scaling" = 3.0;
-      "com.apple.mouse.scaling" = 5.0;
+      "com.apple.mouse.scaling" = 3.0;
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
     };
