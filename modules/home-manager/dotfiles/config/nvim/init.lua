@@ -153,6 +153,14 @@ require("neo-tree").setup({
 			},
 		},
 	},
+
+	filesystem = {
+		filtered_items = {
+			always_show = {
+				".github",
+			},
+		},
+	},
 })
 
 -- Tagbar
