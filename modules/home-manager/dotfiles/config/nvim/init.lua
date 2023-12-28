@@ -137,6 +137,21 @@ require("neo-tree").setup({
 			folder_empty = " ",
 			default = " ",
 		},
+		git_status = {
+			symbols = {
+				-- Change type
+				added = "",
+				deleted = "",
+				modified = "",
+				renamed = "R",
+				-- Status type
+				untracked = "?",
+				ignored = "I",
+				unstaged = "!",
+				staged = "+",
+				conflict = "~",
+			},
+		},
 	},
 })
 
