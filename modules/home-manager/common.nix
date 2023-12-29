@@ -18,6 +18,7 @@ in
     packages = with pkgs; [
       aws-vault
       awscli2
+      fd
       fzf
       gh
       gnupg
