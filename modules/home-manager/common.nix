@@ -16,6 +16,7 @@ in
     username = "fchiang";
     homeDirectory = "/Users/${config.home.username}";
     packages = with pkgs; [
+      actionlint
       aws-vault
       awscli2
       fd
@@ -28,7 +29,6 @@ in
       openssl
       ripgrep
       silver-searcher
-      sqlfluff
       tree
       universal-ctags
       unixtools.watch
@@ -56,7 +56,6 @@ in
     p10k = { source = ./dotfiles/p10k.zsh; target = ".p10k.zsh"; };
     tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
-    yamlfmt = { source = ./dotfiles/config/yamlfmt; target = ".config/.yamlfmt"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)
@@ -112,7 +111,7 @@ in
       markdown-preview-nvim
       neo-tree-nvim
       notational-fzf-vim
-      null-ls-nvim
+      none-ls-nvim
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
@@ -161,9 +160,11 @@ in
       # lua
       stylua
       # yaml
-      yamlfmt
+      nodePackages.yaml-language-server
       # github actions
       actionlint
+      # sql
+      sqlfluff
     ];
   };
 
