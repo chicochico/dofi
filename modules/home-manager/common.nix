@@ -1,7 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 let
-  notational-fzf-vim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  notational-fzf-vim = pkgs.vimUtils.buildVimPlugin {
     name = "notational-fzf-vim";
     src = pkgs.fetchFromGitHub {
       owner = "Alok";
@@ -148,7 +148,6 @@ in
     extraPackages = with pkgs; [
       # terraform
       terraform-ls
-      terraform
       # python
       python311Packages.pyflakes
       python311Packages.python-lsp-server
