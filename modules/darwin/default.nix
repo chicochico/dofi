@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   # here go the darwin preferences and config items
   # run darwin-help to see the available options
+  # or go to https://daiderd.com/nix-darwin/manual/index.html
   programs.zsh.enable = true;
   environment = {
     shells = with pkgs; [ bash zsh ];
@@ -26,9 +27,11 @@
       autohide-time-modifier = 0.15;
       appswitcher-all-displays = true;
     };
+    ".GlobalPreferences" = {
+      "com.apple.mouse.scaling" = 3.0;
+    };
     NSGlobalDomain = {
       "com.apple.trackpad.scaling" = 3.0;
-      "com.apple.mouse.scaling" = 3.0;
       InitialKeyRepeat = 10;
       KeyRepeat = 1;
     };
@@ -50,7 +53,6 @@
       "mos"
       "mullvadvpn"
       "signal"
-      "spotify"
       "vlc"
     ];
   };
