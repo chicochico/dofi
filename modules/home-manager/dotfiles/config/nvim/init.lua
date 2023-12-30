@@ -29,21 +29,21 @@ vim.cmd([[
 -- statusline
 -- ----------
 local function separator(str)
-	return "%#StatusLineSeparator#" .. str .. "%*"
+    return "%#StatusLineSeparator#" .. str .. "%*"
 end
 
 local stl = {
-	"%{fugitive#Head()}",
-	separator("%{fugitive#Head() != '' ? '   ' : ''}"),
-	"%f",
-	"%( [%M%R]%)",
-	"%=",
-	"%{&filetype}",
-	separator("%{&filetype != '' ? '  • ' : ''}"),
-	"%{&fileencoding?&fileencoding:&encoding} ",
-	"%{&fileformat}",
-	separator(" • "),
-	"%l,%c %P",
+    "%{fugitive#Head()}",
+    separator("%{fugitive#Head() != '' ? '   ' : ''}"),
+    "%f",
+    "%( [%M%R]%)",
+    "%=",
+    "%{&filetype}",
+    separator("%{&filetype != '' ? '  • ' : ''}"),
+    "%{&fileencoding?&fileencoding:&encoding} ",
+    "%{&fileformat}",
+    separator(" • "),
+    "%l,%c %P",
 }
 
 vim.o.statusline = table.concat(stl)
@@ -83,7 +83,7 @@ vim.g.loaded_perl_provider = 0
 -- Copilot
 vim.g.copilot_assume_mapped = true
 vim.g.copilot_filetypes = {
-	["yaml"] = true,
+    ["yaml"] = true,
 }
 
 -- Keymaps
@@ -109,13 +109,13 @@ vim.keymap.set("n", "T", "<C-t>", { noremap = true })
 -- Gitsigns
 -- See `:help gitsigns.txt`
 require("gitsigns").setup({
-	signs = {
-		add = { text = "+" },
-		change = { text = "~" },
-		delete = { text = "_" },
-		topdelete = { text = "‾" },
-		changedelete = { text = "~" },
-	},
+    signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+    },
 })
 
 -- Neo-tree
@@ -124,41 +124,41 @@ vim.keymap.set("n", "<leader>a", ":Neotree<CR>", { noremap = true })
 vim.api.nvim_set_var("neo_tree_remove_legacy_commands", 1)
 
 require("neo-tree").setup({
-	enable_git_status = false,
-	enable_diagnostics = false,
-	enable_modified_markers = true, -- Show markers for files with unsaved changes.
-	enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
-	default_component_configs = {
-		icon = {
-			folder_closed = "+",
-			folder_open = "-",
-			folder_empty = " ",
-			default = " ",
-		},
-		git_status = {
-			symbols = {
-				-- Change type
-				added = "",
-				deleted = "",
-				modified = "",
-				renamed = "R",
-				-- Status type
-				untracked = "?",
-				ignored = "I",
-				unstaged = "!",
-				staged = "+",
-				conflict = "~",
-			},
-		},
-	},
+    enable_git_status = false,
+    enable_diagnostics = false,
+    enable_modified_markers = true, -- Show markers for files with unsaved changes.
+    enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
+    default_component_configs = {
+        icon = {
+            folder_closed = "+",
+            folder_open = "-",
+            folder_empty = " ",
+            default = " ",
+        },
+        git_status = {
+            symbols = {
+                -- Change type
+                added = "",
+                deleted = "",
+                modified = "",
+                renamed = "R",
+                -- Status type
+                untracked = "?",
+                ignored = "I",
+                unstaged = "!",
+                staged = "+",
+                conflict = "~",
+            },
+        },
+    },
 
-	filesystem = {
-		filtered_items = {
-			always_show = {
-				".github",
-			},
-		},
-	},
+    filesystem = {
+        filtered_items = {
+            always_show = {
+                ".github",
+            },
+        },
+    },
 })
 
 -- Tagbar
@@ -169,21 +169,21 @@ vim.api.nvim_set_var("tagbar_sort", 0)
 vim.api.nvim_set_var("tagbar_autofocus", 1)
 vim.api.nvim_set_var("tagbar_compact", 1)
 vim.api.nvim_set_var("tagbar_type_elixir", {
-	ctagstype = "elixir",
-	kinds = {
-		"f:functions",
-		"functions:functions",
-		"c:callbacks",
-		"d:delegates",
-		"e:exceptions",
-		"i:implementations",
-		"a:macros",
-		"o:operators",
-		"m:modules",
-		"p:protocols",
-		"r:records",
-		"t:tests",
-	},
+    ctagstype = "elixir",
+    kinds = {
+        "f:functions",
+        "functions:functions",
+        "c:callbacks",
+        "d:delegates",
+        "e:exceptions",
+        "i:implementations",
+        "a:macros",
+        "o:operators",
+        "m:modules",
+        "p:protocols",
+        "r:records",
+        "t:tests",
+    },
 })
 
 -- GutenTags
@@ -246,9 +246,9 @@ vim.api.nvim_set_keymap("n", "<leader>p", "<Plug>MarkdownPreviewToggle", { norem
 -- Treesitter
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
-	-- install new syntaxes with home.nix
-	highlight = { enable = true, disable = { "sql" } },
-	indent = { enable = true, disable = { "python" } },
+    -- install new syntaxes with home.nix
+    highlight = { enable = true, disable = { "sql", "vimdoc" } },
+    indent = { enable = true, disable = { "python" } },
 })
 
 -- Gitsigns
@@ -261,35 +261,35 @@ require("nvim-autopairs").setup({})
 -- Customize some highlight colors
 -- Source base16 file from env var
 function color_customize()
-	local hl = vim.api.nvim_set_hl
-	hl(0, "EndOfBuffer", { ctermfg = 0, ctermbg = 0 })
-	hl(0, "SignColumn", { ctermfg = 8, ctermbg = 0 })
-	hl(0, "VertSplit", { ctermfg = 19, ctermbg = 0 })
-	hl(0, "LineNr", { ctermfg = 8, ctermbg = 0 })
-	hl(0, "CursorLineNr", { ctermfg = 8, ctermbg = 0 })
-	hl(0, "StatusLine", { link = "StatusLineDefault" })
-	hl(0, "StatusLineDefault", { ctermfg = 7, ctermbg = 18 })
-	hl(0, "StatusLineNC", { ctermfg = 8, ctermbg = 18 })
-	hl(0, "StatusLineNoFocus", { ctermfg = 8, ctermbg = 18, nocombine = true })
-	hl(0, "StatusLineGitHead", { ctermfg = 20, ctermbg = 18, bold = true })
-	hl(0, "StatusLineFilePath", { ctermfg = 4, ctermbg = 18 })
-	hl(0, "StatusLineSeparator", { ctermfg = 8, ctermbg = 18 })
-	hl(0, "TabLineSel", { ctermfg = 7, ctermbg = 0 })
-	hl(0, "TabLine", { ctermfg = 8, ctermbg = 0 })
-	hl(0, "TabLineFill", { ctermfg = 20, ctermbg = 0 })
-	hl(0, "GitSignsAdd", { ctermfg = 2, ctermbg = 0 })
-	hl(0, "GitSignsChange", { ctermfg = 4, ctermbg = 0 })
-	hl(0, "GitSignsDelete", { ctermfg = 1, ctermbg = 0 })
-	hl(0, "NeoTreeIndentMarker", { ctermfg = 8 })
-	hl(0, "NeoTreeDirectoryIcon", { ctermfg = 8 })
-	hl(0, "NeoTreeDirectoryName", { ctermfg = 4 })
-	hl(0, "NeoTreeFileName", { ctermfg = 20 })
-	hl(0, "NeoTreeDotfile", { ctermfg = 17 })
+    local hl = vim.api.nvim_set_hl
+    hl(0, "EndOfBuffer", { ctermfg = 0, ctermbg = 0 })
+    hl(0, "SignColumn", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "VertSplit", { ctermfg = 19, ctermbg = 0 })
+    hl(0, "LineNr", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "CursorLineNr", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "StatusLine", { link = "StatusLineDefault" })
+    hl(0, "StatusLineDefault", { ctermfg = 7, ctermbg = 18 })
+    hl(0, "StatusLineNC", { ctermfg = 8, ctermbg = 18 })
+    hl(0, "StatusLineNoFocus", { ctermfg = 8, ctermbg = 18, nocombine = true })
+    hl(0, "StatusLineGitHead", { ctermfg = 20, ctermbg = 18, bold = true })
+    hl(0, "StatusLineFilePath", { ctermfg = 4, ctermbg = 18 })
+    hl(0, "StatusLineSeparator", { ctermfg = 8, ctermbg = 18 })
+    hl(0, "TabLineSel", { ctermfg = 7, ctermbg = 0 })
+    hl(0, "TabLine", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "TabLineFill", { ctermfg = 20, ctermbg = 0 })
+    hl(0, "GitSignsAdd", { ctermfg = 2, ctermbg = 0 })
+    hl(0, "GitSignsChange", { ctermfg = 4, ctermbg = 0 })
+    hl(0, "GitSignsDelete", { ctermfg = 1, ctermbg = 0 })
+    hl(0, "NeoTreeIndentMarker", { ctermfg = 8 })
+    hl(0, "NeoTreeDirectoryIcon", { ctermfg = 8 })
+    hl(0, "NeoTreeDirectoryName", { ctermfg = 4 })
+    hl(0, "NeoTreeFileName", { ctermfg = 20 })
+    hl(0, "NeoTreeDotfile", { ctermfg = 17 })
 end
 
 local theme = os.getenv("BASE16_THEME")
 if theme then
-	vim.cmd([[
+    vim.cmd([[
     let base16colorspace=256
     autocmd ColorScheme * lua color_customize()
     colorscheme base16-$BASE16_THEME
@@ -306,18 +306,19 @@ lspconfig.terraformls.setup({ capabilities = capabilities })
 lspconfig.rnix.setup({ capabilities = capabilities })
 lspconfig.pylsp.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({
-	capabilities = capabilities,
-	settings = { yaml = { validate = { enable = false } } },
+    capabilities = capabilities,
+    settings = { yaml = { validate = { enable = false } } },
 })
 
 -- Null-ls
+local home = os.getenv("HOME")
 local null_ls = require("null-ls")
 local sources = {
-	null_ls.builtins.diagnostics.actionlint,
-	null_ls.builtins.formatting.black,
-	null_ls.builtins.formatting.isort,
-	null_ls.builtins.formatting.stylua,
-	null_ls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
+    null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
+    null_ls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
 }
 null_ls.setup({ sources = sources })
 
@@ -329,42 +330,42 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	}),
-	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-	},
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+    }),
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+    },
 })
 
 -- Global mappings.
@@ -377,36 +378,36 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-	callback = function(ev)
-		-- Enable completion triggered by <c-x><c-o>
-		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-		-- Buffer local mappings.
-		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		local opts = { buffer = ev.buf }
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
-		vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
-		vim.keymap.set("n", "<leader>wl", function()
-			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<leader>F", function()
-			vim.lsp.buf.format({ async = true })
-		end, opts)
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+        -- Buffer local mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local opts = { buffer = ev.buf }
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set("n", "<leader>wl", function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, opts)
+        vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "<leader>F", function()
+            vim.lsp.buf.format({ async = true })
+        end, opts)
 
-		-- Custom capability override
-		local client = vim.lsp.get_client_by_id(ev.data.client_id)
-		if client.name == "yamlls" then
-			-- bug in yammlls
-			client.server_capabilities.documentFormattingProvider = true
-		end
-	end,
+        -- Custom capability override
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client.name == "yamlls" then
+            -- bug in yammlls
+            client.server_capabilities.documentFormattingProvider = true
+        end
+    end,
 })
