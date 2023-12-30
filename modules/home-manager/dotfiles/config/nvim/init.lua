@@ -311,7 +311,6 @@ lspconfig.yamlls.setup({
 })
 
 -- Null-ls
-local home = os.getenv("HOME")
 local null_ls = require("null-ls")
 local sources = {
     null_ls.builtins.diagnostics.actionlint,
