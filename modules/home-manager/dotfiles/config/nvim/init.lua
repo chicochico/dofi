@@ -287,6 +287,8 @@ function color_customize()
     hl(0, "NeoTreeDirectoryName", { ctermfg = 4 })
     hl(0, "NeoTreeFileName", { ctermfg = 20 })
     hl(0, "NeoTreeDotfile", { ctermfg = 17 })
+    hl(0, "Search", { ctermfg = 0, ctermbg = 11 })
+    hl(0, "CurSearch", { ctermfg = 0, ctermbg = 16 })
 end
 
 local theme = os.getenv("BASE16_THEME")
