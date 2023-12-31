@@ -1,4 +1,4 @@
--- Neovim Settings
+-- Neovim SettingS
 ------------------
 vim.o.clipboard = "unnamedplus"
 vim.o.number = true
@@ -265,7 +265,9 @@ function color_customize()
     hl(0, "EndOfBuffer", { ctermfg = 0, ctermbg = 0 })
     hl(0, "SignColumn", { ctermfg = 8, ctermbg = 0 })
     hl(0, "VertSplit", { ctermfg = 19, ctermbg = 0 })
-    hl(0, "LineNr", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "LineNr", { ctermfg = 20, ctermbg = 0, bold = true })
+    hl(0, "LineNrAbove", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "LineNrBelow", { ctermfg = 8, ctermbg = 0 })
     hl(0, "CursorLineNr", { ctermfg = 8, ctermbg = 0 })
     hl(0, "StatusLine", { link = "StatusLineDefault" })
     hl(0, "StatusLineDefault", { ctermfg = 7, ctermbg = 18 })
@@ -388,7 +390,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
         vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
         vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
         vim.keymap.set("n", "<leader>wl", function()
