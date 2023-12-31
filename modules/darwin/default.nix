@@ -52,6 +52,7 @@
       "monitorcontrol"
       "mos"
       "mullvadvpn"
+      "rectangle"
       "signal"
       "vlc"
     ];
