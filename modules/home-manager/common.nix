@@ -100,14 +100,12 @@ in
     plugins = with pkgs.vimPlugins; [
       base16-vim
       cmp-nvim-lsp
-      cmp_luasnip
       copilot-vim
       fidget-nvim
       fzf-vim
       gitsigns-nvim
       goyo-vim
       gv-vim
-      luasnip
       markdown-preview-nvim
       neo-tree-nvim
       notational-fzf-vim
