@@ -109,8 +109,8 @@ in
       gv-vim
       markdown-preview-nvim
       neo-tree-nvim
-      notational-fzf-vim
       none-ls-nvim
+      notational-fzf-vim
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
@@ -122,6 +122,7 @@ in
       vim-obsession
       vim-pencil
       vim-repeat
+      vim-rhubarb
       vim-sleuth
       vim-surround
       vim-tmux-navigator
