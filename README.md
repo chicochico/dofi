@@ -13,11 +13,13 @@ My system and home configurations files are tracked in this repository.
 
 Restarting the computer is a good idea.
 
+## System
 To update **system** configurations, rebuild with:
 ```
  darwin-rebuild switch --flake .#hostname
  ```
 
+## Home
 To update **home** configurations rebuild with:
 ```
 home-manager switch --flake .#username
@@ -26,4 +28,3 @@ home-manager switch --flake .#username
 ## Links
 - [home-manager](https://github.com/nix-community/home-manager)
 - [nix-darwin](https://github.com/LnL7/nix-darwin)
-
