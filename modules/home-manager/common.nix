@@ -56,6 +56,7 @@ in
     p10k = { source = ./dotfiles/p10k.zsh; target = ".p10k.zsh"; };
     tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
+    rectangle = { source = ./dotfiles/com.knollsoft.Rectangle.plist; target = "Library/Preferences/com.knollsoft.Rectangle.plist"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)
