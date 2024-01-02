@@ -92,8 +92,8 @@ vim.g.mapleader = " " -- leader
 vim.g.maplocalleader = " "
 vim.keymap.set("n", "Q", "<C-w>q", { noremap = true }) -- close window
 vim.keymap.set("n", "X", ":bd<CR>", { noremap = true }) -- delete buffer
-vim.keymap.set("n", "L", ":bn<CR>", { noremap = true }) -- move buffers
-vim.keymap.set("n", "H", ":bp<CR>", { noremap = true })
+vim.keymap.set("n", "L", "gt", { noremap = true }) -- move tabs
+vim.keymap.set("n", "H", "gT", { noremap = true })
 vim.keymap.set("n", "<esc>", ":noh<CR>", { noremap = true, silent = true }) -- clear highlighting
 vim.keymap.set("n", "s", ":w<CR>", { noremap = true }) -- write buffer
 vim.keymap.set("n", "<C-e>", "3<C-e>", { noremap = true }) -- scroll steps

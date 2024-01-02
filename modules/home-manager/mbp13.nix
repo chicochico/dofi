@@ -16,6 +16,7 @@ in
       kustomize
       pgcli
       teleport
+      terraform
       terragrunt
       yq-go
     ];
