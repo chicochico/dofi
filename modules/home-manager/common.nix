@@ -57,6 +57,7 @@ in
     tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
     rectangle = { source = ./dotfiles/RectangleConfig.json; target = "Library/Application Support/Rectangle/RectangleConfig.json"; };
+    amethyst = { source = ./dotfiles/amethyst.yaml; target = "amethyst.yaml"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)

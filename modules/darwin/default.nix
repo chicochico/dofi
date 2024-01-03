@@ -46,6 +46,7 @@
     masApps = { };
     casks = [
       "alacritty"
+      "amethyst"
       "firefox"
       "flux"
       "karabiner-elements"
