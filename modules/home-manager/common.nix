@@ -50,13 +50,13 @@ in
   home.stateVersion = "22.11";
 
   home.file = {
-    alacritty = { source = ./dotfiles/config/alacritty; target = ".config/alacritty/"; };
+    alacritty = { source = ./dotfiles/config/alacritty; target = ".config/alacritty"; };
     karabiner = { source = ./dotfiles/config/karabiner; target = ".config/karabiner"; };
     nvim = { source = ./dotfiles/config/nvim; target = ".config/nvim/"; };
     p10k = { source = ./dotfiles/p10k.zsh; target = ".p10k.zsh"; };
     tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
-    rectangle = { source = ./dotfiles/RectangleConfig.json; target = "Library/Application Support/Rectangle/RectangleConfig.json"; };
+    amethyst = { source = ./dotfiles/amethyst.yaml; target = ".amethyst.yml"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)

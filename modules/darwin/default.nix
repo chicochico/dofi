@@ -46,13 +46,13 @@
     masApps = { };
     casks = [
       "alacritty"
+      "amethyst"
       "firefox"
       "flux"
       "karabiner-elements"
       "monitorcontrol"
       "mos"
       "mullvadvpn"
-      "rectangle"
       "signal"
       "vlc"
     ];
