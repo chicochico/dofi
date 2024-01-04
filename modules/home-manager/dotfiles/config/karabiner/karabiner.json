@@ -18,7 +18,7 @@
         },
         "rules": [
           {
-            "description": "Meh Key (Escape if alone)",
+            "description": "Global mod (Escape if alone)",
             "manipulators": [
               {
                 "from": {
