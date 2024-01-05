@@ -5,3 +5,5 @@
     signingkey = francisco.chiang@traderepublic.com
 [init]
     defaultBranch = main
+[push]
+    autoSetupRemote = true
