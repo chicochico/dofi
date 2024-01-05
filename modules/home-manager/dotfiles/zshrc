@@ -65,6 +65,7 @@ alias gr="git reset"
 alias gs="git status"
 alias gu="git push"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative"
+alias gw="git worktree"
 alias t="terraform"
 alias p="popd"
 
