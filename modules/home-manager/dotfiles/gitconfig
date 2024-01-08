@@ -7,3 +7,33 @@
     defaultBranch = main
 [push]
     autoSetupRemote = true
+[alias]
+    a = add
+    aa = add .
+    au = add --update
+    b = branch
+    bd = branch --delete
+    c = commit
+    ca = commit --amend
+    cam = commit --amend --message
+    cane = commit --amend --no-edit
+    cm = commit --message
+    co = checkout
+    cob = checkout --branch
+    cp = cherry-pick
+    d = diff
+    ds = diff --staged
+    f = fetch
+    i = init
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+    m = merge
+    p = pull --fast-forward
+    pnr = pull --no-rebase
+    pr = pull --rebase
+    pu = push
+    rb = rebase
+    w = worktree
+    wa = worktree add
+    wl = worktree list
+    wr = worktree remove
+    waco = "!f() { git worktree add -b $1 $1 origin/$1; }; f"
