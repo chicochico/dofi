@@ -54,7 +54,6 @@ alias yk="ykman"
 alias d="docker"
 alias k="kubectl"
 alias g="git"
-alias gw="git worktree"
 alias t="terraform"
 alias p="popd"
 
