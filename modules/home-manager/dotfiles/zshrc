@@ -53,7 +53,7 @@ alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias yk="ykman"
 alias d="docker"
 alias k="kubectl"
-alias g="git"
+alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
 alias t="terraform"
 alias p="popd"
 
