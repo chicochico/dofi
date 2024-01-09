@@ -27,7 +27,7 @@
     i = init
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     m = merge
-    p = pull --fast-forward
+    p = pull
     pnr = pull --no-rebase
     pr = pull --rebase
     pu = push
