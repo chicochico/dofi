@@ -28,8 +28,8 @@
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     m = merge
     pl = pull
-    plnr = pull --no-rebase
-    plr = pull --rebase
+    pnr = pull --no-rebase
+    pr = pull --rebase
     ps = push
     r = reset
     rb = rebase
