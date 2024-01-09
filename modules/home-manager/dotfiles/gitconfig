@@ -19,7 +19,7 @@
     cane = commit --amend --no-edit
     cm = commit --message
     co = checkout
-    cob = checkout --branch
+    cob = checkout -b
     cp = cherry-pick
     d = diff
     ds = diff --staged
