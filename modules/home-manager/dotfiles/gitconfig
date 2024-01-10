@@ -18,8 +18,6 @@
     cam = commit --amend --message
     cane = commit --amend --no-edit
     cm = commit --message
-    co = checkout
-    cob = checkout -b
     cp = cherry-pick
     d = diff
     ds = diff --staged
@@ -27,7 +25,9 @@
     i = init
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     m = merge
-    pl = pull
+    o = checkout
+    ob = checkout -b
+    p = pull
     pnr = pull --no-rebase
     pr = pull --rebase
     ps = push
