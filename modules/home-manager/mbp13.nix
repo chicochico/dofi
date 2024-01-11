@@ -22,7 +22,7 @@ in
     ];
 
     file = common.home.file // {
-      gitconfig = { source = ./dotfiles/gitconfig-tr; target = ".gitconfig"; };
+      gitconfig = { source = ./dotfiles/config/git/config-tr; target = ".config/git/config-tr"; };
       airflow_open = {
         source = ./bin/airflow-open.sh;
         target = "bin/airflow-open";

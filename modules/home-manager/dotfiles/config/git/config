@@ -1,4 +1,3 @@
-# This is Git's per-user configuration file.
 [user]
     name = Francisco Chiang
     email = mail@fchiang.com
@@ -39,3 +38,5 @@
     waco = "!f() { git worktree add -b $1 $1 origin/$1; }; f"
     wl = worktree list
     wr = worktree remove
+[includeIf "gitdir:~/tr/"]
+    path = ~/.config/git/config-tr

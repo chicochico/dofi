@@ -14,7 +14,6 @@ in
     ];
 
     file = common.home.file // {
-      gitconfig = { source = ./dotfiles/gitconfig; target = ".gitconfig"; };
     };
   };
 }

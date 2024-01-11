@@ -58,6 +58,7 @@ in
     tmuxcolors = { source = ./dotfiles/tmuxcolors; target = ".tmuxcolors"; };
     vale = { source = ./dotfiles/vale.ini; target = ".vale.ini"; };
     amethyst = { source = ./dotfiles/amethyst.yaml; target = ".amethyst.yml"; };
+    gitconfig-default = { source = ./dotfiles/config/git/config; target = ".config/git/config"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)
