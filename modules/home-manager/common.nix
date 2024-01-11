@@ -27,6 +27,7 @@ in
       kitty
       nodejs
       openssl
+      parallel
       ripgrep
       silver-searcher
       tree

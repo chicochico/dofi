@@ -56,6 +56,7 @@ alias k="kubectl"
 alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
 alias t="terraform"
 alias p="popd"
+alias pll="parallel"
 
 # Changing/making/removing directory
 setopt auto_cd
