@@ -204,7 +204,7 @@ relaunch-amethyst: {}
 disable-padding-on-builtin-display: true
 
 # Boolean flag for whether or not to add margins betwen windows (default false).
-window-margins: true
+window-margins: false
 
 # Boolean flag for whether or not to set window margins if there is only one window on the screen, assuming window margins are enabled (default false).
 smart-window-margins: true
