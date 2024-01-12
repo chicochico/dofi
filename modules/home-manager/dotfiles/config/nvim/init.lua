@@ -13,10 +13,10 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.smarttab = true
-vim.o.cursorline = false
+vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization below
 vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
-vim.o.fillchars = "vert:┃" -- Vertical split character
+vim.o.fillchars = "vert:┃,stl:━,stlnc:━" -- Vertical split character
 vim.o.mouse = "a"
 vim.o.signcolumn = "yes" -- Always show sign column
 vim.o.shm = "Ia" -- Don't show intro message see h: shm
@@ -32,36 +32,44 @@ local function separator(str)
     return "%#StatusLineSeparator#" .. str .. "%*"
 end
 
-local stl = {
-    "%{fugitive#Head()}",
-    separator("%{fugitive#Head() != '' ? '   ' : ''}"),
-    "%f",
-    "%( [%M%R]%)",
-    "%=",
-    "%{&filetype}",
-    separator("%{&filetype != '' ? '  • ' : ''}"),
-    "%l,%c %P",
-}
+local function horizontal_separator(str)
+    return "%#HorizontalSplit#" .. "  " .. str .. "  " .. "%*"
+end 
 
+local stl = {
+    " ",
+    "%{fugitive#Head()}",
+    separator("%{fugitive#Head() != '' ? '  ' : ''}"),  -- non-breaking space ` ` is used around the separator
+    "%f",
+    "%([%M%R]%)",
+    horizontal_separator("%="),
+    "%{&filetype}",
+    separator("%{&filetype != '' ? ' • ' : ''}"),
+    "%l:%c",
+    " ",
+}
 vim.o.statusline = table.concat(stl)
 
--- Dim statusbar when focus is lost
+--- Customize hilights based on where the active cursor is
+--- ----------
 vim.cmd([[
-  function! ToggleSatuslineFocusAugroup()
-    if !exists('#StatusLineFocus#FocusGained')
-      augroup StatusLineFocus
-        autocmd!
-        autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'StatusLineDefault'})
-        autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'StatusLineNoFocus'})
-      augroup END
-    else
-      augroup StatusLineFocus
-        autocmd!
-      augroup END
-    endif
-  endfunction
+  " Shows cursorline only in the active window
+  if !exists('#CursorLineFocus#FocusGained')
+    augroup CursorLineFocus
+      autocmd!
+      autocmd VimEnter,WinEnter,BufWinEnter,FocusGained * setlocal cursorline
+      autocmd WinLeave,FocusLost * setlocal nocursorline
+    augroup END
+  endif
 
-  call ToggleSatuslineFocusAugroup()
+  " Dim when focus is lost
+  if !exists('#StatusLineFocus#FocusGained')
+    augroup StatusLineFocus
+      autocmd!
+      autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'StatusLineDefault'})
+      autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'StatusLineNoFocus'})
+    augroup END
+  endif
 ]])
 
 -- Abbreviation shortcuts
@@ -255,17 +263,22 @@ vim.api.nvim_set_keymap("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { noremap
 -- Nvim Autopairs
 require("nvim-autopairs").setup({})
 
--- Customize some highlight colors
+-- Customize highlight colors
 -- Source base16 file from env var
 function color_customize()
     local hl = vim.api.nvim_set_hl
     hl(0, "EndOfBuffer", { ctermfg = 0, ctermbg = 0 })
     hl(0, "SignColumn", { ctermfg = 8, ctermbg = 0 })
-    hl(0, "VertSplit", { ctermfg = 19, ctermbg = 0 })
-    hl(0, "LineNr", { ctermfg = 1, ctermbg = 0, bold = true })
+    hl(0, "VertSplit", { ctermfg = 18, ctermbg = 0 })
+    hl(0, "HorizontalSplit", { ctermfg = 18, ctermbg = 0 })
+    hl(0, "LineNr", { link = "LineNrDefault" })
+    hl(0, "LineNrDefault", { ctermfg = 19, ctermbg = 0, bold = true })
+    hl(0, "LineNrActive", { ctermfg = 1, ctermbg = 0, bold = true })
     hl(0, "LineNrAbove", { ctermfg = 8, ctermbg = 0 })
     hl(0, "LineNrBelow", { ctermfg = 8, ctermbg = 0 })
-    hl(0, "CursorLineNr", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "CursorLine", { ctermbg = 0 })
+    hl(0, "NeoTreeCursorLine", { ctermbg = 18 })
+    hl(0, "CursorLineNr", { link = "LineNrActive" })
     hl(0, "StatusLine", { link = "StatusLineDefault" })
     hl(0, "StatusLineDefault", { ctermfg = 21, ctermbg = 0 })
     hl(0, "StatusLineNC", { ctermfg = 8, ctermbg = 0 })
