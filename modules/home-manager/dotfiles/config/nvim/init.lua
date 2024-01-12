@@ -40,9 +40,6 @@ local stl = {
     "%=",
     "%{&filetype}",
     separator("%{&filetype != '' ? '  • ' : ''}"),
-    "%{&fileencoding?&fileencoding:&encoding} ",
-    "%{&fileformat}",
-    separator(" • "),
     "%l,%c %P",
 }
 
