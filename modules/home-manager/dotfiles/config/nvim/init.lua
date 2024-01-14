@@ -34,12 +34,12 @@ end
 
 local function horizontal_separator(str)
     return "%#HorizontalSplit#" .. "  " .. str .. "  " .. "%*"
-end 
+end
 
 local stl = {
     " ",
     "%{fugitive#Head()}",
-    separator("%{fugitive#Head() != '' ? '  ' : ''}"),  -- non-breaking space ` ` is used around the separator
+    separator("%{fugitive#Head() != '' ? '  ' : ''}"), -- non-breaking space ` ` is used around the separator
     "%f",
     "%([%M%R]%)",
     horizontal_separator("%="),
@@ -205,18 +205,10 @@ vim.api.nvim_set_keymap("n", "<leader>/", ":Ag<CR>", { noremap = true })
 
 -- Goyo
 -- ----
-vim.api.nvim_set_var("goyo_width", 80) -- (default: 80)
+vim.api.nvim_set_var("goyo_width", 100) -- (default: 80)
 vim.api.nvim_set_var("goyo_height", 85) -- (default: 85%)
 vim.api.nvim_set_var("goyo_linenr", 1) -- (default: 0)
 vim.api.nvim_set_keymap("n", "<leader>G", ":Goyo<CR>", { noremap = true })
-
--- disable statusline focus color change when inside Goyo
--- this makes sure that when vim loses focust the status bar
--- remains hidden
-vim.cmd([[
-  autocmd! User GoyoEnter nested call ToggleSatuslineFocusAugroup()
-  autocmd! User GoyoLeave nested call ToggleSatuslineFocusAugroup()
-]])
 
 -- Fugitive
 -- --------
