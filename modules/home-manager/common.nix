@@ -22,6 +22,7 @@ in
       fd
       fzf
       gh
+      gnugrep
       gnupg
       jq
       kitty
