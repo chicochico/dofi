@@ -192,7 +192,9 @@ display-current-layout: {}
 toggle-tiling: {}
 
 # Rerun the current layout's algorithm.
-reevaluate-windows: {}
+reevaluate-windows:
+  mod: mod2
+  key: /
 
 # Turn on or off focus-follows-mouse.
 toggle-focus-follows-mouse: {}
