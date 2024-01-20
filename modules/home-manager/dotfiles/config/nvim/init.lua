@@ -16,7 +16,10 @@ vim.o.smarttab = true
 vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization below
 vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
-vim.o.fillchars = "vert:┃,stl:━,stlnc:━" -- Vertical split character
+vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: " -- vert: vertical split character
+                                               -- stl: statusline character
+                                               -- stlnc: statusline character when no focus
+                                               -- eob: end of buffer character
 vim.o.mouse = "a"
 vim.o.signcolumn = "yes" -- Always show sign column
 vim.o.shm = "Ia" -- Don't show intro message see h: shm
@@ -259,37 +262,44 @@ require("nvim-autopairs").setup({})
 -- Source base16 file from env var
 function color_customize()
     local hl = vim.api.nvim_set_hl
-    hl(0, "Active", { ctermfg = 21, ctermbg = 0 })
+    hl(0, "Active", { ctermfg = 21, ctermbg = nil })
     hl(0, "CurSearch", { ctermfg = 0, ctermbg = 16 })
-    hl(0, "CursorLine", { ctermbg = 0 })
+    hl(0, "CursorLine", { ctermbg = nil })
     hl(0, "CursorLineNr", { link = "LineNrActive" })
-    hl(0, "EndOfBuffer", { ctermfg = 0, ctermbg = 0 })
-    hl(0, "GitSignsAdd", { ctermfg = 2, ctermbg = 0 })
-    hl(0, "GitSignsChange", { ctermfg = 4, ctermbg = 0 })
-    hl(0, "GitSignsDelete", { ctermfg = 1, ctermbg = 0 })
-    hl(0, "HorizontalSplit", { ctermfg = 18, ctermbg = 0 })
-    hl(0, "Inactive", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "DiffAdded", { ctermfg = 2, ctermbg = nil })
+    hl(0, "DiffFile", { ctermfg = 1, ctermbg = nil })
+    hl(0, "DiffLine", { ctermfg = 4, ctermbg = nil })
+    hl(0, "DiffNewFile", { ctermfg = 2, ctermbg = nil })
+    hl(0, "DiffRemoved", { ctermfg = 1, ctermbg = nil })
+    hl(0, "GitSignsAdd", { ctermfg = 2, ctermbg = nil })
+    hl(0, "GitSignsChange", { ctermfg = 4, ctermbg = nil })
+    hl(0, "GitSignsDelete", { ctermfg = 1, ctermbg = nil })
+    hl(0, "HorizontalSplit", { ctermfg = 18, ctermbg = nil })
+    hl(0, "Inactive", { ctermfg = 8, ctermbg = nil })
     hl(0, "LineNr", { link = "LineNrDefault" })
-    hl(0, "LineNrAbove", { ctermfg = 8, ctermbg = 0 })
-    hl(0, "LineNrActive", { ctermfg = 21, ctermbg = 0, bold = true })
-    hl(0, "LineNrBelow", { ctermfg = 8, ctermbg = 0 })
-    hl(0, "LineNrDefault", { ctermfg = 8, ctermbg = 0, bold = true })
+    hl(0, "LineNrAbove", { ctermfg = 8, ctermbg = nil })
+    hl(0, "LineNrActive", { ctermfg = 21, ctermbg = nil, bold = true })
+    hl(0, "LineNrBelow", { ctermfg = 8, ctermbg = nil })
+    hl(0, "LineNrDefault", { ctermfg = 8, ctermbg = nil, bold = true })
     hl(0, "NeoTreeCursorLine", { ctermbg = 18 })
     hl(0, "NeoTreeDirectoryIcon", { ctermfg = 8 })
     hl(0, "NeoTreeDirectoryName", { ctermfg = 4 })
     hl(0, "NeoTreeDotfile", { ctermfg = 17 })
     hl(0, "NeoTreeFileName", { ctermfg = 20 })
     hl(0, "NeoTreeIndentMarker", { ctermfg = 8 })
+    hl(0, "NonText", { ctermbg = nil })
+    hl(0, "Normal", { ctermbg = nil })
     hl(0, "Search", { ctermfg = 0, ctermbg = 11 })
-    hl(0, "SignColumn", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "SignColumn", { ctermbg = nil })
+    hl(0, "SignColumn", { ctermfg = 8, ctermbg = nil })
     hl(0, "StatusLine", { link = "Active" })
     hl(0, "StatusLineNC", { link = "StatusLineNoFocus" })
-    hl(0, "StatusLineNoFocus", { ctermfg = 8, ctermbg = 0, nocombine = true })
-    hl(0, "StatusLineSeparator", { ctermfg = 8, ctermbg = 0 })
+    hl(0, "StatusLineNoFocus", { ctermfg = 8, ctermbg = nil, nocombine = true })
+    hl(0, "StatusLineSeparator", { ctermfg = 8, ctermbg = nil })
     hl(0, "TabLine", { link = "Inactive" })
-    hl(0, "TabLineFill", { ctermfg = 20, ctermbg = 0 })
+    hl(0, "TabLineFill", { ctermfg = 20, ctermbg = nil })
     hl(0, "TabLineSel", { link = "Active" })
-    hl(0, "VertSplit", { ctermfg = 18, ctermbg = 0 })
+    hl(0, "VertSplit", { ctermfg = 18, ctermbg = nil })
 end
 
 local theme = os.getenv("BASE16_THEME")
