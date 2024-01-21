@@ -5,7 +5,7 @@ window:
     x: 8
     y: 8
   decorations: buttonless
-  opacity: .80
+  opacity: .85
 font:
   normal:
     family: Fira Code
