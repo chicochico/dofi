@@ -61,7 +61,9 @@ mod2:
 # ','
 
 # Move to the next layout in the list.
-cycle-layout: {}
+cycle-layout:
+  mod: mod2
+  key: k
 
 # Move to the previous layout in the list.
 cycle-layout-backward: {}
@@ -164,15 +166,11 @@ select-tall-layout: {}
 
 select-wide-layout: {}
 
-select-fullscreen-layout:
-  mod: mod2
-  key: k
+select-fullscreen-layout: {}
 
 select-column-layout: {}
 
-select-two-pane-layout:
-  mod: mod2
-  key: j
+select-two-pane-layout: {}
 
 # Move the currently focused window to the space to the left.
 throw-space-left: {}
@@ -215,7 +213,7 @@ smart-window-margins: false
 # window-margins: true
 # window-margin-size: 5
 # The size of the margins between windows (in px, default 0).
-window-margin-size: 7
+window-margin-size: 5
 
 # The max number of windows that may be visible on a screen at one time before
 # additional windows are minimized. A value of 0 disables the feature.
