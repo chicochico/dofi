@@ -213,6 +213,11 @@ vim.api.nvim_set_var("goyo_height", 85) -- (default: 85%)
 vim.api.nvim_set_var("goyo_linenr", 1) -- (default: 0)
 vim.api.nvim_set_keymap("n", "<leader>G", ":Goyo<CR>", { noremap = true })
 
+--- This ensures that status bar is not visible within Goyo
+vim.cmd([[
+  autocmd! User GoyoEnter lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Inactive'})
+]])
+
 -- Fugitive
 -- --------
 vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>", { noremap = true })
