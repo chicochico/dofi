@@ -110,6 +110,7 @@ vim.keymap.set("v", "<C-e>", "3<C-e>", { noremap = true })
 vim.keymap.set("v", "<C-y>", "3<C-y>", { noremap = true })
 vim.keymap.set("n", "t", "<C-]>", { noremap = true }) -- tags
 vim.keymap.set("n", "T", "<C-t>", { noremap = true })
+vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
 
 -- Plugin settings
 -- ---------------
