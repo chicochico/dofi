@@ -104,10 +104,10 @@ vim.keymap.set("n", "L", "gt", { noremap = true }) -- move tabs
 vim.keymap.set("n", "H", "gT", { noremap = true })
 vim.keymap.set("n", "<esc>", ":noh<CR>", { noremap = true, silent = true }) -- clear highlighting
 vim.keymap.set("n", "s", ":w<CR>", { noremap = true }) -- write buffer
-vim.keymap.set("n", "<C-e>", "3<C-e>", { noremap = true }) -- scroll steps
-vim.keymap.set("n", "<C-y>", "3<C-y>", { noremap = true })
-vim.keymap.set("v", "<C-e>", "3<C-e>", { noremap = true })
-vim.keymap.set("v", "<C-y>", "3<C-y>", { noremap = true })
+vim.keymap.set("n", "<C-e>", "7<C-e>", { noremap = true }) -- scroll steps
+vim.keymap.set("n", "<C-y>", "7<C-y>", { noremap = true })
+vim.keymap.set("v", "<C-e>", "7<C-e>", { noremap = true })
+vim.keymap.set("v", "<C-y>", "7<C-y>", { noremap = true })
 vim.keymap.set("n", "t", "<C-]>", { noremap = true }) -- tags
 vim.keymap.set("n", "T", "<C-t>", { noremap = true })
 vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
