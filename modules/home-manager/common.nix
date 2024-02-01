@@ -20,6 +20,7 @@ in
       aws-vault
       awscli2
       fd
+      findutils
       fzf
       gh
       gnugrep
