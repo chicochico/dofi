@@ -6,6 +6,7 @@ window:
     y: 8
   decorations: buttonless
   opacity: 1
+  dynamic_padding: true
 font:
   normal:
     family: Fira Code
