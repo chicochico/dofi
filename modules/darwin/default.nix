@@ -53,6 +53,7 @@
       "monitorcontrol"
       "mos"
       "mullvadvpn"
+      "orbstack"
       "signal"
       "vlc"
     ];
