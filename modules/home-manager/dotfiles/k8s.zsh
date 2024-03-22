@@ -13,7 +13,7 @@ alias kx='kubectl_use_context'
 alias kn='kubectl_change_ns'
 
 
-fzf_pick() {
+fzf_k8s_pick() {
   # $1 keybind for fzf
   # $2 promft message
   # $3 results to pick from
@@ -24,13 +24,13 @@ fzf_pick() {
     --print0 \
     --header=$'Press CTRL-R to reload\n\n' \
     --header-lines=1 \
-    --prompt="namespace> " <<< "$result"
+    --prompt="$2> " <<< "$3"
 }
 
 kubectl_change_ns() {
   local result=$(kubectl get ns)
   local reload_command="ctrl-r:reload(kubectl get namespace 2>/dev/null)"
-  local selected=$(fzf_pick "$reload_command" "namespace" "$result")
+  local selected=$(fzf_k8s_pick "$reload_command" "namespace" "$result")
   local namespace=$(awk '{printf $1}' <<< "$selected")
   kubectl config set-context --current --namespace "$namespace"
 }
@@ -38,12 +38,12 @@ kubectl_change_ns() {
 kubectl_use_context() {
   local result=$(kubectl config get-contexts)
   local reload_command="ctrl-r:reload(kubectl config get-contexts 2>/dev/null)"
-  local selected=$(fzf_pick "$reload_command" "context" "$result")
+  local selected=$(fzf_k8s_pick "$reload_command" "context" "$result")
   local context=$(awk '{printf $1}' <<< "$selected")
 
   if [[ $selected == *"*"* ]]; then
     local name=$(awk '{printf $2}' <<< "$selected")
-    echo "Context \"$name\" is active"
+    echo "Context \"$name\" is active."
   else
     local context=$(awk '{printf $1}' <<< "$selected")
     kubectl config use-context "$context"
@@ -53,8 +53,9 @@ kubectl_use_context() {
 _fzf_complete_k8s_pick() {
   local resource="$1"
   local args="$@"
-  local result=$(kubectl get "$resource" 2>/dev/null)
-  local reload_command="ctrl-r:reload(kubectl get \"$resource\" 2>/dev/null)"
+  local namespace=$(echo "$args" | grep -oP '(?<=-n|--namespace)\s+\K\S+' | head -1)
+  local result=$([[ -n "$namespace" ]] && kubectl get "$resource" -n "$namespace" 2>/dev/null || kubectl get "$resource" 2>/dev/null)
+  local reload_command="ctrl-r:reload([[ -n "$namespace" ]] && kubectl get "$resource" -n "$namespace" 2>/dev/null || kubectl get "$resource" 2>/dev/null)"
 
   shift
   _fzf_complete \
@@ -243,7 +244,6 @@ fzf_custom_fuzzy_completions_kubectl() {
       ;;
   esac
 }
-
 
 _fzf_complete_kubectl() { fzf_custom_fuzzy_completions_kubectl "$@" }
 _fzf_complete_k() { fzf_custom_fuzzy_completions_kubectl "$@" }
