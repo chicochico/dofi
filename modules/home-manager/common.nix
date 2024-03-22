@@ -19,6 +19,7 @@ in
       actionlint
       aws-vault
       awscli2
+      colima
       fd
       findutils
       fzf
