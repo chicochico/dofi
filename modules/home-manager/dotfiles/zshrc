@@ -9,7 +9,7 @@ fi
 # $NIX_USER_PROFILE_DIR is created by nix-darwin
 source $NIX_USER_PROFILE_DIR/profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.p10k.zsh
+source $HOME/.p10k.zsh
 
 # ZSH options
 HISTFILE="$HOME/.zsh_history"
@@ -52,7 +52,6 @@ alias c="clear"
 alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias yk="ykman"
 alias d="docker"
-alias k="kubectl"
 alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
 alias t="terraform"
 alias p="popd"
@@ -82,7 +81,13 @@ if [ -n "${commands[fzf-share]}" ]; then
   export FZF_DEFAULT_OPTS='--color=fg+:21,bg+:-1,pointer:21,hl:2,hl+:2'
   export FZF_DEFAULT_COMMAND="fd --hidden --type file --strip-cwd-prefix --exclude .git --exclude .tags"
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_COMPLETION_TRIGGER=''
+  bindkey '^T' fzf-completion
+  bindkey '^I' $fzf_default_completion
 fi
+
+# k8s ergonomics
+source $HOME/.k8s.zsh
 
 #custom executable scripts
 export PATH=$PATH:$HOME/bin
