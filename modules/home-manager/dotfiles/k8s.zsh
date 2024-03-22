@@ -1,6 +1,12 @@
 # K8s utils
 # ---------
 # https://kubernetes.io/docs/reference/kubectl/quick-reference/
+#
+# USAGE:
+# $ kx # to switch context
+# $ kn # to switch namespace
+# $ k <verb> <resource> <flags> <CTRL-T> # to fuzzy search resources (While in fzf CTRL-R to reload completions)
+# ex: k get pods <CTRL-T> # will show all pods in the current namespace, is also aware of the option -n or --namespace
 
 # k shows contexts if typed alone
 # else it runs kubectl with arguments
