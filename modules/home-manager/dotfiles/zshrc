@@ -52,6 +52,7 @@ alias c="clear"
 alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias yk="ykman"
 alias d="docker"
+alias docker="colima nerdctl --"
 alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
 alias t="terraform"
 alias p="popd"

@@ -26,9 +26,10 @@ in
       gh
       gnugrep
       gnupg
+      htop
       jq
       kitty
-      minikube
+      kubernetes-helm
       nodejs
       openssl
       parallel
