@@ -5,7 +5,7 @@
 # USAGE:
 # $ kx # to switch context
 # $ kn # to switch namespace
-# $ k <verb> <resource> <flags> <CTRL-T> # to fuzzy search resources (While in fzf CTRL-R to reload completions)
+# $ k <verb> <flags>  <resource> <CTRL-T> # to fuzzy search resources (While in fzf CTRL-R to reload completions)
 # ex: k get pods <CTRL-T> # will show all pods in the current namespace, is also aware of the option -n or --namespace
 
 # k shows contexts if typed alone
@@ -57,15 +57,14 @@ kubectl_use_context() {
 }
 
 _fzf_complete_k8s_pick() {
-  local resource="$1"
   local args="$@"
-  local namespace=$(echo "$args" | grep -oP '(?<=-n|--namespace)\s+\K\S+' | head -1)
-  local result=$([[ -n "$namespace" ]] && kubectl get "$resource" -n "$namespace" 2>/dev/null || kubectl get "$resource" 2>/dev/null)
-  local reload_command="ctrl-r:reload([[ -n "$namespace" ]] && kubectl get "$resource" -n "$namespace" 2>/dev/null || kubectl get "$resource" 2>/dev/null)"
+  local resource=$(echo "$args" | awk '{print $NF}')
+  local ns=$(echo "$args" | grep -oP '(?<=-n|--ns)\s+\K\S+' | head -1)
+  local result=$([[ -z "$ns" ]] && kubectl get "$resource" 2>/dev/null || kubectl get "$resource" -n "$ns" 2>/dev/null)
+  local reload_command=$([[ -z $ns ]] && echo "kubectl get $resource 2>/dev/null" || echo "kubectl get $resource -n $ns 2>/dev/null")
 
-  shift
   _fzf_complete \
-    --bind="$reload_command" \
+    --bind="ctrl-r:reload($reload_command)" \
     --reverse \
     --height=40% \
     --header=$'Press CTRL-R to reload\n\n'  \
@@ -73,193 +72,14 @@ _fzf_complete_k8s_pick() {
     --prompt="$resource> " -- "$@" < <(echo "$result")
 }
 
-
-#custom fuzzy comletions for kubectl
-fzf_custom_fuzzy_completions_kubectl() {
-  case "$1" in
-      *bindings*)
-          _fzf_complete_k8s_pick bindings "$@"
-          ;;
-      *componentstatuses*|*cs*)
-          _fzf_complete_k8s_pick componentstatuses "$@"
-          ;;
-      *configmaps*|*cm*)
-          _fzf_complete_k8s_pick configmaps "$@"
-          ;;
-      *endpoints*|*ep*)
-          _fzf_complete_k8s_pick endpoints "$@"
-          ;;
-      *events*|*ev*)
-          _fzf_complete_k8s_pick events "$@"
-          ;;
-      *limitranges*|*limits*)
-          _fzf_complete_k8s_pick limitranges "$@"
-          ;;
-      *namespaces*|*ns*)
-          _fzf_complete_k8s_pick namespaces "$@"
-          ;;
-      *nodes*|*no*)
-          _fzf_complete_k8s_pick nodes "$@"
-          ;;
-      *persistentvolumeclaims*|*pvc*)
-          _fzf_complete_k8s_pick persistentvolumeclaims "$@"
-          ;;
-      *persistentvolumes*|*pv*)
-          _fzf_complete_k8s_pick persistentvolumes "$@"
-          ;;
-      *pods*|*po*)
-          _fzf_complete_k8s_pick pods "$@"
-          ;;
-      *podtemplates*)
-          _fzf_complete_k8s_pick podtemplates "$@"
-          ;;
-      *replicationcontrollers*|*rc*)
-          _fzf_complete_k8s_pick replicationcontrollers "$@"
-          ;;
-      *resourcequotas*|*quota*)
-          _fzf_complete_k8s_pick resourcequotas "$@"
-          ;;
-      *secrets*)
-          _fzf_complete_k8s_pick secrets "$@"
-          ;;
-      *serviceaccounts*|*sa*)
-          _fzf_complete_k8s_pick serviceaccounts "$@"
-          ;;
-      *services*|*svc*)
-          _fzf_complete_k8s_pick services "$@"
-          ;;
-      *mutatingwebhookconfigurations*)
-          _fzf_complete_k8s_pick mutatingwebhookconfigurations "$@"
-          ;;
-      *validatingwebhookconfigurations*)
-          _fzf_complete_k8s_pick validatingwebhookconfigurations "$@"
-          ;;
-      *customresourcedefinitions*|*crd*,*crds*)
-          _fzf_complete_k8s_pick customresourcedefinitions "$@"
-          ;;
-      *apiservices*)
-          _fzf_complete_k8s_pick apiservices "$@"
-          ;;
-      *controllerrevisions*)
-          _fzf_complete_k8s_pick controllerrevisions "$@"
-          ;;
-      *daemonsets*|*ds*)
-          _fzf_complete_k8s_pick daemonsets "$@"
-          ;;
-      *deployments*|*deploy*)
-          _fzf_complete_k8s_pick deployments "$@"
-          ;;
-      *replicasets*|*rs*)
-          _fzf_complete_k8s_pick replicasets "$@"
-          ;;
-      *statefulsets*|*sts*)
-          _fzf_complete_k8s_pick statefulsets "$@"
-          ;;
-      *selfsubjectreviews*)
-          _fzf_complete_k8s_pick selfsubjectreviews "$@"
-          ;;
-      *tokenreviews*)
-          _fzf_complete_k8s_pick tokenreviews "$@"
-          ;;
-      *localsubjectaccessreviews*)
-          _fzf_complete_k8s_pick localsubjectaccessreviews "$@"
-          ;;
-      *selfsubjectaccessreviews*)
-          _fzf_complete_k8s_pick selfsubjectaccessreviews "$@"
-          ;;
-      *selfsubjectrulesreviews*)
-          _fzf_complete_k8s_pick selfsubjectrulesreviews "$@"
-          ;;
-      *subjectaccessreviews*)
-          _fzf_complete_k8s_pick subjectaccessreviews "$@"
-          ;;
-      *horizontalpodautoscalers*|*hpa*)
-          _fzf_complete_k8s_pick horizontalpodautoscalers "$@"
-          ;;
-      *cronjobs*|*cj*)
-          _fzf_complete_k8s_pick cronjobs "$@"
-          ;;
-      *jobs*)
-          _fzf_complete_k8s_pick jobs "$@"
-          ;;
-      *certificatesigningrequests*|*csr*)
-          _fzf_complete_k8s_pick certificatesigningrequests "$@"
-          ;;
-      *leases*)
-          _fzf_complete_k8s_pick leases "$@"
-          ;;
-      *endpointslices*)
-          _fzf_complete_k8s_pick endpointslices "$@"
-          ;;
-      *events*|*ev*)
-          _fzf_complete_k8s_pick events "$@"
-          ;;
-      *flowschemas*)
-          _fzf_complete_k8s_pick flowschemas "$@"
-          ;;
-      *prioritylevelconfigurations*)
-          _fzf_complete_k8s_pick prioritylevelconfigurations "$@"
-          ;;
-      *ingressclasses*)
-          _fzf_complete_k8s_pick ingressclasses "$@"
-          ;;
-      *ingresses*|*ing*)
-          _fzf_complete_k8s_pick ingresses "$@"
-          ;;
-      *networkpolicies*|*netpol*)
-          _fzf_complete_k8s_pick networkpolicies "$@"
-          ;;
-      *runtimeclasses*)
-          _fzf_complete_k8s_pick runtimeclasses "$@"
-          ;;
-      *poddisruptionbudgets*|*pdb*)
-          _fzf_complete_k8s_pick poddisruptionbudgets "$@"
-          ;;
-      *clusterrolebindings*)
-          _fzf_complete_k8s_pick clusterrolebindings "$@"
-          ;;
-      *clusterroles*)
-          _fzf_complete_k8s_pick clusterroles "$@"
-          ;;
-      *rolebindings*)
-          _fzf_complete_k8s_pick rolebindings "$@"
-          ;;
-      *roles*)
-          _fzf_complete_k8s_pick roles "$@"
-          ;;
-      *priorityclasses*|*pc*)
-          _fzf_complete_k8s_pick priorityclasses "$@"
-          ;;
-      *csidrivers*)
-          _fzf_complete_k8s_pick csidrivers "$@"
-          ;;
-      *csinodes*)
-          _fzf_complete_k8s_pick csinodes "$@"
-          ;;
-      *csistoragecapacities*)
-          _fzf_complete_k8s_pick csistoragecapacities "$@"
-          ;;
-      *storageclasses*|*sc*)
-          _fzf_complete_k8s_pick storageclasses "$@"
-          ;;
-      *volumeattachments*)
-          _fzf_complete_k8s_pick volumeattachments "$@"
-          ;;
-      *)
-      eval "zle ${fzf_default_completion:-expand-or-complete}"
-      ;;
-  esac
-}
-
-_fzf_complete_kubectl() { fzf_custom_fuzzy_completions_kubectl "$@" }
-_fzf_complete_k() { fzf_custom_fuzzy_completions_kubectl "$@" }
-_fzf_complete_kg() { fzf_custom_fuzzy_completions_kubectl "$@" }
-_fzf_complete_kd() { fzf_custom_fuzzy_completions_kubectl "$@" }
-_fzf_complete_kl() { _fzf_complete_k8s_pick pod "$@" }
+_fzf_complete_kubectl() { _fzf_complete_k8s_pick "$@" }
+_fzf_complete_k() { _fzf_complete_k8s_pick "$@" }
+_fzf_complete_kg() { _fzf_complete_k8s_pick "$@" }
+_fzf_complete_kd() { _fzf_complete_k8s_pick "$@" }
+_fzf_complete_kl() { _fzf_complete_k8s_pick "$@" }
 
 # this picks the resource name from first column
 # is post process from all calls to _fzf_complete_k8s_pick
 _fzf_complete_k8s_pick_post() { 
   awk '{printf $1}' 
 }
-
