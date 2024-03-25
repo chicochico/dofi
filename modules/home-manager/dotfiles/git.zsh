@@ -51,7 +51,7 @@ _fzf_complete_fuzzy_git() {
         _fzf_complete_git_fzf _fzf_git_worktrees 0 "$@"
         ;;
     *)
-    eval "zle ${fzf_default_completion:-expand-or-complete}"
+        eval "zle ${fzf_default_completion:-expand-or-complete}"
         ;;
   esac
 }

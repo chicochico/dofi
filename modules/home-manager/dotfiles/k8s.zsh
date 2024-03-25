@@ -63,16 +63,24 @@ _fzf_complete_k8s_pick() {
   args="$*"
   resource=$(echo "$args" | awk '{print $NF}')
   ns=$(echo "$args" | grep -oP '(?<=-n|--ns)\s+\K\S+' | head -1)
-  result=$([[ -z "$ns" ]] && kubectl get "$resource" 2>/dev/null || kubectl get "$resource" -n "$ns" 2>/dev/null)
-  reload_command=$([[ -z $ns ]] && echo "kubectl get $resource 2>/dev/null" || echo "kubectl get $resource -n $ns 2>/dev/null")
+
+  case "$args" in
+    *' explain '*)
+      result=$(kubectl api-resources)
+      reload_command="kubectl api-resources"
+        ;;
+    *)
+      result=$([[ -z "$ns" ]] && kubectl get "$resource" 2>/dev/null || kubectl get "$resource" -n "$ns" 2>/dev/null)
+      reload_command=$([[ -z $ns ]] && echo "kubectl get $resource 2>/dev/null" || echo "kubectl get $resource -n $ns 2>/dev/null")
+        ;;
+  esac
 
   _fzf_complete \
     --bind="ctrl-r:reload($reload_command)" \
     --reverse \
     --height=40% \
     --header=$'Press CTRL-R to reload\n\n'  \
-    --header-lines=1 \
-    --prompt="$resource> " -- "$@" < <(echo "$result")
+    --header-lines=1 -- "$@" < <(echo "$result")
 }
 
 _fzf_complete_kubectl() { _fzf_complete_k8s_pick "$@"; }
