@@ -34,34 +34,37 @@ fzf_k8s_pick() {
 }
 
 kubectl_change_ns() {
-  local result=$(kubectl get ns)
-  local reload_command="ctrl-r:reload(kubectl get namespace 2>/dev/null)"
-  local selected=$(fzf_k8s_pick "$reload_command" "namespace" "$result")
-  local namespace=$(awk '{printf $1}' <<< "$selected")
+  local result reload_command selected namespace
+  result=$(kubectl get ns)
+  reload_command="ctrl-r:reload(kubectl get namespace 2>/dev/null)"
+  selected=$(fzf_k8s_pick "$reload_command" "namespace" "$result")
+  namespace=$(awk '{printf $1}' <<< "$selected")
   kubectl config set-context --current --namespace "$namespace"
 }
 
 kubectl_use_context() {
-  local result=$(kubectl config get-contexts)
-  local reload_command="ctrl-r:reload(kubectl config get-contexts 2>/dev/null)"
-  local selected=$(fzf_k8s_pick "$reload_command" "context" "$result")
-  local context=$(awk '{printf $1}' <<< "$selected")
+  local result reload_command selected context name
+  result=$(kubectl config get-contexts)
+  reload_command="ctrl-r:reload(kubectl config get-contexts 2>/dev/null)"
+  selected=$(fzf_k8s_pick "$reload_command" "context" "$result")
+  context=$(awk '{printf $1}' <<< "$selected")
 
   if [[ $selected == *"*"* ]]; then
-    local name=$(awk '{printf $2}' <<< "$selected")
+    name=$(awk '{printf $2}' <<< "$selected")
     echo "Context \"$name\" is active."
   else
-    local context=$(awk '{printf $1}' <<< "$selected")
+    context=$(awk '{printf $1}' <<< "$selected")
     kubectl config use-context "$context"
   fi
 }
 
 _fzf_complete_k8s_pick() {
-  local args="$@"
-  local resource=$(echo "$args" | awk '{print $NF}')
-  local ns=$(echo "$args" | grep -oP '(?<=-n|--ns)\s+\K\S+' | head -1)
-  local result=$([[ -z "$ns" ]] && kubectl get "$resource" 2>/dev/null || kubectl get "$resource" -n "$ns" 2>/dev/null)
-  local reload_command=$([[ -z $ns ]] && echo "kubectl get $resource 2>/dev/null" || echo "kubectl get $resource -n $ns 2>/dev/null")
+  local args resource ns result reload_command
+  args="$*"
+  resource=$(echo "$args" | awk '{print $NF}')
+  ns=$(echo "$args" | grep -oP '(?<=-n|--ns)\s+\K\S+' | head -1)
+  result=$([[ -z "$ns" ]] && kubectl get "$resource" 2>/dev/null || kubectl get "$resource" -n "$ns" 2>/dev/null)
+  reload_command=$([[ -z $ns ]] && echo "kubectl get $resource 2>/dev/null" || echo "kubectl get $resource -n $ns 2>/dev/null")
 
   _fzf_complete \
     --bind="ctrl-r:reload($reload_command)" \
@@ -72,14 +75,12 @@ _fzf_complete_k8s_pick() {
     --prompt="$resource> " -- "$@" < <(echo "$result")
 }
 
-_fzf_complete_kubectl() { _fzf_complete_k8s_pick "$@" }
-_fzf_complete_k() { _fzf_complete_k8s_pick "$@" }
-_fzf_complete_kg() { _fzf_complete_k8s_pick "$@" }
-_fzf_complete_kd() { _fzf_complete_k8s_pick "$@" }
-_fzf_complete_kl() { _fzf_complete_k8s_pick "$@" }
+_fzf_complete_kubectl() { _fzf_complete_k8s_pick "$@"; }
+_fzf_complete_k() { _fzf_complete_k8s_pick "$@"; }
+_fzf_complete_kg() { _fzf_complete_k8s_pick "$@"; }
+_fzf_complete_kd() { _fzf_complete_k8s_pick "$@"; }
+_fzf_complete_kl() { _fzf_complete_k8s_pick "$@"; }
 
 # this picks the resource name from first column
 # is post process from all calls to _fzf_complete_k8s_pick
-_fzf_complete_k8s_pick_post() { 
-  awk '{printf $1}' 
-}
+_fzf_complete_k8s_pick_post() { awk '{printf $1}'; }
