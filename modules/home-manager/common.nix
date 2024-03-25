@@ -64,6 +64,7 @@ in
     amethyst = { source = ./dotfiles/amethyst.yaml; target = ".amethyst.yml"; };
     gitconfig-default = { source = ./dotfiles/config/git/config; target = ".config/git/config"; };
     k8s-zsh = { source = ./dotfiles/k8s.zsh; target = ".k8s.zsh"; };
+    git-zsh = { source = ./dotfiles/git.zsh; target = ".git.zsh"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)

@@ -53,7 +53,6 @@ alias ykswap="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 alias yk="ykman"
 alias d="docker"
 alias docker="colima nerdctl --"
-alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
 alias t="terraform"
 alias p="popd"
 alias pll="parallel"
@@ -87,8 +86,9 @@ if [ -n "${commands[fzf-share]}" ]; then
   bindkey '^I' $fzf_default_completion
 fi
 
-# k8s ergonomics
+# extra ergonomics things
 source $HOME/.k8s.zsh
+source $HOME/.git.zsh
 
 #custom executable scripts
 export PATH=$PATH:$HOME/bin
