@@ -20,6 +20,7 @@ in
       aws-vault
       awscli2
       colima
+      difftastic
       fd
       findutils
       fzf
