@@ -1,8 +1,6 @@
 # Git utils
 # ---------
 
-export GIT_EXTERNAL_DIFF=difft
-
 # $ g # alone will do git status, otherwise will run git with arguments
 alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
 
