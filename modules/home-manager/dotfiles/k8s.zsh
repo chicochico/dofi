@@ -8,6 +8,9 @@
 # $ k <verb> <flags>  <resource> <CTRL-T> # to fuzzy search resources (While in fzf CTRL-R to reload completions)
 # ex: k get pods <CTRL-T> # will show all pods in the current namespace, is also aware of the option -n or --namespace
 
+# Color kubectl diff output
+export KUBECTL_EXTERNAL_DIFF="colordiff -N -u"
+
 # k shows contexts if typed alone
 # else it runs kubectl with arguments
 alias k='f() { [ "$#" -eq 0 ] && kubectl config get-contexts || kubectl "$@"; }; f'
