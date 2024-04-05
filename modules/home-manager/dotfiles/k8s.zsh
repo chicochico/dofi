@@ -61,7 +61,16 @@ kubectl_use_context() {
   fi
 }
 
-_fzf_complete_k8s_pick() {
+_fzf_complete_k8s_generic() {
+# The completion should trigger independent of space before the cursor,
+# if there is NO space before the cursor, whatever is under the cursor should be
+# used to generate the completion results.
+#
+# Complete kubectl commands taking into account:
+# - [ ] flags for namespace such as -n/--namespace
+# - [ ] resources that are typed with a slash such as pods/NAME for example:
+#         kubectl get pods/<CURSOR>
+
   local args resource ns result reload_command
   args="$*"
   resource=$(echo "$args" | awk '{print $NF}')
@@ -86,12 +95,12 @@ _fzf_complete_k8s_pick() {
     --header-lines=1 -- "$@" < <(echo "$result")
 }
 
-_fzf_complete_kubectl() { _fzf_complete_k8s_pick "$@"; }
-_fzf_complete_k() { _fzf_complete_k8s_pick "$@"; }
-_fzf_complete_kg() { _fzf_complete_k8s_pick "$@"; }
-_fzf_complete_kd() { _fzf_complete_k8s_pick "$@"; }
-_fzf_complete_kl() { _fzf_complete_k8s_pick "$@"; }
+_fzf_complete_kubectl() { _fzf_complete_k8s_generic "$@"; }
+_fzf_complete_k() { _fzf_complete_k8s_generic "$@"; }
+_fzf_complete_kg() { _fzf_complete_k8s_generic "$@"; }
+_fzf_complete_kd() { _fzf_complete_k8s_generic "$@"; }
+_fzf_complete_kl() { _fzf_complete_k8s_generic "$@"; }
 
 # this picks the resource name from first column
-# is post process from all calls to _fzf_complete_k8s_pick
-_fzf_complete_k8s_pick_post() { awk '{printf $1}'; }
+# is post process from all calls to _fzf_complete_k8s_generic
+_fzf_complete_k8s_generic_post() { awk '{printf $1}'; }
