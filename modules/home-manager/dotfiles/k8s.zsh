@@ -62,33 +62,46 @@ kubectl_use_context() {
 }
 
 _fzf_complete_k8s_generic() {
-# The completion should trigger independent of space before the cursor,
-# if there is NO space before the cursor, whatever is under the cursor should be
-# used to generate the completion results.
-#
-# Complete kubectl commands taking into account:
-# - [ ] flags for namespace such as -n/--namespace
-# - [ ] resources that are typed with a slash such as pods/NAME for example:
-#         kubectl get pods/<CURSOR>
-
-  local args resource ns result reload_command
+  local args resource result reload_command resource_from_cmd resource_with_name namespace k_cmd
   args="$*"
-  resource=$(echo "$args" | awk '{print $NF}')
-  ns=$(echo "$args" | grep -oP '(?<=-n|--ns)\s+\K\S+' | head -1)
+  # for comands like `kubectl -n default get pods` or
+  # `kubectl get pods -n default` or `kubectl --namespace default get pods`
+  # or `kubectl get pods --namespace default`
+  # assign the namespace to $namespace
+  # and pods to $resource
+  namespace=$(echo "$args" | grep -oP -- '-n\s+\K\w+' || echo "$args" | grep -oP -- '--namespace\s+\K\w+')
+  resource_from_cmd=$(echo "$args" | grep -oP -- 'get\s+\K\w+' || echo "$args" | grep -oP -- 'describe\s+\K\w+' || echo "$args" | grep -oP -- 'delete\s+\K\w+' || echo "$args" | grep -oP -- 'edit\s+\K\w+')
+
+  # $prefix is passed by the caller and is the string on the cursor
+  # This is for cases where the resource is typed with the name: `kubeclt logs pod/**`
+  resource_with_name=$(echo "$prefix" | cut -d'/' -f1)
+
+  # Use namespace scope if in the command
+  ns_opt=""
+  if [ -n "$namespace" ]; then
+  ns_opt="--namespace $namespace"
+  fi
 
   case "$args" in
     *' explain '*)
       result=$(kubectl api-resources)
       reload_command="kubectl api-resources"
         ;;
+    *' logs '*|'kl'*)
+      k_cmd="kubectl get pod $ns_opt"
+      result=$(eval "$k_cmd" 2>/dev/null)
+        ;;
     *)
-      result=$([[ -z "$ns" ]] && kubectl get "$resource" 2>/dev/null || kubectl get "$resource" -n "$ns" 2>/dev/null)
-      reload_command=$([[ -z $ns ]] && echo "kubectl get $resource 2>/dev/null" || echo "kubectl get $resource -n $ns 2>/dev/null")
+      # If resource_with_name is not empty assign it to resource
+      # Otherwhise assign $resource_from_cmd to $resource
+      resource=${resource_with_name:-$resource_from_cmd} > /dev/null
+      k_cmd="kubectl get $resource $ns_opt"
+      result=$(eval "$k_cmd" 2>/dev/null)
         ;;
   esac
 
   _fzf_complete \
-    --bind="ctrl-r:reload($reload_command)" \
+    --bind="ctrl-r:reload($k_cmd)" \
     --reverse \
     --height=40% \
     --header=$'Press CTRL-R to reload\n\n'  \
