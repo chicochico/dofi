@@ -130,9 +130,9 @@ _fzf_complete_argocd_generic() {
       result=$(argocd app list)
       reload_command="argocd app list"
         ;;
-    *' project '*)
-      result=$(argocd project list)
-      reload_command="argocd project list"
+    *' proj '*)
+      result=$(argocd proj list)
+      reload_command="argocd proj list"
         ;;
   esac
 
