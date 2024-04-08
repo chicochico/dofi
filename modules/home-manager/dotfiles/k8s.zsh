@@ -117,3 +117,32 @@ _fzf_complete_kl() { _fzf_complete_k8s_generic "$@"; }
 # this picks the resource name from first column
 # is post process from all calls to _fzf_complete_k8s_generic
 _fzf_complete_k8s_generic_post() { awk '{printf $1}'; }
+
+
+# ArgoCD applications
+_fzf_complete_argocd_generic() {
+  local args resource result reload_command resource_from_cmd resource_with_name namespace k_cmd
+  args="$*"
+
+
+  case "$args" in
+    *' app '*)
+      result=$(argocd app list)
+      reload_command="argocd app list"
+        ;;
+    *' project '*)
+      result=$(argocd project list)
+      reload_command="argocd project list"
+        ;;
+  esac
+
+  _fzf_complete \
+    --bind="ctrl-r:reload($reload_command)" \
+    --reverse \
+    --height=40% \
+    --header=$'Press CTRL-R to reload\n\n'  \
+    --header-lines=1 -- "$@" < <(echo "$result")
+}
+
+_fzf_complete_argocd() { _fzf_complete_argocd_generic "$@"; }
+_fzf_complete_argocd_generic_post() { awk '{printf $1}'; }
