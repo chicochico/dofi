@@ -69,7 +69,7 @@ _fzf_complete_k8s_generic() {
   # or `kubectl get pods --namespace default`
   # assign the namespace to $namespace
   # and pods to $resource
-  namespace=$(echo "$args" | grep -oP -- '-n\s+\K\w+' || echo "$args" | grep -oP -- '--namespace\s+\K\w+')
+  namespace=$(echo "$args" | grep -oP -- '-n\s+\K[\w-]+' || echo "$args" | grep -oP -- '--namespace\s+\K[\w-]+')
   resource_from_cmd=$(echo "$args" | grep -oP -- 'get\s+\K\w+' || echo "$args" | grep -oP -- 'describe\s+\K\w+' || echo "$args" | grep -oP -- 'delete\s+\K\w+' || echo "$args" | grep -oP -- 'edit\s+\K\w+')
 
   # $prefix is passed by the caller and is the string on the cursor
