@@ -340,7 +340,7 @@ lspconfig.yamlls.setup({
 -- Null-ls
 local null_ls = require("null-ls")
 local sources = {
-    null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort,
