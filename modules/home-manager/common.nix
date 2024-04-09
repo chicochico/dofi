@@ -31,6 +31,10 @@ in
       htop
       jq
       kitty
+      krew
+      kubectl
+      kustomize
+      yq-go
       kubernetes-helm
       nodejs
       openssl
@@ -174,6 +178,8 @@ in
       actionlint
       # sql
       sqlfluff
+      # bash
+      shellcheck
     ];
   };
 

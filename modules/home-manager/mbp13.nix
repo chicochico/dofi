@@ -9,16 +9,14 @@ in
     inherit (common.home) username homeDirectory stateVersion;
     packages = with pkgs; common.home.packages ++ [
       argocd
+      go
       inetutils
-      kubectl
       kubernetes-helm
       kubeseal
-      kustomize
       pgcli
       teleport
       terraform
       terragrunt
-      yq-go
     ];
 
     file = common.home.file // {
