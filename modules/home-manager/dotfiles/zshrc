@@ -93,6 +93,16 @@ if [ -n "${commands[fzf-share]}" ]; then
   _fzf_compgen_dir() {
     fd --maxdepth 3 --type d --hidden --follow --exclude ".git" --exclude ".tags" . "$1"
   }
+
+  _fzf_complete_fg() {
+    _fzf_complete \
+      --reverse \
+      --height=40% -- "$@" < <(jobs -l)
+  }
+
+  _fzf_complete_fg_post() {
+    sed -E 's/^\[([0-9]+)\].*$/%\1/'
+  }
 fi
 
 # extra ergonomics things
