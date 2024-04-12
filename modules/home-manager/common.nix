@@ -32,10 +32,10 @@ in
       jq
       kitty
       krew
+      kubecolor
       kubectl
-      kustomize
-      yq-go
       kubernetes-helm
+      kustomize
       nodejs
       openssl
       parallel
@@ -45,6 +45,7 @@ in
       universal-ctags
       unixtools.watch
       vale
+      yq-go
       yubikey-manager
       zsh
       zsh-powerlevel10k

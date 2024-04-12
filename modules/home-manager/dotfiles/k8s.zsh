@@ -17,6 +17,7 @@ export KUBECTL_EXTERNAL_DIFF="colordiff -N -u"
 
 # k shows contexts if typed alone
 # else it runs kubectl with arguments
+alias kubectl='kubecolor'
 alias k='f() { [ "$#" -eq 0 ] && kubectl config get-contexts || kubectl "$@"; }; f'
 alias kc='kubectl config'
 alias kg='kubectl get'
