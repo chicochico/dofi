@@ -13,6 +13,7 @@ in
       inetutils
       kubernetes-helm
       kubeseal
+      kubeshark
       pgcli
       teleport
       terraform
