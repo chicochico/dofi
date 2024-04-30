@@ -8,6 +8,7 @@ in
   home = {
     inherit (common.home) username homeDirectory stateVersion;
     packages = with pkgs; common.home.packages ++ [
+      exercism
     ];
 
     file = common.home.file // {
