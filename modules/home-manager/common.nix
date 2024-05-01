@@ -181,6 +181,7 @@ in
       sqlfluff
       # bash
       shellcheck
+      shfmt
     ];
   };
 

@@ -340,11 +340,12 @@ lspconfig.yamlls.setup({
 -- Null-ls
 local null_ls = require("null-ls")
 local sources = {
-    null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
     null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.jq,
+    null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", "4" } }),
     null_ls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
     null_ls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
 }
