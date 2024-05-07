@@ -93,12 +93,12 @@ command4: {}
 # Focus the next window in the list going counter-clockwise.
 focus-ccw:
   mod: mod2
-  key: s
+  key: c
 
 # Focus the next window in the list going clockwise.
 focus-cw:
   mod: mod2
-  key: t
+  key: v
 
 # Focus the main window in the list.
 focus-main:

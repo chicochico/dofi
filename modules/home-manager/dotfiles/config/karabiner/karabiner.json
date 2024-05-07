@@ -169,7 +169,7 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "a",
+                  "key_code": "f",
                   "modifiers": {
                     "mandatory": [
                       "left_shift",
@@ -191,7 +191,7 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "s",
+                  "key_code": "d",
                   "modifiers": {
                     "mandatory": [
                       "left_shift",
