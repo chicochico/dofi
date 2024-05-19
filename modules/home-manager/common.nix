@@ -39,6 +39,7 @@ in
       nodejs
       openssl
       parallel
+      python311
       ripgrep
       silver-searcher
       tree
