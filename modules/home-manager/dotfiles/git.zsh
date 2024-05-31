@@ -1,8 +1,14 @@
 # Git utils
 # ---------
 
-# $ g # alone will do git status, otherwise will run git with arguments
-alias g='f() { [ "$#" -eq 0 ] && git status || git "$@"; }; f'
+g() { 
+  # $ g # alone will do git status, otherwise will run git with arguments
+  if [ "$#" -eq 0 ]; then 
+    git status 
+  else
+    git "$@"
+  fi
+}
 
 _fzf_git_branches() {
   local header format result

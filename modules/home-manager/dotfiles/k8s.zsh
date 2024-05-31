@@ -18,13 +18,19 @@ export KUBECTL_EXTERNAL_DIFF="colordiff -N -u"
 # k shows contexts if typed alone
 # else it runs kubectl with arguments
 alias kubectl='kubecolor'
-alias k='f() { [ "$#" -eq 0 ] && kubectl config get-contexts || kubectl "$@"; }; f'
 alias kc='kubectl config'
 alias kg='kubectl get'
 alias kd='kubectl describe'
 alias kl='kubectl logs'
-alias kx='kubectl_use_context'
-alias kn='kubectl_change_ns'
+
+k() { 
+  # k shows contexts if typed alone
+  if [ "$#" -eq 0 ]; then 
+    kubectl config get-contexts 
+  else
+    kubectl "$@"
+  fi
+}
 
 
 fzf_k8s_pick() {
@@ -41,7 +47,8 @@ fzf_k8s_pick() {
     --prompt="$2> " <<< "$3"
 }
 
-kubectl_change_ns() {
+kn() {
+  # change namespace
   local result reload_command selected namespace
   result=$(kubectl get ns)
   reload_command="ctrl-r:reload(kubectl get namespace 2>/dev/null)"
@@ -50,7 +57,8 @@ kubectl_change_ns() {
   kubectl config set-context --current --namespace "$namespace"
 }
 
-kubectl_use_context() {
+kx() {
+  # change context
   local result reload_command selected context name
   result=$(kubectl config get-contexts)
   reload_command="ctrl-r:reload(kubectl config get-contexts 2>/dev/null)"
