@@ -7,9 +7,9 @@ fi
 
 # Theme
 # $NIX_USER_PROFILE_DIR is created by nix-darwin
-source $NIX_USER_PROFILE_DIR/profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+source "$NIX_USER_PROFILE_DIR/profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source $HOME/.p10k.zsh
+source "$HOME/.p10k.zsh"
 
 # ZSH options
 HISTFILE="$HOME/.zsh_history"
@@ -81,7 +81,7 @@ if [ -n "${commands[fzf-share]}" ]; then
   export FZF_DEFAULT_OPTS='--color=fg+:21,bg+:-1,pointer:21,hl:2,hl+:2'
   export FZF_COMPLETION_TRIGGER=''
   bindkey '^T' fzf-completion
-  bindkey '^I' $fzf_default_completion
+  bindkey '^I' "$fzf_default_completion"
 
   # Path and directory completion
   # - The first argument to the function ($1) is the base path to start traversal
