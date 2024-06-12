@@ -91,14 +91,10 @@ command3: {}
 command4: {}
 
 # Focus the next window in the list going counter-clockwise.
-focus-ccw:
-  mod: mod2
-  key: t
+focus-ccw: {}
 
 # Focus the next window in the list going clockwise.
-focus-cw:
-  mod: mod2
-  key: s
+focus-cw: {}
 
 # Focus the main window in the list.
 focus-main:
@@ -114,9 +110,7 @@ focus-screen-cw:
   key: d
 
 # Move the currently focused window onto the next screen in the list going counter-clockwise.
-swap-screen-ccw:
-  mod: mod2
-  key: p
+swap-screen-ccw: {}
 
 # Move the currently focused window onto the next screen in the list going clockwise.
 swap-screen-cw:
@@ -177,9 +171,7 @@ throw-space-left: {}
 throw-space-right: {}
 
 # Toggle the floating state of the currently focused window; i.e., if it was floating make it tiled and if it was tiled make it floating.
-toggle-float:
-  mod: mod2
-  key: f
+toggle-float: {}
 
 # Display the layout HUD with the current layout on each screen.
 display-current-layout: {}
@@ -188,9 +180,7 @@ display-current-layout: {}
 toggle-tiling: {}
 
 # Rerun the current layout's algorithm.
-reevaluate-windows:
-  mod: mod2
-  key: /
+reevaluate-windows: {}
 
 # Turn on or off focus-follows-mouse.
 toggle-focus-follows-mouse: {}
