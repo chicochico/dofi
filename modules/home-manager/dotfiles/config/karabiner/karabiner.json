@@ -231,7 +231,7 @@
             ]
           },
           {
-            "description": "Focus Firefox - tab 1",
+            "description": "Focus Firefox - tab 1 (youtube music)",
             "manipulators": [
               {
                 "from": {
@@ -246,6 +246,50 @@
                 "to": [
                   {
                     "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-tab.scpt 1"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Focus Firefox - tab 2 (slack - search)",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-slack-search.scpt"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Focus Firefox - jira",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-tab.scpt 3"
                   }
                 ],
                 "type": "basic"
