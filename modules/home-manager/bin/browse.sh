@@ -3,7 +3,7 @@
 # Browser shortcuts to use from the terminal or 
 # with a karabiner keybinding
 
-ff () {
+ff() {
     /Applications/Firefox.app/Contents/MacOS/firefox "$@"
 }
 
@@ -11,7 +11,7 @@ if [ "$#" -eq 0 ]; then
     ff --new-tab about:blank
 else
     shortcut="$1"
-    search_query="${*:2}"
+    search_query=$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "${*:2}")
     case $shortcut in
         "i")
             open "https://duckduckgo.com/?t=ffab&q=$search_query&iax=images&ia=images"
@@ -65,10 +65,10 @@ else
             open "https://traderepublic.atlassian.net/wiki/search?text=$search_query"
             ;;
         "j")
-            open "https://traderepublic.atlassian.net/issues/?jql=text%20~%20%22$search_query*%22"
+            open "https://traderepublic.atlassian.net/issues/?jql=text%20~%20%22$search_query%2A%22"
             ;;
         *)
-            open "https://duckduckgo.com/?t=ffab&q=$shortcut $search_query"
+            open "https://duckduckgo.com/?t=ffab&q=$shortcut%20$search_query"
             ;;
     esac
 fi
