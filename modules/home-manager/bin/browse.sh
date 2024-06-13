@@ -65,7 +65,13 @@ else
             open "https://traderepublic.atlassian.net/wiki/search?text=$search_query"
             ;;
         "j")
-            open "https://traderepublic.atlassian.net/issues/?jql=text%20~%20%22$search_query%2A%22"
+            # if $search_query matches a jira issue key, open the issue
+            #
+            if [[ $search_query =~ ^[A-Z]+-[0-9]+$ ]]; then
+                open "https://traderepublic.atlassian.net/browse/$search_query"
+            else
+                open "https://traderepublic.atlassian.net/issues/?jql=text%20~%20%22$search_query%2A%22"
+            fi
             ;;
         *)
             open "https://duckduckgo.com/?t=ffab&q=$shortcut%20$search_query"
