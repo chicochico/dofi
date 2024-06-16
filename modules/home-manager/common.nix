@@ -86,6 +86,7 @@ in
       ]);
       target = ".zshrc";
     };
+    browser = { source = ./bin/browse.sh; target = "bin/b"; };
   };
 
   # Let Home Manager install and manage itself.
