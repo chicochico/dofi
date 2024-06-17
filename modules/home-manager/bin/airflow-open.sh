@@ -14,7 +14,7 @@ case "$env" in
         env_full="staging"
         ;;
     "prd")
-        env_full="production"
+        env_full="production-devex"
         ;;
     *)
         echo "Unknown environment"
@@ -22,9 +22,9 @@ case "$env" in
         ;;
 esac
 
-token=$(aws --profile bi-${env_full} mwaa create-web-login-token --region eu-central-1 --name data-platform-${env})
-host_name=$(echo $token | jq -r .WebServerHostname)
-web_token=$(echo $token | jq -r .WebToken)
+token=$(aws --profile "bi-${env_full}" mwaa create-web-login-token --region eu-central-1 --name "main-${env}")
+host_name=$(echo "${token}" | jq -r .WebServerHostname)
+web_token=$(echo "${token}" | jq -r .WebToken)
 ui_url="https://${host_name}/aws_mwaa/aws-console-sso?login=true#${web_token}"
 
-open ${ui_url}
+open "${ui_url}"
