@@ -278,7 +278,7 @@ function color_customize()
     local hl = vim.api.nvim_set_hl
     hl(0, "Active", { ctermfg = 21, ctermbg = nil })
     hl(0, "CurSearch", { ctermfg = 0, ctermbg = 16 })
-    hl(0, "CursorLine", { ctermbg = nil })
+    -- hl(0, "CursorLine", { ctermbg = nil }) -- makes the cursorline invisible
     hl(0, "CursorLineNr", { link = "LineNrActive" })
     hl(0, "DiffAdd", { ctermfg = 2, ctermbg = nil })
     hl(0, "DiffAdded", { ctermfg = 2, ctermbg = nil })
