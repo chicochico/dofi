@@ -138,11 +138,19 @@ require("neo-tree").setup({
     enable_modified_markers = true, -- Show markers for files with unsaved changes.
     enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
     default_component_configs = {
+        indent = {
+            indent_size = 1,
+            padding = 1,
+            -- indent guides
+            with_markers = true,
+            indent_marker = "│",
+            last_indent_marker = "└",
+        },
         icon = {
-            folder_closed = "+",
-            folder_open = "-",
-            folder_empty = " ",
-            default = " ",
+            folder_closed = "",
+            folder_open = "",
+            folder_empty = "",
+            default = "",
         },
         git_status = {
             symbols = {
