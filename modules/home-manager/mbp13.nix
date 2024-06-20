@@ -11,7 +11,7 @@ in
       argocd
       go
       inetutils
-      jira-cli-go
+      jira-cli-go # auth via env var JIRA_API_TOKEN. Check ~/.zprofile
       kubernetes-helm
       kubeseal
       kubeshark
