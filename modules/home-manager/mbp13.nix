@@ -11,6 +11,7 @@ in
       argocd
       go
       inetutils
+      jira-cli-go
       kubernetes-helm
       kubeseal
       kubeshark
