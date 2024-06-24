@@ -9,7 +9,9 @@ in
     inherit (common.home) username homeDirectory stateVersion;
     packages = with pkgs; common.home.packages ++ [
       argocd
+      cilium-cli
       go
+      hubble
       inetutils
       jira-cli-go # auth via env var JIRA_API_TOKEN. Check ~/.zprofile
       kubernetes-helm
