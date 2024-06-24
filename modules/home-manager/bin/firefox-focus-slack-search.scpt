@@ -7,6 +7,6 @@
 tell application "Firefox" to activate
 tell application "System Events"
     keystroke "2" using command down
-    delay 0.3
+    delay 0.2
     keystroke "k" using command down
 end tell
