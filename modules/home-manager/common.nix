@@ -19,7 +19,6 @@ in
       actionlint
       aws-vault
       awscli2
-      colima
       colordiff
       difftastic
       fd
