@@ -35,6 +35,7 @@ in
       kubectl
       kubernetes-helm
       kustomize
+      minikube
       nodejs
       openssl
       parallel

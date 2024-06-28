@@ -47,13 +47,16 @@
     casks = [
       "alacritty"
       "amethyst"
+      "cool-retro-term"
       "firefox"
       "flux"
       "karabiner-elements"
       "monitorcontrol"
       "mos"
       "mullvadvpn"
+      "orbstack"
       "signal"
+      "transmission"
       "vlc"
     ];
   };
