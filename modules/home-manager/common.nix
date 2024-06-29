@@ -23,6 +23,7 @@ in
       difftastic
       fd
       findutils
+      fira-code
       fzf
       gh
       gnugrep
