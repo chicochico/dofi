@@ -121,10 +121,21 @@ vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
 vim.api.nvim_set_var("netrw_banner", 0)
 vim.api.nvim_set_var("netrw_keepdir", 1)
 vim.api.nvim_set_var("netrw_liststyle", 3)
-vim.keymap.set("n", "<leader>he", ":Hex<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>le", ":Lex<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>ve", ":Vex<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>ex", ":Ex<CR>", { noremap = true })
+vim.api.nvim_set_var("netrw_altfile", 1)
+vim.api.nvim_set_var("netrw_browse_split", 0)
+vim.keymap.set("n", "<leader>e", ":Ex<CR>", { noremap = true })
+vim.cmd([[
+    augroup netrw_mapping
+        autocmd!
+        autocmd filetype netrw call NetrwMapping()
+    augroup END
+
+    function! NetrwMapping()
+        nmap <buffer> . gn
+        nmap <buffer> <backspace> -
+        nmap <buffer> <c-l> <c-w>l
+    endfunction
+]])
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -355,7 +366,7 @@ cmp.setup({
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
