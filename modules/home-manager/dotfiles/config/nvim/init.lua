@@ -115,6 +115,17 @@ vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
 -- Plugin settings
 -- ---------------
 
+-- Netrw
+-- built-in file explorer
+-- -----
+vim.api.nvim_set_var("netrw_banner", 0)
+vim.api.nvim_set_var("netrw_keepdir", 1)
+vim.api.nvim_set_var("netrw_liststyle", 3)
+vim.keymap.set("n", "<leader>he", ":Hex<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>le", ":Lex<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>ve", ":Vex<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>ex", ":Ex<CR>", { noremap = true })
+
 -- Gitsigns
 -- See `:help gitsigns.txt`
 require("gitsigns").setup({
@@ -124,57 +135,6 @@ require("gitsigns").setup({
         delete = { text = "_" },
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
-    },
-})
-
--- Neo-tree
--- --------
-vim.keymap.set("n", "<leader>a", ":Neotree<CR>", { noremap = true })
-vim.api.nvim_set_var("neo_tree_remove_legacy_commands", 1)
-
-require("neo-tree").setup({
-    enable_git_status = false,
-    enable_diagnostics = false,
-    enable_modified_markers = true, -- Show markers for files with unsaved changes.
-    enable_refresh_on_write = true, -- Refresh the tree when a file is written. Only used if `use_libuv_file_watcher` is false.
-    default_component_configs = {
-        indent = {
-            indent_size = 1,
-            padding = 1,
-            -- indent guides
-            with_markers = true,
-            indent_marker = "│",
-            last_indent_marker = "└",
-        },
-        icon = {
-            folder_closed = "",
-            folder_open = "",
-            folder_empty = "",
-            default = "",
-        },
-        git_status = {
-            symbols = {
-                -- Change type
-                added = "",
-                deleted = "",
-                modified = "",
-                renamed = "R",
-                -- Status type
-                untracked = "?",
-                ignored = "I",
-                unstaged = "!",
-                staged = "+",
-                conflict = "~",
-            },
-        },
-    },
-
-    filesystem = {
-        filtered_items = {
-            always_show = {
-                ".github",
-            },
-        },
     },
 })
 

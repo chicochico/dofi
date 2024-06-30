@@ -126,7 +126,6 @@ in
       goyo-vim
       gv-vim
       markdown-preview-nvim
-      neo-tree-nvim
       none-ls-nvim
       notational-fzf-vim
       nvim-autopairs
