@@ -154,6 +154,28 @@ end
 
 base16()
 
+--- Customize hilights based on where the active cursor is
+--- ----------
+vim.cmd([[
+  " Shows cursorline only in the active window
+  if !exists('#CursorLineFocus#FocusGained')
+    augroup CursorLineFocus
+      autocmd!
+      autocmd VimEnter,WinEnter,BufWinEnter,FocusGained * setlocal cursorline
+      autocmd WinLeave,FocusLost * setlocal nocursorline
+    augroup END
+  endif
+
+  " Dim when focus is lost
+  if !exists('#StatusLineFocus#FocusGained')
+    augroup StatusLineFocus
+      autocmd!
+      autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Active'})
+      autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Inactive'})
+    augroup END
+  endif
+]])
+
 -- Neovim SettingS
 ------------------
 vim.o.clipboard = "unnamedplus"
@@ -209,28 +231,6 @@ local stl = {
     " ",
 }
 vim.o.statusline = table.concat(stl)
-
---- Customize hilights based on where the active cursor is
---- ----------
-vim.cmd([[
-  " Shows cursorline only in the active window
-  if !exists('#CursorLineFocus#FocusGained')
-    augroup CursorLineFocus
-      autocmd!
-      autocmd VimEnter,WinEnter,BufWinEnter,FocusGained * setlocal cursorline
-      autocmd WinLeave,FocusLost * setlocal nocursorline
-    augroup END
-  endif
-
-  " Dim when focus is lost
-  if !exists('#StatusLineFocus#FocusGained')
-    augroup StatusLineFocus
-      autocmd!
-      autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Active'})
-      autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Inactive'})
-    augroup END
-  endif
-]])
 
 -- Abbreviation shortcuts
 -- ----------------------
