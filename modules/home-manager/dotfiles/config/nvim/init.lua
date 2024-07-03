@@ -100,24 +100,6 @@ function base16()
     hl(0, "Type", { ctermfg = cterm0A })
     hl(0, "Typedef", { ctermfg = cterm0A })
 
-    -- C highlighting
-    hl(0, "cOperator", { ctermfg = cterm0C })
-    hl(0, "cPreCondit", { ctermfg = cterm0E })
-
-    -- C# highlighting
-    hl(0, "csClass", { ctermfg = cterm0A })
-    hl(0, "csAttribute", { ctermfg = cterm0A })
-    hl(0, "csModifier", { ctermfg = cterm0E })
-    hl(0, "csType", { ctermfg = cterm08 })
-    hl(0, "csUnspecifiedStatement", { ctermfg = cterm0D })
-    hl(0, "csContextualStatement", { ctermfg = cterm0E })
-    hl(0, "csNewDecleration", { ctermfg = cterm08 })
-
-    -- CSS highlighting
-    hl(0, "cssBraces", { ctermfg = cterm05 })
-    hl(0, "cssClassName", { ctermfg = cterm0E })
-    hl(0, "cssColor", { ctermfg = cterm0C })
-
     -- Diff highlighting
     hl(0, "DiffAdd", { ctermfg = cterm0B, ctermbg = cterm01 })
     hl(0, "DiffChange", { ctermfg = cterm03, ctermbg = cterm01 })
@@ -152,106 +134,11 @@ function base16()
     hl(0, "GitGutterDelete", { ctermfg = cterm08, ctermbg = cterm01 })
     hl(0, "GitGutterChangeDelete", { ctermfg = cterm0E, ctermbg = cterm01 })
 
-    -- HTML highlighting
-    hl(0, "htmlBold", { ctermfg = cterm0A })
-    hl(0, "htmlItalic", { ctermfg = cterm0E })
-    hl(0, "htmlEndTag", { ctermfg = cterm05 })
-    hl(0, "htmlTag", { ctermfg = cterm05 })
-
-    -- JavaScript highlighting
-    hl(0, "javaScript", { ctermfg = cterm05 })
-    hl(0, "javaScriptBraces", { ctermfg = cterm05 })
-    hl(0, "javaScriptNumber", { ctermfg = cterm09 })
-
-    -- pangloss/vim-javascript highlighting
-    hl(0, "jsOperator", { ctermfg = cterm0D })
-    hl(0, "jsStatement", { ctermfg = cterm0E })
-    hl(0, "jsReturn", { ctermfg = cterm0E })
-    hl(0, "jsThis", { ctermfg = cterm08 })
-    hl(0, "jsClassDefinition", { ctermfg = cterm0A })
-    hl(0, "jsFunction", { ctermfg = cterm0E })
-    hl(0, "jsFuncName", { ctermfg = cterm0D })
-    hl(0, "jsFuncCall", { ctermfg = cterm0D })
-    hl(0, "jsClassFuncName", { ctermfg = cterm0D })
-    hl(0, "jsClassMethodType", { ctermfg = cterm0E })
-    hl(0, "jsRegexpString", { ctermfg = cterm0C })
-    hl(0, "jsGlobalObjects", { ctermfg = cterm0A })
-    hl(0, "jsGlobalNodeObjects", { ctermfg = cterm0A })
-    hl(0, "jsExceptions", { ctermfg = cterm0A })
-    hl(0, "jsBuiltins", { ctermfg = cterm0A })
-
-    -- Mail highlighting
-    hl(0, "mailQuoted1", { ctermfg = cterm0A })
-    hl(0, "mailQuoted2", { ctermfg = cterm0B })
-    hl(0, "mailQuoted3", { ctermfg = cterm0E })
-    hl(0, "mailQuoted4", { ctermfg = cterm0C })
-    hl(0, "mailQuoted5", { ctermfg = cterm0D })
-    hl(0, "mailQuoted6", { ctermfg = cterm0A })
-    hl(0, "mailURL", { ctermfg = cterm0D })
-    hl(0, "mailEmail", { ctermfg = cterm0D })
-
-    -- Markdown highlighting
-    hl(0, "markdownCode", { ctermfg = cterm0B })
-    hl(0, "markdownError", { ctermfg = cterm05, ctermbg = cterm00 })
-    hl(0, "markdownCodeBlock", { ctermfg = cterm0B })
-    hl(0, "markdownHeadingDelimiter", { ctermfg = cterm0D })
-
-    -- NERDTree highlighting
-    hl(0, "NERDTreeDirSlash", { ctermfg = cterm0D })
-    hl(0, "NERDTreeExecFile", { ctermfg = cterm05 })
-
-    -- PHP highlighting
-    hl(0, "phpMemberSelector", { ctermfg = cterm05 })
-    hl(0, "phpComparison", { ctermfg = cterm05 })
-    hl(0, "phpParent", { ctermfg = cterm05 })
-    hl(0, "phpMethodsVar", { ctermfg = cterm0C })
-
-    -- Python highlighting
-    hl(0, "pythonOperator", { ctermfg = cterm0E })
-    hl(0, "pythonRepeat", { ctermfg = cterm0E })
-    hl(0, "pythonInclude", { ctermfg = cterm0E })
-    hl(0, "pythonStatement", { ctermfg = cterm0E })
-
-    -- Ruby highlighting
-    hl(0, "rubyAttribute", { ctermfg = cterm0D })
-    hl(0, "rubyConstant", { ctermfg = cterm0A })
-    hl(0, "rubyInterpolationDelimiter", { ctermfg = cterm0F })
-    hl(0, "rubyRegexp", { ctermfg = cterm0C })
-    hl(0, "rubySymbol", { ctermfg = cterm0B })
-    hl(0, "rubyStringDelimiter", { ctermfg = cterm0B })
-
-    -- SASS highlighting
-    hl(0, "sassidChar", { ctermfg = cterm08 })
-    hl(0, "sassClassChar", { ctermfg = cterm09 })
-    hl(0, "sassInclude", { ctermfg = cterm0E })
-    hl(0, "sassMixing", { ctermfg = cterm0E })
-    hl(0, "sassMixinName", { ctermfg = cterm0D })
-
-    -- Signify highlighting
-    hl(0, "SignifySignAdd", { ctermfg = cterm0B, ctermbg = cterm01 })
-    hl(0, "SignifySignChange", { ctermfg = cterm0D, ctermbg = cterm01 })
-    hl(0, "SignifySignDelete", { ctermfg = cterm08, ctermbg = cterm01 })
-
     -- Spelling highlighting
     hl(0, "SpellBad", { undercurl = true })
     hl(0, "SpellLocal", { undercurl = true })
     hl(0, "SpellCap", { undercurl = true })
     hl(0, "SpellRare", { undercurl = true })
-
-    -- Startify highlighting
-    hl(0, "StartifyBracket", { ctermfg = cterm03 })
-    hl(0, "StartifyFile", { ctermfg = cterm07 })
-    hl(0, "StartifyFooter", { ctermfg = cterm03 })
-    hl(0, "StartifyHeader", { ctermfg = cterm0B })
-    hl(0, "StartifyNumber", { ctermfg = cterm09 })
-    hl(0, "StartifyPath", { ctermfg = cterm03 })
-    hl(0, "StartifySection", { ctermfg = cterm0E })
-    hl(0, "StartifySelect", { ctermfg = cterm0C })
-    hl(0, "StartifySlash", { ctermfg = cterm03 })
-    hl(0, "StartifySpecial", { ctermfg = cterm03 })
-
-    -- Java highlighting
-    hl(0, "javaOperator", { ctermfg = cterm0D })
 
     -- Overrides
     hl(0, "Active", { ctermfg = 21, ctermbg = nil })
