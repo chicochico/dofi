@@ -128,10 +128,10 @@ function base16()
     hl(0, "gitcommitUntrackedFile", { ctermfg = cterm0A, ctermbg = "" })
 
     -- GitGutter highlighting
-    hl(0, "GitGutterAdd", { ctermfg = cterm0B, ctermbg = cterm01 })
-    hl(0, "GitGutterChange", { ctermfg = cterm0D, ctermbg = cterm01 })
-    hl(0, "GitGutterChangeDelete", { ctermfg = cterm0E, ctermbg = cterm01 })
-    hl(0, "GitGutterDelete", { ctermfg = cterm08, ctermbg = cterm01 })
+    hl(0, "GitGutterAdd", { ctermfg = cterm0B, ctermbg = cterm00 })
+    hl(0, "GitGutterChange", { ctermfg = cterm0D, ctermbg = cterm00 })
+    hl(0, "GitGutterChangeDelete", { ctermfg = cterm0E, ctermbg = cterm00 })
+    hl(0, "GitGutterDelete", { ctermfg = cterm08, ctermbg = cterm00 })
 
     -- Spelling highlighting
     hl(0, "SpellBad", { undercurl = true })
