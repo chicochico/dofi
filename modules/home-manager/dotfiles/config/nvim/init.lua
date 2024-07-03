@@ -177,7 +177,7 @@ vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: " -- vert: vertical split cha
                                                -- stlnc: statusline character when no focus
                                                -- eob: end of buffer character
 vim.o.mouse = "a"
-vim.o.signcolumn = "yes" -- Always show sign column
+vim.o.signcolumn = "number" -- Always show sign column
 vim.o.shm = "Ia" -- Don't show intro message see h: shm
 vim.cmd([[
   filetype plugin indent on
