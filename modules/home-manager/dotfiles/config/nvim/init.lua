@@ -1,7 +1,259 @@
 -- Customize highlight colors
--- Source base16 file from env var
-function color_customize()
-    local hl = vim.api.nvim_set_hl
+-- Terminal color definitions
+--
+
+function base16()
+    hl = vim.api.nvim_set_hl
+
+    cterm00 = 00
+    cterm03 = 08
+    cterm05 = 07
+    cterm07 = 15
+    cterm08 = 01
+    cterm0A = 03
+    cterm0B = 02
+    cterm0C = 06
+    cterm0D = 04
+    cterm0E = 05
+    -- 256 colors
+    cterm01 = 18
+    cterm02 = 19
+    cterm04 = 20
+    cterm06 = 21
+    cterm09 = 16
+    cterm0F = 17
+
+    vim.g.colors_name = "base16"
+
+    -- Vim editor colors
+    hl(0, "Normal", { ctermfg = cterm05, ctermbg = cterm00 })
+    hl(0, "Bold", { bold = true })
+    hl(0, "Debug", { ctermfg = cterm08 })
+    hl(0, "Directory", { ctermfg = cterm0D })
+    hl(0, "Error", { ctermfg = cterm00, ctermbg = cterm08 })
+    hl(0, "ErrorMsg", { ctermfg = cterm08, ctermbg = cterm00 })
+    hl(0, "Exception", { ctermfg = cterm08 })
+    hl(0, "FoldColumn", { ctermfg = cterm0C, ctermbg = cterm01 })
+    hl(0, "Folded", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "IncSearch", { ctermfg = cterm01, ctermbg = cterm09 })
+    hl(0, "Italic", {})
+    hl(0, "Macro", { ctermfg = cterm08 })
+    hl(0, "MatchParen", { ctermbg = cterm03 })
+    hl(0, "ModeMsg", { ctermfg = cterm0B })
+    hl(0, "MoreMsg", { ctermfg = cterm0B })
+    hl(0, "Question", { ctermfg = cterm0D })
+    hl(0, "Search", { ctermfg = cterm01, ctermbg = cterm0A })
+    hl(0, "Substitute", { ctermfg = cterm01, ctermbg = cterm0A })
+    hl(0, "SpecialKey", { ctermfg = cterm03 })
+    hl(0, "TooLong", { ctermfg = cterm08 })
+    hl(0, "Underlined", { ctermfg = cterm08 })
+    hl(0, "Visual", { ctermbg = cterm02 })
+    hl(0, "VisualNOS", { ctermfg = cterm08 })
+    hl(0, "WarningMsg", { ctermfg = cterm08 })
+    hl(0, "WildMenu", { ctermfg = cterm08 })
+    hl(0, "Title", { ctermfg = cterm0D })
+    hl(0, "Conceal", { ctermfg = cterm0D, ctermbg = cterm00 })
+    hl(0, "Cursor", { ctermfg = cterm00, ctermbg = cterm05 })
+    hl(0, "NonText", { ctermfg = cterm03 })
+    hl(0, "LineNr", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "SignColumn", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "StatusLine", { ctermfg = cterm04, ctermbg = cterm02 })
+    hl(0, "StatusLineNC", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "VertSplit", { ctermfg = cterm02, ctermbg = cterm02 })
+    hl(0, "ColorColumn", { ctermbg = cterm01 })
+    hl(0, "CursorColumn", { ctermbg = cterm01 })
+    hl(0, "CursorLine", { ctermbg = cterm01 })
+    hl(0, "CursorLineNr", { ctermfg = cterm04, ctermbg = cterm01 })
+    hl(0, "QuickFixLine", { ctermbg = cterm01 })
+    hl(0, "PMenu", { ctermfg = cterm05, ctermbg = cterm01 })
+    hl(0, "PMenuSel", { ctermfg = cterm01, ctermbg = cterm05 })
+    hl(0, "TabLine", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "TabLineFill", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "TabLineSel", { ctermfg = cterm0B, ctermbg = cterm01 })
+
+    -- Standard syntax highlighting
+    hl(0, "Boolean", { ctermfg = cterm09 })
+    hl(0, "Character", { ctermfg = cterm08 })
+    hl(0, "Comment", { ctermfg = cterm03 })
+    hl(0, "Conditional", { ctermfg = cterm0E })
+    hl(0, "Constant", { ctermfg = cterm09 })
+    hl(0, "Define", { ctermfg = cterm0E })
+    hl(0, "Delimiter", { ctermfg = cterm0F })
+    hl(0, "Float", { ctermfg = cterm09 })
+    hl(0, "Function", { ctermfg = cterm0D })
+    hl(0, "Identifier", { ctermfg = cterm08 })
+    hl(0, "Include", { ctermfg = cterm0D })
+    hl(0, "Keyword", { ctermfg = cterm0E })
+    hl(0, "Label", { ctermfg = cterm0A })
+    hl(0, "Number", { ctermfg = cterm09 })
+    hl(0, "Operator", { ctermfg = cterm05 })
+    hl(0, "PreProc", { ctermfg = cterm0A })
+    hl(0, "Repeat", { ctermfg = cterm0A })
+    hl(0, "Special", { ctermfg = cterm0C })
+    hl(0, "SpecialChar", { ctermfg = cterm0F })
+    hl(0, "Statement", { ctermfg = cterm08 })
+    hl(0, "StorageClass", { ctermfg = cterm0A })
+    hl(0, "String", { ctermfg = cterm0B })
+    hl(0, "Structure", { ctermfg = cterm0E })
+    hl(0, "Tag", { ctermfg = cterm0A })
+    hl(0, "Todo", { ctermfg = cterm0A, ctermbg = cterm01 })
+    hl(0, "Type", { ctermfg = cterm0A })
+    hl(0, "Typedef", { ctermfg = cterm0A })
+
+    -- C highlighting
+    hl(0, "cOperator", { ctermfg = cterm0C })
+    hl(0, "cPreCondit", { ctermfg = cterm0E })
+
+    -- C# highlighting
+    hl(0, "csClass", { ctermfg = cterm0A })
+    hl(0, "csAttribute", { ctermfg = cterm0A })
+    hl(0, "csModifier", { ctermfg = cterm0E })
+    hl(0, "csType", { ctermfg = cterm08 })
+    hl(0, "csUnspecifiedStatement", { ctermfg = cterm0D })
+    hl(0, "csContextualStatement", { ctermfg = cterm0E })
+    hl(0, "csNewDecleration", { ctermfg = cterm08 })
+
+    -- CSS highlighting
+    hl(0, "cssBraces", { ctermfg = cterm05 })
+    hl(0, "cssClassName", { ctermfg = cterm0E })
+    hl(0, "cssColor", { ctermfg = cterm0C })
+
+    -- Diff highlighting
+    hl(0, "DiffAdd", { ctermfg = cterm0B, ctermbg = cterm01 })
+    hl(0, "DiffChange", { ctermfg = cterm03, ctermbg = cterm01 })
+    hl(0, "DiffDelete", { ctermfg = cterm08, ctermbg = cterm01 })
+    hl(0, "DiffText", { ctermfg = cterm0D, ctermbg = cterm01 })
+    hl(0, "DiffAdded", { ctermfg = cterm0B, ctermbg = cterm00 })
+    hl(0, "DiffFile", { ctermfg = cterm08, ctermbg = cterm00 })
+    hl(0, "DiffNewFile", { ctermfg = cterm0B, ctermbg = cterm00 })
+    hl(0, "DiffLine", { ctermfg = cterm0D, ctermbg = cterm00 })
+    hl(0, "DiffRemoved", { ctermfg = cterm08, ctermbg = cterm00 })
+
+    -- Git highlighting
+    hl(0, "gitcommitOverflow", { ctermfg = cterm08, ctermbg = "" })
+    hl(0, "gitcommitSummary", { ctermfg = cterm0B, ctermbg = "" })
+    hl(0, "gitcommitComment", { ctermfg = cterm03, ctermbg = "" })
+    hl(0, "gitcommitUntracked", { ctermfg = cterm03, ctermbg = "" })
+    hl(0, "gitcommitDiscarded", { ctermfg = cterm03, ctermbg = "" })
+    hl(0, "gitcommitSelected", { ctermfg = cterm03, ctermbg = "" })
+    hl(0, "gitcommitHeader", { ctermfg = cterm0E, ctermbg = "" })
+    hl(0, "gitcommitSelectedType", { ctermfg = cterm0D, ctermbg = "" })
+    hl(0, "gitcommitUnmergedType", { ctermfg = cterm0D, ctermbg = "" })
+    hl(0, "gitcommitDiscardedType", { ctermfg = cterm0D, ctermbg = "" })
+    hl(0, "gitcommitBranch", { ctermfg = cterm09, bold = true })
+    hl(0, "gitcommitUntrackedFile", { ctermfg = cterm0A, ctermbg = "" })
+    hl(0, "gitcommitUnmergedFile", { ctermfg = cterm08, ctermbg = "", bold = true })
+    hl(0, "gitcommitDiscardedFile", { ctermfg = cterm08, ctermbg = "", bold = true })
+    hl(0, "gitcommitSelectedFile", { ctermfg = cterm0B, ctermbg = "", bold = true })
+
+    -- GitGutter highlighting
+    hl(0, "GitGutterAdd", { ctermfg = cterm0B, ctermbg = cterm01 })
+    hl(0, "GitGutterChange", { ctermfg = cterm0D, ctermbg = cterm01 })
+    hl(0, "GitGutterDelete", { ctermfg = cterm08, ctermbg = cterm01 })
+    hl(0, "GitGutterChangeDelete", { ctermfg = cterm0E, ctermbg = cterm01 })
+
+    -- HTML highlighting
+    hl(0, "htmlBold", { ctermfg = cterm0A })
+    hl(0, "htmlItalic", { ctermfg = cterm0E })
+    hl(0, "htmlEndTag", { ctermfg = cterm05 })
+    hl(0, "htmlTag", { ctermfg = cterm05 })
+
+    -- JavaScript highlighting
+    hl(0, "javaScript", { ctermfg = cterm05 })
+    hl(0, "javaScriptBraces", { ctermfg = cterm05 })
+    hl(0, "javaScriptNumber", { ctermfg = cterm09 })
+
+    -- pangloss/vim-javascript highlighting
+    hl(0, "jsOperator", { ctermfg = cterm0D })
+    hl(0, "jsStatement", { ctermfg = cterm0E })
+    hl(0, "jsReturn", { ctermfg = cterm0E })
+    hl(0, "jsThis", { ctermfg = cterm08 })
+    hl(0, "jsClassDefinition", { ctermfg = cterm0A })
+    hl(0, "jsFunction", { ctermfg = cterm0E })
+    hl(0, "jsFuncName", { ctermfg = cterm0D })
+    hl(0, "jsFuncCall", { ctermfg = cterm0D })
+    hl(0, "jsClassFuncName", { ctermfg = cterm0D })
+    hl(0, "jsClassMethodType", { ctermfg = cterm0E })
+    hl(0, "jsRegexpString", { ctermfg = cterm0C })
+    hl(0, "jsGlobalObjects", { ctermfg = cterm0A })
+    hl(0, "jsGlobalNodeObjects", { ctermfg = cterm0A })
+    hl(0, "jsExceptions", { ctermfg = cterm0A })
+    hl(0, "jsBuiltins", { ctermfg = cterm0A })
+
+    -- Mail highlighting
+    hl(0, "mailQuoted1", { ctermfg = cterm0A })
+    hl(0, "mailQuoted2", { ctermfg = cterm0B })
+    hl(0, "mailQuoted3", { ctermfg = cterm0E })
+    hl(0, "mailQuoted4", { ctermfg = cterm0C })
+    hl(0, "mailQuoted5", { ctermfg = cterm0D })
+    hl(0, "mailQuoted6", { ctermfg = cterm0A })
+    hl(0, "mailURL", { ctermfg = cterm0D })
+    hl(0, "mailEmail", { ctermfg = cterm0D })
+
+    -- Markdown highlighting
+    hl(0, "markdownCode", { ctermfg = cterm0B })
+    hl(0, "markdownError", { ctermfg = cterm05, ctermbg = cterm00 })
+    hl(0, "markdownCodeBlock", { ctermfg = cterm0B })
+    hl(0, "markdownHeadingDelimiter", { ctermfg = cterm0D })
+
+    -- NERDTree highlighting
+    hl(0, "NERDTreeDirSlash", { ctermfg = cterm0D })
+    hl(0, "NERDTreeExecFile", { ctermfg = cterm05 })
+
+    -- PHP highlighting
+    hl(0, "phpMemberSelector", { ctermfg = cterm05 })
+    hl(0, "phpComparison", { ctermfg = cterm05 })
+    hl(0, "phpParent", { ctermfg = cterm05 })
+    hl(0, "phpMethodsVar", { ctermfg = cterm0C })
+
+    -- Python highlighting
+    hl(0, "pythonOperator", { ctermfg = cterm0E })
+    hl(0, "pythonRepeat", { ctermfg = cterm0E })
+    hl(0, "pythonInclude", { ctermfg = cterm0E })
+    hl(0, "pythonStatement", { ctermfg = cterm0E })
+
+    -- Ruby highlighting
+    hl(0, "rubyAttribute", { ctermfg = cterm0D })
+    hl(0, "rubyConstant", { ctermfg = cterm0A })
+    hl(0, "rubyInterpolationDelimiter", { ctermfg = cterm0F })
+    hl(0, "rubyRegexp", { ctermfg = cterm0C })
+    hl(0, "rubySymbol", { ctermfg = cterm0B })
+    hl(0, "rubyStringDelimiter", { ctermfg = cterm0B })
+
+    -- SASS highlighting
+    hl(0, "sassidChar", { ctermfg = cterm08 })
+    hl(0, "sassClassChar", { ctermfg = cterm09 })
+    hl(0, "sassInclude", { ctermfg = cterm0E })
+    hl(0, "sassMixing", { ctermfg = cterm0E })
+    hl(0, "sassMixinName", { ctermfg = cterm0D })
+
+    -- Signify highlighting
+    hl(0, "SignifySignAdd", { ctermfg = cterm0B, ctermbg = cterm01 })
+    hl(0, "SignifySignChange", { ctermfg = cterm0D, ctermbg = cterm01 })
+    hl(0, "SignifySignDelete", { ctermfg = cterm08, ctermbg = cterm01 })
+
+    -- Spelling highlighting
+    hl(0, "SpellBad", { undercurl = true })
+    hl(0, "SpellLocal", { undercurl = true })
+    hl(0, "SpellCap", { undercurl = true })
+    hl(0, "SpellRare", { undercurl = true })
+
+    -- Startify highlighting
+    hl(0, "StartifyBracket", { ctermfg = cterm03 })
+    hl(0, "StartifyFile", { ctermfg = cterm07 })
+    hl(0, "StartifyFooter", { ctermfg = cterm03 })
+    hl(0, "StartifyHeader", { ctermfg = cterm0B })
+    hl(0, "StartifyNumber", { ctermfg = cterm09 })
+    hl(0, "StartifyPath", { ctermfg = cterm03 })
+    hl(0, "StartifySection", { ctermfg = cterm0E })
+    hl(0, "StartifySelect", { ctermfg = cterm0C })
+    hl(0, "StartifySlash", { ctermfg = cterm03 })
+    hl(0, "StartifySpecial", { ctermfg = cterm03 })
+
+    -- Java highlighting
+    hl(0, "javaOperator", { ctermfg = cterm0D })
+
+    -- Overrides
     hl(0, "Active", { ctermfg = 21, ctermbg = nil })
     hl(0, "CurSearch", { ctermfg = 0, ctermbg = 16 })
     hl(0, "CursorLine", { ctermbg = nil })
@@ -48,14 +300,7 @@ function color_customize()
     hl(0, "VertSplit", { ctermfg = 18, ctermbg = nil })
 end
 
-local theme = os.getenv("BASE16_THEME")
-if theme then
-    vim.cmd([[
-    let base16colorspace=256
-    autocmd ColorScheme * lua color_customize()
-    colorscheme base16-$BASE16_THEME
-  ]])
-end
+base16()
 
 -- Neovim SettingS
 ------------------
@@ -86,6 +331,7 @@ vim.cmd([[
   filetype plugin indent on
   set noshowmode
   set nosol
+  au TextYankPost * silent! lua vim.highlight.on_yank {higroup="Search", timeout=90} -- highlight yanked text
 ]])
 
 -- statusline
