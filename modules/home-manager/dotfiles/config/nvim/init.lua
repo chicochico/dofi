@@ -343,6 +343,22 @@ vim.api.nvim_set_keymap("n", "<leader>b", ":Buffers<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>t", ":Tags<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>/", ":Ag<CR>", { noremap = true })
 
+vim.g.fzf_colors = {
+    fg = {'fg', 'Normal'},
+    bg = {'bg', 'Normal'},
+    hl = {'fg', 'Comment'},
+    ['fg+'] = {'fg', 'CursorLine', 'CursorColumn', 'Normal'},
+    -- ['bg+'] = {'bg', 'CursorLine', 'CursorColumn'},
+    ['hl+'] = {'fg', 'Statement'},
+    info = {'fg', 'PreProc'},
+    -- border = {'fg', 'Ignore'},
+    prompt = {'fg', 'Conditional'},
+    pointer = {'fg', 'Exception'},
+    marker = {'fg', 'Keyword'},
+    spinner = {'fg', 'Label'},
+    header = {'fg', 'Comment'}
+}
+
 -- Goyo
 -- ----
 vim.api.nvim_set_var("goyo_width", 100) -- (default: 80)
