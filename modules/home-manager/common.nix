@@ -117,7 +117,6 @@ in
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      base16-vim
       cmp-nvim-lsp
       copilot-vim
       fidget-nvim
