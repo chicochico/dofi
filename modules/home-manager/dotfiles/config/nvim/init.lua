@@ -140,12 +140,12 @@ function base16()
     hl(0, "SpellRare", { undercurl = true })
 
     -- Custom
-    hl(0, "Active", { ctermfg = cterm06 })
+    hl(0, "Active", { ctermfg = cterm07 })
     hl(0, "CurSearch", { ctermfg = cterm00, ctermbg = cterm09 })
     hl(0, "HorizontalSplit", { ctermfg = cterm01 })
     hl(0, "Inactive", { ctermfg = cterm03 })
     hl(0, "LineNrAbove", { ctermfg = cterm02 })
-    hl(0, "LineNrActive", { ctermfg = cterm06, bold = true })
+    hl(0, "LineNrActive", { ctermfg = cterm07, bold = true })
     hl(0, "LineNrBelow", { ctermfg = cterm02 })
     hl(0, "LineNrDefault", { ctermfg = cterm02, bold = true })
     hl(0, "StatusLineNoFocus", { ctermfg = cterm03, nocombine = true })
@@ -171,7 +171,9 @@ vim.cmd([[
     augroup StatusLineFocus
       autocmd!
       autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Active'})
+      autocmd FocusGained * lua vim.api.nvim_set_hl(0, 'TabLineSel', {link = 'Active'})
       autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Inactive'})
+      autocmd FocusLost   * lua vim.api.nvim_set_hl(0, 'TabLineSel', {link = 'Inactive'})
     augroup END
   endif
 ]])
