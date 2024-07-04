@@ -259,8 +259,6 @@ vim.g.mapleader = " " -- leader
 vim.g.maplocalleader = " "
 vim.keymap.set("n", "Q", "<C-w>q", { noremap = true }) -- close window
 vim.keymap.set("n", "X", ":bd<CR>", { noremap = true }) -- delete buffer
-vim.keymap.set("n", "L", "gt", { noremap = true }) -- move tabs
-vim.keymap.set("n", "H", "gT", { noremap = true })
 vim.keymap.set("n", "<esc>", ":noh<CR>", { noremap = true, silent = true }) -- clear highlighting
 vim.keymap.set("n", "s", ":w<CR>", { noremap = true }) -- write buffer
 vim.keymap.set("n", "<C-e>", "7<C-e>", { noremap = true }) -- scroll steps
@@ -270,6 +268,11 @@ vim.keymap.set("v", "<C-y>", "7<C-y>", { noremap = true })
 vim.keymap.set("n", "t", "<C-]>", { noremap = true }) -- tags
 vim.keymap.set("n", "T", "<C-t>", { noremap = true })
 vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
+-- resize windows
+vim.keymap.set("n", "L", "<C-w>1>", { noremap = true })
+vim.keymap.set("n", "H", "<C-w>1<", { noremap = true })
+vim.keymap.set("n", "-", "<C-w>1-", { noremap = true })
+vim.keymap.set("n", "+", "<C-w>1+", { noremap = true })
 
 -- Plugin settings
 -- ---------------
