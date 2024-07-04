@@ -338,7 +338,7 @@ vim.api.nvim_set_var("gutentags_cache_dir", "~/dev/.tags/")
 -- FZF
 -- ---
 vim.api.nvim_set_var("fzf_buffers_jump", 1)
-vim.api.nvim_set_keymap("n", "<leader>f", ":FZF<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>f", ":Files<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>b", ":Buffers<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>t", ":Tags<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>/", ":Ag<CR>", { noremap = true })

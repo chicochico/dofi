@@ -75,6 +75,10 @@ else
   export EDITOR='nvim'
 fi
 
+# FZF
+# ---
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --type f --exclude ".git" --exclude ".tags"'
+
 if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
