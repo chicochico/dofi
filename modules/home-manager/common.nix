@@ -47,6 +47,7 @@ in
       universal-ctags
       unixtools.watch
       vale
+      visidata
       yq-go
       yubikey-manager
       zsh
