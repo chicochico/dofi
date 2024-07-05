@@ -16,3 +16,7 @@ font:
 key_bindings:
   - {key: Tab, mods: Control, chars: "\x13n"} # tmux next window
   - {key: Tab, mods: Control|Shift, chars: "\x13p"} # tmux prev window
+colors:
+  cursor:
+    text: "CellBackground"
+    cursor: "CellForeground"
