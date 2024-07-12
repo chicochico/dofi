@@ -193,7 +193,7 @@ vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.smarttab = true
-vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization below
+vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization above
 vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
 vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: " -- vert: vertical split character
@@ -281,7 +281,7 @@ vim.keymap.set("n", "+", "<C-w>1+", { noremap = true })
 -- built-in file explorer
 -- -----
 vim.api.nvim_set_var("netrw_banner", 0)
-vim.api.nvim_set_var("netrw_keepdir", 1)
+vim.api.nvim_set_var("netrw_keepdir", 0)
 vim.api.nvim_set_var("netrw_liststyle", 3)
 vim.api.nvim_set_var("netrw_altfile", 1)
 vim.api.nvim_set_var("netrw_browse_split", 0)
