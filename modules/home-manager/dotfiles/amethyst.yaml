@@ -192,16 +192,16 @@ relaunch-amethyst: {}
 disable-padding-on-builtin-display: true
 
 # Boolean flag for whether or not to add margins betwen windows (default false).
-window-margins: false
+window-margins: true
 
 # Boolean flag for whether or not to set window margins if there is only one window on the screen, assuming window margins are enabled (default false).
-smart-window-margins: false
+smart-window-margins: true
 
 # # Add 10px margin between windows
 # window-margins: true
 # window-margin-size: 5
 # The size of the margins between windows (in px, default 0).
-window-margin-size: 10
+window-margin-size: 5
 
 # The max number of windows that may be visible on a screen at one time before
 # additional windows are minimized. A value of 0 disables the feature.
