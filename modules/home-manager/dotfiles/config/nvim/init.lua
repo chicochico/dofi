@@ -284,8 +284,9 @@ vim.api.nvim_set_var("netrw_banner", 0)
 vim.api.nvim_set_var("netrw_keepdir", 0)
 vim.api.nvim_set_var("netrw_liststyle", 3)
 vim.api.nvim_set_var("netrw_altfile", 1)
+vim.api.nvim_set_var("netrw_winsize", 20)
 vim.api.nvim_set_var("netrw_browse_split", 0)
-vim.keymap.set("n", "<leader>e", ":Ex<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>e", ":Lex<CR>", { noremap = true })
 vim.cmd([[
     augroup netrw_mapping
         autocmd!
