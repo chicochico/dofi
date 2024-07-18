@@ -32,6 +32,8 @@ layouts:
   # - widescreen-tall
   # - widescreen-tall-right
   # - bsp
+  # custom layouts
+  - center
 
 # First mod (default option + shift).
 mod1:
@@ -63,10 +65,12 @@ mod2:
 # Move to the next layout in the list.
 cycle-layout:
   mod: mod2
-  key: k
+  key: "."
 
 # Move to the previous layout in the list.
-cycle-layout-backward: {}
+cycle-layout-backward:
+  mod: mod2
+  key: ","
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:

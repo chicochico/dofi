@@ -89,6 +89,7 @@ in
       target = ".zshrc";
     };
     browser = { source = ./bin/browse.sh; target = "bin/b"; };
+    amethyst-layout-center = { source = ./amethyst-layout-center.js; target = "Library/Application Support/Amethyst/Layouts/center.js"; };
   };
 
   # Let Home Manager install and manage itself.
