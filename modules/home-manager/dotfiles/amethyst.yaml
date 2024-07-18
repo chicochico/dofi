@@ -63,14 +63,10 @@ mod2:
 # ','
 
 # Move to the next layout in the list.
-cycle-layout:
-  mod: mod2
-  key: "."
+cycle-layout: {}
 
 # Move to the previous layout in the list.
-cycle-layout-backward:
-  mod: mod2
-  key: ","
+cycle-layout-backward: {}
 
 # Shrink the main pane by a percentage of the screen dimension as defined by window-resize-step. Note that not all layouts respond to this command.
 shrink-main:
@@ -162,11 +158,19 @@ select-tall-layout: {}
 
 select-wide-layout: {}
 
-select-fullscreen-layout: {}
+select-fullscreen-layout:
+  mod: mod2
+  key: k
 
 select-column-layout: {}
 
-select-two-pane-layout: {}
+select-two-pane-layout:
+  mod: mod2
+  key: ","
+
+select-center-layout:
+  mod: mod2
+  key: "."
 
 # Move the currently focused window to the space to the left.
 throw-space-left: {}
