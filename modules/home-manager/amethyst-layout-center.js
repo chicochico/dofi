@@ -3,7 +3,7 @@ function layout() {
         name: "Center",
         getFrameAssignments: (windows, screenFrame) => {
             const widthMuliplier = 0.6;
-            const heightMultiplier = 0.95;
+            const heightMultiplier = 0.96;
 
             frame = {
                 x: screenFrame.x + screenFrame.width * (1 - widthMuliplier) / 2,
