@@ -64,6 +64,16 @@ case $shortcut in
             open "https://traderepublic.atlassian.net/issues/?jql=text%20~%20%22$search_query%2A%22"
         fi
         ;;
+    # ArgoCD
+    "ad")
+        open "https://argocd-development.teleport.internal.corp.traderepublic.com/applications/$search_query"
+        ;;
+    "as")
+        open "https://argocd-staging.teleport.internal.corp.traderepublic.com/applications/$search_query"
+        ;;
+    "ap")
+        open "https://argocd-production.teleport.internal.corp.traderepublic.com/applications/$search_query"
+        ;;
     *)
         open "https://duckduckgo.com/?t=ffab&q=$shortcut%20$search_query"
         ;;
