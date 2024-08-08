@@ -48,6 +48,7 @@ in
       unixtools.watch
       vale
       visidata
+      websocat
       yq-go
       yubikey-manager
       zsh
