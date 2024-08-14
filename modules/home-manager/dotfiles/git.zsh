@@ -76,10 +76,10 @@ _fzf_complete_git_pick_post() { awk '{printf $1}'; }
 # Github
 # ------
 pr () {
-  gh pr "$@"
-}
-
-pro() {
-  g ps
-  gh pr create --fill "$@"
+  if [ "$#" -eq 0 ]; then 
+    g ps
+    gh pr create --fill
+  else
+    gh pr "$@"
+  fi
 }
