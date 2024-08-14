@@ -75,7 +75,11 @@ _fzf_complete_git_pick_post() { awk '{printf $1}'; }
 
 # Github
 # ------
-pr() {
+pr () {
+  gh pr "$@"
+}
+
+pro() {
   g ps
   gh pr create --fill "$@"
 }
