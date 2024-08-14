@@ -72,3 +72,10 @@ _fzf_complete_g() { _fzf_complete_fuzzy_git "$@"; }
 
 # Post process the result of the fzf completion
 _fzf_complete_git_pick_post() { awk '{printf $1}'; }
+
+# Github
+# ------
+ghpr() {
+  g ps
+  gh pr create --fill
+}
