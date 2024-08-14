@@ -75,7 +75,7 @@ _fzf_complete_git_pick_post() { awk '{printf $1}'; }
 
 # Github
 # ------
-ghpr() {
+pr() {
   g ps
   gh pr create --fill
 }
