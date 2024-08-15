@@ -4,9 +4,7 @@
  * Usage: osascript firefox-focus-tab.scpt
  *)
 
-tell application "Firefox" to activate
+tell application "Slack" to activate
 tell application "System Events"
-    keystroke "2" using command down
-    delay 0.2
     keystroke "k" using command down
 end tell

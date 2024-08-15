@@ -267,7 +267,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-slack-search.scpt"
+                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/slack-focus-search.scpt"
                   }
                 ],
                 "type": "basic"
