@@ -231,7 +231,7 @@
             ]
           },
           {
-            "description": "Focus Firefox - tab 1 (youtube music)",
+            "description": "Open Youtube Music",
             "manipulators": [
               {
                 "from": {
@@ -245,7 +245,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-tab.scpt 1"
+                    "shell_command": "open -a 'Youtube Music'"
                   }
                 ],
                 "type": "basic"
@@ -289,7 +289,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-tab.scpt 3"
+                    "shell_command": "osascript ~/dofi/modules/home-manager/bin/firefox-focus-tab.scpt 1"
                   }
                 ],
                 "type": "basic"
