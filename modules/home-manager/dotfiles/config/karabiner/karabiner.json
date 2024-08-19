@@ -253,6 +253,28 @@
             ]
           },
           {
+            "description": "Open Youtube Music 2",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a 'Youtube Music'"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "Focus Firefox - tab 2 (slack - search)",
             "manipulators": [
               {
