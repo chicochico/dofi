@@ -44,7 +44,6 @@ in
       ripgrep
       silver-searcher
       tree
-      universal-ctags
       unixtools.watch
       vale
       visidata
@@ -133,11 +132,9 @@ in
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
-      tagbar
       vim-commentary
       vim-fugitive
       vim-gnupg
-      vim-gutentags
       vim-obsession
       vim-pencil
       vim-repeat

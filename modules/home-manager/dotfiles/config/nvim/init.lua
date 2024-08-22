@@ -312,35 +312,6 @@ require("gitsigns").setup({
     },
 })
 
--- Tagbar
--- ------
-vim.keymap.set("n", "<leader>;", ":TagbarToggle<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_var("tagbar_left", 0)
-vim.api.nvim_set_var("tagbar_sort", 0)
-vim.api.nvim_set_var("tagbar_autofocus", 1)
-vim.api.nvim_set_var("tagbar_compact", 1)
-vim.api.nvim_set_var("tagbar_type_elixir", {
-    ctagstype = "elixir",
-    kinds = {
-        "f:functions",
-        "functions:functions",
-        "c:callbacks",
-        "d:delegates",
-        "e:exceptions",
-        "i:implementations",
-        "a:macros",
-        "o:operators",
-        "m:modules",
-        "p:protocols",
-        "r:records",
-        "t:tests",
-    },
-})
-
--- GutenTags
--- ---------
-vim.api.nvim_set_var("gutentags_cache_dir", "~/dev/.tags/")
-
 -- FZF
 -- ---
 vim.api.nvim_set_var("fzf_buffers_jump", 1)
