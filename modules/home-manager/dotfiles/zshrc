@@ -37,6 +37,7 @@ setopt auto_menu
 # Command editing
 autoload -U edit-command-line
 zle -N edit-command-line
+bindkey -e
 bindkey '\C-x\C-e' edit-command-line
 
 # gpg
