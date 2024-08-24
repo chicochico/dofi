@@ -289,7 +289,7 @@ vim.keymap.set("n", "+", "<C-w>1+", { noremap = true })
 -- ---------------
 
 -- Nvim Tree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true })
+vim.keymap.set("n", "t", ":NvimTreeOpen<CR>", { noremap = true })
 
 local function nvim_tree_on_attach(bufnr)
     local api = require("nvim-tree.api")
