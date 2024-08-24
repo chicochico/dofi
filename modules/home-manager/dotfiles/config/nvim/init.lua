@@ -207,10 +207,11 @@ vim.o.smarttab = true
 vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization above
 vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
-vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: " -- vert: vertical split character
-                                               -- stl: statusline character
-                                               -- stlnc: statusline character when no focus
-                                               -- eob: end of buffer character
+-- vert: vertical split character
+-- stl: statusline character
+-- stlnc: statusline character when no focus
+-- eob: end of buffer character
+vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: "
 vim.o.mouse = "a"
 vim.o.signcolumn = "yes" -- Always Show
 vim.o.shm = "Ia" -- Don't show intro message see h: shm
@@ -417,19 +418,19 @@ vim.api.nvim_set_keymap("n", "<leader>t", ":Tags<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>/", ":Ag<CR>", { noremap = true })
 
 vim.g.fzf_colors = {
-    fg = {'fg', 'Normal'},
-    bg = {'bg', 'Normal'},
-    hl = {'fg', 'Comment'},
-    ['fg+'] = {'fg', 'CursorLine', 'CursorColumn', 'Normal'},
+    fg = { "fg", "Normal" },
+    bg = { "bg", "Normal" },
+    hl = { "fg", "Comment" },
+    ["fg+"] = { "fg", "CursorLine", "CursorColumn", "Normal" },
     -- ['bg+'] = {'bg', 'CursorLine', 'CursorColumn'},
-    ['hl+'] = {'fg', 'Statement'},
-    info = {'fg', 'PreProc'},
+    ["hl+"] = { "fg", "Statement" },
+    info = { "fg", "PreProc" },
     -- border = {'fg', 'Ignore'},
-    prompt = {'fg', 'Conditional'},
-    pointer = {'fg', 'Exception'},
-    marker = {'fg', 'Keyword'},
-    spinner = {'fg', 'Label'},
-    header = {'fg', 'Comment'}
+    prompt = { "fg", "Conditional" },
+    pointer = { "fg", "Exception" },
+    marker = { "fg", "Keyword" },
+    spinner = { "fg", "Label" },
+    header = { "fg", "Comment" },
 }
 
 -- Goyo
