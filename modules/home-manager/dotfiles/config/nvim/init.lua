@@ -447,6 +447,10 @@ vim.cmd([[
 -- Fugitive
 -- --------
 vim.api.nvim_set_keymap("n", "gi", ":Git<CR>", { noremap = true })
+-- Browse command used by GBrowse
+vim.api.nvim_create_user_command("Browse", function(opts)
+    vim.fn.system({ "open", opts.fargs[1] })
+end, { nargs = 1 })
 
 -- Pencil
 -- ------
