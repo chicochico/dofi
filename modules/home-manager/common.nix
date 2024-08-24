@@ -132,6 +132,7 @@ in
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
+      nvim-tree-lua
       vim-commentary
       vim-fugitive
       vim-gnupg
