@@ -446,7 +446,7 @@ vim.cmd([[
 
 -- Fugitive
 -- --------
-vim.api.nvim_set_keymap("n", "<leader>g", ":Git<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "gi", ":Git<CR>", { noremap = true })
 
 -- Pencil
 -- ------
@@ -571,7 +571,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
         vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
         vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
         vim.keymap.set("n", "<leader>wl", function()
