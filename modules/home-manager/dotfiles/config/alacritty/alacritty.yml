@@ -18,6 +18,7 @@ key_bindings:
   - { key: Tab, mods: Control|Shift, chars: "\x13p" } # tmux prev pane
   - { key: T, mods: Command, chars: "\x13c" } # tmux new pane
   - { key: W, mods: Command, chars: "\x13x" } # tmux close pane
+  - { key: F, mods: Command, chars: "\x13[?" } # tmux search up
 colors:
   cursor:
     text: "CellBackground"
