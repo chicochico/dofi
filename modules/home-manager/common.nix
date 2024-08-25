@@ -30,7 +30,6 @@ in
       gnupg
       htop
       jq
-      kitty
       krew
       kubecolor
       kubectl
