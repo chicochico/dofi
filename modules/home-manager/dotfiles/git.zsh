@@ -1,6 +1,10 @@
 # Git utils
 # ---------
 
+cdr() {
+  cd "$(git rev-parse --show-toplevel)"
+}
+
 g() { 
   # $ g # alone will do git status, otherwise will run git with arguments
   if [ "$#" -eq 0 ]; then 
