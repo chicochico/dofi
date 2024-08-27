@@ -308,6 +308,7 @@ local function nvim_tree_on_attach(bufnr)
     vim.keymap.set("n", "w", api.node.open.edit, opts("Open"))
     vim.keymap.set("n", "v", api.node.open.vertical, opts("Open vertical"))
     vim.keymap.set("n", "h", api.node.open.horizontal, opts("Open horizontal"))
+    vim.keymap.del("n", "<C-E>", { buffer = bufnr }) -- Restore scrolling map
 end
 
 require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
