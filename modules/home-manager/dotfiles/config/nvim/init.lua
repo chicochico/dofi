@@ -207,14 +207,22 @@ vim.o.smarttab = true
 vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization above
 vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
+vim.o.mouse = "a"
+vim.o.signcolumn = "yes" -- Always Show
+
 -- vert: vertical split character
 -- stl: statusline character
 -- stlnc: statusline character when no focus
 -- eob: end of buffer character
 vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: "
-vim.o.mouse = "a"
-vim.o.signcolumn = "yes" -- Always Show
-vim.o.shm = "Ia" -- Don't show intro message see h: shm
+
+-- shortmess - h: shm
+-- helps avoiding hit-enter prompts caused by file messages
+-- a: many abbreviations - see `:help 'shortmess'`
+-- t: truncate file message at the start - prevents having to press enter when opening a file
+-- I: don't give the intro message when starting Vim
+vim.o.shortmess = "Iat"
+
 vim.cmd([[
   filetype plugin indent on
   set noshowmode
