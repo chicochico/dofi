@@ -328,6 +328,11 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
         change_dir = {
             global = true,
         },
+        open_file = {
+            window_picker = {
+                enable = false,
+            },
+        },
     },
     update_focused_file = {
         enable = true,
