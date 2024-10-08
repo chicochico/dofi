@@ -14,6 +14,7 @@ in
       hubble
       inetutils
       jira-cli-go # auth via env var JIRA_API_TOKEN. Check ~/.zprofile
+      jwt-cli
       kubernetes-helm
       kubeseal
       kubeshark
