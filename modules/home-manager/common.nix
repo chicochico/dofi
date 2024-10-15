@@ -184,6 +184,8 @@ in
       # bash
       shellcheck
       shfmt
+      # go
+      gopls
     ];
   };
 

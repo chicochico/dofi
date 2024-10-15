@@ -517,7 +517,8 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 lspconfig.terraformls.setup({ capabilities = capabilities })
 lspconfig.rnix.setup({ capabilities = capabilities })
-lspconfig.pylsp.setup({ capabilities = capabilities })
+lspconfig.rnix.setup({ capabilities = capabilities })
+lspconfig.gopls.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({
     capabilities = capabilities,
     settings = { yaml = { validate = { enable = false } } },
