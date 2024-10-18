@@ -40,6 +40,7 @@ in
       openssl
       parallel
       python311
+      python311Packages.ipython
       ripgrep
       silver-searcher
       tree
