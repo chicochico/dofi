@@ -290,10 +290,10 @@ vim.keymap.set("n", "t", "<C-]>", { noremap = true }) -- tags
 vim.keymap.set("n", "T", "<C-t>", { noremap = true })
 vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
 -- resize windows
-vim.keymap.set("n", "L", "<C-w>1>", { noremap = true })
-vim.keymap.set("n", "H", "<C-w>1<", { noremap = true })
+vim.keymap.set("n", "M", "<C-w>1>", { noremap = true }) -- more
+vim.keymap.set("n", "L", "<C-w>1<", { noremap = true }) -- less
 vim.keymap.set("n", "-", "<C-w>1-", { noremap = true })
-vim.keymap.set("n", "+", "<C-w>1+", { noremap = true })
+vim.keymap.set("n", "=", "<C-w>1+", { noremap = true })
 
 -- Plugin settings
 -- ---------------
