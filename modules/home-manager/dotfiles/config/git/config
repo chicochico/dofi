@@ -17,6 +17,7 @@
     cam = commit --amend --message
     cane = commit --amend --no-edit
     cm = commit --message
+    cmp = "!f() { git commit --message "{$1}" && git push; }; f"
     cp = cherry-pick
     d = diff
     ds = diff --staged
