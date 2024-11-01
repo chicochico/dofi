@@ -43,6 +43,7 @@ in
       python311Packages.ipython
       ripgrep
       silver-searcher
+      sshpass
       tree
       unixtools.watch
       vale
