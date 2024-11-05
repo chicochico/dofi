@@ -41,6 +41,7 @@ in
       parallel
       python311
       python311Packages.ipython
+      qrencode
       ripgrep
       silver-searcher
       sshpass
@@ -51,6 +52,7 @@ in
       websocat
       yq-go
       yubikey-manager
+      zbar
       zsh
       zsh-powerlevel10k
     ];
