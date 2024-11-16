@@ -377,12 +377,12 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
                 git = false,
                 modified = true,
                 diagnostics = false,
-                bookmarks = false,
+                bookmarks = true,
             },
             glyphs = {
                 default = "",
                 symlink = "",
-                bookmark = "",
+                bookmark = "●",
                 modified = "+",
 
                 folder = {
