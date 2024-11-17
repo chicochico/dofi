@@ -114,8 +114,8 @@ if [ -n "${commands[fzf-share]}" ]; then
 fi
 
 # extra ergonomics things
-source $HOME/.k8s.zsh
-source $HOME/.git.zsh
+source "$HOME/.k8s.zsh"
+source "$HOME/.git.zsh"
 
 #custom executable scripts
 export PATH=$PATH:$HOME/bin
