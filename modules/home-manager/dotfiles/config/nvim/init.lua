@@ -209,7 +209,6 @@ vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
 vim.o.mouse = "a"
 vim.o.signcolumn = "yes" -- Always Show
-vim.o.scrolloff = 999 -- Keep cursor in the middle of the screen
 
 -- vert: vertical split character
 -- stl: statusline character
