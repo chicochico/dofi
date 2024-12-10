@@ -19,6 +19,7 @@ in
       kubeseal
       kubeshark
       pgcli
+      pluto
       teleport
       terraform
       terragrunt
