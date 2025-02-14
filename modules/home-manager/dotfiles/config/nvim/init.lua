@@ -413,7 +413,7 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
         sorter = "case_sensitive",
         folders_first = true,
         files_first = false,
-    }
+    },
 })
 
 -- Gitsigns
