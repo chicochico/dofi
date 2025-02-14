@@ -409,6 +409,11 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
         custom = {},
         exclude = {},
     },
+    sort = {
+        sorter = "case_sensitive",
+        folders_first = true,
+        files_first = false,
+    }
 })
 
 -- Gitsigns
