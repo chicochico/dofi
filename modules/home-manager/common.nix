@@ -55,6 +55,7 @@ in
       zbar
       zsh
       zsh-powerlevel10k
+      go
     ];
   };
 
