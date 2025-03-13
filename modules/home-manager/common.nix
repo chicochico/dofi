@@ -124,8 +124,6 @@ in
     enable = true;
     plugins = with pkgs.vimPlugins; [
       cmp-nvim-lsp
-      cmp_luasnip
-      copilot-vim
       fidget-nvim
       fzf-vim
       gitsigns-nvim
