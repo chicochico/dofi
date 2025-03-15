@@ -6,6 +6,9 @@ vim.g.loaded_netrwPlugin = 1
 -- Terminal color definitions
 --
 function base16()
+    -- disable guicolors which might be activated automatically
+    vim.o.termguicolors = false
+
     hl = vim.api.nvim_set_hl
 
     cterm00 = 00
@@ -68,11 +71,11 @@ function base16()
     hl(0, "Title", { ctermfg = cterm0D })
     hl(0, "TooLong", { ctermfg = cterm08 })
     hl(0, "Underlined", { ctermfg = cterm08 })
-    hl(0, "VertSplit", { ctermfg = cterm01 })
     hl(0, "Visual", { ctermbg = cterm02 })
     hl(0, "VisualNOS", { ctermfg = cterm08 })
     hl(0, "WarningMsg", { ctermfg = cterm08 })
     hl(0, "WildMenu", { ctermfg = cterm08 })
+    hl(0, "WinSeparator", { ctermfg = cterm01 })
 
     -- Standard syntax highlighting
     hl(0, "Boolean", { ctermfg = cterm09 })
@@ -222,6 +225,11 @@ vim.o.fillchars = "vert:┃,stl:━,stlnc:━,eob: "
 -- t: truncate file message at the start - prevents having to press enter when opening a file
 -- I: don't give the intro message when starting Vim
 vim.o.shortmess = "Iat"
+
+-- h laststatus
+-- one single status lines for all windows it
+-- gets updated depending on which is active
+vim.o.laststatus = 3
 
 vim.cmd([[
   filetype plugin indent on
@@ -514,9 +522,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 lspconfig.terraformls.setup({ capabilities = capabilities })
-lspconfig.rnix.setup({ capabilities = capabilities })
-lspconfig.rnix.setup({ capabilities = capabilities })
 lspconfig.gopls.setup({ capabilities = capabilities })
+lspconfig.bashls.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({
     capabilities = capabilities,
     settings = { yaml = { validate = { enable = false } } },
@@ -524,15 +531,33 @@ lspconfig.yamlls.setup({
 
 -- Null-ls
 local null_ls = require("null-ls")
+
+-- Create formatter that uses jq
+local jq_formatting = {
+    name = "jq",
+    method = null_ls.methods.FORMATTING,
+    filetypes = { "json" },
+    generator = null_ls.generator({
+        command = "jq",
+        args = { "." },
+        to_stdin = true,
+        on_output = function(params, done)
+            local output = params.output
+            if not output then
+                return done()
+            end
+            return done({ { text = output } })
+        end,
+    }),
+}
+
 local sources = {
     null_ls.builtins.diagnostics.actionlint,
-    null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort,
-    null_ls.builtins.formatting.jq,
-    null_ls.builtins.formatting.shfmt.with({ extra_args = { "-i", "4" } }),
     null_ls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
     null_ls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
+    jq_formatting
 }
 null_ls.setup({ sources = sources })
 

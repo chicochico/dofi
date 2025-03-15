@@ -28,6 +28,7 @@ in
       gh
       gnugrep
       gnupg
+      go
       htop
       jq
       krew
@@ -55,7 +56,6 @@ in
       zbar
       zsh
       zsh-powerlevel10k
-      go
     ];
   };
 
@@ -176,7 +176,6 @@ in
       isort
       black
       # nix
-      rnix-lsp
       nixpkgs-fmt
       # lua
       stylua
@@ -188,10 +187,10 @@ in
       sqlfluff
       # bash
       shellcheck
+      bash-language-server
       shfmt
       # go
       gopls
     ];
   };
-
 }
