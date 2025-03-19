@@ -202,16 +202,26 @@ vim.o.showmatch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.incsearch = true
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.autoindent = true
-vim.o.smartindent = true
-vim.o.smarttab = true
 vim.o.cursorline = true -- Set to be invisible except the line number, see hilight customization above
 vim.o.hidden = true -- Allows hidden modified buffers
 vim.o.autoread = true -- Reload file if changed outside vim
 vim.o.mouse = "a"
 vim.o.signcolumn = "yes" -- Always Show
+
+-- Indentation settings
+--
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.smarttab = true
+vim.o.tabstop = 4 -- display tabs with a width of 4 chars
+
+-- Filetype specific indentation
+--
+vim.cmd([[
+    autocmd FileType go setlocal noexpandtab
+]])
 
 -- vert: vertical split character
 -- stl: statusline character
@@ -557,7 +567,7 @@ local sources = {
     null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.sqlfluff.with({ extra_args = { "--dialect", "snowflake" } }),
     null_ls.builtins.formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "4" } }),
-    jq_formatting
+    jq_formatting,
 }
 null_ls.setup({ sources = sources })
 
