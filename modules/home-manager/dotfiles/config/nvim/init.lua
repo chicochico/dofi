@@ -657,5 +657,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             -- bug in yammlls
             client.server_capabilities.documentFormattingProvider = true
         end
+
+        vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async=false})]])
     end,
 })
