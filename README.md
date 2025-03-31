@@ -16,13 +16,16 @@ Restarting the computer is a good idea.
 ## System
 To update **system** configurations, rebuild with:
 ```
- darwin-rebuild switch --flake .#hostname
+darwin-rebuild switch --flake .#mbp14
  ```
 
 ## Home
 To update **home** configurations rebuild with:
 ```
-home-manager switch --flake .#username
+home-manager switch --flake .#<home-config-name>
+
+# example:
+home-manager switch --flake .#mbp14
 ```
 
 ## Links

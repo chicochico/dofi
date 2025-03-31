@@ -39,7 +39,7 @@
   # https://daiderd.com/nix-darwin/manual/index.html#opt-system.stateVersion
   system.stateVersion = 4;
   homebrew = {
-    enable = true;
+    enable = false;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     masApps = { };
