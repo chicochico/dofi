@@ -464,6 +464,13 @@ vim.g.fzf_colors = {
     header = { "fg", "Comment" },
 }
 
+-- this keeps the status line consistent when the filetype is set to fzf
+vim.cmd([[
+    autocmd! FileType fzf
+    autocmd  FileType fzf set laststatus=2
+      \| autocmd BufLeave <buffer> set laststatus=3
+]])
+
 -- Goyo
 -- ----
 vim.api.nvim_set_var("goyo_width", 100) -- (default: 80)
