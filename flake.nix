@@ -10,28 +10,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     base16-shell = {
       url = "github:chriskempson/base16-shell/master";
       flake = false;
     };
 
   };
-  outputs = inputs@{ nixpkgs, home-manager, darwin, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
     {
-      darwinConfigurations = {
-        mbp14 = darwin.lib.darwinSystem {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          modules = [
-            ./modules/darwin
-          ];
-        };
-      };
-
       homeConfigurations = {
         mbp14-personal = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
