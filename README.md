@@ -30,4 +30,3 @@ home-manager switch --flake .#mbp14
 
 ## Links
 - [home-manager](https://github.com/nix-community/home-manager)
-- [nix-darwin](https://github.com/LnL7/nix-darwin)
