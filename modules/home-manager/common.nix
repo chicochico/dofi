@@ -94,6 +94,7 @@ in
     };
     browser = { source = ./bin/browse.sh; target = "bin/b"; };
     amethyst-layout-center = { source = ./amethyst-layout-center.js; target = "Library/Application Support/Amethyst/Layouts/center.js"; };
+    nix = { source = ./dotfiles/config/nix; target = ".config/nix"; };
   };
 
   # Let Home Manager install and manage itself.
