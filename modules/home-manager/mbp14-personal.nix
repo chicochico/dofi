@@ -6,7 +6,8 @@ in
 {
   inherit (common) programs;
   home = {
-    inherit (common.home) username homeDirectory stateVersion;
+    inherit (common.home) homeDirectory stateVersion;
+    username = "fchiang";
     packages = with pkgs; common.home.packages ++ [
       exercism
       bats

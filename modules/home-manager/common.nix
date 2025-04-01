@@ -13,7 +13,6 @@ let
 in
 {
   home = {
-    username = "fchiang";
     homeDirectory = "/Users/${config.home.username}";
     packages = with pkgs; [
       actionlint
