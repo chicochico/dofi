@@ -9,6 +9,7 @@ in
     inherit (common.home) homeDirectory stateVersion;
     username = "franciscochiang";
     packages = with pkgs; common.home.packages ++ [
+      glab
     ];
 
     file = common.home.file // {
