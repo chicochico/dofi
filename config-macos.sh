@@ -18,4 +18,12 @@ defaults write NSGlobalDomain com.apple.trackpad.scaling -float 3.0
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write NSGlobalDomain KeyRepeat -int 1
 
+# Window management shortcuts
+defaults write -g NSUserKeyEquivalents '{
+Center = "@~$.";
+"Left & Right" = "@~$h";
+"Right & Left" = "@~$l";
+Zoom = "@~$k";
+}'
+
 echo "Some settings take effect after restart"
