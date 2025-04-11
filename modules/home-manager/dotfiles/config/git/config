@@ -41,3 +41,7 @@
     wr = worktree remove
 [includeIf "gitdir:~/tr/"]
     path = ~/.config/git/config-tr
+[includeIf "gitdir:~/gly/"]
+    path = ~/.config/git/config-gly
+[url "git@ssh.gitlab.grammarly.io:"]
+	insteadOf = https://gitlab.grammarly.io/

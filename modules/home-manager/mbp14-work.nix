@@ -13,6 +13,7 @@ in
     ];
 
     file = common.home.file // {
+      gitconfig = { source = ./dotfiles/config/git/config-gly; target = ".config/git/config-gly"; };
     };
   };
 }
