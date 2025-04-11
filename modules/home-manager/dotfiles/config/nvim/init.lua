@@ -285,6 +285,12 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
+-- Copilot
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_filetypes = {
+    ["yaml"] = true,
+}
+
 -- Keymaps
 -- -------
 vim.g.mapleader = " " -- leader
