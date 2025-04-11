@@ -500,6 +500,10 @@ vim.cmd([[
   augroup END
 ]])
 
+-- Fugitive Gitlab
+--
+vim.api.nvim_set_var("fugitive_gitlab_domains", { ["ssh.gitlab.grammarly.io"] = "https://gitlab.grammarly.io" })
+
 -- Vim Sleuth
 -- ----------
 vim.api.nvim_set_var("sleuth_automatic", 1)

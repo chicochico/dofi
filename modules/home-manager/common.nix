@@ -126,6 +126,7 @@ in
     plugins = with pkgs.vimPlugins; [
       cmp-nvim-lsp
       fidget-nvim
+      fugitive-gitlab-vim
       fzf-vim
       gitsigns-nvim
       goyo-vim
