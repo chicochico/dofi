@@ -158,7 +158,7 @@
             ]
           },
           {
-            "description": "Focus Alacritty",
+            "description": "Focus Kity",
             "manipulators": [
               {
                 "from": {
@@ -173,7 +173,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open -a Alacritty"
+                    "shell_command": "open -a Kitty"
                   }
                 ],
                 "type": "basic"
