@@ -14,13 +14,21 @@
       url = "github:chriskempson/base16-shell/master";
       flake = false;
     };
-
   };
+
   outputs = inputs@{ nixpkgs, home-manager, ... }:
-    {
+    let
+      # Import nixpkgs with the allowUnfree configuration
+      pkgs = import nixpkgs {
+        config = {
+          allowUnfree = true;
+        };
+        system = "aarch64-darwin";
+      };
+    in {
       homeConfigurations = {
         mbp14-personal = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          inherit pkgs;
           modules = [
             ./modules/home-manager/mbp14-personal.nix
           ];
@@ -30,7 +38,7 @@
         };
 
         mbp14-work = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          inherit pkgs;
           modules = [
             ./modules/home-manager/mbp14-work.nix
           ];
@@ -40,7 +48,7 @@
         };
 
         mbp13 = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          inherit pkgs;
           modules = [
             ./modules/home-manager/mbp13.nix
           ];
