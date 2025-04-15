@@ -39,6 +39,7 @@ in
       nodejs
       openssl
       parallel
+      pyenv
       python311
       python311Packages.ipython
       qrencode
