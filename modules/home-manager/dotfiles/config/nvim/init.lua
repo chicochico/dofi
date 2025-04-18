@@ -291,6 +291,20 @@ vim.g.copilot_filetypes = {
     ["yaml"] = true,
 }
 
+-- CopilotChat
+require("CopilotChat").setup({
+    mappings = {
+        reset = {
+            normal = "cl",
+        },
+    },
+    window = {
+        layout = "vertical",
+    },
+    show_help = false,
+})
+vim.keymap.set("n", "co", ":CopilotChat<CR>", { noremap = true })
+
 -- Keymaps
 -- -------
 vim.g.mapleader = " " -- leader
@@ -446,36 +460,18 @@ require("gitsigns").setup({
     },
 })
 
--- FZF
+-- FZF Lua
 -- ---
-vim.api.nvim_set_var("fzf_buffers_jump", 1)
-vim.api.nvim_set_keymap("n", "<leader>f", ":Files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>b", ":Buffers<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>t", ":Tags<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>/", ":Ag<CR>", { noremap = true })
-
-vim.g.fzf_colors = {
-    fg = { "fg", "Normal" },
-    bg = { "bg", "Normal" },
-    hl = { "fg", "Comment" },
-    ["fg+"] = { "fg", "CursorLine", "CursorColumn", "Normal" },
-    -- ['bg+'] = {'bg', 'CursorLine', 'CursorColumn'},
-    ["hl+"] = { "fg", "Statement" },
-    info = { "fg", "PreProc" },
-    -- border = {'fg', 'Ignore'},
-    prompt = { "fg", "Conditional" },
-    pointer = { "fg", "Exception" },
-    marker = { "fg", "Keyword" },
-    spinner = { "fg", "Label" },
-    header = { "fg", "Comment" },
-}
-
--- this keeps the status line consistent when the filetype is set to fzf
-vim.cmd([[
-    autocmd! FileType fzf
-    autocmd  FileType fzf set laststatus=2
-      \| autocmd BufLeave <buffer> set laststatus=3
-]])
+require("fzf-lua").setup({
+    keymap = {
+        fzf = {}, -- disabling default maps
+    },
+})
+require("fzf-lua").register_ui_select()
+-- vim.api.nvim_set_var("fzf_buffers_jump", 1)
+vim.api.nvim_set_keymap("n", "<leader>f", ":FzfLua files<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>b", ":FzfLua buffers<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>/", ":FzfLua live_grep<CR>", { noremap = true })
 
 -- Goyo
 -- ----

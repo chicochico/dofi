@@ -10,6 +10,23 @@ let
       hash = "sha256-10IVgfdk8gaz4kHUjExtrnntsiFJry2/KRvuHYccqG4=";
     };
   };
+
+  copilot-chat-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "copilot-chat-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "CopilotC-Nvim";
+      repo = "CopilotChat.nvim";
+      rev = "v3.11.0";
+      hash = "sha256-XMrjDUvQjkW9tlTubVou2RMQfOfzmMFlQAWgCx3/4y4=";
+    };
+    # Mark this plugin as requiring another plugin so that load order is correct
+    dependencies = with pkgs.vimPlugins; [ 
+      fzf-lua
+      plenary-nvim
+      snacks-nvim     # optional not installed
+      telescope-nvim  # optional not installed
+    ];
+  };
 in
 {
   home = {
@@ -125,17 +142,22 @@ in
     enable = true;
     plugins = with pkgs.vimPlugins; [
       cmp-nvim-lsp
+
+      # copilot-chat-nvim and dependencies
+      copilot-chat-nvim  # custom version
+      plenary-nvim
+
       copilot-vim
       fidget-nvim
       fugitive-gitlab-vim
-      fzf-vim
+      fzf-lua
       gitsigns-nvim
       goyo-vim
       gv-vim
       luasnip
       markdown-preview-nvim
       none-ls-nvim
-      notational-fzf-vim
+      notational-fzf-vim  # custom version
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
