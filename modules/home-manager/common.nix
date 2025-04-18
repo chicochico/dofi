@@ -19,12 +19,11 @@ let
       rev = "v3.11.0";
       hash = "sha256-XMrjDUvQjkW9tlTubVou2RMQfOfzmMFlQAWgCx3/4y4=";
     };
-    # Mark this plugin as requiring another plugin so that load order is correct
-    dependencies = with pkgs.vimPlugins; [ 
+    dependencies = with pkgs.vimPlugins; [
       fzf-lua
       plenary-nvim
-      snacks-nvim     # optional not installed
-      telescope-nvim  # optional not installed
+      snacks-nvim
+      telescope-nvim
     ];
   };
 in
@@ -142,11 +141,7 @@ in
     enable = true;
     plugins = with pkgs.vimPlugins; [
       cmp-nvim-lsp
-
-      # copilot-chat-nvim and dependencies
       copilot-chat-nvim  # custom version
-      plenary-nvim
-
       copilot-vim
       fidget-nvim
       fugitive-gitlab-vim
