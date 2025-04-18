@@ -297,6 +297,9 @@ require("CopilotChat").setup({
         reset = {
             normal = "cl",
         },
+        accept_diff = {
+            normal = "cy", -- Changed from Ctrl+y to cy
+        },
     },
     window = {
         layout = "vertical",
