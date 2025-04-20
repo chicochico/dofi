@@ -466,6 +466,7 @@ require("gitsigns").setup({
 -- FZF Lua
 -- ---
 require("fzf-lua").setup({
+    "border-fused",
     keymap = {
         fzf = {}, -- disabling default maps
     },
