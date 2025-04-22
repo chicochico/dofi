@@ -470,6 +470,9 @@ require("fzf-lua").setup({
     keymap = {
         fzf = {}, -- disabling default maps
     },
+    grep = {
+        rg_opts = "--glob='!.git/*' --hidden --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+    },
 })
 require("fzf-lua").register_ui_select()
 -- vim.api.nvim_set_var("fzf_buffers_jump", 1)
