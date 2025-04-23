@@ -22,6 +22,8 @@ defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write -g NSUserKeyEquivalents '{
 Center = "@~$.";
 "Left & Right" = "@~$h";
+"Move to Built-in Retina Display" = "@~$n";
+"Move to LS27A800U" = "@~$n";
 "Right & Left" = "@~$l";
 Zoom = "@~$k";
 }'
