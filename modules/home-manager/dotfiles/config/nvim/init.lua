@@ -285,29 +285,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 
--- Copilot
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_filetypes = {
-    ["*"] = false,
-}
-
--- CopilotChat
-require("CopilotChat").setup({
-    mappings = {
-        reset = {
-            normal = "cl",
-        },
-        accept_diff = {
-            normal = "cy", -- Changed from Ctrl+y to cy
-        },
-    },
-    window = {
-        layout = "vertical",
-    },
-    show_help = false,
-})
-vim.keymap.set("n", "<space>c", ":CopilotChat<CR>", { noremap = true, silent = true })
-
 -- Keymaps
 -- -------
 vim.g.mapleader = " " -- leader
@@ -331,6 +308,30 @@ vim.keymap.set("n", "=", "<C-w>1+", { noremap = true })
 
 -- Plugin settings
 -- ---------------
+
+-- Copilot
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_filetypes = {
+    ["*"] = false,
+}
+
+-- CopilotChat
+require("CopilotChat").setup({
+    mappings = {
+        reset = {
+            normal = "cl",
+        },
+        accept_diff = {
+            normal = "cy", -- Changed from Ctrl+y to cy
+        },
+    },
+    window = {
+        layout = "vertical",
+    },
+    show_help = false,
+})
+vim.keymap.set("n", "<leader>co", ":CopilotChat<CR>", { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>co", ":CopilotChat<CR>", { noremap = true, silent = true })
 
 -- Nvim Tree
 vim.keymap.set("n", "t", ":NvimTreeOpen<CR>", { noremap = true })
@@ -476,16 +477,16 @@ require("fzf-lua").setup({
 })
 require("fzf-lua").register_ui_select()
 -- vim.api.nvim_set_var("fzf_buffers_jump", 1)
-vim.api.nvim_set_keymap("n", "<leader>f", ":FzfLua files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>b", ":FzfLua buffers<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>/", ":FzfLua live_grep<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>f", ":FzfLua files<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>b", ":FzfLua buffers<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>/", ":FzfLua live_grep<CR>", { noremap = true })
 
 -- Goyo
 -- ----
 vim.api.nvim_set_var("goyo_width", 100) -- (default: 80)
 vim.api.nvim_set_var("goyo_height", 85) -- (default: 85%)
 vim.api.nvim_set_var("goyo_linenr", 1) -- (default: 0)
-vim.api.nvim_set_keymap("n", "<leader>G", ":Goyo<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>G", ":Goyo<CR>", { noremap = true })
 
 --- This ensures that status bar is not visible within Goyo
 vim.cmd([[
@@ -494,7 +495,7 @@ vim.cmd([[
 
 -- Fugitive
 -- --------
-vim.api.nvim_set_keymap("n", "gi", ":Git<CR>", { noremap = true })
+vim.keymap.set("n", "gi", ":Git<CR>", { noremap = true })
 -- Browse command used by GBrowse
 vim.api.nvim_create_user_command("Browse", function(opts)
     vim.fn.system({ "open", opts.fargs[1] })
@@ -520,7 +521,7 @@ vim.api.nvim_set_var("sleuth_automatic", 1)
 -- Notational Velocity
 -- ------------------
 vim.api.nvim_set_var("nv_search_paths", { "~/notes/" })
-vim.api.nvim_set_keymap("n", "<leader>n", ":NV<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>n", ":NV<CR>", { noremap = true })
 
 -- Autoswap
 -- --------
@@ -528,7 +529,7 @@ vim.api.nvim_set_var("autoswap_detect_tmux", 1)
 
 -- Markdown preview
 -- ----------------
-vim.api.nvim_set_keymap("n", "<leader>p", "<Plug>MarkdownPreviewToggle", { noremap = true })
+vim.keymap.set("n", "<leader>p", "<Plug>MarkdownPreviewToggle", { noremap = true })
 
 -- Treesitter
 -- See `:help nvim-treesitter`
@@ -539,8 +540,8 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- Gitsigns
-vim.api.nvim_set_keymap("n", "<leader>hu", ":Gitsigns reset_hunk<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>hu", ":Gitsigns reset_hunk<CR>", { noremap = true })
+vim.keymap.set("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { noremap = true })
 
 -- Nvim Autopairs
 require("nvim-autopairs").setup({})
