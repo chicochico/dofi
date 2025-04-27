@@ -306,7 +306,7 @@ require("CopilotChat").setup({
     },
     show_help = false,
 })
-vim.keymap.set("n", "co", ":CopilotChat<CR>", { noremap = true })
+vim.keymap.set("n", "<space>c", ":CopilotChat<CR>", { noremap = true, silent = true })
 
 -- Keymaps
 -- -------
