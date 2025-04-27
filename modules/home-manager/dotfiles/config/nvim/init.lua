@@ -293,10 +293,10 @@ vim.keymap.set("n", "Q", "<C-w>q", { noremap = true }) -- close window
 vim.keymap.set("n", "X", ":bd<CR>", { noremap = true }) -- delete buffer
 vim.keymap.set("n", "<esc>", ":noh<CR>", { noremap = true, silent = true }) -- clear highlighting
 vim.keymap.set("n", "s", ":w<CR>", { noremap = true }) -- write buffer
-vim.keymap.set("n", "<C-e>", "7<C-e>", { noremap = true }) -- scroll steps
-vim.keymap.set("n", "<C-y>", "7<C-y>", { noremap = true })
-vim.keymap.set("v", "<C-e>", "7<C-e>", { noremap = true })
-vim.keymap.set("v", "<C-y>", "7<C-y>", { noremap = true })
+vim.keymap.set("n", "<C-e>", "4<C-e>", { noremap = true }) -- scroll steps
+vim.keymap.set("n", "<C-y>", "4<C-y>", { noremap = true })
+vim.keymap.set("v", "<C-e>", "4<C-e>", { noremap = true })
+vim.keymap.set("v", "<C-y>", "4<C-y>", { noremap = true })
 vim.keymap.set("n", "t", "<C-]>", { noremap = true }) -- tags
 vim.keymap.set("n", "T", "<C-t>", { noremap = true })
 -- resize windows
