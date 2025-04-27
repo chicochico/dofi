@@ -277,7 +277,7 @@
             "manipulators": [
               {
                 "from": {
-                  "key_code": "o",
+                  "key_code": "s",
                   "modifiers": {
                     "mandatory": [
                       "left_shift",
