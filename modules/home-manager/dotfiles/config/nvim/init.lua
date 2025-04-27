@@ -299,7 +299,6 @@ vim.keymap.set("v", "<C-e>", "7<C-e>", { noremap = true })
 vim.keymap.set("v", "<C-y>", "7<C-y>", { noremap = true })
 vim.keymap.set("n", "t", "<C-]>", { noremap = true }) -- tags
 vim.keymap.set("n", "T", "<C-t>", { noremap = true })
-vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
 -- resize windows
 vim.keymap.set("n", "H", "<C-w>1>", { noremap = true }) -- higher
 vim.keymap.set("n", "L", "<C-w>1<", { noremap = true }) -- lower
@@ -496,6 +495,7 @@ vim.cmd([[
 -- Fugitive
 -- --------
 vim.keymap.set("n", "gi", ":Git<CR>", { noremap = true })
+vim.keymap.set("n", "gb", ":GBrowse<CR>", { noremap = true })
 -- Browse command used by GBrowse
 vim.api.nvim_create_user_command("Browse", function(opts)
     vim.fn.system({ "open", opts.fargs[1] })
