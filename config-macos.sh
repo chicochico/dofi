@@ -24,6 +24,8 @@ Center = "@~$.";
 "Left & Right" = "@~$h";
 "Move to Built-in Retina Display" = "@~$n";
 "Move to LS27A800U" = "@~$n";
+"Move to LS27D80xU" = "@~$n";
+"Move to S27B80P" = "@~$n";
 "Right & Left" = "@~$l";
 Zoom = "@~$k";
 }'
