@@ -29,8 +29,6 @@ function base16()
     cterm09 = 16
     cterm0F = 17
 
-    vim.g.colors_name = "base16"
-
     -- Vim editor colors
     hl(0, "Bold", { bold = true })
     hl(0, "ColorColumn", { ctermbg = cterm01 })
@@ -490,6 +488,7 @@ vim.keymap.set("n", "<leader>G", ":Goyo<CR>", { noremap = true })
 --- This ensures that status bar is not visible within Goyo
 vim.cmd([[
   autocmd! User GoyoEnter lua vim.api.nvim_set_hl(0, 'StatusLine', {link = 'Inactive'})
+  autocmd! User GoyoLeave lua base16()
 ]])
 
 -- Fugitive
