@@ -34,6 +34,10 @@ _fzf_git_commits() {
   git log --pretty=format:'%h -%d %s (%cr) <%an>' --abbrev-commit --date=relative
 }
 
+_fzf_git_paths() {
+  fd --hidden --follow --type f --type d --exclude ".git" --exclude ".tags" .
+}
+
 _fzf_git_worktrees() { git worktree list; }
 
 _fzf_complete_git_pick() {
@@ -64,6 +68,9 @@ _fzf_complete_fuzzy_git() {
         ;;
     *' show '*)
         _fzf_complete_git_pick _fzf_git_commits 0 "$@"
+        ;;
+    *' add '*|*' a '*)
+        _fzf_complete_git_pick _fzf_git_paths 0 "$@"
         ;;
     *)
         eval "zle ${fzf_default_completion:-expand-or-complete}"
