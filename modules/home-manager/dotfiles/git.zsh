@@ -1,6 +1,8 @@
 # Git utils
 # ---------
 
+compdef g=git  # add default completions
+
 cdr() {
   cd "$(git rev-parse --show-toplevel)"
 }
@@ -82,7 +84,7 @@ _fzf_complete_git() { _fzf_complete_fuzzy_git "$@"; }
 _fzf_complete_g() { _fzf_complete_fuzzy_git "$@"; }
 
 # Post process the result of the fzf completion
-_fzf_complete_git_pick_post() { awk '{printf $1}'; }
+_fzf_complete_git_pick_post() { awk '{printf "%s ", $1}'; }
 
 # Github
 # ------
