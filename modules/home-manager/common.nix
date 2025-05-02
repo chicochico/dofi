@@ -55,6 +55,7 @@ in
       yubikey-manager
       zbar
       zsh
+      zsh-fzf-tab
       zsh-powerlevel10k
     ];
   };

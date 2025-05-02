@@ -5,8 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+NIX_SHARE="$HOME/.nix-profile/share"
+
 # Theme
-source "$HOME/.nix-profile/share/zsh-powerlevel10k/powerlevel10k.zsh-theme"
+source "$NIX_SHARE/zsh-powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source "$HOME/.p10k.zsh"
 
@@ -28,8 +30,10 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 
 # Autocompletion
 autoload -U compinit && compinit
+source "$NIX_SHARE/fzf-tab/fzf-tab.plugin.zsh"
+zstyle ':fzf-tab:*' fzf-flags --color=fg+:21,bg+:-1,pointer:21,hl:2,hl+:2 --bind=tab:accept  # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
 zstyle ':completion:*' completer _extensions _complete _approximate
-zstyle ':completion:*' menu select
+zstyle ':completion:*' menu no
 zstyle ':completion:*' matcher-list 'r:|?=** m:{a-z\-}={A-Z\_}'  # fuzzy autocomplete
 setopt auto_menu
    

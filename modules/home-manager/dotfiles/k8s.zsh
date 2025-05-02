@@ -8,6 +8,8 @@
 # $ k <verb> <flags>  <resource> <CTRL-T> # to fuzzy search resources (While in fzf CTRL-R to reload completions)
 # ex: k get pods <CTRL-T> # will show all pods in the current namespace, is also aware of the option -n or --namespace
 
+#compdef k -- my custom kubectl alias, _kubectl is defined somewhere else
+compdef _kubectl k
 
 # Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
@@ -133,7 +135,7 @@ _fzf_complete_kl() { _fzf_complete_k8s_generic "$@"; }
 
 # this picks the resource name from first column
 # is post process from all calls to _fzf_complete_k8s_generic
-_fzf_complete_k8s_generic_post() { awk '{printf $1}'; }
+_fzf_complete_k8s_generic_post() { awk '{printf "%s ", $1}'; }
 
 
 # ArgoCD applications
