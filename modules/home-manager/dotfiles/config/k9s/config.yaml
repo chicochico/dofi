@@ -1,0 +1,14 @@
+k9s:
+  ui:
+    # Toggles icons display as not all terminal support these chars. Default: true
+    noIcons: true
+    # Set to true to hide K9s header. Default false
+    headless: true
+    # Set to true to hide K9s logo. Default false
+    logoless: true
+    # Set to true to hide K9s crumbs. Default false
+    crumbsless: false
+    # Toggles reactive UI. This option provide for watching on disk artifacts changes and update the UI live  Defaults to false.
+    reactive: false
+    splashless: true
+    skin: transparent
