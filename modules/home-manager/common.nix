@@ -10,22 +10,6 @@ let
       hash = "sha256-10IVgfdk8gaz4kHUjExtrnntsiFJry2/KRvuHYccqG4=";
     };
   };
-
-  copilot-chat-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "copilot-chat-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "CopilotC-Nvim";
-      repo = "CopilotChat.nvim";
-      rev = "v3.11.0";
-      hash = "sha256-XMrjDUvQjkW9tlTubVou2RMQfOfzmMFlQAWgCx3/4y4=";
-    };
-    dependencies = with pkgs.vimPlugins; [
-      fzf-lua
-      plenary-nvim
-      snacks-nvim
-      telescope-nvim
-    ];
-  };
 in
 {
   home = {
@@ -141,7 +125,7 @@ in
     enable = true;
     plugins = with pkgs.vimPlugins; [
       cmp-nvim-lsp
-      copilot-chat-nvim  # custom version
+      CopilotChat-nvim
       copilot-vim
       fidget-nvim
       fugitive-gitlab-vim
