@@ -104,11 +104,15 @@ _fzf_complete_k8s_generic() {
       k_cmd="kubectl get pod $ns_opt"
       result=$(eval "$k_cmd" 2>/dev/null)
         ;;
-    *)
+    *' get '*|*' edit '*|*' delete '*|*' describe '*)
       # If resource_with_name is not empty assign it to resource
       # Otherwhise assign $resource_from_cmd to $resource
       resource=${resource_with_name:-$resource_from_cmd} > /dev/null
       k_cmd="kubectl get $resource $ns_opt"
+      result=$(eval "$k_cmd" 2>/dev/null)
+        ;;
+    *' --namespace '*|*' -n '*)
+      k_cmd="kubectl get ns $ns_opt"
       result=$(eval "$k_cmd" 2>/dev/null)
         ;;
   esac
