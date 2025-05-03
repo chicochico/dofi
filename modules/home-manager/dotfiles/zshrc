@@ -5,7 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-NIX_SHARE="$HOME/.nix-profile/share"
+NIX_HOME="$HOME/.nix-profile"
+NIX_SHARE="$NIX_HOME/share"
+NIX_BIN="$NIX_HOME/bin"
 
 # Theme
 source "$NIX_SHARE/zsh-powerlevel10k/powerlevel10k.zsh-theme"
@@ -29,6 +31,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 
 # Autocompletion
+autoload bashcompinit && bashcompinit  # enable using bash completion scripts
 autoload -U compinit && compinit
 source "$NIX_SHARE/fzf-tab/fzf-tab.plugin.zsh"
 zstyle ':fzf-tab:*' fzf-flags --color=fg+:21,bg+:-1,pointer:21,hl:2,hl+:2 --bind=tab:accept  # NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
@@ -114,12 +117,13 @@ if [ -n "${commands[fzf-share]}" ]; then
   }
 fi
 
-# extra ergonomics things
+# extra completions and aliases
 source "$HOME/.k8s.zsh"
 source "$HOME/.git.zsh"
+complete -C "$NIX_BIN/aws_completer" aws
 
 # custom executable scripts
-export PATH=$PATH:$HOME/bin
+export PATH="$PATH:$HOME/bin"
 
 # go bin path
-export PATH=$PATH:$HOME/go/bin
+export PATH="$PATH:$HOME/go/bin"
