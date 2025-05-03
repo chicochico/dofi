@@ -60,6 +60,7 @@ alias t="terraform"
 alias p="popd"
 alias pll="parallel"
 alias j="jira"
+alias so="source"
 
 # Changing/making/removing directory
 setopt auto_cd
