@@ -120,7 +120,9 @@ fi
 # extra completions and aliases
 source "$HOME/.k8s.zsh"
 source "$HOME/.git.zsh"
-complete -C "$NIX_BIN/aws_completer" aws
+source "$HOME/.aws.zsh"
+# activate aws completions
+complete -C "$NIX_BIN/aws_completer" aws  
 
 # custom executable scripts
 export PATH="$PATH:$HOME/bin"

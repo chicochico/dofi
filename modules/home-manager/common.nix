@@ -80,6 +80,7 @@ in
     gitconfig-default = { source = ./dotfiles/config/git/config; target = ".config/git/config"; };
     k8s-zsh = { source = ./dotfiles/k8s.zsh; target = ".k8s.zsh"; };
     git-zsh = { source = ./dotfiles/git.zsh; target = ".git.zsh"; };
+    aws-zsh = { source = ./dotfiles/aws.zsh; target = ".aws.zsh"; };
     kitty = { source = ./dotfiles/config/kitty; target = ".config/kitty"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
