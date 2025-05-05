@@ -16,7 +16,7 @@ fzf_aws_pick() {
 ap() {
   # change profile
   local result selected profile
-  result=$(aws-vault list)
+  result=$(aws-vault list | grep -E -v 'vault|common')
   selected=$(fzf_aws_pick "$result")
   if [[ -z "$selected" ]]; then
     if [[ -n "$AWS_PROFILE" ]]; then
