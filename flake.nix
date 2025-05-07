@@ -25,7 +25,8 @@
         };
         system = "aarch64-darwin";
       };
-    in {
+    in
+    {
       homeConfigurations = {
         mbp14-personal = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;

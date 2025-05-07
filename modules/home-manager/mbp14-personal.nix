@@ -13,7 +13,6 @@ in
       bats
     ];
 
-    file = common.home.file // {
-    };
+    file = common.home.file // { };
   };
 }

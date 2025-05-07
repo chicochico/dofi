@@ -141,7 +141,7 @@ in
       luasnip
       markdown-preview-nvim
       none-ls-nvim
-      notational-fzf-vim  # custom version
+      notational-fzf-vim # custom version
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
