@@ -12,21 +12,20 @@ function base16()
     hl = vim.api.nvim_set_hl
 
     cterm00 = 00
+    cterm01 = 18
+    cterm02 = 19
     cterm03 = 08
+    cterm04 = 20
     cterm05 = 07
+    cterm06 = 21
     cterm07 = 15
     cterm08 = 01
+    cterm09 = 16
     cterm0A = 03
     cterm0B = 02
     cterm0C = 06
     cterm0D = 04
     cterm0E = 05
-    -- 256 colors
-    cterm01 = 18
-    cterm02 = 19
-    cterm04 = 20
-    cterm06 = 21
-    cterm09 = 16
     cterm0F = 17
 
     -- Vim editor colors
