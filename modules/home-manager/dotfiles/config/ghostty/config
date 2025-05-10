@@ -1,0 +1,29 @@
+font-family = Fira Code
+font-size = 14
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+window-padding-x = 8
+window-padding-y = 8
+window-padding-balance = true
+
+macos-titlebar-style = hidden
+
+# Custom tmux keybinds
+# --------------------
+# create new window
+keybind = cmd+t=text:\u{13}c
+
+# kill window
+keybind = cmd+w=text:\u{13}x
+
+# search up
+keybind = cmd+f=text:\u{13}[?
+
+# next window
+keybind = ctrl+tab=text:\u{13}n
+
+# previous window
+keybind = ctrl+shift+tab=text:\u{13}p
