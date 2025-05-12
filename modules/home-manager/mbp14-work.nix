@@ -10,6 +10,8 @@ in
     username = "franciscochiang";
     packages = with pkgs; common.home.packages ++ [
       glab
+      terraform
+      terragrunt
       (pkgs.stdenv.mkDerivation {
         pname = "multi-gitter";
         version = "0.57.1";
