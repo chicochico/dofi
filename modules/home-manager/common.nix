@@ -145,8 +145,8 @@ in
       nvim-autopairs
       nvim-cmp
       nvim-lspconfig
-      nvim-tree-lua
       nvim-treesitter-context
+      oil-nvim
       vim-commentary
       vim-fugitive
       vim-gnupg

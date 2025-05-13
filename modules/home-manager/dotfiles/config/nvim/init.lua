@@ -143,13 +143,6 @@ function base16()
     hl(0, "SpellLocal", { undercurl = true })
     hl(0, "SpellRare", { undercurl = true })
 
-    -- NvimTree
-    hl(0, "NvimTreeNormal", { ctermfg = cterm04 })
-    hl(0, "NvimTreeIndentMarker", { ctermfg = cterm03 })
-    hl(0, "NvimTreeRootFolder", { ctermfg = cterm0D })
-    hl(0, "NvimTreeSymlinkFolderName", { ctermfg = cterm0E })
-    hl(0, "NvimTreeSymlink", { ctermfg = cterm0E })
-
     -- Custom
     hl(0, "Active", { ctermfg = cterm07 })
     hl(0, "CurSearch", { ctermfg = cterm00, ctermbg = cterm09 })
@@ -303,8 +296,6 @@ vim.keymap.set("n", "T", "<C-t>", { noremap = true })
 -- resize windows
 vim.keymap.set("n", "H", "<C-w>1>", { noremap = true }) -- higher
 vim.keymap.set("n", "L", "<C-w>1<", { noremap = true }) -- lower
-vim.keymap.set("n", "-", "<C-w>1-", { noremap = true })
-vim.keymap.set("n", "=", "<C-w>1+", { noremap = true })
 
 -- Plugin settings
 -- ---------------
@@ -332,125 +323,6 @@ require("CopilotChat").setup({
 })
 vim.keymap.set("n", "<leader>co", ":CopilotChat<CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>co", ":CopilotChat<CR>", { noremap = true, silent = true })
-
--- Nvim Tree
-vim.keymap.set("n", "t", ":NvimTreeOpen<CR>", { noremap = true })
-
-local function nvim_tree_on_attach(bufnr)
-    local api = require("nvim-tree.api")
-
-    local function opts(desc)
-        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-    end
-
-    -- default mappings
-    api.config.mappings.default_on_attach(bufnr)
-
-    -- custom mappings
-    vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("Root"))
-    vim.keymap.set("n", "<backspace>", api.tree.change_root_to_parent, opts("Up"))
-    vim.keymap.set("n", "w", api.node.open.edit, opts("Open"))
-    vim.keymap.set("n", "v", api.node.open.vertical, opts("Open vertical"))
-    vim.keymap.set("n", "h", api.node.open.horizontal, opts("Open horizontal"))
-    vim.keymap.del("n", "<C-E>", { buffer = bufnr }) -- Restore scrolling map
-end
-
-require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
-    on_attach = nvim_tree_on_attach,
-    disable_netrw = true,
-    sync_root_with_cwd = false,
-    modified = { enable = true },
-    actions = {
-        change_dir = {
-            global = true,
-        },
-        open_file = {
-            window_picker = {
-                enable = false,
-            },
-        },
-    },
-    update_focused_file = {
-        enable = true,
-        update_root = false,
-        ignore_list = {},
-    },
-    view = {
-        signcolumn = "yes",
-        width = "20%",
-    },
-    renderer = {
-        indent_width = 2,
-        indent_markers = {
-            enable = true,
-            inline_arrows = false,
-            icons = {
-                corner = "|",
-                edge = "|",
-                item = "|",
-                bottom = " ",
-                none = "|",
-            },
-        },
-        icons = {
-            web_devicons = {
-                file = {
-                    enable = false,
-                    color = false,
-                },
-                folder = {
-                    enable = false,
-                    color = false,
-                },
-            },
-            padding = " ",
-            symlink_arrow = " → ",
-            show = {
-                file = false,
-                folder = false,
-                folder_arrow = false,
-                git = false,
-                modified = true,
-                diagnostics = false,
-                bookmarks = true,
-            },
-            glyphs = {
-                default = "",
-                symlink = "",
-                bookmark = "●",
-                modified = "+",
-
-                folder = {
-                    arrow_closed = "▸",
-                    arrow_open = "▾",
-                    default = "",
-                    open = "",
-                    empty = "",
-                    empty_open = "",
-                    symlink = "",
-                    symlink_open = "",
-                },
-            },
-        },
-    },
-    git = {
-        enable = false,
-    },
-    filters = {
-        git_ignored = false,
-        dotfiles = false,
-        git_clean = false,
-        no_buffer = false,
-        no_bookmark = false,
-        custom = {},
-        exclude = {},
-    },
-    sort = {
-        sorter = "case_sensitive",
-        folders_first = true,
-        files_first = false,
-    },
-})
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -561,6 +433,14 @@ vim.keymap.set("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { noremap = true }
 
 -- Nvim Autopairs
 require("nvim-autopairs").setup({})
+
+-- Oil nvim
+require("oil").setup({
+    view_options = {
+        show_hidden = true,
+    },
+})
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- LSP
 ------
