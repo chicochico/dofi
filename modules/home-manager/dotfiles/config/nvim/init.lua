@@ -460,22 +460,36 @@ require("gitsigns").setup({
     },
 })
 
--- FZF Lua
--- ---
-require("fzf-lua").setup({
-    "border-fused",
-    keymap = {
-        fzf = {}, -- disabling default maps
-    },
-    grep = {
-        rg_opts = "--glob='!.git/*' --hidden --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
-    },
-})
-require("fzf-lua").register_ui_select()
--- vim.api.nvim_set_var("fzf_buffers_jump", 1)
-vim.keymap.set("n", "<leader>f", ":FzfLua files<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>b", ":FzfLua buffers<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>/", ":FzfLua live_grep<CR>", { noremap = true })
+--- FZF
+-------
+vim.api.nvim_set_var("fzf_buffers_jump", 1)
+vim.api.nvim_set_keymap("n", "<leader>f", ":Files<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>b", ":Buffers<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>t", ":Tags<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>/", ":Ag<CR>", { noremap = true })
+
+vim.g.fzf_colors = {
+    fg = { "fg", "Normal" },
+    bg = { "bg", "Normal" },
+    hl = { "fg", "Comment" },
+    ["fg+"] = { "fg", "CursorLine", "CursorColumn", "Normal" },
+    -- ['bg+'] = {'bg', 'CursorLine', 'CursorColumn'},
+    ["hl+"] = { "fg", "Statement" },
+    info = { "fg", "PreProc" },
+    -- border = {'fg', 'Ignore'},
+    prompt = { "fg", "Conditional" },
+    pointer = { "fg", "Active" },
+    marker = { "fg", "Keyword" },
+    spinner = { "fg", "Label" },
+    header = { "fg", "Comment" },
+}
+
+-- this keeps the status line consistent when the filetype is set to fzf
+vim.cmd([[
+    autocmd! FileType fzf
+    autocmd  FileType fzf set laststatus=2
+      \| autocmd BufLeave <buffer> set laststatus=3
+]])
 
 -- Goyo
 -- ----

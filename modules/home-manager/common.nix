@@ -134,7 +134,7 @@ in
       copilot-vim
       fidget-nvim
       fugitive-gitlab-vim
-      fzf-lua
+      fzf-vim
       gitsigns-nvim
       goyo-vim
       gv-vim
