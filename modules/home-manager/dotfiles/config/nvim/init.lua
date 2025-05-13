@@ -156,8 +156,7 @@ function base16()
     hl(0, "StatusLineSeparator", { ctermfg = cterm03 })
 
     -- Treesitter context
-    hl(0, "TreesitterContextBottom", { ctermbg = cterm01 })
-    hl(0, "TreesitterContextLineNumberBottom", { ctermbg = cterm01 })
+    hl(0, "TreesitterContextSeparator", { ctermfg = cterm01 })
 end
 
 base16()
@@ -433,6 +432,11 @@ vim.keymap.set("n", "<leader>hs", ":Gitsigns stage_hunk<CR>", { noremap = true }
 
 -- Nvim Autopairs
 require("nvim-autopairs").setup({})
+
+-- Treesitter context
+require("treesitter-context").setup({
+    separator = "-",
+})
 
 -- Oil nvim
 require("oil").setup({
