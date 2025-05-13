@@ -161,6 +161,10 @@ function base16()
     hl(0, "LineNrDefault", { ctermfg = cterm02, bold = true })
     hl(0, "StatusLineNoFocus", { ctermfg = cterm03, nocombine = true })
     hl(0, "StatusLineSeparator", { ctermfg = cterm03 })
+
+    -- Treesitter context
+    hl(0, "TreesitterContextBottom", { ctermbg = cterm01 })
+    hl(0, "TreesitterContextLineNumberBottom", { ctermbg = cterm01 })
 end
 
 base16()
