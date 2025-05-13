@@ -165,6 +165,7 @@ in
           diff
           dockerfile
           gitignore
+          go
           hcl
           kotlin
           lua
