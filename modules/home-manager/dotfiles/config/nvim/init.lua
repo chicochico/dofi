@@ -271,6 +271,11 @@ vim.o.statusline = table.concat(stl)
 vim.cmd([[inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>]])
 vim.cmd([[inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>]])
 
+-- User commands
+vim.api.nvim_create_user_command("Soc", function()
+    vim.cmd("source ~/dofi/modules/home-manager/dotfiles/config/nvim/init.lua")
+end, {})
+
 -- Providers support
 -- --------------
 vim.g.loaded_python3_provider = 0
