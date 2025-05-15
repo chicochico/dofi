@@ -100,6 +100,7 @@ in
     nix = { source = ./dotfiles/config/nix; target = ".config/nix"; };
     k9s = { source = ./dotfiles/config/k9s/config.yaml; target = "Library/Application Support/k9s/config.yaml"; };
     k9s-skin-transparent = { source = ./dotfiles/config/k9s/skins/transparent.yaml; target = "Library/Application Support/k9s/skins/transparent.yaml"; };
+    aerospace = { source = ./dotfiles/.aerospace.toml; target = ".aerospace.toml"; };
   };
 
   # Let Home Manager install and manage itself.

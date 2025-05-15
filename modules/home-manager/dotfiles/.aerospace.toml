@@ -12,7 +12,7 @@ after-login-command = []
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -29,14 +29,14 @@ default-root-container-layout = 'accordion'
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
 #               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'auto'
+default-root-container-orientation = 'vertical'
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -59,10 +59,10 @@ automatically-unhide-macos-hidden-apps = false
 [gaps]
     inner.horizontal = 5
     inner.vertical =   5
-    outer.left =       5
-    outer.bottom =     5
-    outer.top =        5
-    outer.right =      5
+    outer.left =       0
+    outer.bottom =     0
+    outer.top =        0
+    outer.right =      0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -100,7 +100,6 @@ automatically-unhide-macos-hidden-apps = false
     # shift-alt-cmd-k = 'fullscreen'
     # shift-alt-cmd-comma = 'layout accordion vertical'
     shift-alt-cmd-k = 'layout v_accordion'
-    shift-alt-cmd-j = 'fullscreen'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     shift-alt-cmd-comma = 'join-with left'
@@ -111,6 +110,9 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
     shift-alt-cmd-minus = 'resize smart -50'
     shift-alt-cmd-equal = 'resize smart +50'
+
+    # move between monitors
+    shift-alt-cmd-n = 'move-node-to-monitor --wrap-around --focus-follows-window next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     shift-alt-cmd-semicolon = 'mode service'
