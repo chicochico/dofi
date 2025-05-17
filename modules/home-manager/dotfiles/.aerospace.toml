@@ -16,7 +16,7 @@ start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
-enable-normalization-opposite-orientation-for-nested-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = false
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
@@ -97,15 +97,15 @@ automatically-unhide-macos-hidden-apps = false
     # '''
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    # shift-alt-cmd-k = 'fullscreen'
-    # shift-alt-cmd-comma = 'layout accordion vertical'
-    shift-alt-cmd-k = 'layout v_accordion'
+    shift-alt-cmd-k = 'layout v_accordion h_tiles'
+    shift-alt-cmd-j = 'layout vertical horizontal'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
-    shift-alt-cmd-comma = 'join-with left'
-    shift-alt-cmd-period = 'join-with right'
-    shift-alt-cmd-h = 'move left'
-    shift-alt-cmd-l = 'move right'
+    shift-alt-cmd-comma = ['join-with left', 'layout v_accordion']
+    shift-alt-cmd-period = ['join-with right', 'layout v_accordion']
+
+    shift-alt-cmd-h = ['move left']
+    shift-alt-cmd-l = ['move right']
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
     shift-alt-cmd-minus = 'resize smart -50'
