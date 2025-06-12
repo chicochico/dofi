@@ -12,7 +12,7 @@ in
       glab
       terraform
       terragrunt
-      python312Packages.databricks-cli
+      databricks-cli
       (pkgs.stdenv.mkDerivation {
         pname = "multi-gitter";
         version = "0.57.1";
