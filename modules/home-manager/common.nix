@@ -37,7 +37,6 @@ in
       kubernetes-helm
       kustomize
       minikube
-      nodejs
       openssl
       parallel
       python311
