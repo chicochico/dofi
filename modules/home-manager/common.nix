@@ -36,6 +36,7 @@ in
       kubectl
       kubernetes-helm
       kustomize
+      mermaid-cli
       minikube
       openssl
       parallel
