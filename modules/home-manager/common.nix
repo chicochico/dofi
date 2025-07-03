@@ -82,6 +82,7 @@ in
     git-zsh = { source = ./dotfiles/git.zsh; target = ".git.zsh"; };
     aws-zsh = { source = ./dotfiles/aws.zsh; target = ".aws.zsh"; };
     kitty = { source = ./dotfiles/config/kitty; target = ".config/kitty"; };
+    ghostty = { source = ./dotfiles/config/ghostty; target = ".config/ghostty"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)

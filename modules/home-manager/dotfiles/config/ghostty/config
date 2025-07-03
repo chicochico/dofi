@@ -11,6 +11,8 @@ window-padding-balance = true
 
 macos-titlebar-style = hidden
 
+custom-shader = ~/.config/ghostty/shaders/cursor-blaze.glsl
+
 # Custom tmux keybinds
 # --------------------
 # create new window
