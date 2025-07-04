@@ -79,6 +79,7 @@ const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0); // red-orange
 // const vec4 TRAIL_COLOR_ACCENT = vec4(0.0, 0.424, 1.0, 1.0);
 const float DURATION = .4;
 const float OPACITY = .2;
+const float DISTANCE_THRESHOLD = 0.1; // Minimum distance cursor must move to trigger animation
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
@@ -107,13 +108,16 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
 
     vec4 newColor = vec4(fragColor);
 
-    float progress = blend(clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1));
-    float easedProgress = ease(progress);
-
     //Distance between cursors determine the total length of the parallelogram;
     vec2 centerCC = getRectangleCenter(currentCursor);
     vec2 centerCP = getRectangleCenter(previousCursor);
     float lineLength = distance(centerCC, centerCP);
+    
+    // Only trigger animation if cursor moved beyond threshold
+    float shouldAnimate = step(DISTANCE_THRESHOLD, lineLength);
+    
+    float progress = blend(clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1)) * shouldAnimate;
+    float easedProgress = ease(progress);
     float distanceToEnd = distance(vu.xy, centerCC);
     float alphaModifier = distanceToEnd / (lineLength * (easedProgress));
     //float alphaModifier = distanceToEnd / (lineLength * (1 - progress));
@@ -125,8 +129,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float sdfCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
     float sdfTrail = getSdfParallelogram(vu, v0, v1, v2, v3);
 
-    newColor = mix(newColor, TRAIL_COLOR_ACCENT, 1.0 - smoothstep(sdfTrail, -0.01, 0.001));
-    newColor = mix(newColor, TRAIL_COLOR, antialising(sdfTrail));
+    // Only draw trail if animation should trigger
+    newColor = mix(newColor, TRAIL_COLOR_ACCENT, (1.0 - smoothstep(sdfTrail, -0.01, 0.001)) * shouldAnimate);
+    newColor = mix(newColor, TRAIL_COLOR, antialising(sdfTrail) * shouldAnimate);
 
     newColor = mix(fragColor, newColor, 1.0 - alphaModifier);
     fragColor = mix(newColor, fragColor, step(sdfCursor, 0));
