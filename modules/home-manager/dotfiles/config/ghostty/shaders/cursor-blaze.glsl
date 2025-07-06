@@ -79,7 +79,7 @@ const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0); // red-orange
 // const vec4 TRAIL_COLOR_ACCENT = vec4(0.0, 0.424, 1.0, 1.0);
 const float DURATION = .4;
 const float OPACITY = .2;
-const float DISTANCE_THRESHOLD = 0.1; // Minimum distance cursor must move to trigger animation
+const float DISTANCE_THRESHOLD = 0.04; // Minimum distance cursor must move to trigger animation
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
