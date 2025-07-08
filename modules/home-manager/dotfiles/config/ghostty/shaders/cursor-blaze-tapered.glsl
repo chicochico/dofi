@@ -67,7 +67,8 @@ float ease(float x) {
 
 const vec4 TRAIL_COLOR = vec4(1.0, 0.725, 0.161, 1.0);
 const vec4 TRAIL_COLOR_ACCENT = vec4(1.0, 0., 0., 1.0);
-const float DURATION = 0.18; //IN SECONDS
+const float DURATION = 0.08; //IN SECONDS
+const float DISTANCE_THRESHOLD = 0.04; // Minimum distance cursor must move to trigger animation
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
@@ -102,18 +103,22 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float sdfCurrentCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
     float sdfTrail = getSdfParallelogram(vu, v0, v1, v2, v3);
 
-    float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0);
-    float easedProgress = ease(progress);
     // Distance between cursors determine the total length of the parallelogram;
     float lineLength = distance(centerCC, centerCP);
+    
+    // Only trigger animation if cursor moved beyond threshold
+    float shouldAnimate = step(DISTANCE_THRESHOLD, lineLength);
+    
+    float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0) * shouldAnimate;
+    float easedProgress = ease(progress);
 
     float mod = .007;
     //trailblaze
-    vec4 trail = mix(TRAIL_COLOR_ACCENT, fragColor, 1. - smoothstep(0., sdfTrail + mod, 0.007));
-    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfTrail + mod, 0.006));
-    trail = mix(trail, TRAIL_COLOR, step(sdfTrail + mod, 0.));
+    vec4 trail = mix(TRAIL_COLOR_ACCENT, fragColor, 1. - smoothstep(0., sdfTrail + mod, 0.007) * shouldAnimate);
+    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfTrail + mod, 0.006) * shouldAnimate);
+    trail = mix(trail, TRAIL_COLOR, step(sdfTrail + mod, 0.) * shouldAnimate);
     //cursorblaze
-    trail = mix(TRAIL_COLOR_ACCENT, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
-    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
-    fragColor = mix(trail, fragColor, 1. - smoothstep(0., sdfCurrentCursor, easedProgress * lineLength));
+    trail = mix(TRAIL_COLOR_ACCENT, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004) * shouldAnimate);
+    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004) * shouldAnimate);
+    fragColor = mix(trail, fragColor, 1. - smoothstep(0., sdfCurrentCursor, easedProgress * lineLength) * shouldAnimate);
 }
