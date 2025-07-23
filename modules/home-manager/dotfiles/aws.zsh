@@ -60,10 +60,10 @@ aa() {
     echo "sso_account_id = ${account_id}"
     echo
     
-    for role in admin developer readonly; do
+    for role in Admin Developer ReadOnly; do
       echo "[profile ${role}-${account_name}-vault]"
       echo "include_profile = ${account_name}-common"
-      echo "sso_role_name = ${role:u}"
+      echo "sso_role_name = ${role}"
       echo
     done
     
