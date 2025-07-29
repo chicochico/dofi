@@ -159,6 +159,46 @@
             ]
           },
           {
+            "description": "Vol down - fine",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "f11"
+                },
+                "to": [
+                  {
+                    "key_code": "volume_decrement",
+                    "modifiers": [
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Vol up - fine",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "f12"
+                },
+                "to": [
+                  {
+                    "key_code": "volume_increment",
+                    "modifiers": [
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "Focus Ghostty",
             "manipulators": [
               {
