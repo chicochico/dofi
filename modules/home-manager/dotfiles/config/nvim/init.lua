@@ -473,6 +473,20 @@ lspconfig.yamlls.setup({
     settings = { yaml = { validate = { enable = false } } },
 })
 
+-- LSP toggle
+local lsp_enabled = true
+vim.keymap.set("n", "<leader>l", function()
+    if lsp_enabled then
+        vim.cmd("LspStop")
+        lsp_enabled = false
+        print("LSP disabled")
+    else
+        vim.cmd("LspStart")
+        lsp_enabled = true
+        print("LSP enabled")
+    end
+end, { noremap = true, silent = true })
+
 -- Null-ls
 local null_ls = require("null-ls")
 
