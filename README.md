@@ -102,7 +102,18 @@ $ nix flake update
 
 Then run the switch command as usual.
 
+#### MacOS updates - command not found
+After some MacOS updates nix path gets removed and none of the installed packages are available. Run the command below to restore funcionality:
+```
+sudo tee -a /etc/zshrc <<EOF
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+EOF
+```
 
 ## Links
 - [home-manager](https://github.com/nix-community/home-manager)
