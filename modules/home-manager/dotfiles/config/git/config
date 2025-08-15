@@ -31,9 +31,10 @@
     pnr = pull --no-rebase
     pr = pull --rebase
     ps = push
-    r = reset
+    r = restore
+    rs = reset
     rb = rebase
-    s = status
+    s = switch
     w = worktree
     wa = worktree add
     waco = "!f() { git worktree add -b $1 $1 origin/$1; }; f"
