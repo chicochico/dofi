@@ -270,6 +270,7 @@ vim.o.statusline = table.concat(stl)
 -- insert current date
 vim.cmd([[inoreabbrev idate <C-R>=strftime("%Y-%m-%d %H:%M")<CR>]])
 vim.cmd([[inoreabbrev idateh <C-R>=strftime("%a, %b %d, %Y at %H:%M")<CR>]])
+vim.cmd("iabbrev itime <C-R>=strftime('%H:%M')<CR>")
 
 -- User commands
 vim.api.nvim_create_user_command("Soc", function()
