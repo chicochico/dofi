@@ -66,6 +66,7 @@ alias p="popd"
 alias pll="parallel"
 alias j="jira"
 alias so="source"
+alias grampy="$HOME/.venvs/grampy/bin/g"
 
 # Changing/making/removing directory
 setopt auto_cd
