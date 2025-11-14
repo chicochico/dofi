@@ -29,6 +29,7 @@ in
       gnupg
       go
       htop
+      iosevka # mono font
       jq
       k9s
       krew
