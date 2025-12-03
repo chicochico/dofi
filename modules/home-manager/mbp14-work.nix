@@ -10,6 +10,7 @@ in
     username = "franciscochiang";
     packages = with pkgs; common.home.packages ++ [
       glab
+      git-lfs
       terragrunt
       databricks-cli
       tfswitch
