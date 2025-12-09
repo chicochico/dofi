@@ -15,6 +15,7 @@ in
       terragrunt
       databricks-cli
       tfswitch
+      src-cli
       (pkgs.stdenv.mkDerivation {
         pname = "multi-gitter";
         version = "0.57.1";
