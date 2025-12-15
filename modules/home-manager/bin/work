@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Check if tmux is installed
+if ! command -v tmux &> /dev/null; then
+    echo "Error: tmux is not installed" >&2
+    exit 1
+fi
+
+# Get session name from current directory
+base_name=$(basename "$PWD")
+
+# Sanitize session name for tmux (replace dots, spaces, colons with hyphens)
+session_name=$(echo "$base_name" | sed 's/[.: ]/-/g')
+
+# Find an available session name
+original_session_name="$session_name"
+counter=1
+while tmux has-session -t "$session_name" 2>/dev/null; do
+    session_name="${original_session_name}-${counter}"
+    ((counter++))
+done
+
+# Create detached tmux session
+tmux new-session -d -s "$session_name" -n "vim"
+
+# Start vim in the first window with current directory
+tmux send-keys -t "$session_name:1" "vim ." Enter
+
+# Create second window for claude
+tmux new-window -t "$session_name:2" -n "claude"
+tmux send-keys -t "$session_name:2" "claude" Enter
+
+# Focus first window
+tmux select-window -t "$session_name:1"
+
+# Attach or switch to session depending on whether we're already in tmux
+if [ -n "${TMUX:-}" ]; then
+    tmux switch-client -t "$session_name"
+else
+    tmux attach-session -t "$session_name"
+fi

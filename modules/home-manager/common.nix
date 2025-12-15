@@ -103,6 +103,7 @@ in
     k9s = { source = ./dotfiles/config/k9s/config.yaml; target = "Library/Application Support/k9s/config.yaml"; };
     k9s-skin-transparent = { source = ./dotfiles/config/k9s/skins/transparent.yaml; target = "Library/Application Support/k9s/skins/transparent.yaml"; };
     aerospace = { source = ./dotfiles/.aerospace.toml; target = ".aerospace.toml"; };
+    work = { source = ./bin/work; target = "bin/work"; };
   };
 
   # Let Home Manager install and manage itself.
