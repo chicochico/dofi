@@ -606,10 +606,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
             -- bug in yammlls
             client.server_capabilities.documentFormattingProvider = true
         end
-
-        -- Check if any formatter is available before formatting on save
-        vim.cmd([[
-          autocmd BufWritePre <buffer> lua if #vim.lsp.get_clients({bufnr=0, method="textDocument/formatting"}) > 0 then vim.lsp.buf.format({async=false}) end
-        ]])
     end,
 })
