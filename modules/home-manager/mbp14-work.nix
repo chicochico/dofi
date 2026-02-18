@@ -12,6 +12,7 @@ in
       bfg-repo-cleaner
       glab
       git-lfs
+      jfrog-cli
       terragrunt
       databricks-cli
       tfswitch
