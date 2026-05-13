@@ -40,9 +40,7 @@
     waco = "!f() { git worktree add -b $1 $1 origin/$1; }; f"
     wl = worktree list
     wr = worktree remove
-[includeIf "gitdir:**/gitlab/"]
-    path = ~/.config/git/config-gly
-[includeIf "gitdir:**/github/superhumans-org/"]
+[includeIf "gitdir:~/sh/"]
     path = ~/.config/git/config-gly
 [url "git@ssh.gitlab.grammarly.io:"]
 	insteadOf = https://gitlab.grammarly.io/
