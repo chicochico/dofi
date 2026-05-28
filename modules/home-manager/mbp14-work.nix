@@ -10,7 +10,6 @@ in
     username = "franciscochiang";
     packages = with pkgs; common.home.packages ++ [
       bfg-repo-cleaner
-      glab
       git-lfs
       jfrog-cli
       terragrunt

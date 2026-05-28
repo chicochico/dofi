@@ -119,6 +119,8 @@ in
     enable = true;
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
+      resurrect
+      continuum
     ];
     sensibleOnTop = false;
     historyLimit = 5000;
