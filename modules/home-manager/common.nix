@@ -101,7 +101,7 @@ in
     amethyst-layout-center = { source = ./amethyst-layout-center.js; target = "Library/Application Support/Amethyst/Layouts/center.js"; };
     nix = { source = ./dotfiles/config/nix; target = ".config/nix"; };
     k9s = { source = ./dotfiles/config/k9s/config.yaml; target = "Library/Application Support/k9s/config.yaml"; };
-    k9s-skin-transparent = { source = ./dotfiles/config/k9s/skins/transparent.yaml; target = "Library/Application Support/k9s/skins/transparent.yaml"; };
+    k9s-skins= { source = ./dotfiles/config/k9s/skins; target = "Library/Application Support/k9s/skins"; recursive = true; };
     aerospace = { source = ./dotfiles/.aerospace.toml; target = ".aerospace.toml"; };
     work = { source = ./bin/work; target = "bin/work"; };
   };
