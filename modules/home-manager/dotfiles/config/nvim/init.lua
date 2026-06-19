@@ -452,6 +452,9 @@ require("oil").setup({
     keymaps = {
         -- Other mappings...
         ["gy"] = "actions.yank_entry", -- Yank the file path under the cursor
+        ["<C-h>"] = false, -- Disable: no action within oil
+        ["<C-l>"] = false, -- Disable default refresh binding
+        ["<leader>r"] = "actions.refresh", -- Refresh directory listing
     },
 })
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
