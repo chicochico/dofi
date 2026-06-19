@@ -454,6 +454,7 @@ require("oil").setup({
         ["gy"] = "actions.yank_entry", -- Yank the file path under the cursor
         ["<C-h>"] = false, -- Disable: no action within oil
         ["<C-l>"] = false, -- Disable default refresh binding
+        ["<C-p>"] = { "actions.preview", opts = { vertical = true, split = "belowright" } }, -- Preview opens on right
         ["<leader>r"] = "actions.refresh", -- Refresh directory listing
     },
 })
