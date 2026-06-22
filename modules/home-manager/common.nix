@@ -84,6 +84,7 @@ in
     aws-zsh = { source = ./dotfiles/aws.zsh; target = ".aws.zsh"; };
     kitty = { source = ./dotfiles/config/kitty; target = ".config/kitty"; };
     ghostty = { source = ./dotfiles/config/ghostty; target = ".config/ghostty"; };
+    neru = { source = ./dotfiles/config/neru; target = ".config/neru"; };
     zshrc = {
       text = builtins.concatStringsSep "\n" ([
         (builtins.readFile dotfiles/zshrc)
