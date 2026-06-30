@@ -36,10 +36,10 @@ text = "#E8EEFF"
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#hotkeys
 # See https://github.com/y3owk1n/neru/blob/main/docs/CLI.md
 [hotkeys]
-"Primary+Shift+Space" = "hints --action left_click"
-"Primary+Shift+G" = "grid"
-"Primary+Shift+C" = "recursive_grid"
-"Primary+Shift+S" = "scroll"
+"Cmd+Alt+Shift+Space" = "hints --action left_click"
+"Cmd+Alt+Shift+E" = "grid"
+"Cmd+Alt+Shift+N" = "recursive_grid"
+"Cmd+Alt+Shift+J" = "scroll"
 
 # Hint mode
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#hints
@@ -268,8 +268,8 @@ invert_scroll = false                       # Invert scroll direction (for tools
 "j" = "action scroll_down"
 "h" = "action scroll_left"
 "l" = "action scroll_right"
-"gg" = "action go_top"
-"Shift+G" = "action go_bottom"
+"gg" = "action feed home"
+"Shift+G" = "action feed end"
 "u" = "action page_up"
 "PageUp" = "action page_up"
 "d" = "action page_down"
