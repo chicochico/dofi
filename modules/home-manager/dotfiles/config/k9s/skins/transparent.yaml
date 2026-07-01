@@ -17,6 +17,7 @@ k9s:
     fieldFgColor: default
   frame:
     crumbs:
+      fgColor: default
       bgColor: default
     title:
       bgColor: default
