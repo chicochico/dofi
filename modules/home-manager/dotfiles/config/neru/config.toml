@@ -37,8 +37,8 @@ text = "#E8EEFF"
 # See https://github.com/y3owk1n/neru/blob/main/docs/CLI.md
 [hotkeys]
 "Cmd+Alt+Shift+Space" = "hints --action left_click"
-"Cmd+Alt+Shift+E" = "grid"
-"Cmd+Alt+Shift+N" = "recursive_grid"
+"Cmd+Alt+Shift+N" = "grid"
+"Cmd+Alt+Shift+E" = "recursive_grid"
 "Cmd+Alt+Shift+J" = "scroll"
 
 # Hint mode
@@ -46,8 +46,8 @@ text = "#E8EEFF"
 [hints]
 enabled = true
 strategy = "axtree"                          # Element detection: "axtree" (AX API) or "vision" (Vision Framework)
-hint_characters = "arstdhnei"               # Characters used for hint labels
-max_depth = 50                              # Max accessibility tree depth (0 = unlimited)
+hint_characters = "arstdhneio"               # Characters used for hint labels
+max_depth = 50                               # Max accessibility tree depth (0 = unlimited)
 include_menubar_hints = false
 additional_menubar_hints_targets = [
     "com.apple.TextInputMenuAgent",
@@ -157,12 +157,12 @@ generic_clickable_min_confidence = 0.5       # Minimum confidence for generic cl
 # See https://github.com/y3owk1n/neru/blob/main/docs/CONFIGURATION.md#grid
 [grid]
 enabled = true
-characters = "abcdefghijklmnpqrstuvwxyz"    # Primary grid labels
-sublayer_keys = "abcdefghijklmnpqrstuvwxyz" # Subgrid labels (fallback to characters)
-live_match_update = true                    # Highlight cells as you type
-hide_unmatched = true                       # Hide non-matching cells
-prewarm_enabled = true                      # Pre-compute grid on startup (~1.5MB RAM)
-enable_gc = false                           # Periodic memory cleanup (adds CPU overhead)
+characters = "arstdhneioqwfpluyzxcvkm"    # Primary grid labels
+sublayer_keys = "arstdhneioqwfpluyzxcvkm" # Subgrid labels (fallback to characters)
+live_match_update = true                  # Highlight cells as you type
+hide_unmatched = true                     # Hide non-matching cells
+prewarm_enabled = true                    # Pre-compute grid on startup (~1.5MB RAM)
+enable_gc = false                         # Periodic memory cleanup (adds CPU overhead)
 
 [grid.hotkeys]
 "Escape" = "idle"
