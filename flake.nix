@@ -10,8 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    base16-shell = {
-      url = "github:chriskempson/base16-shell/master";
+    tinted-shell = {
+      url = "github:tinted-theming/tinted-shell/main";
       flake = false;
     };
   };

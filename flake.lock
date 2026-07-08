@@ -1,22 +1,5 @@
 {
   "nodes": {
-    "base16-shell": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1663053609,
-        "narHash": "sha256-X89FsG9QICDw3jZvOCB/KsPBVOLUeE7xN3VCtf0DD3E=",
-        "owner": "chriskempson",
-        "repo": "base16-shell",
-        "rev": "588691ba71b47e75793ed9edfcfaa058326a6f41",
-        "type": "github"
-      },
-      "original": {
-        "owner": "chriskempson",
-        "ref": "master",
-        "repo": "base16-shell",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -56,9 +39,26 @@
     },
     "root": {
       "inputs": {
-        "base16-shell": "base16-shell",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "tinted-shell": "tinted-shell"
+      }
+    },
+    "tinted-shell": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782016804,
+        "narHash": "sha256-mhg2GChdnLUShYd2XniNf43NKjjTqhe5g53fKUMFODY=",
+        "owner": "tinted-theming",
+        "repo": "tinted-shell",
+        "rev": "05c9142afa2938bd0905e2ad5329f9385120fe7c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "ref": "main",
+        "repo": "tinted-shell",
+        "type": "github"
       }
     }
   },

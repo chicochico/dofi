@@ -92,8 +92,8 @@ in
           # add direnv hook
           eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 
-          # load base16
-          source "${inputs.base16-shell}/profile_helper.sh"
+          # load base16 (tinted-shell)
+          source "${inputs.tinted-shell}/profile_helper.sh"
         ''
       ]);
       target = ".zshrc";
